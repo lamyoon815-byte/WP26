@@ -132,7 +132,9 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: -0.5px;
   color: var(--c-point);
 }
+.logo { gap: 8px; }
 .logo img { height: 100%; width: auto; }
+.logo .logo-txt { height: 42%; }   /* 글자 로고는 심볼보다 작게 (logo_symbol.png + logo_text.png) */
 
 /* 검색창 (둥근 알약 모양) */
 .search {
@@ -322,6 +324,37 @@ button { font-family: inherit; cursor: pointer; }
 .sec-head .more { font-size: var(--fs-base); color: var(--c-text-sub); }
 
 .box-sub { background: var(--c-bg-sub); padding: 16px 20px; border-radius: var(--radius); }  /* 회색 안내 박스 */
+
+
+/* ==========================================================================
+   12-1. 메뉴 네비게이션 아래 상단 타이틀 배너 (main의 common-test.html에서 가져옴)
+      <div class="title-best"><h1>튜토리얼 <span>설명 문구</span></h1></div>
+      <main class="container"> 바깥, GNB 바로 아래에 둔다.
+   ========================================================================== */
+.title-best {
+  width: 100%;
+  height: 100%;
+  margin: 2rem 0;
+}
+
+.title-best h1 {
+  width: 1200px;
+  max-width: 100%;                /* [수정] 좁은 화면에서 넘치지 않게 */
+  padding: 0 16px;                /* [수정] .container와 같은 좌우 여백 → 아래 콘텐츠와 왼쪽 줄 맞춤 */
+  margin: 0 auto;
+  color: #000;
+  font-size: 40px;
+  line-height: 40px;
+  position: relative;
+}
+
+.title-best h1 span {
+  display: inline-block;
+  margin-left: 15px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 400;
+}
 
 
 /* ==========================================================================
