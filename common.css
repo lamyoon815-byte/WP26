@@ -204,14 +204,31 @@ button {
 }
 
 .gnb a {
+  position: relative;
   height: 100%;
   display: flex;
   align-items: center;
-  border-bottom: 3px solid transparent; /* 모든 메뉴에 같은 두께의 투명 밑줄 → 활성 메뉴만 위로 뜨지 않음 */
+  border-bottom: 3px solid transparent; /* 밑줄 자리를 모든 메뉴에 미리 확보 → 글자 높이가 다 같음 */
   cursor: pointer;
+}
+
+/* 메뉴 밑줄 바: 평소엔 폭 0 → 호버하면 가운데에서 양옆으로 늘어남 */
+.gnb a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px; /* 투명 밑줄 자리에 겹치기 */
+  height: 3px;
+  background: var(--c-point);
+  transform: scaleX(0);
+  transition: transform 0.2s ease-out;
 }
 .gnb a:hover {
   color: var(--c-point);
+}
+.gnb a:hover::after {
+  transform: scaleX(1);
 }
 
 /* 첫 번째 "카테고리" 칸 (오른쪽에 세로 구분선) */
@@ -219,11 +236,16 @@ button {
   padding-right: 28px;
   border-right: 1px solid var(--c-border);
 }
+.gnb .cat::after {
+  right: 28px; /* 밑줄은 글자 폭만큼만 (오른쪽 여백 제외) */
+}
 
-/* 현재 페이지 메뉴: 포인트색 글자 + 아래 밑줄 */
+/* 현재 페이지 메뉴: 포인트색 글자 + 밑줄 바 항상 표시 */
 .gnb .on {
   color: var(--c-point);
-  border-bottom-color: var(--c-point);
+}
+.gnb .on::after {
+  transform: scaleX(1);
 }
 
 /* ==========================================================================
