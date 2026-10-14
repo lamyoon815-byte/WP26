@@ -32,7 +32,8 @@
 #category-base:checked ~ .panel-base,
 #category-eye:checked ~ .panel-eye,
 #category-lip:checked ~ .panel-lip,
-#category-cheek:checked ~ .panel-cheek {
+#category-cheek:checked ~ .panel-cheek,
+#category-contour:checked ~ .panel-contour {
   display: contents;
 }
 
@@ -443,7 +444,8 @@
 #eye-2:checked ~ .result-eye-2,
 #lip-1:checked ~ .result-lip-1,
 #lip-2:checked ~ .result-lip-2,
-#cheek-1:checked ~ .result-cheek-1 {
+#cheek-1:checked ~ .result-cheek-1,
+#contour-1:checked ~ .result-contour-1 {
   display: block;
 }
 
@@ -454,7 +456,8 @@
 #eye-2:checked ~ .product-list label[for="eye-2"] .product-image,
 #lip-1:checked ~ .product-list label[for="lip-1"] .product-image,
 #lip-2:checked ~ .product-list label[for="lip-2"] .product-image,
-#cheek-1:checked ~ .product-list label[for="cheek-1"] .product-image {
+#cheek-1:checked ~ .product-list label[for="cheek-1"] .product-image,
+#contour-1:checked ~ .product-list label[for="contour-1"] .product-image {
   border-color: var(--c-point);
   background: var(--c-point-light);
 }
@@ -466,7 +469,8 @@
 #eye-2:focus-visible ~ .product-list label[for="eye-2"],
 #lip-1:focus-visible ~ .product-list label[for="lip-1"],
 #lip-2:focus-visible ~ .product-list label[for="lip-2"],
-#cheek-1:focus-visible ~ .product-list label[for="cheek-1"] {
+#cheek-1:focus-visible ~ .product-list label[for="cheek-1"],
+#contour-1:focus-visible ~ .product-list label[for="contour-1"] {
   outline: 2px solid var(--c-point);
   outline-offset: 4px;
 }
