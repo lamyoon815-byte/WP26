@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>퍼스널컬러 | 올리브송</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="common.css">
+<style>
+/* ==========================================================================
+   personalcolor.html — 와이어프레임
+   흐름: 진단 배너 → 4가지 톤 탭 → 톤 소개(팔레트 + 워스트↔대안)
+        → 아이템별 추천 컬러 → 리뷰어 추천 / 같은 톤이 많이 산 → 튜토리얼
+   * 진단 결과(myTone)는 localStorage에 저장 → 랭킹/튜토리얼 페이지에서도 읽을 수 있음
+   * 톤 이름은 랭킹 필터와 같은 값 사용: 봄웜 / 여름쿨 / 가을웜 / 겨울쿨
+   ========================================================================== */
+.pc-sec { margin-top: 56px; }
+.pc-sec > h2 { margin: 0 0 6px; font-size: var(--fs-lg); }
+.pc-sec > .sub { margin: 0 0 20px; color: var(--c-text-sub); font-size: var(--fs-base); }
+
+/* ---------- 1. 진단 배너 ---------- */
+.pc-banner {
+  padding: 28px 32px;
+  border-radius: 12px;
+  background: var(--c-point-light);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.pc-banner .txt { flex: 1; }
+.pc-banner h2 { margin: 0; font-size: var(--fs-xl); }
+.pc-banner h2 b { color: var(--c-point); }
+.pc-banner p { margin: 6px 0 0; color: var(--c-text-sub); }
+.pc-banner .know { margin-top: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: var(--fs-sm); color: var(--c-text-sub); }
+.pc-btn {
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--c-point);
+  color: var(--c-white);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pc-btn:hover { background: var(--c-point-dark); }
+.pc-btn.line { border: 1px solid var(--c-point); background: var(--c-white); color: var(--c-point); }
+.chip { padding: 6px 14px; border: 1px solid var(--c-border); background: var(--c-white); color: var(--c-text-sub); }
+.chip:hover { border-color: var(--c-point); color: var(--c-point); }
+
+/* ---------- 2. 4가지 톤 탭 ---------- */
+.pc-tabs { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--c-border); }
+.pc-tabs button {
+  position: relative;
+  height: 56px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: none;
+  font-size: var(--fs-lg);
+  color: var(--c-text-sub);
+}
+.pc-tabs button:hover { color: var(--c-main); }
+.pc-tabs button.on { color: var(--c-point); font-weight: 700; border-bottom-color: var(--c-point); }
+.pc-tabs .dot { display: inline-block; width: 12px; height: 12px; margin-right: 8px; border-radius: 50%; vertical-align: 0; }
+.pc-tabs .my {
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--c-sale);
+  color: var(--c-white);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  vertical-align: 3px;
+}
+
+/* ---------- 3. 톤 소개 카드 ---------- */
+.pc-intro { margin-top: 32px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+.pc-card { padding: 28px; border: 1px solid var(--c-border); border-radius: 12px; }
+.pc-card h3 { margin: 0 0 16px; font-size: var(--fs-md); }
+.pc-intro .name { margin: 0; font-size: 28px; font-weight: 800; }
+.pc-intro .kw { margin: 8px 0 0; display: flex; gap: 6px; }
+.pc-intro .kw span { padding: 2px 10px; border-radius: 12px; background: var(--c-bg-sub); font-size: var(--fs-sm); }
+.pc-intro .desc { margin: 16px 0 24px; line-height: 1.6; color: var(--c-text-sub); }
+.palette { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+.palette div { text-align: center; font-size: var(--fs-sm); color: var(--c-text-sub); }
+.palette i { display: block; width: 44px; height: 44px; margin: 0 auto 6px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .08); }
+
+/* 워스트 → 대안 */
+.worst li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--c-border); }
+.worst li:last-child { border-bottom: 0; }
+.worst ul { margin: 0; padding: 0; list-style: none; }
+.worst .sw { display: flex; align-items: center; gap: 8px; flex: 1; font-size: var(--fs-base); }
+.worst .sw i { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .08); flex: none; }
+.worst .bad { color: var(--c-text-disabled); }
+.worst .bad i { position: relative; }
+.worst .bad i::after { content: "\2715"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--c-white); font-size: 14px; text-shadow: 0 0 2px rgba(0, 0, 0, .6); }
+.worst .arrow { color: var(--c-text-disabled); }
+.worst .good b { color: var(--c-point); }
+
+/* ---------- 4. 아이템별 추천 컬러 ---------- */
+.items { border-top: 2px solid var(--c-main); }
+.items .row { display: grid; grid-template-columns: 120px 1fr 140px; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--c-border); }
+.items .row > h3 { margin: 0; font-size: var(--fs-md); }
+.items .shades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.shade { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 8px; cursor: pointer; }
+.shade:hover { background: var(--c-bg-sub); }
+.shade i { width: 48px; height: 48px; border-radius: 50%; flex: none; border: 1px solid rgba(0, 0, 0, .08); }
+.shade .b { font-size: var(--fs-sm); color: var(--c-text-sub); }
+.shade .n { font-size: var(--fs-base); }
+.shade .s { font-size: var(--fs-base); font-weight: 700; }
+.more { justify-self: end; font-size: var(--fs-base); color: var(--c-point); font-weight: 700; }
+.more:hover { text-decoration: underline; }
+
+/* ---------- 5. 리뷰어 추천 / 같은 톤이 많이 산 ---------- */
+.tabs2 { display: flex; gap: 8px; margin-bottom: 20px; }
+.tabs2 button { padding: 8px 18px; border: 1px solid var(--c-border); border-radius: 20px; background: var(--c-white); color: var(--c-text-sub); }
+.tabs2 button.on { border-color: var(--c-point); background: var(--c-point); color: var(--c-white); font-weight: 700; }
+
+/* 상품 카드 (이미지 없으면 X자 자리) */
+.pc-cards .card { text-align: center; }
+.pc-cards .card .img { display: block; border: 1px solid var(--c-border); }
+.pc-cards .card .img.ph,
+.tut .ph {
+  background:
+    linear-gradient(to top right, transparent calc(50% - .5px), var(--c-border) 50%, transparent calc(50% + .5px)),
+    linear-gradient(to top left,  transparent calc(50% - .5px), var(--c-border) 50%, transparent calc(50% + .5px)),
+    var(--c-bg-sub);
+}
+.pc-cards .card .img img { display: block; }
+.pc-cards .card .tone-tag { position: absolute; top: 8px; left: 8px; padding: 2px 8px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); }
+.pc-cards .card .brand { margin-top: 14px; font-size: var(--fs-base); color: var(--c-text-sub); }
+.pc-cards .card .name { margin-top: 4px; height: 2.8em; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.pc-cards .card .price-row { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 6px; }
+.pc-cards .card .rate { font-size: var(--fs-lg); font-weight: 700; color: var(--c-sale); }
+.pc-cards .card .buy { margin-top: 6px; font-size: var(--fs-sm); color: var(--c-text-sub); }
+
+/* 리뷰 카드 */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.review { padding: 24px; border: 1px solid var(--c-border); border-radius: 12px; display: flex; flex-direction: column; gap: 12px; }
+.review .who { display: flex; align-items: center; gap: 10px; font-size: var(--fs-base); }
+.review .who i { width: 36px; height: 36px; border-radius: 50%; background: var(--c-bg-sub); flex: none; }
+.review .who small { display: block; color: var(--c-text-sub); font-size: var(--fs-sm); }
+.review .star { color: var(--c-point); letter-spacing: 2px; }
+.review q { line-height: 1.6; }
+.review .prod { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--c-border); display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--c-text-sub); }
+.review .prod i { width: 24px; height: 24px; border-radius: 50%; flex: none; }
+
+/* ---------- 6. 튜토리얼 ---------- */
+.tut { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.tut a { display: block; }
+.tut .ph { position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--c-border); border-radius: var(--radius); }
+.tut .ph span { position: absolute; left: 10px; bottom: 10px; padding: 2px 8px; background: rgba(0, 0, 0, .7); color: var(--c-white); font-size: var(--fs-sm); }
+.tut .t { margin-top: 12px; font-weight: 700; }
+.tut .d { margin-top: 4px; font-size: var(--fs-base); color: var(--c-text-sub); }
+.tut-more { margin: 32px auto 80px; display: block; width: 280px; text-align: center; line-height: 48px; }
+
+/* ---------- 자가진단 모달 ---------- */
+.modal { position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, .45); display: none; align-items: center; justify-content: center; padding: 16px; }
+.modal.show { display: flex; }
+.modal .box { width: 480px; max-width: 100%; padding: 32px; border-radius: 16px; background: var(--c-white); }
+.modal .step { font-size: var(--fs-sm); color: var(--c-point); font-weight: 700; }
+.modal .bar { height: 4px; margin: 8px 0 24px; background: var(--c-bg-sub); border-radius: 2px; overflow: hidden; }
+.modal .bar i { display: block; height: 100%; background: var(--c-point); transition: width .2s; }
+.modal h3 { margin: 0 0 20px; font-size: var(--fs-lg); line-height: 1.4; }
+.modal .ans { display: grid; gap: 10px; }
+.modal .ans button { height: 52px; border: 1px solid var(--c-border); border-radius: 8px; background: var(--c-white); font-size: var(--fs-md); text-align: left; padding: 0 20px; }
+.modal .ans button:hover { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); }
+.modal .close { float: right; border: 0; background: none; font-size: 24px; line-height: 1; color: var(--c-text-sub); }
+.modal .note { margin-top: 20px; font-size: var(--fs-sm); color: var(--c-text-disabled); }
+
+@media (max-width: 800px) {
+  .palette { grid-template-columns: repeat(4, 1fr); }
+  .pc-banner { flex-direction: column; align-items: flex-start; }
+  .pc-intro { grid-template-columns: 1fr; }
+  .items .row { grid-template-columns: 1fr; }
+  .items .shades, .reviews, .tut { grid-template-columns: 1fr; }
+  .pc-tabs button { font-size: var(--fs-base); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 공통 헤더 ===== -->
+<div class="util"><div class="container"><a>로그인</a><a>회원가입</a><a href="cart.html">장바구니 <em>(3)</em></a><a>고객센터</a></div></div>
+<div class="header"><div class="container">
+  <a href="home.html" class="logo"><img src="Image_logo.png" alt="LOGO Image"><img src="Text_logo.png" alt="LOGO Text"></a>
+  <div class="search">퍼스널컬러, 브랜드, 성분 검색</div>
+  <div class="hright"><a data-soon>올송매장찾기 &#9662;</a><a data-soon>최근 본 상품 &#9662;</a></div>
+</div></div>
+<nav class="gnb"><div class="container">
+  <a class="cat" data-soon>&#9776; 카테고리</a>
+  <a data-soon>오특</a>
+  <a href="ranking.html">랭킹</a>
+  <a href="personalcolor.html" class="on">퍼스널컬러</a>
+  <a href="tutorial.html">튜토리얼</a>
+  <a data-soon>테마관</a>
+  <a data-soon>기획전</a>
+  <a data-soon>세일</a>
+  <a data-soon>기프트카드</a>
+  <a data-soon>멤버십/쿠폰</a>
+  <a data-soon>이벤트</a>
+</div></nav>
+
+<div class="title-best">
+  <h1>
+    퍼스널컬러
+    <span>내 톤에 어울리는 컬러와 제품을 찾아보세요.</span>
+  </h1>
+</div>
+
+<main class="container">
+
+  <!-- ===== 1. 진단 배너 (진단 전 / 후 내용이 바뀜) ===== -->
+  <div class="pc-banner" id="banner"></div>
+
+  <!-- ===== 2. 4가지 톤 탭 (진단된 톤에 my 뱃지) ===== -->
+  <div class="pc-tabs" id="tabs"></div>
+
+  <!-- ===== 3. 톤 소개 카드 ===== -->
+  <div class="pc-intro">
+    <div class="pc-card">
+      <p class="name" id="toneName"></p>
+      <div class="kw" id="toneKw"></div>
+      <p class="desc" id="toneDesc"></p>
+      <h3>어울리는 컬러 팔레트</h3>
+      <div class="palette" id="palette"></div>
+    </div>
+    <div class="pc-card worst">
+      <h3>피하면 좋은 색 &rarr; 대신 이 색</h3>
+      <ul id="worst"></ul>
+    </div>
+  </div>
+
+  <!-- ===== 4. 아이템별 추천 컬러 ===== -->
+  <section class="pc-sec">
+    <h2 id="itemsTitle">아이템별 추천 컬러</h2>
+    <p class="sub">제품명이 아니라 '이 호수/컬러'를 추천해요.</p>
+    <div class="items" id="items"></div>
+  </section>
+
+  <!-- ===== 5. 리뷰어 추천 / 같은 톤이 많이 산 제품 ===== -->
+  <section class="pc-sec">
+    <h2 id="pickTitle"></h2>
+    <p class="sub">같은 톤을 가진 올리브송 고객들의 데이터예요.</p>
+    <div class="tabs2" id="pickTabs">
+      <button class="on" data-k="bought">같은 톤이 많이 산 제품</button>
+      <button data-k="review">올리브송 리뷰어 추천</button>
+    </div>
+    <div id="pick"></div>
+  </section>
+
+  <!-- ===== 6. 이 톤 튜토리얼 ===== -->
+  <section class="pc-sec">
+    <h2 id="tutTitle"></h2>
+    <p class="sub">추천 컬러로 따라 하기 좋은 메이크업이에요.</p>
+    <div class="tut" id="tut"></div>
+    <a class="pc-btn line tut-more" id="tutMore">튜토리얼 더 보기 &gt;</a>
+  </section>
+
+</main>
+
+<!-- ===== 자가진단 모달 ===== -->
+<div class="modal" id="quiz">
+  <div class="box">
+    <button class="close" id="quizClose" aria-label="닫기">&times;</button>
+    <div class="step" id="qStep"></div>
+    <div class="bar"><i id="qBar"></i></div>
+    <h3 id="qText"></h3>
+    <div class="ans" id="qAns"></div>
+    <p class="note">간이 자가진단이에요. 정확한 진단은 매장 퍼스널컬러 컨설팅을 이용해 주세요.</p>
+  </div>
+</div>
+
+<footer></footer>
+<div id="toast">준비 중인 메뉴예요</div>
+
+<script>
+/* ==========================================================================
+   데이터 (와이어프레임용 예시 값 — 나중에 products.js 같은 공통 파일로 옮기기)
+   items: [브랜드, 제품명, 컬러명, 색(hex)]
+   ========================================================================== */
+const TONES = {
+  '봄웜': {
+    dot: '#FF9F80', kw: ['밝은', '화사한', '생기 있는'],
+    desc: '노란 기가 도는 밝은 피부. 맑고 따뜻한 컬러를 쓰면 얼굴이 환하고 생기 있어 보여요.',
+    palette: [['코랄', '#FF7F6A'], ['피치', '#FFB38A'], ['살몬 핑크', '#FA8C7D'], ['웜 옐로', '#F6C744'],
+              ['카멜', '#C69C6D'], ['애플 그린', '#8DC63F'], ['아이보리', '#FFF4DC'], ['터콰이즈', '#3CC8C0']],
+    worst: [['블랙', '#111111', '초콜릿 브라운', '#5C3A21'], ['쿨 핑크', '#E85A9B', '코랄 핑크', '#FF7F7F'], ['그레이', '#8A8D91', '베이지', '#D9C2A0']],
+    items: {
+      '립': [['롬앤', '쥬시 래스팅 틴트', '#코랄 피그', '#E8735A'], ['페리페라', '잉크 무드 글로이 틴트', '#코랄 업', '#F47C64'], ['3CE', '벨벳 립 틴트', '#피치 블룸', '#F59B7C']],
+      '블러셔': [['데이지크', '블렌딩 무드 치크', '#피치 블렌딩', '#F7B39A'], ['롬앤', '베러 댄 치크', '#애플 칩', '#F4877A'], ['클리오', '프로 싱글 블러셔', '#코랄 피치', '#F49A7F']],
+      '아이섀도': [['웨이크메이크', '소프트 블러링 아이팔레트', '#코랄 블러링', '#E9A27E'], ['데이지크', '섀도우 팔레트', '#피치 블렌딩', '#E8B08E'], ['롬앤', '베러 댄 아이즈', '#드라이 망고', '#D9945E']],
+      '베이스': [['라네즈', '네오쿠션 매트', '#21N 베이지', '#E9C6A6'], ['클리오', '킬커버 쿠션', '#03 리넨', '#EBCBAA'], ['에스쁘아', '비글로우 쿠션', '#바닐라', '#EFD0AE']],
+    },
+    tut: [['코랄 데일리 메이크업', '틴트 하나로 끝내는 10분 메이크업'], ['피치 블러셔로 생기 더하기', '볼 위치별 블러셔 바르는 법'], ['봄웜 데이트 메이크업', '화사한 오렌지 포인트 아이']],
+  },
+  '여름쿨': {
+    dot: '#E88AA8', kw: ['부드러운', '청량한', '우아한'],
+    desc: '붉은 기·푸른 기가 도는 피부. 흰빛이 섞인 부드러운 쿨톤 컬러가 피부를 맑아 보이게 해요.',
+    palette: [['라벤더', '#B9A6E0'], ['로즈 핑크', '#E88AA8'], ['스카이 블루', '#9CC9EC'], ['민트', '#A8E0D0'],
+              ['소프트 그레이', '#B9BDC6'], ['라일락', '#C8A2C8'], ['베이비 핑크', '#F6BFD0'], ['쿨 네이비', '#4A5D8A']],
+    worst: [['오렌지', '#F28C28', '로즈 핑크', '#E88AA8'], ['카키', '#7A7A3A', '블루 그레이', '#8C9CB0'], ['골드', '#D4A017', '실버', '#C0C4CC']],
+    items: {
+      '립': [['롬앤', '쥬시 래스팅 틴트', '#피그 피그', '#C8687E'], ['페리페라', '잉크 무드 글로이 틴트', '#로즈 블러셔', '#D9788F'], ['3CE', '블러 워터 틴트', '#라벤더 핑크', '#D98AA8']],
+      '블러셔': [['롬앤', '베러 댄 치크', '#밀크 그레이프', '#E7A1B8'], ['데이지크', '블렌딩 무드 치크', '#로즈 블렌딩', '#EBA3B5'], ['클리오', '프로 싱글 블러셔', '#라벤더 핑크', '#E3A6C4']],
+      '아이섀도': [['웨이크메이크', '소프트 블러링 아이팔레트', '#오프체리 컬렉션', '#C9849A'], ['데이지크', '섀도우 팔레트', '#로즈 니트', '#C9A0A8'], ['롬앤', '베러 댄 아이즈', '#드라이 라벤더', '#B6A0C4']],
+      '베이스': [['라네즈', '네오쿠션 뮤이', '#21C 쿨베이지', '#EBCDBC'], ['클리오', '킬커버 쿠션', '#02 란제리', '#F0D3C6'], ['에스쁘아', '비글로우 쿠션', '#포슬린', '#F2D9CC']],
+    },
+    tut: [['로즈 MLBB 데일리', '여름쿨 입술색 고르는 법'], ['라벤더 블러셔 청순 메이크업', '쿨톤 블러셔 바르는 위치'], ['오프체리 아이 메이크업', '그윽한 쿨톤 음영 아이']],
+  },
+  '가을웜': {
+    dot: '#C8643B', kw: ['깊은', '차분한', '고급스러운'],
+    desc: '노란 기가 깊게 도는 피부. 채도가 낮고 깊이 있는 웜 컬러가 분위기 있고 세련돼 보여요.',
+    palette: [['브릭', '#A9442F'], ['테라코타', '#C8643B'], ['머스터드', '#D4A02B'], ['카키', '#6E6B3A'],
+              ['올리브', '#7A7D3A'], ['카멜', '#B88654'], ['버건디 브라운', '#6B2E2A'], ['딥 오렌지', '#D9692B']],
+    worst: [['핫핑크', '#FF3EA5', '브릭 레드', '#A9442F'], ['퓨어 화이트', '#FFFFFF', '아이보리', '#F5ECD7'], ['아이스 블루', '#CFE8F7', '올리브 그린', '#7A7D3A']],
+    items: {
+      '립': [['롬앤', '쥬시 래스팅 틴트', '#너티 베이지', '#B5654E'], ['3CE', '벨벳 립 틴트', '#테라코타', '#B3533A'], ['페리페라', '잉크 더 벨벳', '#브릭 브라운', '#97412F']],
+      '블러셔': [['클리오', '프로 싱글 블러셔', '#테라코타', '#C97858'], ['롬앤', '베러 댄 치크', '#너트 칩', '#C98B6E'], ['데이지크', '블렌딩 무드 치크', '#브라운 블렌딩', '#B9806A']],
+      '아이섀도': [['클리오', '프로 아이 팔레트', '#코랄 토크', '#A86A4A'], ['데이지크', '섀도우 팔레트', '#브라운 니트', '#9A6A50'], ['롬앤', '베러 댄 아이즈', '#드라이 머스터드', '#B98A45']],
+      '베이스': [['라네즈', '네오쿠션 매트', '#23N 샌드', '#D9B08C'], ['클리오', '킬커버 쿠션', '#04 진저', '#DDB28F'], ['에스쁘아', '비글로우 쿠션', '#베이지', '#DDB896']],
+    },
+    tut: [['브릭 립 분위기 메이크업', '가을웜 립 고르는 법'], ['테라코타 음영 아이', '브라운 섀도 그라데이션'], ['가을웜 오피스 메이크업', '차분하고 깔끔한 데일리']],
+  },
+  '겨울쿨': {
+    dot: '#7A1F3D', kw: ['선명한', '도시적인', '강렬한'],
+    desc: '푸른 기가 도는 피부. 채도가 높고 대비가 강한 컬러가 이목구비를 또렷하게 살려 줘요.',
+    palette: [['블랙', '#111111'], ['퓨어 화이트', '#FFFFFF'], ['와인', '#7A1F3D'], ['로열 블루', '#2340A0'],
+              ['푸시아', '#C2185B'], ['에메랄드', '#009473'], ['아이시 핑크', '#F4C6D7'], ['차콜', '#3A3A40']],
+    worst: [['베이지', '#D9C2A0', '아이시 그레이', '#D6DAE0'], ['머스터드', '#D4A02B', '아이시 옐로', '#F5F3B8'], ['코랄', '#FF7F6A', '푸시아', '#C2185B']],
+    items: {
+      '립': [['롬앤', '쥬시 래스팅 틴트', '#체리 밤', '#A3243B'], ['3CE', '벨벳 립 틴트', '#와인 레드', '#7E1F35'], ['페리페라', '잉크 무드 글로이 틴트', '#플럼 핑크', '#B3365E']],
+      '블러셔': [['클리오', '프로 싱글 블러셔', '#푸시아 핑크', '#D45B8A'], ['롬앤', '베러 댄 치크', '#플럼 칩', '#B5658A'], ['데이지크', '블렌딩 무드 치크', '#베리 블렌딩', '#C25A7A']],
+      '아이섀도': [['웨이크메이크', '소프트 블러링 아이팔레트', '#오프체리 컬렉션', '#8C3A52'], ['클리오', '프로 아이 팔레트', '#심플 스테이트', '#6E5A6A'], ['데이지크', '섀도우 팔레트', '#버건디 니트', '#6E2E3E']],
+      '베이스': [['라네즈', '네오쿠션 뮤이', '#13C 쿨아이보리', '#F1D8C9'], ['클리오', '킬커버 쿠션', '#02 란제리', '#F0D3C6'], ['에스쁘아', '비글로우 쿠션', '#포슬린', '#F2D9CC']],
+    },
+    tut: [['와인 립 시크 메이크업', '겨울쿨 레드 립 고르는 법'], ['블랙 아이라인 또렷 메이크업', '라이너 하나로 눈매 살리기'], ['겨울쿨 파티 메이크업', '푸시아 포인트 립 & 치크']],
+  },
+};
+
+/* 같은 톤이 많이 산 제품 (랭킹 페이지와 같은 상품 id 사용) */
+const PRODUCTS = {
+  1:  { brand: '메디힐', name: '에센셜 마스크팩 10+1매 기획', rate: 50, price: '10,000', img: true },
+  3:  { brand: '롬앤', name: '쥬시 래스팅 틴트 #코랄 피그', rate: 30, price: '9,100' },
+  4:  { brand: '클리오', name: '[NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너', rate: 30, price: '7,000', img: true },
+  8:  { brand: '웨이크메이크', name: '[오프체리 컬렉션] 소프트 블러링 아이팔레트(단품)', rate: 30, price: '23,800', img: true },
+  9:  { brand: '아누아', name: '[한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획', rate: 35, price: '29,900', img: true },
+  13: { brand: '라네즈', name: '네오쿠션 뮤이 15g #21C 쿨베이지', rate: 0, price: '46,500' },
+};
+const BOUGHT = { '봄웜': [3, 4, 9, 1], '여름쿨': [8, 13, 4, 9], '가을웜': [3, 4, 1, 9], '겨울쿨': [8, 4, 13, 1] };
+const NICK = ['수수', '모닝글로우', '데일리뷰티', '화장대정리중', '톤팡팡', '올송러버'];
+
+/* ==========================================================================
+   상태: myTone(진단 결과, localStorage) / tone(지금 보고 있는 탭)
+   ========================================================================== */
+const NAMES = Object.keys(TONES);
+const load = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const save = (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} };
+let myTone = NAMES.includes(load('myTone')) ? load('myTone') : null;
+const param = new URLSearchParams(location.search).get('tone');
+let tone = NAMES.includes(param) ? param : (myTone || '봄웜');
+let pickKind = 'bought';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+/* ---------- 1. 배너 ---------- */
+function drawBanner() {
+  $('banner').innerHTML = myTone
+    ? `<div class="txt">
+         <h2>내 톤: <b>${myTone}</b></h2>
+         <p>${TONES[myTone].kw.join(' · ')} — 아래에서 ${myTone}에 어울리는 컬러와 제품을 확인해 보세요.</p>
+       </div>
+       <button class="pc-btn line" data-act="quiz">다시 진단하기</button>`
+    : `<div class="txt">
+         <h2>아직 내 톤을 모르시나요?</h2>
+         <p>5가지 질문으로 1분 만에 퍼스널컬러를 알아봐요.</p>
+         <div class="know">이미 알고 있어요 &rarr;
+           ${NAMES.map(n => `<button class="chip" data-set="${n}">${n}</button>`).join('')}
+         </div>
+       </div>
+       <button class="pc-btn" data-act="quiz">1분 자가진단 시작</button>`;
+}
+$('banner').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  if (b.dataset.act === 'quiz') openQuiz();
+  if (b.dataset.set) setMyTone(b.dataset.set);
+});
+
+function setMyTone(t) {
+  myTone = t;
+  save('myTone', t);
+  tone = t;
+  drawAll();
+  showToast(`내 톤을 ${t}(으)로 저장했어요`);
+}
+
+/* ---------- 2. 톤 탭 ---------- */
+function drawTabs() {
+  $('tabs').innerHTML = NAMES.map(n =>
+    `<button class="${n === tone ? 'on' : ''}" data-t="${n}"><i class="dot" style="background:${TONES[n].dot}"></i>${n}${n === myTone ? '<span class="my">MY</span>' : ''}</button>`
+  ).join('');
+}
+$('tabs').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (b) { tone = b.dataset.t; drawAll(); }
+});
+
+/* ---------- 3~6. 탭 내용 ---------- */
+function drawTone() {
+  const T = TONES[tone];
+  $('toneName').textContent = tone;
+  $('toneKw').innerHTML = T.kw.map(k => `<span>#${k}</span>`).join('');
+  $('toneDesc').textContent = T.desc;
+  $('palette').innerHTML = T.palette.map(([n, c]) => `<div><i style="background:${c}"></i>${n}</div>`).join('');
+  $('worst').innerHTML = T.worst.map(([bn, bc, gn, gc]) =>
+    `<li><span class="sw bad"><i style="background:${bc}"></i>${bn}</span>
+         <span class="arrow">&rarr;</span>
+         <span class="sw good"><i style="background:${gc}"></i><b>${gn}</b></span></li>`).join('');
+
+  // 4. 아이템별 추천 컬러
+  $('itemsTitle').textContent = `${tone} 아이템별 추천 컬러`;
+  $('items').innerHTML = Object.entries(T.items).map(([cat, list]) =>
+    `<div class="row">
+       <h3>${cat}</h3>
+       <div class="shades">${list.map(([b, n, s, c]) =>
+         `<a class="shade" data-soon><i style="background:${c}"></i><div><div class="b">${b}</div><div class="n">${n}</div><div class="s">${s}</div></div></a>`).join('')}
+       </div>
+       <a class="more" href="ranking.html?pc=${encodeURIComponent(tone)}">랭킹에서 더 보기 &gt;</a>
+     </div>`).join('');
+
+  // 5. 리뷰어 추천 / 많이 산
+  $('pickTitle').textContent = `${tone} 고객이 고른 제품`;
+  drawPick();
+
+  // 6. 튜토리얼
+  $('tutTitle').textContent = `${tone}에 어울리는 메이크업 튜토리얼`;
+  $('tut').innerHTML = T.tut.map(([t, d], i) =>
+    `<a href="tutorial.html?tone=${encodeURIComponent(tone)}"><div class="ph"><span>${['5분', '8분', '12분'][i]}</span></div><div class="t">${t}</div><div class="d">${d}</div></a>`).join('');
+  $('tutMore').href = `tutorial.html?tone=${encodeURIComponent(tone)}`;
+}
+
+function drawPick() {
+  document.querySelectorAll('#pickTabs button').forEach(b => b.classList.toggle('on', b.dataset.k === pickKind));
+  const T = TONES[tone];
+  if (pickKind === 'bought') {
+    $('pick').innerHTML = `<div class="cards pc-cards">${BOUGHT[tone].map((id, i) => {
+      const p = PRODUCTS[id];
+      return `<div class="card">
+        <a class="img ${p.img ? '' : 'ph'}" href="detail.html?id=${id}">${p.img ? `<img src="img/products/${id}.webp" alt="${esc(p.brand)} ${esc(p.name)}">` : ''}<span class="tone-tag">${tone} 구매 ${i + 1}위</span></a>
+        <a href="detail.html?id=${id}"><div class="brand">${p.brand}</div><div class="name">${p.name}</div></a>
+        <div class="price-row">${p.rate >= 5 ? `<span class="rate">${p.rate}%</span>` : ''}<span class="price">${p.price}원</span></div>
+        <div class="buy">${tone} 고객 ${[38, 27, 21, 14][i]}%가 구매</div>
+      </div>`;
+    }).join('')}</div>`;
+  } else {
+    // 리뷰: 이 톤의 립/블러셔/아이섀도 첫 번째 추천 컬러에 대한 리뷰
+    const picks = ['립', '블러셔', '아이섀도'].map(c => T.items[c][0]);
+    const lines = ['발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.', '다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.', '데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.'];
+    $('pick').innerHTML = `<div class="reviews">${picks.map(([b, n, s, c], i) =>
+      `<div class="review">
+         <div class="who"><i></i><div>${NICK[(NAMES.indexOf(tone) + i) % NICK.length]}<small>${tone} · 리뷰어</small></div></div>
+         <div class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+         <q>${lines[i]}</q>
+         <div class="prod"><i style="background:${c}"></i>${b} ${n} ${s}</div>
+       </div>`).join('')}</div>`;
+  }
+}
+$('pickTabs').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (b) { pickKind = b.dataset.k; drawPick(); }
+});
+
+function drawAll() {
+  drawBanner();
+  drawTabs();
+  drawTone();
+}
+
+/* ==========================================================================
+   자가진단 (5문항) — 웜/쿨 점수 + 밝음/깊음 점수로 4가지 톤 결정
+   ========================================================================== */
+const QUIZ = [
+  ['손목 안쪽 혈관은 무슨 색에 가까운가요?', [['초록빛', { w: 1 }], ['파란빛 · 보랏빛', { c: 1 }]]],
+  ['더 잘 어울리는 액세서리는?', [['골드', { w: 1 }], ['실버', { c: 1 }]]],
+  ['햇볕에 오래 있으면 피부가 어떻게 되나요?', [['금방 까맣게 타요', { w: 1 }], ['빨갛게 익었다가 돌아와요', { c: 1 }]]],
+  ['평소 칭찬받는 립 컬러는?', [['코랄 · 오렌지 계열', { w: 1 }], ['핑크 · 레드 계열', { c: 1 }]]],
+  ['더 잘 어울리는 분위기는?', [['밝고 화사한 컬러', { l: 1 }], ['깊고 진한 컬러', { d: 1 }]]],
+];
+let qi = 0, score = {};
+
+function openQuiz() { qi = 0; score = { w: 0, c: 0, l: 0, d: 0 }; drawQ(); $('quiz').classList.add('show'); }
+function closeQuiz() { $('quiz').classList.remove('show'); }
+function drawQ() {
+  const [text, ans] = QUIZ[qi];
+  $('qStep').textContent = `Q${qi + 1} / ${QUIZ.length}`;
+  $('qBar').style.width = `${(qi / QUIZ.length) * 100}%`;
+  $('qText').textContent = text;
+  $('qAns').innerHTML = ans.map(([t], i) => `<button data-i="${i}">${t}</button>`).join('');
+}
+$('qAns').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  const add = QUIZ[qi][1][b.dataset.i][1];
+  for (const k in add) score[k] += add[k];
+  qi++;
+  if (qi < QUIZ.length) return drawQ();
+  const warm = score.w >= score.c, light = score.l >= score.d;
+  closeQuiz();
+  setMyTone(warm ? (light ? '봄웜' : '가을웜') : (light ? '여름쿨' : '겨울쿨'));
+  window.scrollTo({ top: document.querySelector('.pc-tabs').offsetTop - 16, behavior: 'smooth' });
+});
+$('quizClose').addEventListener('click', closeQuiz);
+$('quiz').addEventListener('click', e => { if (e.target.id === 'quiz') closeQuiz(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeQuiz(); });
+
+/* ---------- 토스트 / 준비 중 메뉴 ---------- */
+const toast = $('toast');
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1500);
+}
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-soon]');
+  if (!el) return;
+  e.preventDefault();
+  showToast(el.classList.contains('shade') ? '컬러별 상세 페이지는 준비 중이에요' : '준비 중인 메뉴예요');
+});
+
+drawAll();
+</script>
+<script src="common.js"></script>
+</body>
+</html>
