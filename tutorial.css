@@ -177,3 +177,50 @@
   outline: 2px solid var(--c-point);
   outline-offset: 4px;
 }
+
+/* 항상 보이는 제목 */
+.tutorial-heading {
+  order: 1;
+  flex: 0 0 100%;
+  margin-bottom: 18px;
+}
+
+.tutorial-heading h3 {
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+
+/* 첫 안내 영역의 모양과 배치 */
+.initial-guide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  order: 2;
+  flex: 0 0 100%;
+  min-width: 0;
+  min-height: 400px;
+  margin: 0;
+  padding: 32px 24px;
+
+  border-radius: var(--radius);
+  background: var(--c-bg-sub);
+  color: var(--c-main);
+  text-align: center;
+}
+
+/* 안내 제목 */
+.initial-guide strong {
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+}
+
+/* 안내 설명 */
+.initial-guide p {
+  margin: 0;
+  color: var(--c-text-sub);
+  font-size: var(--fs-base);
+  line-height: 1.8;
+}
