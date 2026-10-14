@@ -182,6 +182,51 @@
             </span>
           </label>
         </div>
+
+        <div class="select-guide">
+          <strong>오늘은 어떤 베이스 메이크업을 해볼까요?</strong>
+          <p>
+            위에서 구매한 베이스 제품을 선택하면 관련 튜토리얼을 볼 수 있어요.
+          </p>
+        </div>
+
+        <div class="product-result result-base-1">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>12</strong>개</p>
+
+            <div class="video-toolbar-options">
+              <div class="video-sort" role="group" aria-label="영상 정렬">
+                <label class="video-sort-option">
+                  <input
+                    type="radio"
+                    name="sort-base-1"
+                    value="recommend"
+                    checked
+                  />
+                  <span>추천순</span>
+                </label>
+
+                <label class="video-sort-option">
+                  <input type="radio" name="sort-base-1" value="latest" />
+                  <span>최신순</span>
+                </label>
+
+                <label class="video-sort-option">
+                  <input type="radio" name="sort-base-1" value="views" />
+                  <span>조회순</span>
+                </label>
+              </div>
+
+              <select class="video-page-size" aria-label="표시할 영상 개수">
+                <option value="12">12개씩</option>
+                <option value="24">24개씩</option>
+                <option value="36">36개씩</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer></footer>
