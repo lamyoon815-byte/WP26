@@ -135,6 +135,30 @@
 #category-lip:checked ~ .category-area label[for="category-lip"],
 #category-cheek:checked ~ .category-area label[for="category-cheek"],
 #category-contour:checked ~ .category-area label[for="category-contour"] {
+  color: var(--c-point);
+}
+
+/* 선택된 카테고리의 테두리 */
+#category-base:checked
+  ~ .category-area
+  label[for="category-base"]
+  .category-image,
+#category-eye:checked
+  ~ .category-area
+  label[for="category-eye"]
+  .category-image,
+#category-lip:checked
+  ~ .category-area
+  label[for="category-lip"]
+  .category-image,
+#category-cheek:checked
+  ~ .category-area
+  label[for="category-cheek"]
+  .category-image,
+#category-contour:checked
+  ~ .category-area
+  label[for="category-contour"]
+  .category-image {
   border-color: var(--c-point);
   background: var(--c-point-light);
 }
