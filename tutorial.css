@@ -434,7 +434,8 @@
 }
 
 /* base-1 상품 선택 시 해당 결과 표시 */
-#base-1:checked ~ .result-base-1 {
+#base-1:checked ~ .result-base-1,
+#base-2:checked ~ .result-base-2 {
   display: block;
 }
 
