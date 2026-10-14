@@ -81,7 +81,7 @@
     }
     drawRecent();
     search.classList.remove('open');
-    toast(`'${word}' 검색 결과 페이지는 준비 중이에요`);
+    toast(`‘${word}’ 검색 결과 페이지는 준비 중이에요`);
   }
 
   /* ---------- 이벤트 ---------- */

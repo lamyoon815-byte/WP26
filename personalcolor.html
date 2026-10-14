@@ -14,13 +14,20 @@
    * 진단 결과(myTone)는 localStorage에 저장 → 랭킹/튜토리얼 페이지에서도 읽을 수 있음
    * 톤 이름은 랭킹 필터와 같은 값 사용: 봄웜 / 여름쿨 / 가을웜 / 겨울쿨
    ========================================================================== */
-.pc-sec { margin-top: 56px; }
-.pc-sec > h2 { margin: 0 0 6px; font-size: var(--fs-lg); }
-.pc-sec > .sub { margin: 0 0 20px; color: var(--c-text-sub); font-size: var(--fs-base); }
+html, body { overflow-x: clip; }
+:is(a, button):focus-visible { outline: 2px solid var(--c-point); outline-offset: 2px; }
+
+/* 섹션 간격은 일부러 다르게: 톤 소개 바로 뒤는 좁게, 마지막 튜토리얼은 선으로 끊고 넓게 */
+.pc-sec { margin-top: 64px; }
+.pc-sec.tight { margin-top: 48px; }
+.pc-sec.end { margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--c-border); }
+.pc-sec > h2 { margin: 0 0 8px; font-size: var(--fs-lg); }
+.pc-sec > h2 + .items { margin-top: 16px; }
+.pc-sec > .sub { margin: 0 0 24px; color: var(--c-text-sub); font-size: var(--fs-base); }
 
 /* ---------- 1. 진단 배너 ---------- */
 .pc-banner {
-  padding: 28px 32px;
+  padding: 32px;
   border-radius: 12px;
   background: var(--c-point-light);
   display: flex;
@@ -29,12 +36,12 @@
 }
 .pc-banner .txt { flex: 1; }
 .pc-banner h2 { margin: 0; font-size: var(--fs-xl); }
-.pc-banner h2 b { color: var(--c-point); }
-.pc-banner p { margin: 6px 0 0; color: var(--c-text-sub); }
-.pc-banner .know { margin-top: 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: var(--fs-sm); color: var(--c-text-sub); }
+.pc-banner h2 b { color: var(--c-point); font-weight: inherit; }
+.pc-banner p { margin: 8px 0 0; color: var(--c-main); }
+.pc-banner .know { margin-top: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: var(--fs-sm); color: var(--c-main); }
 .pc-btn {
   height: 48px;
-  padding: 0 28px;
+  padding: 0 32px;
   border: 0;
   border-radius: 24px;
   background: var(--c-point);
@@ -43,10 +50,11 @@
   font-weight: 700;
   white-space: nowrap;
 }
-.pc-btn:hover { background: var(--c-point-dark); }
+.pc-btn:hover, .pc-btn:active { background: var(--c-point-dark); }
 .pc-btn.line { border: 1px solid var(--c-point); background: var(--c-white); color: var(--c-point); }
-.chip { padding: 6px 14px; border: 1px solid var(--c-border); background: var(--c-white); color: var(--c-text-sub); }
-.chip:hover { border-color: var(--c-point); color: var(--c-point); }
+.pc-btn.line:hover, .pc-btn.line:active { background: var(--c-point-light); }
+.chip { padding: 8px 16px; border: 1px solid var(--c-border); background: var(--c-white); color: var(--c-text-sub); }
+.chip:hover, .chip:active { border-color: var(--c-point); color: var(--c-point); }
 
 /* ---------- 2. 4가지 톤 탭 ---------- */
 .pc-tabs { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--c-border); }
@@ -63,10 +71,10 @@
 .pc-tabs button.on { color: var(--c-point); font-weight: 700; border-bottom-color: var(--c-point); }
 .pc-tabs .dot { display: inline-block; width: 12px; height: 12px; margin-right: 8px; border-radius: 50%; vertical-align: 0; }
 .pc-tabs .my {
-  margin-left: 6px;
-  padding: 2px 8px;
-  border-radius: 10px;
-  background: var(--c-sale);
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: var(--c-point);
   color: var(--c-white);
   font-size: var(--fs-sm);
   font-weight: 700;
@@ -75,15 +83,15 @@
 
 /* ---------- 3. 톤 소개 카드 ---------- */
 .pc-intro { margin-top: 32px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
-.pc-card { padding: 28px; border: 1px solid var(--c-border); border-radius: 12px; }
+.pc-card { padding: 32px; border: 1px solid var(--c-border); border-radius: 12px; }
 .pc-card h3 { margin: 0 0 16px; font-size: var(--fs-md); }
 .pc-intro .name { margin: 0; font-size: 28px; font-weight: 800; }
-.pc-intro .kw { margin: 8px 0 0; display: flex; gap: 6px; }
-.pc-intro .kw span { padding: 2px 10px; border-radius: 12px; background: var(--c-bg-sub); font-size: var(--fs-sm); }
+.pc-intro .kw { margin: 8px 0 0; display: flex; gap: 8px; }
+.pc-intro .kw span { padding: 4px 12px; border-radius: 12px; background: var(--c-bg-sub); font-size: var(--fs-sm); }
 .pc-intro .desc { margin: 16px 0 24px; line-height: 1.6; color: var(--c-text-sub); }
-.palette { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+.palette { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
 .palette div { text-align: center; font-size: var(--fs-sm); color: var(--c-text-sub); }
-.palette i { display: block; width: 44px; height: 44px; margin: 0 auto 6px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .08); }
+.palette i { display: block; width: 44px; height: 44px; margin: 0 auto 8px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .08); }
 
 /* 워스트 → 대안 */
 .worst li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--c-border); }
@@ -91,20 +99,34 @@
 .worst ul { margin: 0; padding: 0; list-style: none; }
 .worst .sw { display: flex; align-items: center; gap: 8px; flex: 1; font-size: var(--fs-base); }
 .worst .sw i { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .08); flex: none; }
-.worst .bad { color: var(--c-text-disabled); }
+.worst .bad { color: var(--c-text-sub); }
 .worst .bad i { position: relative; }
 .worst .bad i::after { content: "\2715"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--c-white); font-size: 14px; text-shadow: 0 0 2px rgba(0, 0, 0, .6); }
-.worst .arrow { color: var(--c-text-disabled); }
+.worst .arrow { color: var(--c-text-sub); }
 .worst .good b { color: var(--c-point); }
 
 /* ---------- 4. 아이템별 추천 컬러 ---------- */
 .items { border-top: 2px solid var(--c-main); }
 .items .row { display: grid; grid-template-columns: 120px 1fr 140px; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--c-border); }
 .items .row > h3 { margin: 0; font-size: var(--fs-md); }
-.items .shades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.shade { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 8px; cursor: pointer; }
-.shade:hover { background: var(--c-bg-sub); }
+.items .shades { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.shade {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.shade:hover, .shade:active { box-shadow: inset 0 0 0 1px var(--c-border); }
 .shade i { width: 48px; height: 48px; border-radius: 50%; flex: none; border: 1px solid rgba(0, 0, 0, .08); }
+.shade .b, .shade .n, .shade .s { display: block; }
 .shade .b { font-size: var(--fs-sm); color: var(--c-text-sub); }
 .shade .n { font-size: var(--fs-base); }
 .shade .s { font-size: var(--fs-base); font-weight: 700; }
@@ -112,11 +134,13 @@
 .more:hover { text-decoration: underline; }
 
 /* ---------- 5. 리뷰어 추천 / 같은 톤이 많이 산 ---------- */
-.tabs2 { display: flex; gap: 8px; margin-bottom: 20px; }
-.tabs2 button { padding: 8px 18px; border: 1px solid var(--c-border); border-radius: 20px; background: var(--c-white); color: var(--c-text-sub); }
-.tabs2 button.on { border-color: var(--c-point); background: var(--c-point); color: var(--c-white); font-weight: 700; }
+.tabs2 { display: flex; gap: 8px; margin-bottom: 24px; }
+.tabs2 button { padding: 8px 20px; border: 1px solid var(--c-border); border-radius: 20px; background: var(--c-white); color: var(--c-text-sub); }
+.tabs2 button:hover, .tabs2 button:active { border-color: var(--c-point); color: var(--c-point); }
+.tabs2 button.on { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); font-weight: 700; }
 
 /* 상품 카드 (이미지 없으면 X자 자리) */
+.pc-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .pc-cards .card { text-align: center; }
 .pc-cards .card .img { display: block; border: 1px solid var(--c-border); }
 .pc-cards .card .img.ph,
@@ -127,29 +151,34 @@
     var(--c-bg-sub);
 }
 .pc-cards .card .img img { display: block; }
-.pc-cards .card .tone-tag { position: absolute; top: 8px; left: 8px; padding: 2px 8px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); }
-.pc-cards .card .brand { margin-top: 14px; font-size: var(--fs-base); color: var(--c-text-sub); }
+.pc-cards .card .tone-tag { position: absolute; top: 8px; left: 8px; padding: 4px 8px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); }
+.pc-cards .card .brand { margin-top: 16px; font-size: var(--fs-base); color: var(--c-text-sub); }
 .pc-cards .card .name { margin-top: 4px; height: 2.8em; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-.pc-cards .card .price-row { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 6px; }
+.pc-cards .card .price-row { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 8px; }
 .pc-cards .card .rate { font-size: var(--fs-lg); font-weight: 700; color: var(--c-sale); }
-.pc-cards .card .buy { margin-top: 6px; font-size: var(--fs-sm); color: var(--c-text-sub); }
 
-/* 리뷰 카드 */
-.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+/* 리뷰: 첫 리뷰는 가로로 크게, 나머지 둘은 아래 2열 */
+.reviews { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
 .review { padding: 24px; border: 1px solid var(--c-border); border-radius: 12px; display: flex; flex-direction: column; gap: 12px; }
-.review .who { display: flex; align-items: center; gap: 10px; font-size: var(--fs-base); }
+.review .who { display: flex; align-items: center; gap: 12px; font-size: var(--fs-base); }
 .review .who i { width: 36px; height: 36px; border-radius: 50%; background: var(--c-bg-sub); flex: none; }
 .review .who small { display: block; color: var(--c-text-sub); font-size: var(--fs-sm); }
-.review .star { color: var(--c-point); letter-spacing: 2px; }
 .review q { line-height: 1.6; }
-.review .prod { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--c-border); display: flex; align-items: center; gap: 10px; font-size: var(--fs-sm); color: var(--c-text-sub); }
+.review .prod { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--c-border); display: flex; align-items: center; gap: 12px; font-size: var(--fs-sm); color: var(--c-text-sub); }
 .review .prod i { width: 24px; height: 24px; border-radius: 50%; flex: none; }
+.review.feature { grid-column: 1 / -1; padding: 32px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: center; gap: 32px; }
+.review.feature q { font-size: var(--fs-xl); font-weight: 700; line-height: 1.5; }
+.review.feature .side { padding-left: 32px; border-left: 1px solid var(--c-border); display: flex; flex-direction: column; gap: 16px; }
+.review.feature .prod { margin-top: 0; padding-top: 0; border-top: 0; font-size: var(--fs-base); }
+.review.feature .prod i { width: 40px; height: 40px; }
 
-/* ---------- 6. 튜토리얼 ---------- */
-.tut { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
-.tut a { display: block; }
+/* ---------- 6. 튜토리얼: 첫 번째를 크게, 나머지 둘은 오른쪽에 쌓기 ---------- */
+.tut { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--gap); }
+.tut a { display: flex; flex-direction: column; }
+.tut a:first-child { grid-row: span 2; }
+.tut a:first-child .ph { flex: 1; aspect-ratio: auto; min-height: 240px; }
 .tut .ph { position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--c-border); border-radius: var(--radius); }
-.tut .ph span { position: absolute; left: 10px; bottom: 10px; padding: 2px 8px; background: rgba(0, 0, 0, .7); color: var(--c-white); font-size: var(--fs-sm); }
+.tut .ph span { position: absolute; left: 12px; bottom: 12px; padding: 4px 8px; background: rgba(0, 0, 0, .7); color: var(--c-white); font-size: var(--fs-sm); }
 .tut .t { margin-top: 12px; font-weight: 700; }
 .tut .d { margin-top: 4px; font-size: var(--fs-base); color: var(--c-text-sub); }
 .tut-more { margin: 32px auto 80px; display: block; width: 280px; text-align: center; line-height: 48px; }
@@ -162,19 +191,27 @@
 .modal .bar { height: 4px; margin: 8px 0 24px; background: var(--c-bg-sub); border-radius: 2px; overflow: hidden; }
 .modal .bar i { display: block; height: 100%; background: var(--c-point); transition: width .2s; }
 .modal h3 { margin: 0 0 20px; font-size: var(--fs-lg); line-height: 1.4; }
-.modal .ans { display: grid; gap: 10px; }
+.modal .ans { display: grid; gap: 12px; }
 .modal .ans button { height: 52px; border: 1px solid var(--c-border); border-radius: 8px; background: var(--c-white); font-size: var(--fs-md); text-align: left; padding: 0 20px; }
-.modal .ans button:hover { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); }
+.modal .ans button:hover, .modal .ans button:active { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); }
 .modal .close { float: right; border: 0; background: none; font-size: 24px; line-height: 1; color: var(--c-text-sub); }
-.modal .note { margin-top: 20px; font-size: var(--fs-sm); color: var(--c-text-disabled); }
+.modal .note { margin-top: 20px; font-size: var(--fs-sm); color: var(--c-text-sub); }
 
 @media (max-width: 800px) {
   .palette { grid-template-columns: repeat(4, 1fr); }
   .pc-banner { flex-direction: column; align-items: flex-start; }
   .pc-intro { grid-template-columns: 1fr; }
   .items .row { grid-template-columns: 1fr; }
-  .items .shades, .reviews, .tut { grid-template-columns: 1fr; }
+  .items .shades, .reviews, .tut { grid-template-columns: minmax(0, 1fr); }
+  .pc-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .review.feature { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 24px; }
+  .review.feature .side { padding: 16px 0 0; border-left: 0; border-top: 1px solid var(--c-border); }
+  .tut a:first-child { grid-row: auto; }
+  .tut a:first-child .ph { flex: none; aspect-ratio: 16 / 10; min-height: 0; }
   .pc-tabs button { font-size: var(--fs-base); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal .bar i { transition: none; }
 }
 </style>
 </head>
@@ -232,16 +269,15 @@
   </div>
 
   <!-- ===== 4. 아이템별 추천 컬러 ===== -->
-  <section class="pc-sec">
+  <section class="pc-sec tight">
     <h2 id="itemsTitle">아이템별 추천 컬러</h2>
-    <p class="sub">제품명이 아니라 '이 호수/컬러'를 추천해요.</p>
     <div class="items" id="items"></div>
   </section>
 
   <!-- ===== 5. 리뷰어 추천 / 같은 톤이 많이 산 제품 ===== -->
   <section class="pc-sec">
     <h2 id="pickTitle"></h2>
-    <p class="sub">같은 톤을 가진 올리브송 고객들의 데이터예요.</p>
+    <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
     <div class="tabs2" id="pickTabs">
       <button class="on" data-k="bought">같은 톤이 많이 산 제품</button>
       <button data-k="review">올리브송 리뷰어 추천</button>
@@ -250,7 +286,7 @@
   </section>
 
   <!-- ===== 6. 이 톤 튜토리얼 ===== -->
-  <section class="pc-sec">
+  <section class="pc-sec end">
     <h2 id="tutTitle"></h2>
     <p class="sub">추천 컬러로 따라 하기 좋은 메이크업이에요.</p>
     <div class="tut" id="tut"></div>
@@ -393,7 +429,6 @@ function setMyTone(t) {
   save('myTone', t);
   tone = t;
   drawAll();
-  showToast(`내 톤을 ${t}(으)로 저장했어요`);
 }
 
 /* ---------- 2. 톤 탭 ---------- */
@@ -425,7 +460,7 @@ function drawTone() {
     `<div class="row">
        <h3>${cat}</h3>
        <div class="shades">${list.map(([b, n, s, c]) =>
-         `<a class="shade" data-soon><i style="background:${c}"></i><div><div class="b">${b}</div><div class="n">${n}</div><div class="s">${s}</div></div></a>`).join('')}
+         `<button type="button" class="shade" data-soon><i style="background:${c}"></i><span><span class="b">${b}</span><span class="n">${n}</span><span class="s">${s}</span></span></button>`).join('')}
        </div>
        <a class="more" href="ranking.html?pc=${encodeURIComponent(tone)}">랭킹에서 더 보기 &gt;</a>
      </div>`).join('');
@@ -451,20 +486,19 @@ function drawPick() {
         <a class="img ${p.img ? '' : 'ph'}" href="detail.html?id=${id}">${p.img ? `<img src="img/products/${id}.webp" alt="${esc(p.brand)} ${esc(p.name)}">` : ''}<span class="tone-tag">${tone} 구매 ${i + 1}위</span></a>
         <a href="detail.html?id=${id}"><div class="brand">${p.brand}</div><div class="name">${p.name}</div></a>
         <div class="price-row">${p.rate >= 5 ? `<span class="rate">${p.rate}%</span>` : ''}<span class="price">${p.price}원</span></div>
-        <div class="buy">${tone} 고객 ${[38, 27, 21, 14][i]}%가 구매</div>
       </div>`;
     }).join('')}</div>`;
   } else {
     // 리뷰: 이 톤의 립/블러셔/아이섀도 첫 번째 추천 컬러에 대한 리뷰
     const picks = ['립', '블러셔', '아이섀도'].map(c => T.items[c][0]);
     const lines = ['발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.', '다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.', '데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.'];
-    $('pick').innerHTML = `<div class="reviews">${picks.map(([b, n, s, c], i) =>
-      `<div class="review">
-         <div class="who"><i></i><div>${NICK[(NAMES.indexOf(tone) + i) % NICK.length]}<small>${tone} · 리뷰어</small></div></div>
-         <div class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-         <q>${lines[i]}</q>
-         <div class="prod"><i style="background:${c}"></i>${b} ${n} ${s}</div>
-       </div>`).join('')}</div>`;
+    $('pick').innerHTML = `<div class="reviews">${picks.map(([b, n, s, c], i) => {
+      const who = `<div class="who"><i></i><div>${NICK[(NAMES.indexOf(tone) + i) % NICK.length]}<small>${tone} · 리뷰어</small></div></div>`;
+      const prod = `<div class="prod"><i style="background:${c}"></i>${b} ${n} ${s}</div>`;
+      return i === 0
+        ? `<div class="review feature"><q>${lines[i]}</q><div class="side">${who}${prod}</div></div>`
+        : `<div class="review">${who}<q>${lines[i]}</q>${prod}</div>`;
+    }).join('')}</div>`;
   }
 }
 $('pickTabs').addEventListener('click', e => {
@@ -509,7 +543,7 @@ $('qAns').addEventListener('click', e => {
   const warm = score.w >= score.c, light = score.l >= score.d;
   closeQuiz();
   setMyTone(warm ? (light ? '봄웜' : '가을웜') : (light ? '여름쿨' : '겨울쿨'));
-  window.scrollTo({ top: document.querySelector('.pc-tabs').offsetTop - 16, behavior: 'smooth' });
+  window.scrollTo({ top: document.querySelector('.pc-tabs').offsetTop - 16, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 });
 $('quizClose').addEventListener('click', closeQuiz);
 $('quiz').addEventListener('click', e => { if (e.target.id === 'quiz') closeQuiz(); });
