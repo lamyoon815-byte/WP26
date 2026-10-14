@@ -5,38 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>튜토리얼 | OLIVE SONG</title>
     <link rel="stylesheet" href="common.css" />
-    <style>
-      .title-best {
-        width: 100%;
-        height: 100%;
-        margin: 2rem 0;
-      }
-
-      .title-best h1 {
-        width: 1200px;
-        margin: 0 auto;
-        color: #000;
-        font-size: 40px;
-        line-height: 40px;
-        position: relative;
-      }
-
-      .title-best h1 span {
-        display: inline-block;
-        margin-left: 15px;
-        color: #333;
-        font-size: 18px;
-        font-weight: 400;
-      }
-    </style>
+    <link rel="stylesheet" href="tutorial.css" />
   </head>
+
   <body>
     <div class="util">
       <div class="container">
-        <a>로그인</a><a>회원가입</a><a>장바구니 <em>(3)</em></a
-        ><a>고객센터</a>
+        <a>로그인</a>
+        <a>회원가입</a>
+        <a>장바구니 <em>(3)</em></a>
+        <a>고객센터</a>
       </div>
     </div>
+
     <div class="header">
       <div class="container">
         <div class="logo">
@@ -47,6 +28,7 @@
         <div class="hright">최근 본 상품 &#9662;</div>
       </div>
     </div>
+
     <nav class="gnb">
       <div class="container">
         <a class="cat" data-soon>&#9776; 카테고리</a>
@@ -62,13 +44,92 @@
         <a data-soon>이벤트</a>
       </div>
     </nav>
+
     <div id="toast">준비 중인 메뉴예요</div>
     <div class="title-best">
       <h1>
         튜토리얼
-        <span>내게 있는 화장품으로 새로운 메이크업 스타일을 만들어보세요.</span>
+        <span>내게 있는 화장품으로 새로운 메이크업 스타일을 도전해보세요.</span>
       </h1>
     </div>
+    <main class="container tutorial-page">
+      <!--
+    화장품 카테고리 radio buttons으로 선택하기
+    아래 label의 for와 input의 id를 연결
+    -->
+      <input class="choice" type="radio" name="category" id="category-base" />
+      <input class="choice" type="radio" name="category" id="category-eye" />
+      <input class="choice" type="radio" name="category" id="category-lip" />
+      <input class="choice" type="radio" name="category" id="category-cheek" />
+      <input
+        class="choice"
+        type="radio"
+        name="category"
+        id="category-contour"
+      />
+
+      <!-- 이미지 카테고리 -->
+      <div class="category-area">
+        <div class="category-wrap">
+          <div class="category-list">
+            <div class="category-item">
+              <label class="category-label" for="category-base">
+                <div class="category-content">
+                  <div class="category-image">
+                    <img src="category-base.png" alt="베이스" />
+                  </div>
+                  <span class="category-name">베이스</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="category-item">
+              <label class="category-label" for="category-eye">
+                <div class="category-content">
+                  <div class="category-image">
+                    <img src="category-eye.png" alt="아이" />
+                  </div>
+                  <span class="category-name">아이</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="category-item">
+              <label class="category-label" for="category-lip">
+                <div class="category-content">
+                  <div class="category-image">
+                    <img src="category-lip.png" alt="립" />
+                  </div>
+                  <span class="category-name">립</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="category-item">
+              <label class="category-label" for="category-cheek">
+                <div class="category-content">
+                  <div class="category-image">
+                    <img src="category-cheek.png" alt="치크" />
+                  </div>
+                  <span class="category-name">치크</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="category-item">
+              <label class="category-label" for="category-contour">
+                <div class="category-content">
+                  <div class="category-image">
+                    <img src="category-contour.png" alt="쉐딩 · 하이라이터" />
+                  </div>
+                  <span class="category-name">쉐딩 · 하이라이터</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <footer></footer>
     <script>
       document.querySelectorAll("[data-soon], .gnb a[href]").forEach((el) =>
