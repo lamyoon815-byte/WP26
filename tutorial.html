@@ -31,21 +31,20 @@
 
     <nav class="gnb">
       <div class="container">
-        <a class="cat" data-soon>&#9776; 카테고리</a>
-        <a data-soon>오특</a>
+        <a class="cat">&#9776; 카테고리</a>
+        <a>오특</a>
         <a href="ranking.html">랭킹</a>
         <a href="personalcolor.html">퍼스널컬러</a>
         <a href="tutorial.html" class="on">튜토리얼</a>
-        <a data-soon>테마관</a>
-        <a data-soon>기획전</a>
-        <a data-soon>세일</a>
-        <a data-soon>기프트카드</a>
-        <a data-soon>멤버십/쿠폰</a>
-        <a data-soon>이벤트</a>
+        <a>테마관</a>
+        <a>기획전</a>
+        <a>세일</a>
+        <a>기프트카드</a>
+        <a>멤버십/쿠폰</a>
+        <a>이벤트</a>
       </div>
     </nav>
 
-    <div id="toast">준비 중인 메뉴예요</div>
     <div class="title-best">
       <h1>
         튜토리얼
@@ -2649,20 +2648,5 @@
         </div>
       </div>
     </main>
-
-    <footer></footer>
-    <script>
-      document.querySelectorAll("[data-soon], .gnb a[href]").forEach((el) =>
-        el.addEventListener("click", (e) => {
-          e.preventDefault();
-          const t = document.getElementById("toast");
-          t.textContent = el.hasAttribute("data-soon")
-            ? "준비 중인 메뉴예요"
-            : "(테스트 화면이라 이동하지 않아요) → " + el.getAttribute("href");
-          t.classList.add("show");
-          setTimeout(() => t.classList.remove("show"), 1500);
-        }),
-      );
-    </script>
   </body>
 </html>
