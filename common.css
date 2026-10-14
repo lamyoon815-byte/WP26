@@ -24,7 +24,7 @@
   --c-border: #dddddd; /* 테두리, 구분선 */
 
   /* 성분 위험도 색 (제품 상세, 장바구니, 랭킹의 성분 뱃지에 사용) */
-  --c-safe: #2e9e5b; /* 안전 (초록) */
+  --c-safe: #2e7e9e; /* 안전 (청록) */
   --c-caution: #f2b01e; /* 주의 (노랑) — 위에 올리는 글자는 검정 */
   --c-danger: #e5484d; /* 위험 (빨강) */
 
@@ -165,14 +165,21 @@ button {
   padding: 0 20px;
   display: flex;
   align-items: center;
-  color: var(--c-text-sub);
+  color: var(--c-text-disabled); /* 안내 문구는 연한 회색 */
   font-size: var(--fs-md);
 }
 
-/* 오른쪽 "최근 본 상품" */
+/* 오른쪽 "올송매장찾기 | 최근 본 상품"
+   <div class="hright"><a>올송매장찾기 &#9662;</a><a>최근 본 상품 &#9662;</a></div> */
 .hright {
   justify-self: end;
+  display: flex;
+  gap: 16px;
   font-size: var(--fs-md);
+}
+.hright a + a {
+  padding-left: 16px;
+  border-left: 1px solid var(--c-border);
 }
 
 /* ==========================================================================
@@ -197,28 +204,48 @@ button {
 }
 
 .gnb a {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid transparent; /* 밑줄 자리를 모든 메뉴에 미리 확보 → 글자 높이가 다 같음 */
   cursor: pointer;
+}
+
+/* 메뉴 밑줄 바: 평소엔 폭 0 → 호버하면 가운데에서 양옆으로 늘어남 */
+.gnb a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px; /* 투명 밑줄 자리에 겹치기 */
+  height: 3px;
+  background: var(--c-point);
+  transform: scaleX(0);
+  transition: transform 0.2s ease-out;
 }
 .gnb a:hover {
   color: var(--c-point);
+}
+.gnb a:hover::after {
+  transform: scaleX(1);
 }
 
 /* 첫 번째 "카테고리" 칸 (오른쪽에 세로 구분선) */
 .gnb .cat {
   padding-right: 28px;
   border-right: 1px solid var(--c-border);
-  height: 100%;
-  display: flex;
-  align-items: center;
+}
+.gnb .cat::after {
+  right: 28px; /* 밑줄은 글자 폭만큼만 (오른쪽 여백 제외) */
 }
 
-/* 현재 페이지 메뉴: 포인트색 글자 + 아래 밑줄 */
+/* 현재 페이지 메뉴: 포인트색 글자 + 밑줄 바 항상 표시 */
 .gnb .on {
   color: var(--c-point);
-  border-bottom: 3px solid var(--c-point);
-  height: 100%;
-  display: flex;
-  align-items: center;
+}
+.gnb .on::after {
+  transform: scaleX(1);
 }
 
 /* ==========================================================================
@@ -417,6 +444,36 @@ button {
   padding: 16px 20px;
   border-radius: var(--radius);
 } /* 회색 안내 박스 */
+
+/* ==========================================================================
+   12-1. 메뉴 네비게이션 아래 상단 타이틀 배너 (common-test.html에서 공통으로 옮김)
+      <div class="title-best"><h1>튜토리얼 <span>설명 문구</span></h1></div>
+      <main class="container"> 바깥, GNB 바로 아래에 둔다.
+   ========================================================================== */
+.title-best {
+  width: 100%;
+  height: 100%;
+  margin: 2rem 0;
+}
+
+.title-best h1 {
+  width: 1200px;
+  max-width: 100%; /* [수정] 좁은 화면에서 넘치지 않게 */
+  padding: 0 16px; /* [수정] .container와 같은 좌우 여백 → 아래 콘텐츠와 왼쪽 줄 맞춤 */
+  margin: 0 auto;
+  color: #000;
+  font-size: 40px;
+  line-height: 40px;
+  position: relative;
+}
+
+.title-best h1 span {
+  display: inline-block;
+  margin-left: 15px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 400;
+}
 
 /* ==========================================================================
    13. 반응형 (창이 좁을 때)
