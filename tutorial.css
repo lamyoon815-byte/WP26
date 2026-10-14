@@ -562,6 +562,14 @@
 @media (max-width: 800px) {
   .category-area {
     flex: 0 0 100%;
+    min-height: auto;
+    padding-bottom: 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .product-list {
+    flex: 0 0 100%;
     padding: 0;
     border: none;
   }
