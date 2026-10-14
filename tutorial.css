@@ -29,7 +29,8 @@
 }
 
 /* 베이스 선택 시 베이스 패널 표시 및 내부 요소 배치 */
-#category-base:checked ~ .panel-base {
+#category-base:checked ~ .panel-base,
+#category-eye:checked ~ .panel-eye {
   display: contents;
 }
 
@@ -441,14 +442,18 @@
 
 /* 선택한 베이스 상품 표시 */
 #base-1:checked ~ .product-list label[for="base-1"] .product-image,
-#base-2:checked ~ .product-list label[for="base-2"] .product-image {
+#base-2:checked ~ .product-list label[for="base-2"] .product-image,
+#eye-1:checked ~ .product-list label[for="eye-1"] .product-image,
+#eye-2:checked ~ .product-list label[for="eye-2"] .product-image {
   border-color: var(--c-point);
   background: var(--c-point-light);
 }
 
 /* 키보드로 이동한 베이스 상품 표시 */
 #base-1:focus-visible ~ .product-list label[for="base-1"],
-#base-2:focus-visible ~ .product-list label[for="base-2"] {
+#base-2:focus-visible ~ .product-list label[for="base-2"],
+#eye-1:focus-visible ~ .product-list label[for="eye-1"],
+#eye-2:focus-visible ~ .product-list label[for="eye-2"] {
   outline: 2px solid var(--c-point);
   outline-offset: 4px;
 }
