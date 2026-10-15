@@ -168,73 +168,8 @@ button {
   color: var(--c-text-disabled); /* 안내 문구는 연한 회색 */
   font-size: var(--fs-md);
 }
-
-/* 검색창 확장: 입력칸 + 돋보기 + 클릭 시 최근/급상승 검색어 패널
-   HTML은 위의 <div class="search">안내 문구</div> 그대로 두고,
-   </body> 앞에 <script src="common.js"></script> 를 넣으면 common.js가 자동으로 바꿔 준다. */
-.search { position: relative; padding-right: 8px; }
-.search input {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  font: inherit;
-  color: var(--c-main);
-}
-.search input::placeholder { color: var(--c-text-disabled); }
-.search .search-btn {
-  width: 36px;
-  height: 36px;
-  border: 0;
-  background: none;
-  color: var(--c-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.search .search-btn svg { width: 22px; height: 22px; }
-
-.search-panel {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 0;
-  z-index: 100;
-  width: 640px;
-  padding: 28px 0 24px;
-  border: 1px solid var(--c-border);
-  border-radius: 16px;
-  background: var(--c-white);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
-  display: none;
-  grid-template-columns: 1fr 1fr;
-  color: var(--c-main);
-  cursor: default;
-}
-.search.open .search-panel { display: grid; }
-.search-panel section { padding: 0 32px; display: flex; flex-direction: column; }
-.search-panel section + section { border-left: 1px solid var(--c-border); }
-.search-panel h3 { margin: 0 0 16px; font-size: var(--fs-md); }
-.search-panel ul { margin: 0; padding: 0; list-style: none; flex: 1; }
-.search-panel li {
-  height: 36px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: var(--fs-base);
-}
-.search-panel li a { flex: 1; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.search-panel li a:hover { color: var(--c-point); font-weight: 700; }
-.search-panel .del { border: 0; background: none; color: var(--c-text-disabled); font-size: var(--fs-lg); line-height: 1; }
-.search-panel .del:hover { color: var(--c-main); }
-.search-panel .rank { width: 20px; font-weight: 700; }
-.search-panel .st { width: 32px; text-align: right; font-size: var(--fs-sm); color: var(--c-text-disabled); }
-.search-panel .st.up { color: var(--c-sale); }
-.search-panel .empty { color: var(--c-text-disabled); }
-.search-panel .foot { margin-top: 16px; display: flex; gap: 16px; font-size: var(--fs-sm); color: var(--c-text-disabled); }
-.search-panel .foot button { padding: 0; border: 0; background: none; font-size: var(--fs-sm); color: inherit; }
-.search-panel .foot button:hover { color: var(--c-main); }
+/* 검색창 오른쪽 돋보기 아이콘: <div class="search">안내 문구<svg class="search-ico">…</svg></div> */
+.search .search-ico { width: 22px; height: 22px; margin-left: auto; flex: none; color: var(--c-main); }
 
 /* 오른쪽 "올송매장찾기 | 최근 본 상품"
    <div class="hright"><a>올송매장찾기 &#9662;</a><a>최근 본 상품 &#9662;</a></div> */
