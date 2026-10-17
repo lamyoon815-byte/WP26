@@ -2680,6 +2680,125 @@
           </details>
         </div>
       </div>
+
+      <!-- 인기 튜토리얼: 페이지에 한 번만 추가 -->
+      <section class="popular-tutorials" aria-labelledby="popular-title">
+        <div class="popular-heading">
+          <h2 id="popular-title">조회 급상승, 인기 튜토리얼 영상</h2>
+
+          <button type="button" class="popular-update">
+            <span aria-hidden="true">↻</span> 업데이트
+          </button>
+        </div>
+
+        <!-- 인기 영상 선택 -->
+        <input
+          class="choice"
+          type="radio"
+          name="popular-video"
+          id="popular-video-1"
+          checked
+        />
+        <input
+          class="choice"
+          type="radio"
+          name="popular-video"
+          id="popular-video-2"
+        />
+        <input
+          class="choice"
+          type="radio"
+          name="popular-video"
+          id="popular-video-3"
+        />
+
+        <div class="popular-body">
+          <!-- 왼쪽: 선택한 영상 -->
+          <div class="popular-preview">
+            <a
+              class="popular-feature popular-feature-1"
+              href="https://youtu.be/83IQGzak61I"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://i.ytimg.com/vi/83IQGzak61I/hqdefault.jpg"
+                alt="초미녀 하투하 이안 메이크업 썸네일"
+              />
+              <div class="popular-copy">
+                <span class="popular-badge">TOP 1</span>
+                <h3>초미녀 하투하 이안 메이크업</h3>
+                <p>영상으로 메이크업 과정을 살펴보세요.</p>
+                <span class="popular-watch">유튜브에서 보기 ↗</span>
+              </div>
+            </a>
+
+            <a
+              class="popular-feature popular-feature-2"
+              href="https://youtu.be/tQEbcHQPajU"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://i.ytimg.com/vi/tQEbcHQPajU/hqdefault.jpg"
+                alt="쿨지근 구운 장미 메이크업 썸네일"
+              />
+              <div class="popular-copy">
+                <span class="popular-badge">TOP 2</span>
+                <h3>쿨지근 구운 장미 메이크업</h3>
+                <p>영상으로 메이크업 과정을 살펴보세요.</p>
+                <span class="popular-watch">유튜브에서 보기 ↗</span>
+              </div>
+            </a>
+
+            <a
+              class="popular-feature popular-feature-3"
+              href="https://youtu.be/COV-AsoHR5M"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://i.ytimg.com/vi/COV-AsoHR5M/hqdefault.jpg"
+                alt="말 잘듣고 싶은 연상여친st 메이크업 썸네일"
+              />
+              <div class="popular-copy">
+                <span class="popular-badge">TOP 3</span>
+                <h3>말 잘듣고 싶은 연상여친st 메이크업</h3>
+                <p>영상으로 메이크업 과정을 살펴보세요.</p>
+                <span class="popular-watch">유튜브에서 보기 ↗</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 오른쪽: 영상 순위 선택 -->
+          <ol class="popular-ranking">
+            <li>
+              <label class="popular-rank-label" for="popular-video-1">
+                <span class="popular-rank-number">1</span>
+                <span class="popular-rank-title">
+                  초미녀 하투하 이안 메이크업
+                </span>
+              </label>
+            </li>
+            <li>
+              <label class="popular-rank-label" for="popular-video-2">
+                <span class="popular-rank-number">2</span>
+                <span class="popular-rank-title">
+                  쿨지근 구운 장미 메이크업
+                </span>
+              </label>
+            </li>
+            <li>
+              <label class="popular-rank-label" for="popular-video-3">
+                <span class="popular-rank-number">3</span>
+                <span class="popular-rank-title">
+                  말 잘듣고 싶은 연상여친st 메이크업
+                </span>
+              </label>
+            </li>
+          </ol>
+        </div>
+      </section>
     </main>
   </body>
 </html>

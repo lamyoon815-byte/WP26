@@ -647,3 +647,222 @@
 .video-more[open] > .video-list {
   margin-top: 0;
 }
+
+/* 인기 튜토리얼: 기존 영상 결과 아래에 배치 */
+.popular-tutorials {
+  order: 3;
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 64px 0 48px;
+}
+
+/* 영역 제목 */
+.popular-heading {
+  position: relative;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.popular-heading h2 {
+  margin: 0;
+  color: var(--c-main);
+  font-size: 26px;
+  line-height: 1.4;
+}
+
+.popular-heading p {
+  margin: 10px 0 0;
+  color: var(--c-text-sub);
+  font-size: var(--fs-sm);
+}
+
+/* 왼쪽 영상과 오른쪽 순위 목록 */
+.popular-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 32px;
+  padding: 28px 0;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.popular-preview {
+  min-width: 0;
+}
+
+/* 선택 전에는 영상 소개 숨김 */
+.popular-feature {
+  display: none;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.popular-feature img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.popular-copy {
+  min-width: 0;
+}
+
+.popular-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--c-point-light);
+  color: var(--c-point);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.popular-copy h3 {
+  margin: 10px 0;
+  font-size: 17px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.popular-copy p {
+  margin: 0 0 12px;
+  color: var(--c-text-sub);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.popular-watch {
+  color: var(--c-point);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.popular-feature:hover .popular-watch {
+  text-decoration: underline;
+}
+
+.popular-feature:focus-visible {
+  outline: 2px solid var(--c-point);
+  outline-offset: 4px;
+}
+
+/* 순위 목록 */
+.popular-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.popular-rank-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--c-text-sub);
+  cursor: pointer;
+}
+
+.popular-rank-number {
+  flex: 0 0 20px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.popular-rank-title {
+  min-width: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.popular-rank-label:hover {
+  background: var(--c-bg-sub);
+}
+
+/* 선택한 영상 소개만 표시 */
+#popular-video-1:checked ~ .popular-body .popular-feature-1,
+#popular-video-2:checked ~ .popular-body .popular-feature-2,
+#popular-video-3:checked ~ .popular-body .popular-feature-3 {
+  display: grid;
+}
+
+/* 선택한 순위 강조 */
+#popular-video-1:checked ~ .popular-body label[for="popular-video-1"],
+#popular-video-2:checked ~ .popular-body label[for="popular-video-2"],
+#popular-video-3:checked ~ .popular-body label[for="popular-video-3"] {
+  border-color: #b0bace;
+  background: var(--c-point-light);
+  color: var(--c-point);
+  font-weight: 700;
+}
+
+/* 라디오 버튼에 키보드 포커스가 있으면 해당 순위에 표시 */
+#popular-video-1:focus-visible ~ .popular-body label[for="popular-video-1"],
+#popular-video-2:focus-visible ~ .popular-body label[for="popular-video-2"],
+#popular-video-3:focus-visible ~ .popular-body label[for="popular-video-3"] {
+  outline: 2px solid var(--c-point);
+  outline-offset: 3px;
+}
+
+/* 작은 화면에서는 영상 소개 아래에 순위 목록 배치 */
+@media (max-width: 800px) {
+  .popular-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .popular-tutorials {
+    margin-top: 48px;
+  }
+}
+
+/* 제목 영역 오른쪽 위의 업데이트 버튼 */
+.popular-update {
+  position: absolute;
+  bottom: -16px;
+  right: 0;
+
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: #7b8494;
+
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+
+/* 마우스를 올리면 글자색 변경과 밑줄 표시 */
+.popular-update:hover {
+  color: var(--c-point);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* 키보드 포커스 표시 */
+.popular-update:focus-visible {
+  outline: 2px solid var(--c-point);
+  outline-offset: 3px;
+}
+
+/* 작은 화면에서는 제목과 겹치지 않도록 아래쪽 오른편에 배치 */
+@media (max-width: 800px) {
+  .popular-update {
+    position: static;
+    display: block;
+    margin: 12px 0 0 auto;
+  }
+}
