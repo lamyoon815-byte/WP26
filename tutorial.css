@@ -415,18 +415,6 @@
   outline-offset: 4px;
 }
 
-/* 표시할 영상 개수 선택 메뉴 */
-.video-page-size {
-  padding: 0 8px 0 16px;
-  border: none;
-  border-left: 1px solid var(--c-border);
-  background: var(--c-white);
-  color: var(--c-main);
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  cursor: pointer;
-}
-
 /* 상품 선택 시 해당 결과 표시 */
 #base-1:checked ~ .result-base-1,
 #base-2:checked ~ .result-base-2,
@@ -534,7 +522,7 @@
 
 /* 카드에 마우스를 올렸을 때 */
 .video-card:hover {
-  border-color: var(--c-point);
+  border-color: #b0bace;
 }
 
 /* 제품 구매 버튼 */
@@ -576,4 +564,86 @@
     padding: 0;
     border: none;
   }
+}
+
+/* 추가 영상 영역: 첫 영상 목록과의 간격 */
+.video-more {
+  position: relative;
+  margin-top: 32px;
+}
+
+/* 중앙의 더보기 버튼 */
+.video-more-button {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 12px 32px;
+
+  border: 1px solid #b0bace;
+  border-radius: 999px;
+  background: var(--c-white);
+  color: var(--c-point);
+
+  font-size: var(--fs-base);
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+/* 일부 브라우저의 기본 삼각형 표시 제거 */
+.video-more-button::-webkit-details-marker {
+  display: none;
+}
+
+/* 마우스를 올렸을 때 */
+.video-more-button:hover {
+  background: var(--c-point-light);
+}
+
+/* 키보드로 버튼에 이동했을 때 */
+.video-more-button:focus-visible {
+  outline: 2px solid var(--c-point);
+  outline-offset: 4px;
+}
+
+/* 닫힌 상태에서는 '영상 접기' 숨김 */
+.video-more-button .less-label {
+  display: none;
+}
+
+/* 열린 상태에서는 '영상 더보기' 숨김 */
+.video-more[open] > .video-more-button .more-label {
+  display: none;
+}
+
+/* 열린 상태에서는 '영상 접기' 표시 */
+.video-more[open] > .video-more-button .less-label {
+  display: inline;
+}
+
+/* 버튼과 펼쳐진 영상 목록 사이의 간격 */
+.video-more > .video-list {
+  margin-top: 32px;
+}
+
+/* 펼친 상태: 아래쪽에 접기 버튼 공간 확보 */
+.video-more[open] {
+  padding-bottom: 80px;
+}
+
+/* 펼친 상태: 접기 버튼을 추가 영상 아래 중앙에 배치 */
+.video-more[open] > .video-more-button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+/* 펼친 영상 위의 불필요한 간격 제거 */
+.video-more[open] > .video-list {
+  margin-top: 0;
 }
