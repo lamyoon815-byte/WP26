@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>퍼스널컬러 | 올리브송</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="common.css">
+<style>
+/* ==========================================================================
+   personalcolor.html — 와이어프레임
+   흐름: 셀프 체크 → 4가지 톤 탭 → 톤 소개(팔레트 + 워스트↔대안)
+        → 아이템별 추천 컬러 → 리뷰어 추천 / 같은 톤이 많이 산 → 튜토리얼
+   * 자바스크립트 없음. 탭 전환은 숨긴 라디오 버튼 + CSS(:has)로 처리
+   * 톤 이름은 랭킹 필터와 같은 값 사용: 봄웜 / 여름쿨 / 가을웜 / 겨울쿨
+   ========================================================================== */
+html, body { overflow-x: clip; }
+:is(a, button):focus-visible,
+label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offset: 2px; }
+
+/* 탭용 라디오 버튼: 화면에서는 숨기고 label만 보이게 (키보드 방향키로는 계속 선택 가능) */
+.pc-tabs input, .tabs2 input, .slider > input { position: absolute; opacity: 0; pointer-events: none; }
+
+/* 섹션 간격은 일부러 다르게: 톤 소개 바로 뒤는 좁게, 마지막 튜토리얼은 선으로 끊고 넓게 */
+.pc-sec { margin-top: 64px; }
+.pc-sec.tight { margin-top: 48px; }
+.pc-sec.end { margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--c-border); }
+.pc-sec > h2 { margin: 0 0 8px; font-size: var(--fs-lg); }
+.pc-sec > h2 + .items { margin-top: 16px; }
+.pc-sec > .sub { margin: 0 0 24px; color: var(--c-text-sub); font-size: var(--fs-base); }
+
+/* ---------- 1. 내 톤 배너 ---------- */
+.pc-banner { padding: 32px; border-radius: 12px; background: var(--c-point-light); display: flex; align-items: center; gap: 24px; }
+.pc-banner .txt { flex: 1; }
+.pc-banner h2 { margin: 0; font-size: var(--fs-xl); }
+.pc-banner h2 b { color: var(--c-point); font-weight: inherit; }
+.pc-banner p { margin: 8px 0 0; color: var(--c-main); }
+.pc-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 32px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--c-point);
+  color: var(--c-white);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pc-btn:hover, .pc-btn:active { background: var(--c-point-dark); }
+.pc-btn.line { border: 1px solid var(--c-point); background: var(--c-white); color: var(--c-point); }
+.pc-btn.line:hover, .pc-btn.line:active { background: var(--c-point); color: var(--c-white); }
+
+/* ---------- 2. 4가지 톤 탭 ---------- */
+.pc-tabs { margin-top: 40px; display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--c-border); }
+.pc-tabs label {
+  position: relative;
+  height: 56px;
+  border-bottom: 3px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-lg);
+  color: var(--c-text-sub);
+  cursor: pointer;
+}
+.pc-tabs label:hover { color: var(--c-main); }
+.pc-tabs label:has(input:checked),
+main:has(input[name="state"][value="quiz"][data-view="spring"]:checked) .pc-tabs label:has(input[data-view="spring"]),
+main:has(input[name="state"][value="quiz"][data-view="summer"]:checked) .pc-tabs label:has(input[data-view="summer"]),
+main:has(input[name="state"][value="quiz"][data-view="autumn"]:checked) .pc-tabs label:has(input[data-view="autumn"]),
+main:has(input[name="state"][value="quiz"][data-view="winter"]:checked) .pc-tabs label:has(input[data-view="winter"]) { color: var(--c-point); font-weight: 700; border-bottom-color: var(--c-point); }   /* 팝업이 열려 있어도 보던 탭 표시 유지 */
+.pc-tabs .my { margin-left: 8px; padding: 4px 8px; border-radius: 12px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); font-weight: 700; line-height: 1; }
+.pc-tabs .dot { display: inline-block; width: 12px; height: 12px; margin-right: 8px; border-radius: 50%; }
+
+/* 선택한 톤의 내용만 보이기 */
+.tone { display: none; }
+main:has(input[name="state"][data-view="spring"]:checked) .tone[data-tone="spring"],
+main:has(input[name="state"][data-view="summer"]:checked) .tone[data-tone="summer"],
+main:has(input[name="state"][data-view="autumn"]:checked) .tone[data-tone="autumn"],
+main:has(input[name="state"][data-view="winter"]:checked) .tone[data-tone="winter"] { display: block; }
+/* 지금 내 톤의 탭 묶음만 보이기 (display: contents → 안의 label이 탭 칸에 그대로 들어감) */
+.pc-tabs .set { display: none; }
+main:has(input[name="state"][data-my="spring"]:checked) .pc-tabs .set[data-my="spring"],
+main:has(input[name="state"][data-my="summer"]:checked) .pc-tabs .set[data-my="summer"],
+main:has(input[name="state"][data-my="autumn"]:checked) .pc-tabs .set[data-my="autumn"],
+main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="winter"] { display: contents; }
+
+/* ---------- 3. 톤 소개 카드 ---------- */
+.pc-intro { margin-top: 32px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+.pc-card { padding: 32px; border: 1px solid var(--c-border); border-radius: 12px; }
+.pc-card h3 { margin: 0 0 16px; font-size: var(--fs-md); }
+.pc-intro .name { margin: 0; font-size: 28px; font-weight: 800; }
+.pc-intro .kw { margin: 8px 0 0; display: flex; gap: 8px; }
+.pc-intro .kw span { padding: 4px 12px; border-radius: 12px; background: var(--c-bg-sub); font-size: var(--fs-sm); }
+.pc-intro .desc { margin: 16px 0 24px; line-height: 1.6; color: var(--c-text-sub); }
+.palette { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+.palette div { text-align: center; font-size: var(--fs-sm); color: var(--c-text-sub); word-break: keep-all; }
+.palette i { display: block; width: 44px; height: 44px; margin: 0 auto 8px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .08); }
+
+/* 워스트 → 대안 */
+.worst li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--c-border); }
+.worst li:last-child { border-bottom: 0; }
+.worst ul { margin: 0; padding: 0; list-style: none; }
+.worst .sw { display: flex; align-items: center; gap: 8px; flex: 1; font-size: var(--fs-base); }
+.worst .sw i { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .08); flex: none; }
+.worst .bad { color: var(--c-text-sub); }
+.worst .bad i { position: relative; }
+.worst .bad i::after { content: "\2715"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--c-white); font-size: 14px; text-shadow: 0 0 2px rgba(0, 0, 0, .6); }
+.worst .arrow { color: var(--c-text-sub); }
+.worst .good b { color: var(--c-point); }
+
+/* ---------- 4. 아이템별 추천 컬러 ---------- */
+.items { border-top: 2px solid var(--c-main); }
+.items .row { display: grid; grid-template-columns: 120px 1fr 140px; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--c-border); }
+.items .row > h3 { margin: 0; font-size: var(--fs-md); }
+.items .shades { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.shade { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid transparent; border-radius: 8px; }
+.shade:hover { border-color: var(--c-border); }
+.shade i { width: 48px; height: 48px; border-radius: 50%; flex: none; border: 1px solid rgba(0, 0, 0, .08); }
+.shade .b, .shade .n, .shade .s { display: block; }
+.shade .b { font-size: var(--fs-sm); color: var(--c-text-sub); }
+.shade .n { font-size: var(--fs-base); }
+.shade .s { font-size: var(--fs-base); font-weight: 700; }
+.more { justify-self: end; font-size: var(--fs-base); color: var(--c-point); font-weight: 700; }
+.more:hover { text-decoration: underline; }
+
+/* ---------- 5. 리뷰어 추천 / 같은 톤이 많이 산 ---------- */
+.tabs2 { display: flex; gap: 8px; margin-bottom: 24px; }
+.tabs2 label { position: relative; padding: 8px 20px; border: 1px solid var(--c-border); border-radius: 20px; background: var(--c-white); color: var(--c-text-sub); cursor: pointer; }
+.tabs2 label:hover { border-color: var(--c-point); color: var(--c-point); }
+.tabs2 label:has(input:checked) { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); font-weight: 700; }
+.pick .pick-review { display: none; }
+.pick:has(.tabs2 input[value="review"]:checked) .pick-review { display: grid; }
+.pick:has(.tabs2 input[value="review"]:checked) .pick-bought { display: none; }
+
+/* 상품 슬라이드: 4개씩 보이고, › 를 누르면 다음 4개로 옆으로 넘어감 (라디오 + CSS transform) */
+.slider { position: relative; }
+.slider .viewport { overflow: hidden; }
+.slider .track { display: flex; gap: var(--gap); transition: transform 0.4s cubic-bezier(.16, 1, .3, 1); }
+.slider .card { flex: 0 0 calc((100% - 3 * var(--gap)) / 4); min-width: 0; text-align: center; }
+.slider:has(input[value="2"]:checked) .track { transform: translateX(calc(-100% - var(--gap))); }
+.slider .nav {
+  position: absolute;
+  top: calc((100% - 96px) / 2);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  background: var(--c-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--c-main);
+  cursor: pointer;
+}
+.slider .nav:hover { border-color: var(--c-point); color: var(--c-point); }
+.slider .prev { left: -22px; }
+.slider .next { right: -22px; }
+.slider:has(input[value="1"]:checked) .prev,
+.slider:has(input[value="2"]:checked) .next { display: none; }
+
+/* 상품 카드 (이미지 없으면 X자 자리) */
+.slider .card .img { position: relative; display: block; border: 1px solid var(--c-border); }
+.slider .card .img.ph,
+.tut .ph {
+  background:
+    linear-gradient(to top right, transparent calc(50% - .5px), var(--c-border) 50%, transparent calc(50% + .5px)),
+    linear-gradient(to top left,  transparent calc(50% - .5px), var(--c-border) 50%, transparent calc(50% + .5px)),
+    var(--c-bg-sub);
+}
+.slider .card .img img { display: block; }
+.slider .card .tone-tag { position: absolute; top: 8px; left: 8px; padding: 4px 8px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); }
+.slider .card .brand { margin-top: 16px; font-size: var(--fs-base); color: var(--c-text-sub); }
+.slider .card .name { margin-top: 4px; height: 2.8em; word-break: keep-all; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.slider .card .price-row { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 8px; }
+.slider .card .rate { font-size: var(--fs-lg); font-weight: 700; color: var(--c-sale); }
+
+/* 리뷰: 첫 리뷰는 가로로 크게, 나머지 둘은 아래 2열 */
+.reviews { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.review { padding: 24px; border: 1px solid var(--c-border); border-radius: 12px; display: flex; flex-direction: column; gap: 12px; }
+.review .who { display: flex; align-items: center; gap: 12px; font-size: var(--fs-base); }
+.review .who i { width: 36px; height: 36px; border-radius: 50%; background: var(--c-bg-sub); flex: none; }
+.review .who small { display: block; color: var(--c-text-sub); font-size: var(--fs-sm); }
+.review q { line-height: 1.6; }
+.review .prod { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--c-border); display: flex; align-items: center; gap: 12px; font-size: var(--fs-sm); color: var(--c-text-sub); }
+.review .prod i { width: 24px; height: 24px; border-radius: 50%; flex: none; }
+.review.feature { grid-column: 1 / -1; padding: 32px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: center; gap: 32px; }
+.review.feature q { font-size: var(--fs-xl); font-weight: 700; line-height: 1.5; }
+.review.feature .side { padding-left: 32px; border-left: 1px solid var(--c-border); display: flex; flex-direction: column; gap: 16px; }
+.review.feature .prod { margin-top: 0; padding-top: 0; border-top: 0; font-size: var(--fs-base); }
+.review.feature .prod i { width: 40px; height: 40px; }
+
+/* ---------- 6. 튜토리얼: 첫 번째를 크게, 나머지 둘은 오른쪽에 쌓기 ---------- */
+.tut { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--gap); }
+.tut a { display: flex; flex-direction: column; }
+.tut a:first-child { grid-row: span 2; }
+.tut a:first-child .ph { flex: 1; aspect-ratio: auto; min-height: 240px; }
+.tut .ph { position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--c-border); border-radius: var(--radius); }
+.tut .ph span { position: absolute; left: 12px; bottom: 12px; padding: 4px 8px; background: rgba(0, 0, 0, .7); color: var(--c-white); font-size: var(--fs-sm); }
+.tut .t { margin-top: 12px; font-weight: 700; }
+.tut .d { margin-top: 4px; font-size: var(--fs-base); color: var(--c-text-sub); }
+.tut-more { margin: 32px auto 80px; display: block; width: 280px; text-align: center; line-height: 48px; }
+
+/* ---------- 자가진단 팝업 ---------- */
+:root { --c-dim: color-mix(in srgb, var(--c-main) 50%, transparent); }
+.pc-tabs > input { position: absolute; opacity: 0; pointer-events: none; }
+html:has(input[name="state"][value="quiz"]:checked) { overflow: hidden; }                          /* 팝업이 열려 있는 동안 뒤 화면 스크롤 막기 */
+.pc-banner .redo { cursor: pointer; }
+.quiz { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 16px; }
+main:has(input[name="state"][value="quiz"]:checked) .quiz { display: flex; }
+.quiz .backdrop { position: absolute; inset: 0; background: var(--c-dim); cursor: pointer; }
+.quiz .box { position: relative; width: 520px; max-width: 100%; max-height: calc(100vh - 32px); overflow-y: auto; padding: 32px; border-radius: 16px; background: var(--c-white); }
+.quiz .close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: var(--fs-xl); line-height: 1; color: var(--c-text-sub); cursor: pointer; }
+.quiz .close:hover { color: var(--c-main); }
+.quiz h2 { margin: 0; font-size: var(--fs-xl); }
+.quiz .lead { margin: 8px 0 24px; color: var(--c-text-sub); font-size: var(--fs-base); }
+.quiz fieldset { margin: 0 0 20px; padding: 0; border: 0; }
+.quiz legend { margin-bottom: 8px; padding: 0; font-weight: 700; }
+.quiz .opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.quiz .opts label { position: relative; padding: 12px 16px; border: 1px solid var(--c-border); border-radius: 8px; cursor: pointer; }
+.quiz .opts label:hover { border-color: var(--c-point); }
+.quiz .opts label:has(input:checked) { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); font-weight: 700; }
+.quiz .opts input { position: absolute; opacity: 0; pointer-events: none; }
+.quiz .wait { margin: 0; padding-top: 20px; border-top: 1px solid var(--c-border); color: var(--c-text-sub); font-size: var(--fs-base); }
+.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked) .wait { display: none; }
+.quiz .result { display: none; padding-top: 20px; border-top: 1px solid var(--c-border); align-items: center; justify-content: space-between; gap: 16px; }
+.quiz .result p { margin: 0; font-size: var(--fs-lg); }
+.quiz .result b { color: var(--c-point); }
+/* 결과는 그 톤의 색으로: 팔레트 5색 + 대표색을 진하게 섞은 버튼 (흰 글자 대비 4.5:1 이상) */
+.quiz .r-spring { --tone: #ff9f80; }
+.quiz .r-summer { --tone: #e88aa8; }
+.quiz .r-autumn { --tone: #c8643b; }
+.quiz .r-winter { --tone: #7a1f3d; }
+.quiz .result .swatch { margin-top: 8px; display: flex; gap: 4px; }
+.quiz .result .swatch i { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--c-border); }
+.quiz .result .pc-btn { background: color-mix(in srgb, var(--tone) 60%, var(--c-main)); }
+.quiz .result .pc-btn:hover, .quiz .result .pc-btn:active { background: color-mix(in srgb, var(--tone) 45%, var(--c-main)); }
+.quiz .result .pc-btn { cursor: pointer; }
+/* 결과: 웜/쿨은 Q1~Q3 중 2개 이상, 밝음/깊음은 Q4 */
+.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="w"]:checked):has(input[name="q2"][value="w"]:checked), :has(input[name="q1"][value="w"]:checked):has(input[name="q3"][value="w"]:checked), :has(input[name="q2"][value="w"]:checked):has(input[name="q3"][value="w"]:checked)):has(input[name="q4"][value="l"]:checked) .r-spring,
+.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="w"]:checked):has(input[name="q2"][value="w"]:checked), :has(input[name="q1"][value="w"]:checked):has(input[name="q3"][value="w"]:checked), :has(input[name="q2"][value="w"]:checked):has(input[name="q3"][value="w"]:checked)):has(input[name="q4"][value="d"]:checked) .r-autumn,
+.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="c"]:checked):has(input[name="q2"][value="c"]:checked), :has(input[name="q1"][value="c"]:checked):has(input[name="q3"][value="c"]:checked), :has(input[name="q2"][value="c"]:checked):has(input[name="q3"][value="c"]:checked)):has(input[name="q4"][value="l"]:checked) .r-summer,
+.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="c"]:checked):has(input[name="q2"][value="c"]:checked), :has(input[name="q1"][value="c"]:checked):has(input[name="q3"][value="c"]:checked), :has(input[name="q2"][value="c"]:checked):has(input[name="q3"][value="c"]:checked)):has(input[name="q4"][value="d"]:checked) .r-winter { display: flex; }
+.quiz .note { margin: 16px 0 0; font-size: var(--fs-sm); color: var(--c-text-sub); }
+
+/* ---------- 내 톤 표시: 배너 문구, 다시 진단하기, 팝업 닫기 ---------- */
+.pc-banner .mine, .pc-banner .redo, .quiz .close, .quiz .backdrop { display: none; }
+main:has(input[name="state"][data-my="spring"]:checked) .pc-banner .mine[data-for="spring"],
+main:has(input[name="state"][data-my="summer"]:checked) .pc-banner .mine[data-for="summer"],
+main:has(input[name="state"][data-my="autumn"]:checked) .pc-banner .mine[data-for="autumn"],
+main:has(input[name="state"][data-my="winter"]:checked) .pc-banner .mine[data-for="winter"] { display: block; }
+main:has(#st-spring-spring:checked) .pc-banner .redo[for="st-q-spring-spring"],
+main:has(#st-spring-summer:checked) .pc-banner .redo[for="st-q-spring-summer"],
+main:has(#st-spring-autumn:checked) .pc-banner .redo[for="st-q-spring-autumn"],
+main:has(#st-spring-winter:checked) .pc-banner .redo[for="st-q-spring-winter"],
+main:has(#st-summer-spring:checked) .pc-banner .redo[for="st-q-summer-spring"],
+main:has(#st-summer-summer:checked) .pc-banner .redo[for="st-q-summer-summer"],
+main:has(#st-summer-autumn:checked) .pc-banner .redo[for="st-q-summer-autumn"],
+main:has(#st-summer-winter:checked) .pc-banner .redo[for="st-q-summer-winter"],
+main:has(#st-autumn-spring:checked) .pc-banner .redo[for="st-q-autumn-spring"],
+main:has(#st-autumn-summer:checked) .pc-banner .redo[for="st-q-autumn-summer"],
+main:has(#st-autumn-autumn:checked) .pc-banner .redo[for="st-q-autumn-autumn"],
+main:has(#st-autumn-winter:checked) .pc-banner .redo[for="st-q-autumn-winter"],
+main:has(#st-winter-spring:checked) .pc-banner .redo[for="st-q-winter-spring"],
+main:has(#st-winter-summer:checked) .pc-banner .redo[for="st-q-winter-summer"],
+main:has(#st-winter-autumn:checked) .pc-banner .redo[for="st-q-winter-autumn"],
+main:has(#st-winter-winter:checked) .pc-banner .redo[for="st-q-winter-winter"] { display: inline-flex; }
+main:has(#st-q-spring-spring:checked) .quiz .close[for="st-spring-spring"],
+main:has(#st-q-spring-summer:checked) .quiz .close[for="st-spring-summer"],
+main:has(#st-q-spring-autumn:checked) .quiz .close[for="st-spring-autumn"],
+main:has(#st-q-spring-winter:checked) .quiz .close[for="st-spring-winter"],
+main:has(#st-q-summer-spring:checked) .quiz .close[for="st-summer-spring"],
+main:has(#st-q-summer-summer:checked) .quiz .close[for="st-summer-summer"],
+main:has(#st-q-summer-autumn:checked) .quiz .close[for="st-summer-autumn"],
+main:has(#st-q-summer-winter:checked) .quiz .close[for="st-summer-winter"],
+main:has(#st-q-autumn-spring:checked) .quiz .close[for="st-autumn-spring"],
+main:has(#st-q-autumn-summer:checked) .quiz .close[for="st-autumn-summer"],
+main:has(#st-q-autumn-autumn:checked) .quiz .close[for="st-autumn-autumn"],
+main:has(#st-q-autumn-winter:checked) .quiz .close[for="st-autumn-winter"],
+main:has(#st-q-winter-spring:checked) .quiz .close[for="st-winter-spring"],
+main:has(#st-q-winter-summer:checked) .quiz .close[for="st-winter-summer"],
+main:has(#st-q-winter-autumn:checked) .quiz .close[for="st-winter-autumn"],
+main:has(#st-q-winter-winter:checked) .quiz .close[for="st-winter-winter"] { display: flex; }
+main:has(#st-q-spring-spring:checked) .quiz .backdrop[for="st-spring-spring"],
+main:has(#st-q-spring-summer:checked) .quiz .backdrop[for="st-spring-summer"],
+main:has(#st-q-spring-autumn:checked) .quiz .backdrop[for="st-spring-autumn"],
+main:has(#st-q-spring-winter:checked) .quiz .backdrop[for="st-spring-winter"],
+main:has(#st-q-summer-spring:checked) .quiz .backdrop[for="st-summer-spring"],
+main:has(#st-q-summer-summer:checked) .quiz .backdrop[for="st-summer-summer"],
+main:has(#st-q-summer-autumn:checked) .quiz .backdrop[for="st-summer-autumn"],
+main:has(#st-q-summer-winter:checked) .quiz .backdrop[for="st-summer-winter"],
+main:has(#st-q-autumn-spring:checked) .quiz .backdrop[for="st-autumn-spring"],
+main:has(#st-q-autumn-summer:checked) .quiz .backdrop[for="st-autumn-summer"],
+main:has(#st-q-autumn-autumn:checked) .quiz .backdrop[for="st-autumn-autumn"],
+main:has(#st-q-autumn-winter:checked) .quiz .backdrop[for="st-autumn-winter"],
+main:has(#st-q-winter-spring:checked) .quiz .backdrop[for="st-winter-spring"],
+main:has(#st-q-winter-summer:checked) .quiz .backdrop[for="st-winter-summer"],
+main:has(#st-q-winter-autumn:checked) .quiz .backdrop[for="st-winter-autumn"],
+main:has(#st-q-winter-winter:checked) .quiz .backdrop[for="st-winter-winter"] { display: block; }
+
+@media (max-width: 800px) {
+  .palette { grid-template-columns: repeat(4, 1fr); }
+  .pc-banner { flex-direction: column; align-items: flex-start; }
+  .pc-intro { grid-template-columns: 1fr; }
+  .items .row { grid-template-columns: 1fr; }
+  .items .shades, .reviews, .tut { grid-template-columns: minmax(0, 1fr); }
+  /* 좁은 화면: 손가락으로 옆으로 밀어 보기 (화살표 숨김) */
+  .slider .viewport { overflow-x: auto; scroll-snap-type: x mandatory; }
+  .slider .card { flex-basis: calc((100% - var(--gap)) / 2); scroll-snap-align: start; }
+  .slider .track { transform: none !important; }
+  .slider .nav { display: none; }
+  .review.feature { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 24px; }
+  .review.feature .side { padding: 16px 0 0; border-left: 0; border-top: 1px solid var(--c-border); }
+  .tut a:first-child { grid-row: auto; }
+  .tut a:first-child .ph { flex: none; aspect-ratio: 16 / 10; min-height: 0; }
+  .pc-tabs label { font-size: var(--fs-base); }
+  .quiz .box { padding: 24px; }
+}
+@media (max-width: 480px) {
+  .quiz .opts { grid-template-columns: minmax(0, 1fr); }
+  .quiz .result { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slider .track { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 공통 헤더 ===== -->
+<div class="util"><div class="container"><a>로그인</a><a>회원가입</a><a href="cart.html">장바구니 <em>(3)</em></a><a>고객센터</a></div></div>
+<div class="header"><div class="container">
+  <a href="home.html" class="logo"><img src="Image_logo.png" alt="LOGO Image"><img src="Text_logo.png" alt="LOGO Text"></a>
+  <div class="search">퍼스널컬러, 브랜드, 성분 검색<svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M15.8 15.8 21 21"/></svg></div>
+  <div class="hright"><a data-soon>올송매장찾기 &#9662;</a><a data-soon>최근 본 상품 &#9662;</a></div>
+</div></div>
+<nav class="gnb"><div class="container">
+  <a class="cat" data-soon>&#9776; 카테고리</a>
+  <a data-soon>오특</a>
+  <a href="ranking.html">랭킹</a>
+  <a href="personalcolor.html" class="on">퍼스널컬러</a>
+  <a href="tutorial.html">튜토리얼</a>
+  <a data-soon>테마관</a>
+  <a data-soon>기획전</a>
+  <a data-soon>세일</a>
+  <a data-soon>기프트카드</a>
+  <a data-soon>멤버십/쿠폰</a>
+  <a data-soon>이벤트</a>
+</div></nav>
+
+<div class="title-best">
+  <h1>
+    퍼스널컬러
+    <span>내 톤에 어울리는 컬러와 제품을 찾아보세요.</span>
+  </h1>
+</div>
+
+<main class="container">
+
+  <!-- ===== 1. 내 톤 배너 (처음엔 가을웜으로 가정, 자가진단을 끝내면 결과 톤으로 바뀜) ===== -->
+  <div class="pc-banner">
+    <div class="txt mine" data-for="spring">
+      <h2>내 톤: <b>봄웜</b></h2>
+      <p>밝은 · 화사한 · 생기 있는 — 아래에서 봄웜에 어울리는 컬러와 제품을 확인해 보세요.</p>
+    </div>
+    <div class="txt mine" data-for="summer">
+      <h2>내 톤: <b>여름쿨</b></h2>
+      <p>부드러운 · 청량한 · 우아한 — 아래에서 여름쿨에 어울리는 컬러와 제품을 확인해 보세요.</p>
+    </div>
+    <div class="txt mine" data-for="autumn">
+      <h2>내 톤: <b>가을웜</b></h2>
+      <p>깊은 · 차분한 · 고급스러운 — 아래에서 가을웜에 어울리는 컬러와 제품을 확인해 보세요.</p>
+    </div>
+    <div class="txt mine" data-for="winter">
+      <h2>내 톤: <b>겨울쿨</b></h2>
+      <p>선명한 · 도시적인 · 강렬한 — 아래에서 겨울쿨에 어울리는 컬러와 제품을 확인해 보세요.</p>
+    </div>
+    <label class="pc-btn line redo" for="st-q-spring-spring">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-spring-summer">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-spring-autumn">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-spring-winter">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-summer-spring">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-summer-summer">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-summer-autumn">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-summer-winter">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-autumn-spring">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-autumn-summer">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-autumn-autumn">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-autumn-winter">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-winter-spring">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-winter-summer">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-winter-autumn">다시 진단하기</label>
+    <label class="pc-btn line redo" for="st-q-winter-winter">다시 진단하기</label>
+  </div>
+
+  <!-- ===== 2. 4가지 톤 탭 + 내 톤 상태 (라디오 + CSS, 스크립트 없음) =====
+       name="state" 라디오 하나가 "내 톤(my) × 보고 있는 탭(view)"을 함께 기억한다.
+       - .set: 내 톤마다 탭 묶음이 하나씩 있고(MY 뱃지 위치가 다름), 지금 내 톤의 묶음만 보인다.
+       - st-q-*: 자가진단 팝업이 열린 상태. 열기 전의 내 톤·탭을 그대로 기억해서 뒤 화면이 바뀌지 않는다.
+       - 결과의 "보러 가기"는 st-결과-결과 를 고른다 → 팝업 닫힘 + MY 변경 + 탭 전환이 한 번에. -->
+  <div class="pc-tabs" aria-label="톤 선택">
+    <input type="radio" name="state" value="quiz" id="st-q-spring-spring" data-my="spring" data-view="spring" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-spring-summer" data-my="spring" data-view="summer" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-spring-autumn" data-my="spring" data-view="autumn" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-spring-winter" data-my="spring" data-view="winter" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-summer-spring" data-my="summer" data-view="spring" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-summer-summer" data-my="summer" data-view="summer" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-summer-autumn" data-my="summer" data-view="autumn" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-summer-winter" data-my="summer" data-view="winter" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-autumn-spring" data-my="autumn" data-view="spring" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-autumn-summer" data-my="autumn" data-view="summer" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-autumn-autumn" data-my="autumn" data-view="autumn" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-autumn-winter" data-my="autumn" data-view="winter" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-winter-spring" data-my="winter" data-view="spring" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-winter-summer" data-my="winter" data-view="summer" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-winter-autumn" data-my="winter" data-view="autumn" tabindex="-1" aria-hidden="true">
+    <input type="radio" name="state" value="quiz" id="st-q-winter-winter" data-my="winter" data-view="winter" tabindex="-1" aria-hidden="true">
+    <div class="set" data-my="spring">
+      <label><input type="radio" name="state" id="st-spring-spring" data-my="spring" data-view="spring"><i class="dot" style="background:#FF9F80"></i>봄웜<span class="my">MY</span></label>
+      <label><input type="radio" name="state" id="st-spring-summer" data-my="spring" data-view="summer"><i class="dot" style="background:#E88AA8"></i>여름쿨</label>
+      <label><input type="radio" name="state" id="st-spring-autumn" data-my="spring" data-view="autumn"><i class="dot" style="background:#C8643B"></i>가을웜</label>
+      <label><input type="radio" name="state" id="st-spring-winter" data-my="spring" data-view="winter"><i class="dot" style="background:#7A1F3D"></i>겨울쿨</label>
+    </div>
+    <div class="set" data-my="summer">
+      <label><input type="radio" name="state" id="st-summer-spring" data-my="summer" data-view="spring"><i class="dot" style="background:#FF9F80"></i>봄웜</label>
+      <label><input type="radio" name="state" id="st-summer-summer" data-my="summer" data-view="summer"><i class="dot" style="background:#E88AA8"></i>여름쿨<span class="my">MY</span></label>
+      <label><input type="radio" name="state" id="st-summer-autumn" data-my="summer" data-view="autumn"><i class="dot" style="background:#C8643B"></i>가을웜</label>
+      <label><input type="radio" name="state" id="st-summer-winter" data-my="summer" data-view="winter"><i class="dot" style="background:#7A1F3D"></i>겨울쿨</label>
+    </div>
+    <div class="set" data-my="autumn">
+      <label><input type="radio" name="state" id="st-autumn-spring" data-my="autumn" data-view="spring"><i class="dot" style="background:#FF9F80"></i>봄웜</label>
+      <label><input type="radio" name="state" id="st-autumn-summer" data-my="autumn" data-view="summer"><i class="dot" style="background:#E88AA8"></i>여름쿨</label>
+      <label><input type="radio" name="state" id="st-autumn-autumn" data-my="autumn" data-view="autumn" checked><i class="dot" style="background:#C8643B"></i>가을웜<span class="my">MY</span></label>
+      <label><input type="radio" name="state" id="st-autumn-winter" data-my="autumn" data-view="winter"><i class="dot" style="background:#7A1F3D"></i>겨울쿨</label>
+    </div>
+    <div class="set" data-my="winter">
+      <label><input type="radio" name="state" id="st-winter-spring" data-my="winter" data-view="spring"><i class="dot" style="background:#FF9F80"></i>봄웜</label>
+      <label><input type="radio" name="state" id="st-winter-summer" data-my="winter" data-view="summer"><i class="dot" style="background:#E88AA8"></i>여름쿨</label>
+      <label><input type="radio" name="state" id="st-winter-autumn" data-my="winter" data-view="autumn"><i class="dot" style="background:#C8643B"></i>가을웜</label>
+      <label><input type="radio" name="state" id="st-winter-winter" data-my="winter" data-view="winter"><i class="dot" style="background:#7A1F3D"></i>겨울쿨<span class="my">MY</span></label>
+    </div>
+  </div>
+
+  <!-- ===================== 봄웜 ===================== -->
+  <div class="tone" data-tone="spring">
+
+    <div class="pc-intro">
+      <div class="pc-card">
+        <p class="name">봄웜</p>
+        <div class="kw"><span>#밝은</span><span>#화사한</span><span>#생기 있는</span></div>
+        <p class="desc">노란 기가 도는 밝은 피부. 맑고 따뜻한 컬러를 쓰면 얼굴이 환하고 생기 있어 보여요.</p>
+        <h3>어울리는 컬러 팔레트</h3>
+        <div class="palette"><div><i style="background:#FF7F6A"></i>코랄</div><div><i style="background:#FFB38A"></i>피치</div><div><i style="background:#FA8C7D"></i>살몬 핑크</div><div><i style="background:#F6C744"></i>웜 옐로</div><div><i style="background:#C69C6D"></i>카멜</div><div><i style="background:#8DC63F"></i>애플 그린</div><div><i style="background:#FFF4DC"></i>아이보리</div><div><i style="background:#3CC8C0"></i>터콰이즈</div></div>
+      </div>
+      <div class="pc-card worst">
+        <h3>피하면 좋은 색 &rarr; 대신 이 색</h3>
+        <ul>
+          <li><span class="sw bad"><i style="background:#111111"></i>블랙</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#5C3A21"></i><b>초콜릿 브라운</b></span></li>
+          <li><span class="sw bad"><i style="background:#E85A9B"></i>쿨 핑크</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#FF7F7F"></i><b>코랄 핑크</b></span></li>
+          <li><span class="sw bad"><i style="background:#8A8D91"></i>그레이</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#D9C2A0"></i><b>베이지</b></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="pc-sec tight">
+      <h2>봄웜 아이템별 추천 컬러</h2>
+      <div class="items">
+        <div class="row">
+          <h3>립</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#E8735A"></i><span><span class="b">롬앤</span><span class="n">쥬시 래스팅 틴트</span><span class="s">#코랄 피그</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F47C64"></i><span><span class="b">페리페라</span><span class="n">잉크 무드 글로이 틴트</span><span class="s">#코랄 업</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F59B7C"></i><span><span class="b">3CE</span><span class="n">벨벳 립 틴트</span><span class="s">#피치 블룸</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>블러셔</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#F7B39A"></i><span><span class="b">데이지크</span><span class="n">블렌딩 무드 치크</span><span class="s">#피치 블렌딩</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F4877A"></i><span><span class="b">롬앤</span><span class="n">베러 댄 치크</span><span class="s">#애플 칩</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F49A7F"></i><span><span class="b">클리오</span><span class="n">프로 싱글 블러셔</span><span class="s">#코랄 피치</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>아이섀도</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#E9A27E"></i><span><span class="b">웨이크메이크</span><span class="n">소프트 블러링 아이팔레트</span><span class="s">#코랄 블러링</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#E8B08E"></i><span><span class="b">데이지크</span><span class="n">섀도우 팔레트</span><span class="s">#피치 블렌딩</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#D9945E"></i><span><span class="b">롬앤</span><span class="n">베러 댄 아이즈</span><span class="s">#드라이 망고</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>베이스</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#E9C6A6"></i><span><span class="b">라네즈</span><span class="n">네오쿠션 매트</span><span class="s">#21N 베이지</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#EBCBAA"></i><span><span class="b">클리오</span><span class="n">킬커버 쿠션</span><span class="s">#03 리넨</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#EFD0AE"></i><span><span class="b">에스쁘아</span><span class="n">비글로우 쿠션</span><span class="s">#바닐라</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pc-sec pick">
+      <h2>봄웜 고객이 고른 제품</h2>
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
+      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+        <label><input type="radio" name="pick-spring" value="bought" checked>같은 톤이 많이 산 제품</label>
+        <label><input type="radio" name="pick-spring" value="review">올리브송 리뷰어 추천</label>
+      </div>
+      <div class="slider pick-bought">
+        <input type="radio" name="page-spring" value="1" id="page-spring-1" checked>
+        <input type="radio" name="page-spring" value="2" id="page-spring-2">
+        <div class="viewport">
+          <div class="track">
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/11.webp" alt="토니모리 [NEW 버터쿠키 에디션] 토니모리 워터풀 버터 틴트"><span class="tone-tag">봄웜 구매 1위</span></a>
+            <a href="#detail-soon"><div class="brand">토니모리</div><div class="name">[NEW 버터쿠키 에디션] 토니모리 워터풀 버터 틴트</div></a>
+            <div class="price-row"><span class="rate">31%</span><span class="price">11,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/27.jpg" alt="3CE 무드레시피 페이스 블러쉬"><span class="tone-tag">봄웜 구매 2위</span></a>
+            <a href="#detail-soon"><div class="brand">3CE</div><div class="name">[미니퍼프증정/NEW] 3CE 무드레시피 페이스 블러쉬 단품/기획</div></a>
+            <div class="price-row"><span class="rate">20%</span><span class="price">15,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/13.webp" alt="홀리카홀리카 홀리카홀리카 마이페이브 무드 아이 팔레트"><span class="tone-tag">봄웜 구매 3위</span></a>
+            <a href="#detail-soon"><div class="brand">홀리카홀리카</div><div class="name">홀리카홀리카 마이페이브 무드 아이 팔레트</div></a>
+            <div class="price-row"><span class="rate">25%</span><span class="price">20,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/4.webp" alt="클리오 [NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획"><span class="tone-tag">봄웜 구매 4위</span></a>
+            <a href="#detail-soon"><div class="brand">클리오</div><div class="name">[NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획</div></a>
+            <div class="price-row"><span class="rate">30%</span><span class="price">7,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/12.webp" alt="테키라 [하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)"><span class="tone-tag">봄웜 구매 5위</span></a>
+            <a href="#detail-soon"><div class="brand">테키라</div><div class="name">[하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)</div></a>
+            <div class="price-row"><span class="rate">20%</span><span class="price">15,800원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/9.webp" alt="아누아 [한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획"><span class="tone-tag">봄웜 구매 6위</span></a>
+            <a href="#detail-soon"><div class="brand">아누아</div><div class="name">[한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획</div></a>
+            <div class="price-row"><span class="rate">35%</span><span class="price">29,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/1.webp" alt="메디힐 에센셜 마스크팩 10+1매 기획"><span class="tone-tag">봄웜 구매 7위</span></a>
+            <a href="#detail-soon"><div class="brand">메디힐</div><div class="name">에센셜 마스크팩 10+1매 기획</div></a>
+            <div class="price-row"><span class="rate">50%</span><span class="price">10,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/16.webp" alt="식물나라 [화잘먹로션] 식물나라 뽀얀쌀 맑은톤 로션 300ml"><span class="tone-tag">봄웜 구매 8위</span></a>
+            <a href="#detail-soon"><div class="brand">식물나라</div><div class="name">[화잘먹로션] 식물나라 뽀얀쌀 맑은톤 로션 300ml</div></a>
+            <div class="price-row"><span class="price">15,800원</span></div>
+          </div>
+          </div>
+        </div>
+        <label class="nav prev" for="page-spring-1" aria-label="이전 상품">&lsaquo;</label>
+        <label class="nav next" for="page-spring-2" aria-label="다음 상품">&rsaquo;</label>
+      </div>
+      <div class="reviews pick-review">
+        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i></i><div>수수<small>봄웜 · 리뷰어</small></div></div><div class="prod"><i style="background:#E8735A"></i>롬앤 쥬시 래스팅 틴트 #코랄 피그</div></div></div>
+        <div class="review"><div class="who"><i></i><div>모닝글로우<small>봄웜 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#F7B39A"></i>데이지크 블렌딩 무드 치크 #피치 블렌딩</div></div>
+        <div class="review"><div class="who"><i></i><div>데일리뷰티<small>봄웜 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#E9A27E"></i>웨이크메이크 소프트 블러링 아이팔레트 #코랄 블러링</div></div>
+      </div>
+    </section>
+
+    <section class="pc-sec end">
+      <h2>봄웜에 어울리는 메이크업 튜토리얼</h2>
+      <p class="sub">추천 컬러로 따라 하기 좋은 메이크업이에요.</p>
+      <div class="tut">
+        <a href="tutorial.html"><div class="ph"><span>5분</span></div><div class="t">코랄 데일리 메이크업</div><div class="d">틴트 하나로 끝내는 10분 메이크업</div></a>
+        <a href="tutorial.html"><div class="ph"><span>8분</span></div><div class="t">피치 블러셔로 생기 더하기</div><div class="d">볼 위치별 블러셔 바르는 법</div></a>
+        <a href="tutorial.html"><div class="ph"><span>12분</span></div><div class="t">봄웜 데이트 메이크업</div><div class="d">화사한 오렌지 포인트 아이</div></a>
+      </div>
+      <a class="pc-btn line tut-more" href="tutorial.html">튜토리얼 더 보기 &gt;</a>
+    </section>
+  </div>
+
+  <!-- ===================== 여름쿨 ===================== -->
+  <div class="tone" data-tone="summer">
+
+    <div class="pc-intro">
+      <div class="pc-card">
+        <p class="name">여름쿨</p>
+        <div class="kw"><span>#부드러운</span><span>#청량한</span><span>#우아한</span></div>
+        <p class="desc">붉은 기·푸른 기가 도는 피부. 흰빛이 섞인 부드러운 쿨톤 컬러가 피부를 맑아 보이게 해요.</p>
+        <h3>어울리는 컬러 팔레트</h3>
+        <div class="palette"><div><i style="background:#B9A6E0"></i>라벤더</div><div><i style="background:#E88AA8"></i>로즈 핑크</div><div><i style="background:#9CC9EC"></i>스카이 블루</div><div><i style="background:#A8E0D0"></i>민트</div><div><i style="background:#B9BDC6"></i>소프트 그레이</div><div><i style="background:#C8A2C8"></i>라일락</div><div><i style="background:#F6BFD0"></i>베이비 핑크</div><div><i style="background:#4A5D8A"></i>쿨 네이비</div></div>
+      </div>
+      <div class="pc-card worst">
+        <h3>피하면 좋은 색 &rarr; 대신 이 색</h3>
+        <ul>
+          <li><span class="sw bad"><i style="background:#F28C28"></i>오렌지</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#E88AA8"></i><b>로즈 핑크</b></span></li>
+          <li><span class="sw bad"><i style="background:#7A7A3A"></i>카키</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#8C9CB0"></i><b>블루 그레이</b></span></li>
+          <li><span class="sw bad"><i style="background:#D4A017"></i>골드</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#C0C4CC"></i><b>실버</b></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="pc-sec tight">
+      <h2>여름쿨 아이템별 추천 컬러</h2>
+      <div class="items">
+        <div class="row">
+          <h3>립</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#C8687E"></i><span><span class="b">롬앤</span><span class="n">쥬시 래스팅 틴트</span><span class="s">#피그 피그</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#D9788F"></i><span><span class="b">페리페라</span><span class="n">잉크 무드 글로이 틴트</span><span class="s">#로즈 블러셔</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#D98AA8"></i><span><span class="b">3CE</span><span class="n">블러 워터 틴트</span><span class="s">#라벤더 핑크</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>블러셔</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#E7A1B8"></i><span><span class="b">롬앤</span><span class="n">베러 댄 치크</span><span class="s">#밀크 그레이프</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#EBA3B5"></i><span><span class="b">데이지크</span><span class="n">블렌딩 무드 치크</span><span class="s">#로즈 블렌딩</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#E3A6C4"></i><span><span class="b">클리오</span><span class="n">프로 싱글 블러셔</span><span class="s">#라벤더 핑크</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>아이섀도</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#C9849A"></i><span><span class="b">웨이크메이크</span><span class="n">소프트 블러링 아이팔레트</span><span class="s">#오프체리 컬렉션</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#C9A0A8"></i><span><span class="b">데이지크</span><span class="n">섀도우 팔레트</span><span class="s">#로즈 니트</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#B6A0C4"></i><span><span class="b">롬앤</span><span class="n">베러 댄 아이즈</span><span class="s">#드라이 라벤더</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>베이스</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#EBCDBC"></i><span><span class="b">라네즈</span><span class="n">네오쿠션 뮤이</span><span class="s">#21C 쿨베이지</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F0D3C6"></i><span><span class="b">클리오</span><span class="n">킬커버 쿠션</span><span class="s">#02 란제리</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F2D9CC"></i><span><span class="b">에스쁘아</span><span class="n">비글로우 쿠션</span><span class="s">#포슬린</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pc-sec pick">
+      <h2>여름쿨 고객이 고른 제품</h2>
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
+      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+        <label><input type="radio" name="pick-summer" value="bought" checked>같은 톤이 많이 산 제품</label>
+        <label><input type="radio" name="pick-summer" value="review">올리브송 리뷰어 추천</label>
+      </div>
+      <div class="slider pick-bought">
+        <input type="radio" name="page-summer" value="1" id="page-summer-1" checked>
+        <input type="radio" name="page-summer" value="2" id="page-summer-2">
+        <div class="viewport">
+          <div class="track">
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/8.webp" alt="웨이크메이크 [오프체리 컬렉션] 소프트 블러링 아이팔레트(단품)"><span class="tone-tag">여름쿨 구매 1위</span></a>
+            <a href="#detail-soon"><div class="brand">웨이크메이크</div><div class="name">[오프체리 컬렉션] 소프트 블러링 아이팔레트(단품)</div></a>
+            <div class="price-row"><span class="rate">30%</span><span class="price">23,800원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/15.webp" alt="롬앤 롬앤 베러 댄 컨투어"><span class="tone-tag">여름쿨 구매 2위</span></a>
+            <a href="#detail-soon"><div class="brand">롬앤</div><div class="name">롬앤 베러 댄 컨투어</div></a>
+            <div class="price-row"><span class="rate">12%</span><span class="price">20,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/22.jpg" alt="롬앤 더 쥬시 래스팅 틴트 산리오 에디션"><span class="tone-tag">여름쿨 구매 3위</span></a>
+            <a href="#detail-soon"><div class="brand">롬앤</div><div class="name">[NEW산리오캐릭터즈 /1등 틴트] 롬앤 더 쥬시 래스팅 틴트 (쿠로미/한교동)</div></a>
+            <div class="price-row"><span class="rate">24%</span><span class="price">9,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/4.webp" alt="클리오 [NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획"><span class="tone-tag">여름쿨 구매 4위</span></a>
+            <a href="#detail-soon"><div class="brand">클리오</div><div class="name">[NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획</div></a>
+            <div class="price-row"><span class="rate">30%</span><span class="price">7,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/12.webp" alt="테키라 [하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)"><span class="tone-tag">여름쿨 구매 5위</span></a>
+            <a href="#detail-soon"><div class="brand">테키라</div><div class="name">[하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)</div></a>
+            <div class="price-row"><span class="rate">20%</span><span class="price">15,800원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/9.webp" alt="아누아 [한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획"><span class="tone-tag">여름쿨 구매 6위</span></a>
+            <a href="#detail-soon"><div class="brand">아누아</div><div class="name">[한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획</div></a>
+            <div class="price-row"><span class="rate">35%</span><span class="price">29,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/5.webp" alt="에스트라 아토베리어365 캡슐토너 300ml 기획 (+수딩크림 30ml+세라-히알 앰플 7ml)"><span class="tone-tag">여름쿨 구매 7위</span></a>
+            <a href="#detail-soon"><div class="brand">에스트라</div><div class="name">아토베리어365 캡슐토너 300ml 기획 (+수딩크림 30ml+세라-히알 앰플 7ml)</div></a>
+            <div class="price-row"><span class="rate">25%</span><span class="price">22,500원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/1.webp" alt="메디힐 에센셜 마스크팩 10+1매 기획"><span class="tone-tag">여름쿨 구매 8위</span></a>
+            <a href="#detail-soon"><div class="brand">메디힐</div><div class="name">에센셜 마스크팩 10+1매 기획</div></a>
+            <div class="price-row"><span class="rate">50%</span><span class="price">10,000원</span></div>
+          </div>
+          </div>
+        </div>
+        <label class="nav prev" for="page-summer-1" aria-label="이전 상품">&lsaquo;</label>
+        <label class="nav next" for="page-summer-2" aria-label="다음 상품">&rsaquo;</label>
+      </div>
+      <div class="reviews pick-review">
+        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i></i><div>모닝글로우<small>여름쿨 · 리뷰어</small></div></div><div class="prod"><i style="background:#C8687E"></i>롬앤 쥬시 래스팅 틴트 #피그 피그</div></div></div>
+        <div class="review"><div class="who"><i></i><div>데일리뷰티<small>여름쿨 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#E7A1B8"></i>롬앤 베러 댄 치크 #밀크 그레이프</div></div>
+        <div class="review"><div class="who"><i></i><div>화장대정리중<small>여름쿨 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#C9849A"></i>웨이크메이크 소프트 블러링 아이팔레트 #오프체리 컬렉션</div></div>
+      </div>
+    </section>
+
+    <section class="pc-sec end">
+      <h2>여름쿨에 어울리는 메이크업 튜토리얼</h2>
+      <p class="sub">추천 컬러로 따라 하기 좋은 메이크업이에요.</p>
+      <div class="tut">
+        <a href="tutorial.html"><div class="ph"><span>5분</span></div><div class="t">로즈 MLBB 데일리</div><div class="d">여름쿨 입술색 고르는 법</div></a>
+        <a href="tutorial.html"><div class="ph"><span>8분</span></div><div class="t">라벤더 블러셔 청순 메이크업</div><div class="d">쿨톤 블러셔 바르는 위치</div></a>
+        <a href="tutorial.html"><div class="ph"><span>12분</span></div><div class="t">오프체리 아이 메이크업</div><div class="d">그윽한 쿨톤 음영 아이</div></a>
+      </div>
+      <a class="pc-btn line tut-more" href="tutorial.html">튜토리얼 더 보기 &gt;</a>
+    </section>
+  </div>
+
+  <!-- ===================== 가을웜 ===================== -->
+  <div class="tone" data-tone="autumn">
+
+    <div class="pc-intro">
+      <div class="pc-card">
+        <p class="name">가을웜</p>
+        <div class="kw"><span>#깊은</span><span>#차분한</span><span>#고급스러운</span></div>
+        <p class="desc">노란 기가 깊게 도는 피부. 채도가 낮고 깊이 있는 웜 컬러가 분위기 있고 세련돼 보여요.</p>
+        <h3>어울리는 컬러 팔레트</h3>
+        <div class="palette"><div><i style="background:#A9442F"></i>브릭</div><div><i style="background:#C8643B"></i>테라코타</div><div><i style="background:#D4A02B"></i>머스터드</div><div><i style="background:#6E6B3A"></i>카키</div><div><i style="background:#7A7D3A"></i>올리브</div><div><i style="background:#B88654"></i>카멜</div><div><i style="background:#6B2E2A"></i>버건디 브라운</div><div><i style="background:#D9692B"></i>딥 오렌지</div></div>
+      </div>
+      <div class="pc-card worst">
+        <h3>피하면 좋은 색 &rarr; 대신 이 색</h3>
+        <ul>
+          <li><span class="sw bad"><i style="background:#FF3EA5"></i>핫핑크</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#A9442F"></i><b>브릭 레드</b></span></li>
+          <li><span class="sw bad"><i style="background:#FFFFFF"></i>퓨어 화이트</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#F5ECD7"></i><b>아이보리</b></span></li>
+          <li><span class="sw bad"><i style="background:#CFE8F7"></i>아이스 블루</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#7A7D3A"></i><b>올리브 그린</b></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="pc-sec tight">
+      <h2>가을웜 아이템별 추천 컬러</h2>
+      <div class="items">
+        <div class="row">
+          <h3>립</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#B5654E"></i><span><span class="b">롬앤</span><span class="n">쥬시 래스팅 틴트</span><span class="s">#너티 베이지</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#B3533A"></i><span><span class="b">3CE</span><span class="n">벨벳 립 틴트</span><span class="s">#테라코타</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#97412F"></i><span><span class="b">페리페라</span><span class="n">잉크 더 벨벳</span><span class="s">#브릭 브라운</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>블러셔</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#C97858"></i><span><span class="b">클리오</span><span class="n">프로 싱글 블러셔</span><span class="s">#테라코타</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#C98B6E"></i><span><span class="b">롬앤</span><span class="n">베러 댄 치크</span><span class="s">#너트 칩</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#B9806A"></i><span><span class="b">데이지크</span><span class="n">블렌딩 무드 치크</span><span class="s">#브라운 블렌딩</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>아이섀도</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#A86A4A"></i><span><span class="b">클리오</span><span class="n">프로 아이 팔레트</span><span class="s">#코랄 토크</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#9A6A50"></i><span><span class="b">데이지크</span><span class="n">섀도우 팔레트</span><span class="s">#브라운 니트</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#B98A45"></i><span><span class="b">롬앤</span><span class="n">베러 댄 아이즈</span><span class="s">#드라이 머스터드</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>베이스</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#D9B08C"></i><span><span class="b">라네즈</span><span class="n">네오쿠션 매트</span><span class="s">#23N 샌드</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#DDB28F"></i><span><span class="b">클리오</span><span class="n">킬커버 쿠션</span><span class="s">#04 진저</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#DDB896"></i><span><span class="b">에스쁘아</span><span class="n">비글로우 쿠션</span><span class="s">#베이지</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pc-sec pick">
+      <h2>가을웜 고객이 고른 제품</h2>
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
+      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+        <label><input type="radio" name="pick-autumn" value="bought" checked>같은 톤이 많이 산 제품</label>
+        <label><input type="radio" name="pick-autumn" value="review">올리브송 리뷰어 추천</label>
+      </div>
+      <div class="slider pick-bought">
+        <input type="radio" name="page-autumn" value="1" id="page-autumn-1" checked>
+        <input type="radio" name="page-autumn" value="2" id="page-autumn-2">
+        <div class="viewport">
+          <div class="track">
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/13.webp" alt="홀리카홀리카 홀리카홀리카 마이페이브 무드 아이 팔레트"><span class="tone-tag">가을웜 구매 1위</span></a>
+            <a href="#detail-soon"><div class="brand">홀리카홀리카</div><div class="name">홀리카홀리카 마이페이브 무드 아이 팔레트</div></a>
+            <div class="price-row"><span class="rate">25%</span><span class="price">20,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/11.webp" alt="토니모리 [NEW 버터쿠키 에디션] 토니모리 워터풀 버터 틴트"><span class="tone-tag">가을웜 구매 2위</span></a>
+            <a href="#detail-soon"><div class="brand">토니모리</div><div class="name">[NEW 버터쿠키 에디션] 토니모리 워터풀 버터 틴트</div></a>
+            <div class="price-row"><span class="rate">31%</span><span class="price">11,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/25.jpg" alt="헤라 센슈얼 누드 글로스"><span class="tone-tag">가을웜 구매 3위</span></a>
+            <a href="#detail-soon"><div class="brand">헤라</div><div class="name">헤라 센슈얼 누드 글로스 5g 13 Colors 기획/단품</div></a>
+            <div class="price-row"><span class="rate">10%</span><span class="price">36,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/4.webp" alt="클리오 [NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획"><span class="tone-tag">가을웜 구매 4위</span></a>
+            <a href="#detail-soon"><div class="brand">클리오</div><div class="name">[NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획</div></a>
+            <div class="price-row"><span class="rate">30%</span><span class="price">7,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/12.webp" alt="테키라 [하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)"><span class="tone-tag">가을웜 구매 5위</span></a>
+            <a href="#detail-soon"><div class="brand">테키라</div><div class="name">[하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)</div></a>
+            <div class="price-row"><span class="rate">20%</span><span class="price">15,800원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/18.webp" alt="넘버즈인 [트러블진정세럼] 넘버즈인 1번 판토텐산 액티브업 수딩세럼 50ml 리필기획 (50ml+50ml)"><span class="tone-tag">가을웜 구매 6위</span></a>
+            <a href="#detail-soon"><div class="brand">넘버즈인</div><div class="name">[트러블진정세럼] 넘버즈인 1번 판토텐산 액티브업 수딩세럼 50ml 리필기획 (50ml+50ml)</div></a>
+            <div class="price-row"><span class="rate">36%</span><span class="price">34,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/1.webp" alt="메디힐 에센셜 마스크팩 10+1매 기획"><span class="tone-tag">가을웜 구매 7위</span></a>
+            <a href="#detail-soon"><div class="brand">메디힐</div><div class="name">에센셜 마스크팩 10+1매 기획</div></a>
+            <div class="price-row"><span class="rate">50%</span><span class="price">10,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/9.webp" alt="아누아 [한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획"><span class="tone-tag">가을웜 구매 8위</span></a>
+            <a href="#detail-soon"><div class="brand">아누아</div><div class="name">[한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획</div></a>
+            <div class="price-row"><span class="rate">35%</span><span class="price">29,900원</span></div>
+          </div>
+          </div>
+        </div>
+        <label class="nav prev" for="page-autumn-1" aria-label="이전 상품">&lsaquo;</label>
+        <label class="nav next" for="page-autumn-2" aria-label="다음 상품">&rsaquo;</label>
+      </div>
+      <div class="reviews pick-review">
+        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i></i><div>데일리뷰티<small>가을웜 · 리뷰어</small></div></div><div class="prod"><i style="background:#B5654E"></i>롬앤 쥬시 래스팅 틴트 #너티 베이지</div></div></div>
+        <div class="review"><div class="who"><i></i><div>화장대정리중<small>가을웜 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#C97858"></i>클리오 프로 싱글 블러셔 #테라코타</div></div>
+        <div class="review"><div class="who"><i></i><div>톤팡팡<small>가을웜 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#A86A4A"></i>클리오 프로 아이 팔레트 #코랄 토크</div></div>
+      </div>
+    </section>
+
+    <section class="pc-sec end">
+      <h2>가을웜에 어울리는 메이크업 튜토리얼</h2>
+      <p class="sub">추천 컬러로 따라 하기 좋은 메이크업이에요.</p>
+      <div class="tut">
+        <a href="tutorial.html"><div class="ph"><span>5분</span></div><div class="t">브릭 립 분위기 메이크업</div><div class="d">가을웜 립 고르는 법</div></a>
+        <a href="tutorial.html"><div class="ph"><span>8분</span></div><div class="t">테라코타 음영 아이</div><div class="d">브라운 섀도 그라데이션</div></a>
+        <a href="tutorial.html"><div class="ph"><span>12분</span></div><div class="t">가을웜 오피스 메이크업</div><div class="d">차분하고 깔끔한 데일리</div></a>
+      </div>
+      <a class="pc-btn line tut-more" href="tutorial.html">튜토리얼 더 보기 &gt;</a>
+    </section>
+  </div>
+
+  <!-- ===================== 겨울쿨 ===================== -->
+  <div class="tone" data-tone="winter">
+
+    <div class="pc-intro">
+      <div class="pc-card">
+        <p class="name">겨울쿨</p>
+        <div class="kw"><span>#선명한</span><span>#도시적인</span><span>#강렬한</span></div>
+        <p class="desc">푸른 기가 도는 피부. 채도가 높고 대비가 강한 컬러가 이목구비를 또렷하게 살려 줘요.</p>
+        <h3>어울리는 컬러 팔레트</h3>
+        <div class="palette"><div><i style="background:#111111"></i>블랙</div><div><i style="background:#FFFFFF"></i>퓨어 화이트</div><div><i style="background:#7A1F3D"></i>와인</div><div><i style="background:#2340A0"></i>로열 블루</div><div><i style="background:#C2185B"></i>푸시아</div><div><i style="background:#009473"></i>에메랄드</div><div><i style="background:#F4C6D7"></i>아이시 핑크</div><div><i style="background:#3A3A40"></i>차콜</div></div>
+      </div>
+      <div class="pc-card worst">
+        <h3>피하면 좋은 색 &rarr; 대신 이 색</h3>
+        <ul>
+          <li><span class="sw bad"><i style="background:#D9C2A0"></i>베이지</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#D6DAE0"></i><b>아이시 그레이</b></span></li>
+          <li><span class="sw bad"><i style="background:#D4A02B"></i>머스터드</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#F5F3B8"></i><b>아이시 옐로</b></span></li>
+          <li><span class="sw bad"><i style="background:#FF7F6A"></i>코랄</span><span class="arrow">&rarr;</span><span class="sw good"><i style="background:#C2185B"></i><b>푸시아</b></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="pc-sec tight">
+      <h2>겨울쿨 아이템별 추천 컬러</h2>
+      <div class="items">
+        <div class="row">
+          <h3>립</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#A3243B"></i><span><span class="b">롬앤</span><span class="n">쥬시 래스팅 틴트</span><span class="s">#체리 밤</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#7E1F35"></i><span><span class="b">3CE</span><span class="n">벨벳 립 틴트</span><span class="s">#와인 레드</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#B3365E"></i><span><span class="b">페리페라</span><span class="n">잉크 무드 글로이 틴트</span><span class="s">#플럼 핑크</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>블러셔</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#D45B8A"></i><span><span class="b">클리오</span><span class="n">프로 싱글 블러셔</span><span class="s">#푸시아 핑크</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#B5658A"></i><span><span class="b">롬앤</span><span class="n">베러 댄 치크</span><span class="s">#플럼 칩</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#C25A7A"></i><span><span class="b">데이지크</span><span class="n">블렌딩 무드 치크</span><span class="s">#베리 블렌딩</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>아이섀도</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#8C3A52"></i><span><span class="b">웨이크메이크</span><span class="n">소프트 블러링 아이팔레트</span><span class="s">#오프체리 컬렉션</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#6E5A6A"></i><span><span class="b">클리오</span><span class="n">프로 아이 팔레트</span><span class="s">#심플 스테이트</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#6E2E3E"></i><span><span class="b">데이지크</span><span class="n">섀도우 팔레트</span><span class="s">#버건디 니트</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+        <div class="row">
+          <h3>베이스</h3>
+          <div class="shades">
+            <a class="shade" href="#detail-soon"><i style="background:#F1D8C9"></i><span><span class="b">라네즈</span><span class="n">네오쿠션 뮤이</span><span class="s">#13C 쿨아이보리</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F0D3C6"></i><span><span class="b">클리오</span><span class="n">킬커버 쿠션</span><span class="s">#02 란제리</span></span></a>
+            <a class="shade" href="#detail-soon"><i style="background:#F2D9CC"></i><span><span class="b">에스쁘아</span><span class="n">비글로우 쿠션</span><span class="s">#포슬린</span></span></a>
+          </div>
+          <a class="more" href="ranking.html">랭킹에서 더 보기 &gt;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pc-sec pick">
+      <h2>겨울쿨 고객이 고른 제품</h2>
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
+      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+        <label><input type="radio" name="pick-winter" value="bought" checked>같은 톤이 많이 산 제품</label>
+        <label><input type="radio" name="pick-winter" value="review">올리브송 리뷰어 추천</label>
+      </div>
+      <div class="slider pick-bought">
+        <input type="radio" name="page-winter" value="1" id="page-winter-1" checked>
+        <input type="radio" name="page-winter" value="2" id="page-winter-2">
+        <div class="viewport">
+          <div class="track">
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/8.webp" alt="웨이크메이크 [오프체리 컬렉션] 소프트 블러링 아이팔레트(단품)"><span class="tone-tag">겨울쿨 구매 1위</span></a>
+            <a href="#detail-soon"><div class="brand">웨이크메이크</div><div class="name">[오프체리 컬렉션] 소프트 블러링 아이팔레트(단품)</div></a>
+            <div class="price-row"><span class="rate">30%</span><span class="price">23,800원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/15.webp" alt="롬앤 롬앤 베러 댄 컨투어"><span class="tone-tag">겨울쿨 구매 2위</span></a>
+            <a href="#detail-soon"><div class="brand">롬앤</div><div class="name">롬앤 베러 댄 컨투어</div></a>
+            <div class="price-row"><span class="rate">12%</span><span class="price">20,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/4.webp" alt="클리오 [NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획"><span class="tone-tag">겨울쿨 구매 3위</span></a>
+            <a href="#detail-soon"><div class="brand">클리오</div><div class="name">[NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획</div></a>
+            <div class="price-row"><span class="rate">30%</span><span class="price">7,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/22.jpg" alt="롬앤 더 쥬시 래스팅 틴트 산리오 에디션"><span class="tone-tag">겨울쿨 구매 4위</span></a>
+            <a href="#detail-soon"><div class="brand">롬앤</div><div class="name">[NEW산리오캐릭터즈 /1등 틴트] 롬앤 더 쥬시 래스팅 틴트 (쿠로미/한교동)</div></a>
+            <div class="price-row"><span class="rate">24%</span><span class="price">9,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/12.webp" alt="테키라 [하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)"><span class="tone-tag">겨울쿨 구매 5위</span></a>
+            <a href="#detail-soon"><div class="brand">테키라</div><div class="name">[하루특가] 테키라 안티그래비티 메탈트임카라 3g 2종 (블랙/내추럴브라운)</div></a>
+            <div class="price-row"><span class="rate">20%</span><span class="price">15,800원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/17.webp" alt="마녀공장 [대용량/총500ml] 마녀공장 비피다 바이옴 앰플 토너 400ml+100ml 기획"><span class="tone-tag">겨울쿨 구매 6위</span></a>
+            <a href="#detail-soon"><div class="brand">마녀공장</div><div class="name">[대용량/총500ml] 마녀공장 비피다 바이옴 앰플 토너 400ml+100ml 기획</div></a>
+            <div class="price-row"><span class="price">25,000원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/9.webp" alt="아누아 [한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획"><span class="tone-tag">겨울쿨 구매 7위</span></a>
+            <a href="#detail-soon"><div class="brand">아누아</div><div class="name">[한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획</div></a>
+            <div class="price-row"><span class="rate">35%</span><span class="price">29,900원</span></div>
+          </div>
+          <div class="card">
+            <a class="img" href="#detail-soon"><img src="img/products/1.webp" alt="메디힐 에센셜 마스크팩 10+1매 기획"><span class="tone-tag">겨울쿨 구매 8위</span></a>
+            <a href="#detail-soon"><div class="brand">메디힐</div><div class="name">에센셜 마스크팩 10+1매 기획</div></a>
+            <div class="price-row"><span class="rate">50%</span><span class="price">10,000원</span></div>
+          </div>
+          </div>
+        </div>
+        <label class="nav prev" for="page-winter-1" aria-label="이전 상품">&lsaquo;</label>
+        <label class="nav next" for="page-winter-2" aria-label="다음 상품">&rsaquo;</label>
+      </div>
+      <div class="reviews pick-review">
+        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i></i><div>화장대정리중<small>겨울쿨 · 리뷰어</small></div></div><div class="prod"><i style="background:#A3243B"></i>롬앤 쥬시 래스팅 틴트 #체리 밤</div></div></div>
+        <div class="review"><div class="who"><i></i><div>톤팡팡<small>겨울쿨 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#D45B8A"></i>클리오 프로 싱글 블러셔 #푸시아 핑크</div></div>
+        <div class="review"><div class="who"><i></i><div>올송러버<small>겨울쿨 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#8C3A52"></i>웨이크메이크 소프트 블러링 아이팔레트 #오프체리 컬렉션</div></div>
+      </div>
+    </section>
+
+    <section class="pc-sec end">
+      <h2>겨울쿨에 어울리는 메이크업 튜토리얼</h2>
+      <p class="sub">추천 컬러로 따라 하기 좋은 메이크업이에요.</p>
+      <div class="tut">
+        <a href="tutorial.html"><div class="ph"><span>5분</span></div><div class="t">와인 립 시크 메이크업</div><div class="d">겨울쿨 레드 립 고르는 법</div></a>
+        <a href="tutorial.html"><div class="ph"><span>8분</span></div><div class="t">블랙 아이라인 또렷 메이크업</div><div class="d">라이너 하나로 눈매 살리기</div></a>
+        <a href="tutorial.html"><div class="ph"><span>12분</span></div><div class="t">겨울쿨 파티 메이크업</div><div class="d">푸시아 포인트 립 &amp; 치크</div></a>
+      </div>
+      <a class="pc-btn line tut-more" href="tutorial.html">튜토리얼 더 보기 &gt;</a>
+    </section>
+  </div>
+
+  <!-- ===== 자가진단 팝업 (자바스크립트 없음: 라디오 + :has()로 열기/결과/닫기) ===== -->
+  <div class="quiz" role="dialog" aria-labelledby="quiz-title">
+    <label class="backdrop" for="st-spring-spring" aria-label="닫기"></label>
+    <label class="backdrop" for="st-spring-summer" aria-label="닫기"></label>
+    <label class="backdrop" for="st-spring-autumn" aria-label="닫기"></label>
+    <label class="backdrop" for="st-spring-winter" aria-label="닫기"></label>
+    <label class="backdrop" for="st-summer-spring" aria-label="닫기"></label>
+    <label class="backdrop" for="st-summer-summer" aria-label="닫기"></label>
+    <label class="backdrop" for="st-summer-autumn" aria-label="닫기"></label>
+    <label class="backdrop" for="st-summer-winter" aria-label="닫기"></label>
+    <label class="backdrop" for="st-autumn-spring" aria-label="닫기"></label>
+    <label class="backdrop" for="st-autumn-summer" aria-label="닫기"></label>
+    <label class="backdrop" for="st-autumn-autumn" aria-label="닫기"></label>
+    <label class="backdrop" for="st-autumn-winter" aria-label="닫기"></label>
+    <label class="backdrop" for="st-winter-spring" aria-label="닫기"></label>
+    <label class="backdrop" for="st-winter-summer" aria-label="닫기"></label>
+    <label class="backdrop" for="st-winter-autumn" aria-label="닫기"></label>
+    <label class="backdrop" for="st-winter-winter" aria-label="닫기"></label>
+    <div class="box">
+      <label class="close" for="st-spring-spring" aria-label="닫기">&times;</label>
+      <label class="close" for="st-spring-summer" aria-label="닫기">&times;</label>
+      <label class="close" for="st-spring-autumn" aria-label="닫기">&times;</label>
+      <label class="close" for="st-spring-winter" aria-label="닫기">&times;</label>
+      <label class="close" for="st-summer-spring" aria-label="닫기">&times;</label>
+      <label class="close" for="st-summer-summer" aria-label="닫기">&times;</label>
+      <label class="close" for="st-summer-autumn" aria-label="닫기">&times;</label>
+      <label class="close" for="st-summer-winter" aria-label="닫기">&times;</label>
+      <label class="close" for="st-autumn-spring" aria-label="닫기">&times;</label>
+      <label class="close" for="st-autumn-summer" aria-label="닫기">&times;</label>
+      <label class="close" for="st-autumn-autumn" aria-label="닫기">&times;</label>
+      <label class="close" for="st-autumn-winter" aria-label="닫기">&times;</label>
+      <label class="close" for="st-winter-spring" aria-label="닫기">&times;</label>
+      <label class="close" for="st-winter-summer" aria-label="닫기">&times;</label>
+      <label class="close" for="st-winter-autumn" aria-label="닫기">&times;</label>
+      <label class="close" for="st-winter-winter" aria-label="닫기">&times;</label>
+      <h2 id="quiz-title">퍼스널컬러 자가진단</h2>
+      <p class="lead">4가지 질문에 답하면 내 톤을 알려 드려요.</p>
+      <fieldset>
+        <legend>Q1. 손목 안쪽 혈관은 무슨 색에 가까운가요?</legend>
+        <div class="opts">
+          <label><input type="radio" name="q1" value="w">초록빛</label>
+          <label><input type="radio" name="q1" value="c">파란빛 · 보랏빛</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Q2. 더 잘 어울리는 액세서리는?</legend>
+        <div class="opts">
+          <label><input type="radio" name="q2" value="w">골드</label>
+          <label><input type="radio" name="q2" value="c">실버</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Q3. 평소 칭찬받는 립 컬러는?</legend>
+        <div class="opts">
+          <label><input type="radio" name="q3" value="w">코랄 · 오렌지 계열</label>
+          <label><input type="radio" name="q3" value="c">핑크 · 레드 계열</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Q4. 더 잘 어울리는 분위기는?</legend>
+        <div class="opts">
+          <label><input type="radio" name="q4" value="l">밝고 화사한 컬러</label>
+          <label><input type="radio" name="q4" value="d">깊고 진한 컬러</label>
+        </div>
+      </fieldset>
+      <p class="wait">모든 질문에 답하면 결과가 나와요.</p>
+      <div class="result r-spring">
+        <div class="txt">
+          <p>나의 퍼스널컬러는 <b>봄웜</b></p>
+          <div class="swatch" aria-hidden="true"><i style="background:#FF7F6A" title="코랄"></i><i style="background:#FFB38A" title="피치"></i><i style="background:#FA8C7D" title="살몬 핑크"></i><i style="background:#F6C744" title="웜 옐로"></i><i style="background:#C69C6D" title="카멜"></i></div>
+        </div>
+        <label class="pc-btn" for="st-spring-spring">봄웜 보러 가기</label>
+      </div>
+      <div class="result r-summer">
+        <div class="txt">
+          <p>나의 퍼스널컬러는 <b>여름쿨</b></p>
+          <div class="swatch" aria-hidden="true"><i style="background:#B9A6E0" title="라벤더"></i><i style="background:#E88AA8" title="로즈 핑크"></i><i style="background:#9CC9EC" title="스카이 블루"></i><i style="background:#A8E0D0" title="민트"></i><i style="background:#B9BDC6" title="소프트 그레이"></i></div>
+        </div>
+        <label class="pc-btn" for="st-summer-summer">여름쿨 보러 가기</label>
+      </div>
+      <div class="result r-autumn">
+        <div class="txt">
+          <p>나의 퍼스널컬러는 <b>가을웜</b></p>
+          <div class="swatch" aria-hidden="true"><i style="background:#A9442F" title="브릭"></i><i style="background:#C8643B" title="테라코타"></i><i style="background:#D4A02B" title="머스터드"></i><i style="background:#6E6B3A" title="카키"></i><i style="background:#7A7D3A" title="올리브"></i></div>
+        </div>
+        <label class="pc-btn" for="st-autumn-autumn">가을웜 보러 가기</label>
+      </div>
+      <div class="result r-winter">
+        <div class="txt">
+          <p>나의 퍼스널컬러는 <b>겨울쿨</b></p>
+          <div class="swatch" aria-hidden="true"><i style="background:#111111" title="블랙"></i><i style="background:#FFFFFF" title="퓨어 화이트"></i><i style="background:#7A1F3D" title="와인"></i><i style="background:#2340A0" title="로열 블루"></i><i style="background:#C2185B" title="푸시아"></i></div>
+        </div>
+        <label class="pc-btn" for="st-winter-winter">겨울쿨 보러 가기</label>
+      </div>
+      <p class="note">간이 자가진단이에요. 정확한 진단은 매장 퍼스널컬러 컨설팅을 이용해 주세요.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer></footer>
+
+<!-- 준비 중 안내: 링크(href="#detail-soon")를 누르면 :target으로 잠깐 떴다 사라짐 (common.css .soon) -->
+<div class="soon" id="detail-soon" role="status">상세 페이지는 준비 중이에요</div>
+
+</body>
+</html>
