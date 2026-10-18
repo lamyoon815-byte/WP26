@@ -472,7 +472,7 @@
   padding: 0 24px 16px;
   border-bottom: 3px solid var(--c-point);
   color: var(--c-point);
-  font-size: var(--fs-xl);
+  font-size: var(--fs-lg);
   text-align: center;
 }
 
@@ -524,7 +524,8 @@
 .home-service-products img {
   width: 100%;
   aspect-ratio: 3 / 4;
-  object-fit: contain;
+  object-fit: cover;
+  display: block;
   background: var(--c-bg-sub);
 }
 
