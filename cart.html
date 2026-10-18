@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>장바구니 | OLIVE SONG</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="minseo.css" />
+  </head>
+  <body>
+    <div class="util">
+      <div class="container">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+        <a href="cart.html">장바구니 <em>(2)</em></a>
+        <a href="#">고객센터</a>
+      </div>
+    </div>
+    <header class="header">
+      <div class="container">
+        <a class="logo" href="productdetails.html">
+          <img src="Image_logo.png" alt="Olive Song 심볼" />
+          <img src="Text_logo.png" alt="OLIVE SONG" />
+        </a>
+        <div class="search"><span>상품, 브랜드, 성분 검색</span><span class="search-icon">⌕</span></div>
+      </div>
+    </header>
+    <nav class="gnb">
+      <div class="container">
+        <a href="#">☰ 카테고리</a>
+        <a href="#">오특</a>
+        <a href="#">랭킹</a>
+        <a href="#">세일</a>
+        <a href="#">기획전</a>
+        <a href="#">멤버십/쿠폰</a>
+        <a href="#">이벤트</a>
+      </div>
+    </nav>
+
+    <main class="container page">
+      <div class="breadcrumb">홈 &gt; 장바구니</div>
+
+      <div class="cart-layout">
+        <section aria-label="장바구니 상품">
+          <p class="cart-policy">장바구니에는 상품을 최대 100개까지 담을 수 있어요. 상품은 10일간 보관되며, 품절된 상품은 3일 후 자동으로 삭제됩니다.</p>
+          <div class="delivery-tabs" aria-label="배송 방식 선택">
+            <label><input type="radio" name="delivery-type" checked /> 일반 배송</label>
+            <label><input type="radio" name="delivery-type" /> 빠른 배송</label>
+            <label><input type="radio" name="delivery-type" /> 픽업</label>
+          </div>
+          <div class="cart-list">
+            <div class="cart-tools">
+              <label><input type="checkbox" checked /> 전체 선택 (2개)</label>
+              <button class="text-button delete-button" type="button">선택 상품 삭제</button>
+            </div>
+
+            <article class="cart-item">
+              <input type="checkbox" checked aria-label="독도 토너 선택" />
+              <a class="product-thumb" href="productdetails.html">
+                <!-- 사진 변경: 아래 src를 원하는 장바구니 상품 사진 경로로 바꾸세요. -->
+                <img
+                  src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                  alt="스킨케어 제품 이미지"
+                />
+              </a>
+              <div class="product-info">
+                <div class="brand">라운드랩</div>
+                <a class="name" href="productdetails.html">1025 독도 토너 200ml</a>
+                <div class="cart-option"><span>200ml 단품</span><button class="text-button" type="button">옵션 변경</button></div>
+                <div class="product-price"><del>22,000원</del><strong><em>28%</em>15,900원</strong></div>
+              </div>
+              <div class="quantity" aria-label="수량">
+                <select aria-label="독도 토너 수량">
+                  <option selected>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+            </article>
+
+            <article class="cart-item">
+              <input type="checkbox" checked aria-label="마데카소사이드 패드 선택" />
+              <a class="product-thumb" href="productdetails.html">
+                <!-- 사진 변경: 아래 src를 원하는 장바구니 상품 사진 경로로 바꾸세요. -->
+                <img
+                  src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
+                  alt="스킨케어 패드 제품 이미지"
+                />
+              </a>
+              <div class="product-info">
+                <div class="brand">메디힐</div>
+                <a class="name" href="productdetails.html">마데카소사이드 흔적 패드 100매</a>
+                <div class="cart-option"><span>100매 기획세트</span><button class="text-button" type="button">옵션 변경</button></div>
+                <div class="product-price"><del>22,000원</del><strong><em>32%</em>14,900원</strong></div>
+              </div>
+              <div class="quantity" aria-label="수량">
+                <select aria-label="흔적 패드 수량">
+                  <option selected>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <aside class="order-summary" aria-label="주문 금액">
+          <h2>결제 예정 금액</h2>
+          <p class="shipping-progress-text">20,000원 이상 구매 시 무료배송 <strong>무료배송 조건을 달성했어요!</strong></p>
+          <div class="shipping-progress" role="progressbar" aria-label="무료배송 조건 달성" aria-valuemin="0" aria-valuemax="20000" aria-valuenow="20000">
+            <span></span>
+          </div>
+          <div class="summary-row"><span>총 상품 금액</span><strong>44,000원</strong></div>
+          <div class="summary-row"><span>상품 할인</span><strong>-13,200원</strong></div>
+          <div class="summary-row"><span>총 배송비</span><strong>0원</strong></div>
+          <div class="summary-row"><span>할인 쿠폰</span><strong class="coupon-apply">적용 가능</strong></div>
+          <div class="summary-total"><span>최종 결제 금액</span><strong>30,800원</strong></div>
+          <a class="button primary" href="#">선택 상품 주문하기</a>
+          <a class="button secondary" href="productdetails.html">쇼핑 계속하기</a>
+          <p class="summary-caption">결제 단계에서 쿠폰 및 포인트를 사용할 수 있어요.</p>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">OLIVE SONG · 건강한 아름다움을 위한 오늘의 쇼핑<br />고객센터 1544-0000 · 평일 09:00 - 18:00</div>
+    </footer>
+  </body>
+</html>
