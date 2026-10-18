@@ -37,30 +37,6 @@
   display: contents;
 }
 
-/* 페이지 제목 */
-.title-best {
-  width: 100%;
-  height: 100%;
-  margin: 2rem 0;
-}
-
-.title-best h1 {
-  width: 1200px;
-  margin: 0 auto;
-  color: #000;
-  font-size: 40px;
-  line-height: 40px;
-  position: relative;
-}
-
-.title-best h1 span {
-  display: inline-block;
-  margin-left: 15px;
-  color: #414040;
-  font-size: 18px;
-  font-weight: 400;
-}
-
 /* 라디오 버튼을 화면에서 숨기되 키보드 선택은 유지 */
 .choice {
   position: absolute;
@@ -74,14 +50,8 @@
   border: 0;
 }
 
-/* 카테고리 묶음 */
-.category-wrap,
 .category-list {
   display: flex;
-  justify-content: flex-start;
-}
-
-.category-list {
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 8px;
@@ -112,7 +82,7 @@
 
 /* 카테고리 이름 */
 .category-name {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   line-height: 1.5;
   text-align: center;
   word-break: keep-all;
@@ -175,9 +145,14 @@
   margin-bottom: 18px;
 }
 
-.tutorial-heading h3 {
+/* 바깥 배치: 제목 아래에서 전체 너비 차지 */
+.initial-guide,
+.select-guide,
+.product-result {
+  order: 2;
+  flex: 0 0 100%;
+  min-width: 0;
   margin: 0;
-  font-size: var(--fs-lg);
 }
 
 /* 첫 안내 영역의 모양과 배치 */
@@ -189,9 +164,6 @@
   align-items: center;
   gap: 12px;
 
-  order: 2;
-  flex: 0 0 100%;
-  min-width: 0;
   min-height: 400px;
   padding: 32px 24px;
 
@@ -288,7 +260,6 @@
 
 .category-image img,
 .product-image img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -306,39 +277,19 @@
   overflow-wrap: anywhere;
 }
 
-.product-brand,
-.product-option {
+.product-brand {
   color: var(--c-text-sub);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-md);
 }
 
 .product-name {
   color: var(--c-main);
-  font-size: var(--fs-sm);
-}
-
-/* 마우스를 올렸을 때 이미지 테두리 */
-.category-label:hover .category-image,
-.product-label:hover .product-image {
-  border-color: var(--c-point);
+  font-size: var(--fs-base);
 }
 
 /* 상품 선택 전에는 결과 숨김 */
 .product-result {
   display: none;
-}
-
-.select-guide,
-.product-result {
-  flex: 0 0 100%;
-  min-width: 0;
-  margin: 0;
-}
-
-/* 제목 아래에 표시 */
-.select-guide,
-.product-result {
-  order: 2;
 }
 
 /* 영상 개수와 정렬 옵션을 담는 바 */
@@ -363,16 +314,9 @@
   font-weight: 700;
 }
 
-/* 정렬 옵션과 개수 선택 메뉴 배치 */
-.video-toolbar-options {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
 .video-sort {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
 }
@@ -383,19 +327,9 @@
   cursor: pointer;
 }
 
-/* 라디오 버튼은 화면에서 숨기고 글씨만 표시 */
-.video-sort-option input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-}
-
 .video-sort-option span {
   color: var(--c-text-sub);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-md);
 }
 
 /* 선택한 정렬 옵션 강조 */
@@ -440,19 +374,6 @@
   background: var(--c-point-light);
 }
 
-/* 기존 상품 선택 배경 제거 */
-#base-1:checked ~ .product-list label[for="base-1"],
-#base-2:checked ~ .product-list label[for="base-2"],
-#eye-1:checked ~ .product-list label[for="eye-1"],
-#eye-2:checked ~ .product-list label[for="eye-2"],
-#lip-1:checked ~ .product-list label[for="lip-1"],
-#lip-2:checked ~ .product-list label[for="lip-2"],
-#cheek-1:checked ~ .product-list label[for="cheek-1"],
-#contour-1:checked ~ .product-list label[for="contour-1"] {
-  border: none;
-  background: transparent;
-}
-
 /* 키보드로 이동한 베이스 상품 표시 */
 #base-1:focus-visible ~ .product-list label[for="base-1"],
 #base-2:focus-visible ~ .product-list label[for="base-2"],
@@ -494,7 +415,6 @@
 }
 
 .video-preview img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -516,7 +436,7 @@
 .video-text p {
   margin: 0;
   color: var(--c-text-sub);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   line-height: 1.6;
 }
 
@@ -656,6 +576,11 @@
   margin: 64px 0 48px;
 }
 
+/* 공통 배지를 사용하되 튜토리얼에서는 최소 14px */
+.popular-tutorials .badge {
+  font-size: var(--fs-base);
+}
+
 /* 영역 제목 */
 .popular-heading {
   position: relative;
@@ -663,17 +588,12 @@
   text-align: left;
 }
 
+.tutorial-heading h2,
 .popular-heading h2 {
   margin: 0;
   color: var(--c-main);
-  font-size: 26px;
+  font-size: var(--fs-xl);
   line-height: 1.4;
-}
-
-.popular-heading p {
-  margin: 10px 0 0;
-  color: var(--c-text-sub);
-  font-size: var(--fs-sm);
 }
 
 /* 왼쪽 영상과 오른쪽 순위 목록 */
@@ -697,12 +617,9 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: 20px;
-  color: inherit;
-  text-decoration: none;
 }
 
 .popular-feature img {
-  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
@@ -713,19 +630,9 @@
   min-width: 0;
 }
 
-.popular-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--c-point-light);
-  color: var(--c-point);
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .popular-copy h3 {
   margin: 10px 0;
-  font-size: 17px;
+  font-size: var(--fs-lg);
   line-height: 1.5;
   word-break: keep-all;
 }
@@ -733,13 +640,13 @@
 .popular-copy p {
   margin: 0 0 12px;
   color: var(--c-text-sub);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   line-height: 1.6;
 }
 
 .popular-watch {
   color: var(--c-point);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   font-weight: 700;
 }
 
@@ -758,9 +665,6 @@
   flex-direction: column;
   gap: 8px;
   min-width: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
 .popular-rank-label {
@@ -776,14 +680,14 @@
 
 .popular-rank-number {
   flex: 0 0 20px;
-  font-size: 20px;
+  font-size: var(--fs-md);
   font-weight: 700;
   text-align: center;
 }
 
 .popular-rank-title {
   min-width: 0;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-md);
   line-height: 1.5;
   word-break: keep-all;
 }
@@ -803,7 +707,7 @@
 #popular-video-1:checked ~ .popular-body label[for="popular-video-1"],
 #popular-video-2:checked ~ .popular-body label[for="popular-video-2"],
 #popular-video-3:checked ~ .popular-body label[for="popular-video-3"] {
-  border-color: #b0bace;
+  border-color: transparent;
   background: var(--c-point-light);
   color: var(--c-point);
   font-weight: 700;
@@ -840,9 +744,7 @@
   background: transparent;
   color: #7b8494;
 
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  cursor: pointer;
+  font-size: var(--fs-base);
 }
 
 /* 마우스를 올리면 글자색 변경과 밑줄 표시 */
