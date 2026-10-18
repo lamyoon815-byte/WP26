@@ -7,30 +7,23 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="common.css">
 <style>
-/* ==========================================================================
-   ranking.html
-   * 색은 common.css 변수 사용: 포인트(남색) = 선택 상태·순위·장바구니, 빨강 = 할인율
-   ========================================================================== */
-
-/* 이 페이지 전용 색: 공통 변수에서 투명도만 바꿔 만든다 */
 :root {
-  --c-overlay: color-mix(in srgb, var(--c-point) 88%, transparent);   /* 호버 정보 오버레이 */
-  --c-on-photo: color-mix(in srgb, var(--c-white) 90%, transparent);  /* 사진 위 글자 배경 */
+  --c-overlay: color-mix(in srgb, var(--c-point) 88%, transparent);
+  --c-on-photo: color-mix(in srgb, var(--c-white) 90%, transparent);
   --c-shadow: color-mix(in srgb, var(--c-main) 20%, transparent);
-  --c-on-overlay-line: color-mix(in srgb, var(--c-white) 45%, transparent);   /* 정보창 태그 테두리 */
-  --tone-spring: #ff9f80;   /* 퍼스널컬러 대표색: personalcolor.html 탭 점과 같은 값 */
+  --c-on-overlay-line: color-mix(in srgb, var(--c-white) 45%, transparent);
+  --tone-spring: #ff9f80;
   --tone-summer: #e88aa8;
   --tone-autumn: #c8643b;
   --tone-winter: #7a1f3d;
-  --c-badge: #d63636;   /* 장바구니 개수 뱃지: --c-sale보다 진하게 (흰 글자 대비 4.5:1 이상) */
+  --c-badge: #d63636;
 }
 html, body { overflow-x: clip; }
 label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offset: 2px; }
 
-/* ---------- 1. 타이틀: 공통 .title-best(common.css) + 기준 시각만 오른쪽에 ---------- */
 .title-best .rk-date {
   position: absolute;
-  right: 16px;            /* h1 좌우 여백(16px) 안쪽에 맞춤 */
+  right: 16px;
   bottom: 0;
   font-size: var(--fs-sm);
   font-style: normal;
@@ -39,13 +32,10 @@ label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offs
   color: var(--c-text-sub);
 }
 
-/* ---------- 2. 정렬 기준 탭
-   카드마다 style="--o-review: 5; --o-rating: 3"(정렬 순서)과 순위 번호(data-*-rank)를 미리 적어 두고,
-   선택된 정렬에 맞춰 order로 순서를 바꾸고 번호도 그 값으로 보여 준다. ---------- */
 .rk-sort { display: flex; border-bottom: 1px solid var(--c-border); }
 .rk-sort label {
   position: relative;
-  width: 128px;                /* 세 칸 너비를 똑같이 (가장 긴 "리뷰 많은순" 기준) */
+  width: 128px;
   padding: 12px 0;
   text-align: center;
   border-bottom: 3px solid transparent;
@@ -59,9 +49,6 @@ main:has(.rk-sort input[value="rating"]:checked) .rk-list .card { order: var(--o
 main:has(.rk-sort input[value="review"]:checked) .rk-list .card .no::before { content: attr(data-review-rank); }
 main:has(.rk-sort input[value="rating"]:checked) .rk-list .card .no::before { content: attr(data-rating-rank); }
 
-/* ---------- 3. 카테고리 (6칸 격자) + 맞춤 필터
-   자바스크립트 없이: 숨긴 라디오 버튼을 label로 고르고, :has()로 맞지 않는 카드를 숨긴다.
-   숨긴 카드(display: none)는 순위 번호(CSS counter)에서도 빠져서 번호가 자동으로 다시 매겨진다. ---------- */
 .rk-sort input, .rk-cat input, .rk-filter input { position: absolute; opacity: 0; pointer-events: none; }
 .rk-cat {
   margin-top: 16px;
@@ -78,17 +65,16 @@ main:has(.rk-sort input[value="rating"]:checked) .rk-list .card .no::before { co
   color: var(--c-text-sub);
   cursor: pointer;
 }
-.rk-cat label:hover { color: var(--c-point); font-weight: 700; }   /* 선택 전, 커서만 올려도 굵게 */
+.rk-cat label:hover { color: var(--c-point); font-weight: 700; }
 .rk-cat label:has(input:checked) { background: var(--c-point); color: var(--c-white); font-weight: 700; }
 
-/* 맞춤 필터 */
 .rk-filter { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .rk-filter b { margin-right: 4px; }
 .rk-filter i { width: 1px; height: 16px; margin: 0 8px; background: var(--c-border); }
 .chip { position: relative; padding: 8px 16px; border: 1px solid var(--c-border); background: var(--c-white); color: var(--c-text-sub); cursor: pointer; }
 .chip:hover { border-color: var(--c-point); color: var(--c-point); }
 .chip:has(input:checked) { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); font-weight: 700; }
-/* 퍼스널컬러 칩은 누르면 각 톤의 대표색으로 (연한 배경 + 대표색 테두리, 글자는 검정) */
+
 .chip:has(input[name="pc"][value="봄웜"]:checked)   { --tone: var(--tone-spring); }
 .chip:has(input[name="pc"][value="여름쿨"]:checked) { --tone: var(--tone-summer); }
 .chip:has(input[name="pc"][value="가을웜"]:checked) { --tone: var(--tone-autumn); }
@@ -100,12 +86,10 @@ main:has(.rk-sort input[value="rating"]:checked) .rk-list .card .no::before { co
 }
 .rk-filter .hint { font-size: var(--fs-sm); color: var(--c-text-sub); }
 
-/* 카테고리별 필터: 맞지 않는 묶음은 숨기고, 숨겨진 묶음의 선택은 적용하지 않는다 (위 규칙의 SKIN_ON/PC_ON 조건) */
 .rk-filter .grp { display: contents; }
 main:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)) .rk-filter .grp-skin,
 main:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)) .rk-filter .grp-pc { display: none; }
 
-/* 선택한 카테고리 / 피부타입 / 퍼스널컬러(여러 개 선택 = 그중 하나라도) / 성분 안심에 맞지 않는 카드 숨기기 */
 main:has(.rk-cat input[value="skin"]:checked) .rk-list .card:not([data-cat="skin"]),
 main:has(.rk-cat input[value="mask"]:checked) .rk-list .card:not([data-cat="mask"]),
 main:has(.rk-cat input[value="clean"]:checked) .rk-list .card:not([data-cat="clean"]),
@@ -137,13 +121,9 @@ main:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):check
 main:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked):has(.rk-filter input[name="pc"]:checked):not(:has(.rk-filter input[name="pc"]:is([value="여름쿨"], [value="겨울쿨"]):checked)) .rk-list .card[data-pc="여름쿨 겨울쿨"],
 main:has(.rk-filter input[name="safe"]:checked) .rk-list .card:not([data-danger="0"]) { display: none; }
 
-
-/* ---------- 4. 상품 목록 ---------- */
 .rk-list { margin: 40px 0 80px; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 48px; counter-reset: rank; }
 .rk-list .card { counter-increment: rank; position: relative; }
 
-/* 순위 번호 (보이는 카드 기준 자동 번호)
-   올리브영처럼 이미지 왼쪽 위 모서리에 걸친 원 안에 숫자 */
 .rk-list .card .no {
   position: absolute;
   top: -10px;
@@ -162,8 +142,6 @@ main:has(.rk-filter input[name="safe"]:checked) .rk-list .card:not([data-danger=
 }
 .rk-list .card .no::before { content: counter(rank); }
 
-/* 조건에 맞는 상품이 없을 때 문구: 카드마다 "이 카드가 보이는 조건"을 적어 두고,
-   그중 하나라도 맞으면(= 보이는 카드가 있으면) 문구를 숨긴다. */
 .rk-empty { padding: 80px 0; text-align: center; color: var(--c-text-sub); }
 main:is(
   :has(.rk-cat input:is([value="all"], [value="hair"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked))),
@@ -293,45 +271,30 @@ main:is(
   :has(.rk-cat input:is([value="all"], [value="sun"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"], [value="건성"], [value="복합성"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked)))
 ) .rk-empty { display: none; }
 
-/* 이미지 영역: 이미지 링크 + 찜/장바구니 버튼을 묶는 박스 */
 .card .thumb { position: relative; }
 
-/* 이미지 자리: X자 박스 */
-.card .img {
-  display: block;
-  border: 1px solid var(--c-border);
-  background:
-    linear-gradient(to top right, transparent calc(50% - .5px), var(--c-border) 50%, transparent calc(50% + .5px)),
-    linear-gradient(to top left,  transparent calc(50% - .5px), var(--c-border) 50%, transparent calc(50% + .5px)),
-    var(--c-bg-sub);
-}
+.card .img { display: block; border: 1px solid var(--c-border); }
 
-/* 상품 사진: img/products/{id}.webp (800×800 정사각형 권장)
-   이미지 칸 크기는 카드 너비(4열)에 맞춰 정사각형으로 자동 결정된다.
-   사진을 칸 안에 여백 두고 작게 넣고 싶으면 object-fit을 contain으로 바꾸고 padding을 준다. */
 .rk-list .card .img img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;     /* cover: 칸을 꽉 채움 / contain: 사진 전체가 보이게 */
+  object-fit: cover;
 }
 
-/* 순위 변동 메모 (▲3 / NEW) */
 .card .img .move {
   position: absolute; top: 8px; left: auto; right: 8px;
   padding: 4px 8px;
-  background: var(--c-on-photo);   /* 사진 위에서도 읽히게 */
+  background: var(--c-on-photo);
   font-size: var(--fs-sm); color: var(--c-main);
 }
 
-/* 찜하기 버튼 (이미지 오른쪽 아래) + 장바구니 담기 버튼 (찜 왼쪽)
-   숨긴 체크박스를 누르면 :checked → 눌린 표시. 새로고침하면 풀림 (저장은 자바스크립트가 필요) */
 .card .like,
 .card .put {
   position: absolute;
   right: 8px;
   bottom: 8px;
-  z-index: 2;                    /* 오버레이보다 위 */
+  z-index: 2;
   width: 40px;
   height: 40px;
   border: 1px solid var(--c-border);
@@ -350,14 +313,13 @@ main:is(
 .card .put { right: 56px; }
 .card .put svg { width: 20px; height: 20px; }
 .card .put:active { transform: scale(.9); }
-.card .put:has(input:checked) { border-color: var(--c-point); background: var(--c-point); color: var(--c-white); }   /* 찜과 같은 방식: 남색으로 채움 */
+.card .put:has(input:checked) { border-color: var(--c-point); background: var(--c-point); color: var(--c-white); }
 
-/* ---------- 5. 호버 → 회색 오버레이 + 성분/추천 정보 ---------- */
 .card .img .info {
   position: absolute;
   inset: 0;
   z-index: 1;
-  padding: 36px 20px 16px;              /* 위: 순위 원 피하기 */
+  padding: 36px 20px 16px;
   background: var(--c-overlay);
   color: var(--c-white);
   font-size: var(--fs-base);
@@ -370,7 +332,7 @@ main:is(
   transition: opacity .2s;
 }
 .card .thumb:hover .info { opacity: 1; }
-/* 성분 안전도: 아이콘 배지 3개 (0개인 항목은 흐리게) */
+
 .info .safety { margin: 0; padding: 0; list-style: none; display: flex; gap: 12px; }
 .info .safety li { display: flex; align-items: center; gap: 8px; }
 .info .safety svg { width: 28px; height: 28px; padding: 6px; border-radius: 50%; flex: none; }
@@ -380,12 +342,12 @@ main:is(
 .info .safety span { display: flex; flex-direction: column; font-size: var(--fs-sm); line-height: 1.2; }
 .info .safety b { font-size: var(--fs-md); }
 .info .safety .zero { opacity: .5; }
-/* 핵심 성분: 잎 아이콘 + 성분명 + 효과 */
+
 .info .key { display: flex; align-items: flex-start; gap: 8px; }
 .info .key svg { width: 20px; height: 20px; flex: none; }
 .info .key span { min-width: 0; display: flex; flex-direction: column; font-size: var(--fs-sm); }
 .info .key b { font-size: var(--fs-base); }
-/* 추천 피부타입/톤/대상: 아이콘 태그 */
+
 .info .rec { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: var(--fs-sm); }
 .info .rec .lbl { width: 100%; font-weight: 700; }
 .info .tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border: 1px solid var(--c-on-overlay-line); border-radius: 12px; line-height: 1; }
@@ -393,35 +355,33 @@ main:is(
 .info .tag .dot { width: 12px; height: 12px; border: 1px solid var(--c-white); border-radius: 50%; }
 .info .go { margin-top: auto; text-align: left; }
 
-/* ---------- 6. 카드 하단 텍스트 (올리브영처럼 가운데 정렬) ---------- */
 .rk-list .card { text-align: center; }
 .card .txt { display: block; }
 .card .brand { margin-top: 16px; font-size: var(--fs-md); color: var(--c-text-sub); }
 .card .name {
   margin-top: 8px;
-  height: 2.8em;               /* 항상 2줄 높이 (line-height 1.4 × 2) → 상품명이 1줄이어도 가격 줄 위치가 같음 */
+  height: 2.8em;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;       /* 2줄 넘으면 자르고 … */
+  -webkit-line-clamp: 2;
   overflow: hidden;
-  word-break: keep-all;        /* 한 줄로 두는 상품명도 단어 중간에서 끊기지 않게 */
+  word-break: keep-all;
 }
-/* 긴 상품명은 <span class="ln">으로 줄을 직접 나눈다. 칸보다 길면 그 줄 끝만 … 처리 */
+
 .card .name .ln { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-/* 가격: 할인율 · 판매가를 한 줄에 (정가는 상세 페이지에서만, 할인율 5% 미만은 표시 안 함) */
+
 .card .price-row {
   margin-top: 8px;
   display: flex;
   justify-content: center;
   align-items: baseline;
   gap: 8px;
-  line-height: 1;              /* 위아래 여백 없이 → 상품명↔가격, 가격↔태그 간격이 margin 값 그대로 */
+  line-height: 1;
 }
 .card .price-row .rate  { font-size: var(--fs-lg); font-weight: 700; color: var(--c-sale); }
 .card .tags { margin-top: 8px; display: flex; justify-content: center; gap: 4px; font-size: var(--fs-sm); line-height: 1; color: var(--c-text-sub); }
 .card .tags span { padding: 4px 8px; border: 1px solid var(--c-border); }
 
-/* ---------- 7. 떠 있는 장바구니 링크 (오른쪽 아래) ---------- */
 .fcart {
   position: fixed;
   right: 32px;
@@ -466,28 +426,26 @@ main:is(
 </head>
 <body>
 
-<!-- ===== 공통 헤더 ===== -->
 <div class="util"><div class="container"><a>로그인</a><a>회원가입</a><a href="cart.html">장바구니 <em>(3)</em></a><a>고객센터</a></div></div>
 <div class="header"><div class="container">
-  <a href="home.html" class="logo"><img src="Image_logo.png" alt="LOGO Image"><img src="Text_logo.png" alt="LOGO Text"></a>
+  <a href="home.html" class="logo"><img src="Image_logo.png" alt=""><img src="Text_logo.png" alt="올리브송"></a>
   <div class="search">퍼스널컬러, 브랜드, 성분 검색<svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M15.8 15.8 21 21"/></svg></div>
-  <div class="hright"><a data-soon>올송매장찾기 &#9662;</a><a data-soon>최근 본 상품 &#9662;</a></div>
+  <div class="hright"><a>올송매장찾기 &#9662;</a><a>최근 본 상품 &#9662;</a></div>
 </div></div>
 <nav class="gnb"><div class="container">
-  <a class="cat" data-soon>&#9776; 카테고리</a>
-  <a data-soon>오특</a>
+  <a class="cat">&#9776; 카테고리</a>
+  <a>오특</a>
   <a href="ranking.html" class="on">랭킹</a>
   <a href="personalcolor.html">퍼스널컬러</a>
   <a href="tutorial.html">튜토리얼</a>
-  <a data-soon>테마관</a>
-  <a data-soon>기획전</a>
-  <a data-soon>세일</a>
-  <a data-soon>기프트카드</a>
-  <a data-soon>멤버십/쿠폰</a>
-  <a data-soon>이벤트</a>
+  <a>테마관</a>
+  <a>기획전</a>
+  <a>세일</a>
+  <a>기프트카드</a>
+  <a>멤버십/쿠폰</a>
+  <a>이벤트</a>
 </div></nav>
 
-<!-- ===== 1. 타이틀 (공통 배너 .title-best) ===== -->
 <div class="title-best">
   <h1>
     랭킹
@@ -498,14 +456,12 @@ main:is(
 
 <main class="container">
 
-  <!-- ===== 2. 정렬 기준 (라디오 + CSS order로 순서 변경) ===== -->
   <div class="rk-sort" role="radiogroup" aria-label="정렬 기준">
     <label><input type="radio" name="sort" value="sales" checked>판매순</label>
     <label><input type="radio" name="sort" value="review">리뷰 많은순</label>
     <label><input type="radio" name="sort" value="rating">평점순</label>
   </div>
 
-  <!-- ===== 3. 카테고리 ===== -->
   <div class="rk-cat" role="radiogroup" aria-label="카테고리">
     <label><input type="radio" name="cat" value="all" checked>전체</label>
     <label><input type="radio" name="cat" value="skin">스킨케어</label>
@@ -531,8 +487,6 @@ main:is(
     <label><input type="radio" name="cat" value="hobby">취미/팬시</label>
   </div>
 
-  <!-- ===== 4. 맞춤 필터 ===== -->
-  <!-- 고른 카테고리에 맞는 필터 묶음만 보인다 (.grp, CSS 아래 "카테고리별 필터") -->
   <div class="rk-filter">
     <span class="grp grp-skin">
       <b>피부타입</b>
@@ -554,9 +508,6 @@ main:is(
     <span class="hint">위험 성분 0개</span>
   </div>
 
-  <!-- ===== 5. 상품 목록 =====
-       data-cat / data-skin / data-pc 로 필터링.
-       이미지에 마우스를 올리면 .info 오버레이, 이미지/제품명 클릭 시 "상세 페이지는 준비 중" 안내. -->
   <div class="cards rk-list">
 
     <div class="card" style="--o-review: 30; --o-rating: 7" data-cat="hair"
@@ -564,7 +515,7 @@ main:is(
       <span class="no" data-review-rank="30" data-rating-rank="7"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/33.jpg" alt="어노브 [10월올영픽/4년 연속 1위] 어노브 딥 데미지 리페어 헤어 마스크 (트리트먼트/헤어팩) 320ml 더블/듀오 기획">
+          <img src="img/products/33.jpg" alt="어노브 딥 데미지 리페어 헤어 마스크">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -614,7 +565,7 @@ main:is(
       <span class="no" data-review-rank="31" data-rating-rank="42"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/34.jpg" alt="크리니크 [10월 올영픽/1+1 기획] 크리니크 쏙보습크림 50ml 단품/기획">
+          <img src="img/products/34.jpg" alt="크리니크 쏙보습크림">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>글리세린</b>수분 공급</span></div>
@@ -638,7 +589,7 @@ main:is(
       <span class="no" data-review-rank="55" data-rating-rank="53"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/35.jpg" alt="셀리맥스 [흔적,기미,미백/TXA] 셀리맥스 트라넥삼산 잡티 크림 35ml 기획 (+14ml)">
+          <img src="img/products/35.jpg" alt="셀리맥스 트라넥삼산 잡티 크림">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -663,7 +614,7 @@ main:is(
       <span class="no" data-review-rank="5" data-rating-rank="33"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/36.jpg" alt="티엘라 [NEW 말차향 출시] 티엘라 퍼퓸 너리싱 바디크림 200ml 4종 단품/기획 (+바디크림 증정)">
+          <img src="img/products/36.jpg" alt="티엘라 퍼퓸 너리싱 바디크림">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>시어버터</b>바디 보습</span></div>
@@ -687,7 +638,7 @@ main:is(
       <span class="no" data-review-rank="77" data-rating-rank="94"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/37.jpg" alt="메디힐 [10월 올영픽/1위] 메디힐 더마 토너패드 100+100매 7종 골라담기">
+          <img src="img/products/37.jpg" alt="메디힐 더마 토너패드 골라담기">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>23</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
@@ -711,7 +662,7 @@ main:is(
       <span class="no" data-review-rank="29" data-rating-rank="6"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/38.jpg" alt="일리윤 일리윤 프레쉬모이스춰 스크럽워시 400ml*2 기획">
+          <img src="img/products/38.jpg" alt="일리윤 프레쉬모이스춰 스크럽워시">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>15</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>시어버터</b>바디 보습</span></div>
@@ -735,7 +686,7 @@ main:is(
       <span class="no" data-review-rank="4" data-rating-rank="78"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/39.jpg" alt="도브 [NEW/금목서향 출시] 도브 바디 스크럽 298g 6종 택 1">
+          <img src="img/products/39.jpg" alt="도브 바디 스크럽">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>시어버터</b>바디 보습</span></div>
@@ -759,7 +710,7 @@ main:is(
       <span class="no" data-review-rank="76" data-rating-rank="63"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/40.jpg" alt="홀리카홀리카 홀리카홀리카 마이페이브 피스 아이섀도우/젤테일/피스 빔/피스 밤" loading="lazy">
+          <img src="img/products/40.jpg" alt="홀리카홀리카 마이페이브 피스 아이섀도우 젤테일 피스 빔 피스 밤" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>마이카</b>은은한 발색</span></div>
@@ -808,7 +759,7 @@ main:is(
       <span class="no" data-review-rank="6" data-rating-rank="34"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/41.jpg" alt="퓌 [얼그레이에디션/10월 올영픽] 퓌 3D 볼류밍 글로스 (기획/단품)" loading="lazy">
+          <img src="img/products/41.jpg" alt="퓌 3D 볼류밍 글로스" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>1</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물성 오일</b>촉촉한 발색</span></div>
@@ -832,7 +783,7 @@ main:is(
       <span class="no" data-review-rank="20" data-rating-rank="38"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/42.jpg" alt="해피바스 [극락살냄새] 해피바스 달잠 뽀송이불향 3종택1(로션/워시/미스트)" loading="lazy">
+          <img src="img/products/42.jpg" alt="해피바스 달잠 뽀송이불향 3종" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>시어버터</b>바디 보습</span></div>
@@ -856,7 +807,7 @@ main:is(
       <span class="no" data-review-rank="68" data-rating-rank="92"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/43.jpg" alt="에스쁘아 [10월 올영픽/오트라떼 에디션] 에스쁘아 이지 웨어 아이 팔레트 3 colors 오트라떼/로즈라떼/베리라떼" loading="lazy">
+          <img src="img/products/43.jpg" alt="에스쁘아 이지 웨어 아이 팔레트 오트라떼 로즈라떼 베리라떼" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>23</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>마이카</b>은은한 발색</span></div>
@@ -880,7 +831,7 @@ main:is(
       <span class="no" data-review-rank="1" data-rating-rank="31"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/4.webp" alt="클리오 [NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획" loading="lazy">
+          <img src="img/products/4.webp" alt="클리오 샤프 쏘 심플 워터프루프 펜슬라이너" loading="lazy">
           <span class="move">&#9650; 4</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -905,7 +856,7 @@ main:is(
       <span class="no" data-review-rank="78" data-rating-rank="95"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/44.jpg" alt="라운드랩 [1+1/1등썬] 라운드랩 자작나무 수분 선크림 50ml 1+1 기획 (+수분 선세럼 8ml)" loading="lazy">
+          <img src="img/products/44.jpg" alt="라운드랩 자작나무 수분 선크림" loading="lazy">
           <span class="move">&#9650; 4</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -930,7 +881,7 @@ main:is(
       <span class="no" data-review-rank="90" data-rating-rank="68"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/45.jpg" alt="웰라쥬 [속건조필수템] 웰라쥬 리얼 히알루로닉 블루 100 앰플 100ml 기획 (+원데이키트2ea)" loading="lazy">
+          <img src="img/products/45.jpg" alt="웰라쥬 리얼 히알루로닉 블루 100 앰플" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>히알루론산</b>속보습</span></div>
@@ -954,7 +905,7 @@ main:is(
       <span class="no" data-review-rank="10" data-rating-rank="80"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/46.jpg" alt="에스네이처 [수분천재굿즈증정/1등 모공 수분천재크림] 에스네이처 아쿠아 스쿠알란 수분크림 60ml 기획(+크림 30ml 증정)" loading="lazy">
+          <img src="img/products/46.jpg" alt="에스네이처 아쿠아 스쿠알란 수분크림" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>스쿠알란</b>수분 · 모공</span></div>
@@ -978,7 +929,7 @@ main:is(
       <span class="no" data-review-rank="16" data-rating-rank="82"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/47.jpg" alt="터치인솔 [픽서증정기획]터치인솔 노포어블럼 프라이머 프렙 30ml" loading="lazy">
+          <img src="img/products/47.jpg" alt="터치인솔 노포어블럼 프라이머 프렙" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>커버 파우더</b>밀착 커버</span></div>
@@ -1002,7 +953,7 @@ main:is(
       <span class="no" data-review-rank="42" data-rating-rank="120"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/48.jpg" alt="풀리 [저자극/피지지우개] 풀리 멜팅크림 투오일 50ml 단품/기획 2종 택1" loading="lazy">
+          <img src="img/products/48.jpg" alt="풀리 멜팅크림 투오일" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>24</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>약산성 세정 성분</b>저자극 세정</span></div>
@@ -1051,7 +1002,7 @@ main:is(
       <span class="no" data-review-rank="33" data-rating-rank="8"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/49.jpg" alt="에스쁘아 [10월 올영픽 단독/오트라떼 블러쉬 본품 증정] 에스쁘아 실크 스킨 레이어 쿠션 7 colors 본품+리필" loading="lazy">
+          <img src="img/products/49.jpg" alt="에스쁘아 실크 스킨 레이어 쿠션" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1076,7 +1027,7 @@ main:is(
       <span class="no" data-review-rank="82" data-rating-rank="20"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/50.jpg" alt="셀리맥스 [단독기획/모공탄력] 셀리맥스 더 비타 A 레티날 샷 타이트닝 부스터 15ml 기획(+3ml)" loading="lazy">
+          <img src="img/products/50.jpg" alt="셀리맥스 더 비타 A 레티날 샷 타이트닝 부스터" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1101,7 +1052,7 @@ main:is(
       <span class="no" data-review-rank="79" data-rating-rank="64"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/21.jpg" alt="리쥬란 [피부결 리셋패드] 리쥬란 더마 힐러 포어 타이트닝 토너 패드 60매(단품/기획)" loading="lazy">
+          <img src="img/products/21.jpg" alt="리쥬란 더마 힐러 포어 타이트닝 토너 패드" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1126,7 +1077,7 @@ main:is(
       <span class="no" data-review-rank="54" data-rating-rank="123"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/51.jpg" alt="메디큐브 [착붙앰플팩/5+1매 단독기획] 메디큐브 앰플 마스크 4종 5+1매 기획" loading="lazy">
+          <img src="img/products/51.jpg" alt="메디큐브 앰플 마스크" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>10</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
@@ -1150,7 +1101,7 @@ main:is(
       <span class="no" data-review-rank="44" data-rating-rank="10"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/5.webp" alt="에스트라 아토베리어365 캡슐토너 300ml 기획 (+수딩크림 30ml+세라-히알 앰플 7ml)" loading="lazy">
+          <img src="img/products/5.webp" alt="에스트라 아토베리어365 캡슐토너" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>24</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1175,7 +1126,7 @@ main:is(
       <span class="no" data-review-rank="70" data-rating-rank="60"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/52.jpg" alt="토리든 토리든 다이브인 저분자 히알루론산 세럼 50ml 리필 기획 (+50ml 리필+자석인형) (시나모롤)" loading="lazy">
+          <img src="img/products/52.jpg" alt="토리든 다이브인 저분자 히알루론산 세럼" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>18</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>1</b>위험</span></li></ul>
@@ -1200,7 +1151,7 @@ main:is(
       <span class="no" data-review-rank="15" data-rating-rank="81"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/53.jpg" alt="딜라이트 프로젝트 딜라이트 프로젝트 베이글칩 택1" loading="lazy">
+          <img src="img/products/53.jpg" alt="딜라이트 프로젝트 베이글칩" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>8</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>통곡물</b>가벼운 간식</span></div>
@@ -1224,7 +1175,7 @@ main:is(
       <span class="no" data-review-rank="25" data-rating-rank="5"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/17.webp" alt="마녀공장 비피다 바이옴 앰플 토너 400ml+100ml 기획" loading="lazy">
+          <img src="img/products/17.webp" alt="마녀공장 비피다 바이옴 앰플 토너" loading="lazy">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1249,7 +1200,7 @@ main:is(
       <span class="no" data-review-rank="64" data-rating-rank="59"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/54.jpg" alt="필리밀리 필리밀리 베이스 메이크업 브러시 20종 택1 (파운데이션/블러셔/컨실러/쉐딩/하이라이터/파우더)" loading="lazy">
+          <img src="img/products/54.jpg" alt="필리밀리 베이스 메이크업 브러시" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>부드러운 모</b>밀착 블렌딩</span></div>
@@ -1273,7 +1224,7 @@ main:is(
       <span class="no" data-review-rank="60" data-rating-rank="56"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/23.jpg" alt="에스쁘아 [1등 글로우 파데/웨딩피치] 에스쁘아 비글로우 파운데이션 30g 10 colors" loading="lazy">
+          <img src="img/products/23.jpg" alt="에스쁘아 비글로우 파운데이션" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>22</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1298,7 +1249,7 @@ main:is(
       <span class="no" data-review-rank="115" data-rating-rank="111"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/55.jpg" alt="마녀공장 [10월 올영픽] 마녀공장 퓨어 소이빈 클렌징오일 200ml 2입 기획 (+25ml+폼20ml)" loading="lazy">
+          <img src="img/products/55.jpg" alt="마녀공장 퓨어 소이빈 클렌징오일" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1323,7 +1274,7 @@ main:is(
       <span class="no" data-review-rank="43" data-rating-rank="121"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/56.jpg" alt="브링그린 [3일진정세럼]브링그린 징크테카 트러블 세럼 대용량 기획" loading="lazy">
+          <img src="img/products/56.jpg" alt="브링그린 징크테카 트러블 세럼 대용량" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1348,7 +1299,7 @@ main:is(
       <span class="no" data-review-rank="98" data-rating-rank="70"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/22.jpg" alt="롬앤 [NEW산리오캐릭터즈 /1등 틴트] 롬앤 더 쥬시 래스팅 틴트 (쿠로미/한교동)" loading="lazy">
+          <img src="img/products/22.jpg" alt="롬앤 더 쥬시 래스팅 틴트" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1373,7 +1324,7 @@ main:is(
       <span class="no" data-review-rank="105" data-rating-rank="72"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/57.jpg" alt="라로슈포제 [한정수량] 라로슈포제 시카플라스트 밤 B5+ 200ml기획 (+1.5ml+시카토너50ml+히알루세럼1.5ml)" loading="lazy">
+          <img src="img/products/57.jpg" alt="라로슈포제 시카플라스트 밤 B5 200ml" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>히알루론산</b>속보습</span></div>
@@ -1397,7 +1348,7 @@ main:is(
       <span class="no" data-review-rank="87" data-rating-rank="99"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/12.webp" alt="테키라 안티그래비티 메탈트임카라 3g" loading="lazy">
+          <img src="img/products/12.webp" alt="테키라 안티그래비티 메탈트임카라" loading="lazy">
           <span class="move">&#9650; 3</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>10</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1422,7 +1373,7 @@ main:is(
       <span class="no" data-review-rank="22" data-rating-rank="119"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/58.jpg" alt="제로이드 [누렁이 콜라보] 제로이드 인텐시브 크림 80ml+50ml 기획 (+누렁이 파우치)" loading="lazy">
+          <img src="img/products/58.jpg" alt="제로이드 인텐시브 크림" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>18</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>글리세린</b>수분 공급</span></div>
@@ -1446,7 +1397,7 @@ main:is(
       <span class="no" data-review-rank="62" data-rating-rank="13"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/59.jpg" alt="하트퍼센트 [10월 올영픽/NEW 이니미니 콜라보] 하트퍼센트 도트 온 무드 립펜슬 0.8g 28종 (단품/기획)" loading="lazy">
+          <img src="img/products/59.jpg" alt="하트퍼센트 도트 온 무드 립펜슬" loading="lazy">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1471,7 +1422,7 @@ main:is(
       <span class="no" data-review-rank="37" data-rating-rank="9"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/20.jpg" alt="비플레인 [말끔모공/국민클폼]비플레인 녹두 약산성 클렌징폼기획 160ml+40ml 기획" loading="lazy">
+          <img src="img/products/20.jpg" alt="비플레인 녹두 약산성 클렌징폼" loading="lazy">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1496,7 +1447,7 @@ main:is(
       <span class="no" data-review-rank="100" data-rating-rank="103"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/24.jpg" alt="비디비치 [단독기획] 비디비치 블랙 퍼펙션 커버 핏 쿠션" loading="lazy">
+          <img src="img/products/24.jpg" alt="비디비치 블랙 퍼펙션 커버 핏 쿠션" loading="lazy">
           <span class="move">&#9650; 3</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>19</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1521,7 +1472,7 @@ main:is(
       <span class="no" data-review-rank="3" data-rating-rank="1"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/6.webp" alt="일리윤 세라마이드 아토 로션 (600ml/600ml기획)" loading="lazy">
+          <img src="img/products/6.webp" alt="일리윤 세라마이드 아토 로션" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>세라마이드</b>건조한 몸 보습</span></div>
@@ -1545,7 +1496,7 @@ main:is(
       <span class="no" data-review-rank="53" data-rating-rank="122"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/60.jpg" alt="메디힐 [10월 올영픽/러기지택 증정] 메디힐 마데카소사이드 더마 세럼 50+50ml 서울 에디션" loading="lazy">
+          <img src="img/products/60.jpg" alt="메디힐 마데카소사이드 더마 세럼 ml 서울 에디션" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>마데카소사이드</b>진정 · 장벽</span></div>
@@ -1569,7 +1520,7 @@ main:is(
       <span class="no" data-review-rank="57" data-rating-rank="55"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/18.webp" alt="넘버즈인 1번 판토텐산 액티브업 수딩세럼 50ml 리필기획" loading="lazy">
+          <img src="img/products/18.webp" alt="넘버즈인 1번 판토텐산 액티브업 수딩세럼" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>18</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1594,7 +1545,7 @@ main:is(
       <span class="no" data-review-rank="26" data-rating-rank="40"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/61.jpg" alt="바이오더마 바이오더마 센시비오 H2O 850ml(클렌징워터)" loading="lazy">
+          <img src="img/products/61.jpg" alt="바이오더마 센시비오 H2O" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>15</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>약산성 세정 성분</b>저자극 세정</span></div>
@@ -1618,7 +1569,7 @@ main:is(
       <span class="no" data-review-rank="2" data-rating-rank="32"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/62.jpg" alt="퓌 [NEW/10월 올영픽] 퓌 치크칩 기획/단품 (크림/베이크드/파우더)" loading="lazy">
+          <img src="img/products/62.jpg" alt="퓌 치크칩" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>커버 파우더</b>밀착 커버</span></div>
@@ -1642,7 +1593,7 @@ main:is(
       <span class="no" data-review-rank="114" data-rating-rank="75"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/27.jpg" alt="3CE [미니퍼프증정/NEW] 3CE 무드레시피 페이스 블러쉬 단품/기획" loading="lazy">
+          <img src="img/products/27.jpg" alt="3CE 무드레시피 페이스 블러쉬" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1667,7 +1618,7 @@ main:is(
       <span class="no" data-review-rank="124" data-rating-rank="115"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/63.jpg" alt="클리오 [NEW/10월 올영픽]클리오 프로아이팔레트 에어 단품/기획 (+아이 프라이머 밤 증정)(풍년다방 에디션)" loading="lazy">
+          <img src="img/products/63.jpg" alt="클리오 프로아이팔레트 에어" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>8</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>마이카</b>은은한 발색</span></div>
@@ -1715,7 +1666,7 @@ main:is(
       <span class="no" data-review-rank="86" data-rating-rank="98"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/64.jpg" alt="프롬리에 [역대 최대 용량]프롬리에 EGF 워터 화잘먹 선앰플 56ml+30ml 기획/단품" loading="lazy">
+          <img src="img/products/64.jpg" alt="프롬리에 EGF 워터 화잘먹 선앰플" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>1</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>EGF</b>탄력 · 보습</span></div>
@@ -1764,7 +1715,7 @@ main:is(
       <span class="no" data-review-rank="110" data-rating-rank="109"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/26.jpg" alt="클리오 [단독기획] 클리오 벨벳 립 펜슬 단품/기획 (+미니 립펜슬 증정)" loading="lazy">
+          <img src="img/products/26.jpg" alt="클리오 벨벳 립 펜슬" loading="lazy">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1789,7 +1740,7 @@ main:is(
       <span class="no" data-review-rank="13" data-rating-rank="118"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/65.jpg" alt="청미정 [10월 올영픽/두피케어] 청미정 다시마 샴푸 500ml 기획/단품 (문어괄사 증정)" loading="lazy">
+          <img src="img/products/65.jpg" alt="청미정 다시마 샴푸" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>24</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1839,7 +1790,7 @@ main:is(
       <span class="no" data-review-rank="63" data-rating-rank="58"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/66.jpg" alt="어뮤즈 [단독기획] 어뮤즈 누 세럼 볼륨 글로우업 쿠션 리필 기획 (본품+리필증정)" loading="lazy">
+          <img src="img/products/66.jpg" alt="어뮤즈 누 세럼 볼륨 글로우업 쿠션" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>24</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1864,7 +1815,7 @@ main:is(
       <span class="no" data-review-rank="36" data-rating-rank="45"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/67.jpg" alt="메디큐브 에이지알 [UPGRADE] 메디큐브 에이지알 부스터프로 X2 조앤프렌즈 기획(+헤드캡, 거치대, 파우치, 헤어핀)" loading="lazy">
+          <img src="img/products/67.jpg" alt="메디큐브 에이지알 부스터프로 X2 조앤프렌즈" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>글리세린</b>수분 공급</span></div>
@@ -1888,7 +1839,7 @@ main:is(
       <span class="no" data-review-rank="108" data-rating-rank="73"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/25.jpg" alt="헤라 헤라 센슈얼 누드 글로스 5g 13 Colors 기획/단품" loading="lazy">
+          <img src="img/products/25.jpg" alt="헤라 센슈얼 누드 글로스" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물성 오일</b>유리알 광택</span></div>
@@ -1912,7 +1863,7 @@ main:is(
       <span class="no" data-review-rank="123" data-rating-rank="125"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/68.jpg" alt="에이프릴스킨 [NEW][리뉴얼/철벽커버] 에이프릴스킨 히어로쿠션 2.0 (본품+리필+퍼프2개)" loading="lazy">
+          <img src="img/products/68.jpg" alt="에이프릴스킨 히어로쿠션 2.0" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1937,7 +1888,7 @@ main:is(
       <span class="no" data-review-rank="109" data-rating-rank="108"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/8.webp" alt="웨이크메이크 [오프체리 컬렉션] 소프트 블러링 아이팔레트(단품)" loading="lazy">
+          <img src="img/products/8.webp" alt="웨이크메이크 소프트 블러링 아이팔레트" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1962,7 +1913,7 @@ main:is(
       <span class="no" data-review-rank="125" data-rating-rank="30"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/69.jpg" alt="디오디너리 [트러블모공] 디오디너리 나이아신아마이드 10% + 징크 1% 60ml" loading="lazy">
+          <img src="img/products/69.jpg" alt="디오디너리 나이아신아마이드 10% 징크 1%" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>19</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -1987,7 +1938,7 @@ main:is(
       <span class="no" data-review-rank="113" data-rating-rank="74"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/19.webp" alt="더하르나이 앰플세럼 50ml 리필기획" loading="lazy">
+          <img src="img/products/19.webp" alt="더하르나이 앰플세럼" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>19</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2012,7 +1963,7 @@ main:is(
       <span class="no" data-review-rank="27" data-rating-rank="41"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/70.jpg" alt="연작 [10월 올영픽/화잘먹 베이스] 연작 스킨 퍼펙팅 프로텍티브 베이스 프렙 3종 25ml/40ml 기획" loading="lazy">
+          <img src="img/products/70.jpg" alt="연작 스킨 퍼펙팅 프로텍티브 베이스 프렙" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2037,7 +1988,7 @@ main:is(
       <span class="no" data-review-rank="117" data-rating-rank="76"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/29.jpg" alt="로지킴 [NEW/미니 뉴트럴로즈 증정] 로지킴 PDRN 틴티드 립 앰플 단품/기획 10ml 13colors" loading="lazy">
+          <img src="img/products/29.jpg" alt="로지킴 PDRN 틴티드 립 앰플" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>15</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2062,7 +2013,7 @@ main:is(
       <span class="no" data-review-rank="17" data-rating-rank="2"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/71.jpg" alt="라카 [나나PICK/이시안공동개발] 라카 퍼펙트 트윈 립 12 colors" loading="lazy">
+          <img src="img/products/71.jpg" alt="라카 퍼펙트 트윈 립" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>22</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2087,7 +2038,7 @@ main:is(
       <span class="no" data-review-rank="21" data-rating-rank="39"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/72.jpg" alt="오호라 [컬러네일영양제/SNS핫템] 오호라 시럽 네일강화제 15ml 23colors (밀크/워터/글레이즈드)" loading="lazy">
+          <img src="img/products/72.jpg" alt="오호라 시럽 네일강화제" loading="lazy">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2112,7 +2063,7 @@ main:is(
       <span class="no" data-review-rank="120" data-rating-rank="113"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/28.jpg" alt="3CE [미니립스틱증정기획] 3CE 샤인 리플렉터 1.7g 기획/단품" loading="lazy">
+          <img src="img/products/28.jpg" alt="3CE 샤인 리플렉터" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>글로시 오일</b>맑은 광</span></div>
@@ -2136,7 +2087,7 @@ main:is(
       <span class="no" data-review-rank="73" data-rating-rank="93"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/73.jpg" alt="바이오힐보 [카디비PICK|탄력보습] 바이오힐보 프로바이오덤 3D리프팅 크림 50ml [단품/기획]" loading="lazy">
+          <img src="img/products/73.jpg" alt="바이오힐보 프로바이오덤 3D리프팅 크림" loading="lazy">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2161,7 +2112,7 @@ main:is(
       <span class="no" data-review-rank="49" data-rating-rank="50"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/74.jpg" alt="토리든 [립케어 1등/1+1] 토리든 솔리드인 세라마이드 립 에센스 11ml 더블기획/단품" loading="lazy">
+          <img src="img/products/74.jpg" alt="토리든 솔리드인 세라마이드 립 에센스" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2186,7 +2137,7 @@ main:is(
       <span class="no" data-review-rank="84" data-rating-rank="66"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/16.webp" alt="식물나라 뽀얀쌀 맑은톤 로션 300ml" loading="lazy">
+          <img src="img/products/16.webp" alt="식물나라 뽀얀쌀 맑은톤 로션" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>쌀 추출물</b>맑은 톤 보습</span></div>
@@ -2210,7 +2161,7 @@ main:is(
       <span class="no" data-review-rank="103" data-rating-rank="106"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/30.jpg" alt="캔메이크 [NEW컬러/파우치필수템] 캔메이크 크리미 터치 라이너 13종 택1" loading="lazy">
+          <img src="img/products/30.jpg" alt="캔메이크 크리미 터치 라이너" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>10</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>워터프루프 폴리머</b>번짐 방지</span></div>
@@ -2234,7 +2185,7 @@ main:is(
       <span class="no" data-review-rank="45" data-rating-rank="11"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/31.jpg" alt="유리아쥬 [독보적 보습] 유리아쥬 스틱레브르 오리지널 2+1 한정기획" loading="lazy">
+          <img src="img/products/31.jpg" alt="유리아쥬 스틱레브르 오리지널" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>유리아쥬 온천수</b>입술 보습</span></div>
@@ -2258,7 +2209,7 @@ main:is(
       <span class="no" data-review-rank="119" data-rating-rank="112"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/32.jpg" alt="비디비치 [단독기획] 비디비치 누드 퍼펙션 스킨 핏 쿠션 (본품+리필 증정)" loading="lazy">
+          <img src="img/products/32.jpg" alt="비디비치 누드 퍼펙션 스킨 핏 쿠션" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>18</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2283,7 +2234,7 @@ main:is(
       <span class="no" data-review-rank="71" data-rating-rank="61"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/81.jpg" alt="구달 [산리오 콜라보] 구달 맑은 어성초 진정 수분 선크림 50+50ml 기획 (+시나모롤 카드스티커)" loading="lazy">
+          <img src="img/products/81.jpg" alt="구달 맑은 어성초 진정 수분 선크림 ml" loading="lazy">
           <span class="move">&#9650; 3</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2308,7 +2259,7 @@ main:is(
       <span class="no" data-review-rank="92" data-rating-rank="22"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/14.webp" alt="디어스킨 리얼모달 생리대 7종 택1" loading="lazy">
+          <img src="img/products/14.webp" alt="디어스킨 리얼모달 생리대" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>8</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>모달 커버</b>부드럽고 순한 착용감</span></div>
@@ -2332,7 +2283,7 @@ main:is(
       <span class="no" data-review-rank="93" data-rating-rank="23"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/79.jpg" alt="블랑네이처 [여드름 기능성] 블랑네이처 아크네 클렌징 폼 단품/기획" loading="lazy">
+          <img src="img/products/79.jpg" alt="블랑네이처 아크네 클렌징 폼" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>살리실산</b>여드름 케어</span></div>
@@ -2356,7 +2307,7 @@ main:is(
       <span class="no" data-review-rank="51" data-rating-rank="52"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/77.jpg" alt="스킨푸드 [1+1/한정기획] 스킨푸드 캐롯 카로틴 카밍 워터 패드 60매 더블기획 (+PDRN 패드 2매*3)" loading="lazy">
+          <img src="img/products/77.jpg" alt="스킨푸드 캐롯 카로틴 카밍 워터 패드" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>PDRN</b>재생 · 탄력</span></div>
@@ -2380,7 +2331,7 @@ main:is(
       <span class="no" data-review-rank="65" data-rating-rank="14"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/80.jpg" alt="이즈앤트리 [호빵맨 콜라보] 이즈앤트리 참마 비건 밀크 클렌저 220ml 리필 기획 (+리필 200ml +헤어핀*2ea)" loading="lazy">
+          <img src="img/products/80.jpg" alt="이즈앤트리 참마 비건 밀크 클렌저" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2405,7 +2356,7 @@ main:is(
       <span class="no" data-review-rank="35" data-rating-rank="44"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/82.jpg" alt="달바 [쿨톤보정] 달바 퍼플 톤업 선크림 듀오 기획 (50ml+50ml)" loading="lazy">
+          <img src="img/products/82.jpg" alt="달바 퍼플 톤업 선크림 듀오" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>22</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2430,7 +2381,7 @@ main:is(
       <span class="no" data-review-rank="40" data-rating-rank="88"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/78.jpg" alt="넘버즈인 [NEW] 넘버즈인 프렙 버블팩 4종 중 택1 (화잘먹/화잘킵/생기토닝/광채볼륨)" loading="lazy">
+          <img src="img/products/78.jpg" alt="넘버즈인 프렙 버블팩 중" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>24</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
@@ -2454,7 +2405,7 @@ main:is(
       <span class="no" data-review-rank="112" data-rating-rank="110"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/99.jpg" alt="블랑네이처 블랑네이처 9배 어성초 버블클렌징 밀크 기획(150ml + 30ml)/단품" loading="lazy">
+          <img src="img/products/99.jpg" alt="블랑네이처 9배 어성초 버블클렌징 밀크" loading="lazy">
           <span class="move">&#9650; 1</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2479,7 +2430,7 @@ main:is(
       <span class="no" data-review-rank="32" data-rating-rank="86"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/113.jpg" alt="스킨1004 [1위선세럼/미니증정] 스킨1004 마다가스카르 센텔라 히알루-시카 워터핏 선세럼 기획(50ml+50ml+15ml)" loading="lazy">
+          <img src="img/products/113.jpg" alt="스킨1004 마다가스카르 센텔라 히알루-시카 워터핏 선세럼" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2504,7 +2455,7 @@ main:is(
       <span class="no" data-review-rank="24" data-rating-rank="4"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/85.jpg" alt="넘버즈인 [대용량140매] 넘버즈인 토너패드 리필기획 중 택 1 (1번/3번/5번)" loading="lazy">
+          <img src="img/products/85.jpg" alt="넘버즈인 토너패드 중" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>1</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
@@ -2528,7 +2479,7 @@ main:is(
       <span class="no" data-review-rank="23" data-rating-rank="84"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/100.jpg" alt="바닐라코 [10월 올영픽/조앤프렌즈] 바닐라코 클린잇제로 오리지널 클렌징밤 100ml 더블기획 (+3ml*4ea+복조리 파우치)" loading="lazy">
+          <img src="img/products/100.jpg" alt="바닐라코 클린잇제로 오리지널 클렌징밤" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2553,7 +2504,7 @@ main:is(
       <span class="no" data-review-rank="106" data-rating-rank="26"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/114.jpg" alt="넘버즈인 [파데프리] 넘버즈인 3번 도자기결 톤업베이지 선크림 50ml 더블기획 2종 (블러/글로우)" loading="lazy">
+          <img src="img/products/114.jpg" alt="넘버즈인 3번 도자기결 톤업베이지 선크림" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -2577,7 +2528,7 @@ main:is(
       <span class="no" data-review-rank="8" data-rating-rank="79"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/86.jpg" alt="메노킨 [1위 원조 버블팩] 메노킨 30초 퀵 버블 마스크 6종 택1(+30ml 증정)" loading="lazy">
+          <img src="img/products/86.jpg" alt="메노킨 30초 퀵 버블 마스크" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2602,7 +2553,7 @@ main:is(
       <span class="no" data-review-rank="94" data-rating-rank="24"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/101.jpg" alt="아누아 [피지쏙] 아누아 어성초 포어 컨트롤 클렌징오일 200ml 2입" loading="lazy">
+          <img src="img/products/101.jpg" alt="아누아 어성초 포어 컨트롤 클렌징오일" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>어성초</b>진정</span></div>
@@ -2626,7 +2577,7 @@ main:is(
       <span class="no" data-review-rank="58" data-rating-rank="12"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/115.jpg" alt="닥터지 [무기자차/증정기획] 닥터지 그린 마일드 업 선 플러스 50ml 기획 (50+20ml) (선크림)" loading="lazy">
+          <img src="img/products/115.jpg" alt="닥터지 그린 마일드 업 선 플러스" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -2650,7 +2601,7 @@ main:is(
       <span class="no" data-review-rank="122" data-rating-rank="77"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/87.jpg" alt="아비브 아비브 패드 4종 단품/기획 골라담기 (어성초/수분초/글루타치온좀/LHA)" loading="lazy">
+          <img src="img/products/87.jpg" alt="아비브 패드 골라담기" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2675,7 +2626,7 @@ main:is(
       <span class="no" data-review-rank="104" data-rating-rank="71"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/102.jpg" alt="휩드 [500만개판매/촉촉보습장벽] 휩드 비건 팩클렌저 130g 기획 4종 (무화버터/머그트리/피치페어/유자몽)" loading="lazy">
+          <img src="img/products/102.jpg" alt="휩드 비건 팩클렌저" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>8</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2700,7 +2651,7 @@ main:is(
       <span class="no" data-review-rank="121" data-rating-rank="114"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/88.jpg" alt="마몽드 [10월 올영픽/수분광채화잘먹] 마몽드 리퀴드 마스크 +80ml 리필 기획 (로즈/피어니)" loading="lazy">
+          <img src="img/products/88.jpg" alt="마몽드 리퀴드 마스크" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>22</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
@@ -2724,7 +2675,7 @@ main:is(
       <span class="no" data-review-rank="38" data-rating-rank="46"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/103.jpg" alt="센카 [10월 올영픽/대용량/양파쿵야] 센카 퍼펙트 휩 페이셜 워시 150g 더블기획 (+15g+인형키링)" loading="lazy">
+          <img src="img/products/103.jpg" alt="센카 퍼펙트 휩 페이셜 워시" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>약산성 세정 성분</b>저자극 세정</span></div>
@@ -2748,7 +2699,7 @@ main:is(
       <span class="no" data-review-rank="61" data-rating-rank="57"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/116.jpg" alt="VT [1등썬/끈적임ZERO] VT 피디알엔 에어 클라우드 선스크린 (기획/단품)" loading="lazy">
+          <img src="img/products/116.jpg" alt="VT 피디알엔 에어 클라우드 선스크린" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -2772,7 +2723,7 @@ main:is(
       <span class="no" data-review-rank="89" data-rating-rank="100"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/89.jpg" alt="아로셀 [10월 올영픽/3초화잘먹] 아로셀 슈퍼 콜라겐 버블 세럼 마스크 90회분 기획(+30회분 증정)" loading="lazy">
+          <img src="img/products/89.jpg" alt="아로셀 슈퍼 콜라겐 버블 세럼 마스크 90회분" loading="lazy">
           <span class="move">&#9650; 2</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>8</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2797,7 +2748,7 @@ main:is(
       <span class="no" data-review-rank="28" data-rating-rank="85"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/104.jpg" alt="라곰 [수분민감] 라곰 셀럽 마이크로 폼 클렌저 120ml" loading="lazy">
+          <img src="img/products/104.jpg" alt="라곰 셀럽 마이크로 폼 클렌저" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>약산성 세정 성분</b>저자극 세정</span></div>
@@ -2821,7 +2772,7 @@ main:is(
       <span class="no" data-review-rank="46" data-rating-rank="48"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/90.jpg" alt="바이오던스 [리센느 원이PICK/1등 겔 마스크] 바이오던스 리얼 딥 마스크 4매 (콜라겐/세라놀/PDRN/씨켈프/비타)" loading="lazy">
+          <img src="img/products/90.jpg" alt="바이오던스 리얼 딥 마스크" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>PDRN</b>재생 · 탄력</span></div>
@@ -2845,7 +2796,7 @@ main:is(
       <span class="no" data-review-rank="12" data-rating-rank="117"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/105.jpg" alt="풀리 [단독기획] 풀리 비건 팩클렌저 기획 3종 택1 (그린/레드/쌀반죽)" loading="lazy">
+          <img src="img/products/105.jpg" alt="풀리 비건 팩클렌저" loading="lazy">
           <span class="move">&#9650; 5</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>1</b>위험</span></li></ul>
@@ -2870,7 +2821,7 @@ main:is(
       <span class="no" data-review-rank="85" data-rating-rank="97"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/117.jpg" alt="아떼 [민감피부안심] 아떼 무기자차 선크림 50ml 기획/단품" loading="lazy">
+          <img src="img/products/117.jpg" alt="아떼 무기자차 선크림" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2895,7 +2846,7 @@ main:is(
       <span class="no" data-review-rank="52" data-rating-rank="90"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/91.jpg" alt="하우스오브비 [올영 1위 마스크팩 / 370만장 돌파]하우스오브비 페이스필름 4매 (글루타치온/피디알엔)" loading="lazy">
+          <img src="img/products/91.jpg" alt="하우스오브비 페이스필름" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2920,7 +2871,7 @@ main:is(
       <span class="no" data-review-rank="69" data-rating-rank="17"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/106.jpg" alt="일소 [1등피지클리너] 일소 슈퍼 멜팅 세범 소프트너 150g 기획 (+착붙솜40매+모공팩1매)" loading="lazy">
+          <img src="img/products/106.jpg" alt="일소 슈퍼 멜팅 세범 소프트너" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>8</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>약산성 세정 성분</b>저자극 세정</span></div>
@@ -2944,7 +2895,7 @@ main:is(
       <span class="no" data-review-rank="116" data-rating-rank="28"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/118.jpg" alt="도미나스 [10월 올영픽] 도미나스 기미쿠션 Rx 15g (21호 라이트 베이지 / 23호 내추럴 베이지)" loading="lazy">
+          <img src="img/products/118.jpg" alt="도미나스 기미쿠션 Rx" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -2968,7 +2919,7 @@ main:is(
       <span class="no" data-review-rank="47" data-rating-rank="49"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/92.jpg" alt="메디힐 [8+1매 단독기획] 메디힐 하이퍼 겔마스크 4종 (콜라겐/PDRN/마데카소사이드/히알루론산)" loading="lazy">
+          <img src="img/products/92.jpg" alt="메디힐 하이퍼 겔마스크" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -2993,7 +2944,7 @@ main:is(
       <span class="no" data-review-rank="74" data-rating-rank="19"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/107.jpg" alt="듀이트리 [이리유PICK/대용량] 듀이트리 하이아미노 올 클렌징 밀크 200ml 리필 기획 (+리필 200ml+20ml)" loading="lazy">
+          <img src="img/products/107.jpg" alt="듀이트리 하이아미노 올 클렌징 밀크" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3018,7 +2969,7 @@ main:is(
       <span class="no" data-review-rank="39" data-rating-rank="87"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/119.jpg" alt="토리든 [물막선크림] 토리든 다이브인 모이스처 선크림 60ml 1+1 기획" loading="lazy">
+          <img src="img/products/119.jpg" alt="토리든 다이브인 모이스처 선크림" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>23</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -3042,7 +2993,7 @@ main:is(
       <span class="no" data-review-rank="67" data-rating-rank="16"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/83.jpg" alt="정샘물 [1위 쿠션] 정샘물 에센셜 스킨 누더 쿠션 한정 기획" loading="lazy">
+          <img src="img/products/83.jpg" alt="정샘물 에센셜 스킨 누더 쿠션 한정" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>23</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>커버 파우더</b>밀착 커버</span></div>
@@ -3066,7 +3017,7 @@ main:is(
       <span class="no" data-review-rank="59" data-rating-rank="91"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/93.jpg" alt="토르홉 [NEW튜브기획/온열소금팩] 토르홉 사우난지앙 솔트마스크 90g+15g 기획" loading="lazy">
+          <img src="img/products/93.jpg" alt="토르홉 사우난지앙 솔트마스크" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3091,7 +3042,7 @@ main:is(
       <span class="no" data-review-rank="81" data-rating-rank="96"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/120.jpg" alt="비플레인 [리뷰이벤트/촉촉보라톤업] 비플레인 선뮤즈 톤업 앤 코렉팅 선크림 50ml 1+1 기획" loading="lazy">
+          <img src="img/products/120.jpg" alt="비플레인 선뮤즈 톤업 앤 코렉팅 선크림" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3116,7 +3067,7 @@ main:is(
       <span class="no" data-review-rank="91" data-rating-rank="21"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/75.jpg" alt="아이디얼포맨 [8년 연속 1등] 아이디얼포맨 퍼펙트 올인원 150ml 단품/기획" loading="lazy">
+          <img src="img/products/75.jpg" alt="아이디얼포맨 퍼펙트 올인원" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>글리세린</b>수분 공급</span></div>
@@ -3140,7 +3091,7 @@ main:is(
       <span class="no" data-review-rank="7" data-rating-rank="35"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/84.jpg" alt="얼터너티브스테레오 [재입고완료] 얼터너티브스테레오 립 포션 카라멜 글레이즈 8ml" loading="lazy">
+          <img src="img/products/84.jpg" alt="얼터너티브스테레오 립 포션 카라멜 글레이즈" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3165,7 +3116,7 @@ main:is(
       <span class="no" data-review-rank="111" data-rating-rank="27"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/108.jpg" alt="그레이멜린 그레이멜린 카놀라크레이지 클렌징오일 더블 기획" loading="lazy">
+          <img src="img/products/108.jpg" alt="그레이멜린 카놀라크레이지 클렌징오일" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>19</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3190,7 +3141,7 @@ main:is(
       <span class="no" data-review-rank="11" data-rating-rank="116"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/76.jpg" alt="넘버즈인 [24시간파우더] 넘버즈인 1번 판토텐산 스킨케어100 블러파우더 기획 (+퍼프 1개)" loading="lazy">
+          <img src="img/products/76.jpg" alt="넘버즈인 1번 판토텐산 스킨케어100 블러파우더" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>23</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>판토텐산</b>진정</span></div>
@@ -3214,7 +3165,7 @@ main:is(
       <span class="no" data-review-rank="88" data-rating-rank="67"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/94.jpg" alt="이옴 이옴 트러블 패치 마스크 3매" loading="lazy">
+          <img src="img/products/94.jpg" alt="이옴 트러블 패치 마스크" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3239,7 +3190,7 @@ main:is(
       <span class="no" data-review-rank="48" data-rating-rank="89"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/109.jpg" alt="닥터지 [호빵맨 콜라보] 닥터지 브라이트닝 필링젤 120g 한정 기획 (+60g +히알시카세럼 2ml +호빵맨 손거울)" loading="lazy">
+          <img src="img/products/109.jpg" alt="닥터지 브라이트닝 필링젤 한정" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>16</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>병풀 추출물</b>진정</span></div>
@@ -3263,7 +3214,7 @@ main:is(
       <span class="no" data-review-rank="72" data-rating-rank="18"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/121.jpg" alt="헤라 [19년 연속 1위] 헤라 UV프로텍터 6종 기획/단품" loading="lazy">
+          <img src="img/products/121.jpg" alt="헤라 UV프로텍터" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3288,7 +3239,7 @@ main:is(
       <span class="no" data-review-rank="66" data-rating-rank="15"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/95.jpg" alt="아누아 [수지pick/단독기획] 아누아 데일리케어 마스크팩 5매 기획 8종(+1매 or +2매 추가 증정)" loading="lazy">
+          <img src="img/products/95.jpg" alt="아누아 데일리케어 마스크팩" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3313,7 +3264,7 @@ main:is(
       <span class="no" data-review-rank="41" data-rating-rank="47"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/110.jpg" alt="메이크프렘 [박지훈PICK/리필기획] 메이크프렘 세이프 미 릴리프 모이스처 클렌징밀크 기획 (200ml+100ml 리필)" loading="lazy">
+          <img src="img/products/110.jpg" alt="메이크프렘 세이프 미 릴리프 모이스처 클렌징밀크" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>18</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3338,7 +3289,7 @@ main:is(
       <span class="no" data-review-rank="50" data-rating-rank="51"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/122.jpg" alt="오브제 [덱스PICK/러너 필수템] 오브제 액티브 스웨트프루프 선스틱 18g" loading="lazy">
+          <img src="img/products/122.jpg" alt="오브제 액티브 스웨트프루프 선스틱" loading="lazy">
           <span class="move">&#9650; 3</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>19</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3363,7 +3314,7 @@ main:is(
       <span class="no" data-review-rank="95" data-rating-rank="25"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/111.jpg" alt="닥터지 [호빵맨 콜라보] 닥터지 그린딥 포어 클렌징밤 100ml 2입 한정 기획 (+호빵맨 메모지)" loading="lazy">
+          <img src="img/products/111.jpg" alt="닥터지 그린딥 포어 클렌징밤 한정" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>17</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3388,7 +3339,7 @@ main:is(
       <span class="no" data-review-rank="18" data-rating-rank="83"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/123.jpg" alt="풀리 [레이PICK/수분코팅] 풀리 쌀 세라 수분 선크림 50ml (단품/기획)" loading="lazy">
+          <img src="img/products/123.jpg" alt="풀리 쌀 세라 수분 선크림" loading="lazy">
           <span class="move">&#9650; 4</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3413,7 +3364,7 @@ main:is(
       <span class="no" data-review-rank="97" data-rating-rank="101"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/96.jpg" alt="메디힐 [러기지택 증정] 메디힐 콜라겐 캡슐 패치 60+60매 더블 기획 3종 (레티놀 서울에디션, 비타민C, PDRN)" loading="lazy">
+          <img src="img/products/96.jpg" alt="메디힐 콜라겐 캡슐 패치" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3438,7 +3389,7 @@ main:is(
       <span class="no" data-review-rank="34" data-rating-rank="43"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/124.jpg" alt="브링그린 [쿨링진정] 브링그린 알로에 97% 수딩젤 (2입/쿨러/단품)" loading="lazy">
+          <img src="img/products/124.jpg" alt="브링그린 알로에 97% 수딩젤" loading="lazy">
           <span class="move">&#9650; 6</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>3</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3463,7 +3414,7 @@ main:is(
       <span class="no" data-review-rank="118" data-rating-rank="29"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/97.jpg" alt="토리든 [1+1] 토리든 패드 다이브인/밸런스풀 리필기획 2종 택 1(수분/진정)" loading="lazy">
+          <img src="img/products/97.jpg" alt="토리든 패드 다이브인 밸런스풀" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
@@ -3487,7 +3438,7 @@ main:is(
       <span class="no" data-review-rank="14" data-rating-rank="37"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/112.jpg" alt="프리메라 [10월 올영픽/1+1 기획] 프리메라 마일드 앤 퍼펙트 클렌징 오일 투 폼 200ml 리필기획/단품" loading="lazy">
+          <img src="img/products/112.jpg" alt="프리메라 마일드 앤 퍼펙트 클렌징 오일 투 폼" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>1</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>약산성 세정 성분</b>저자극 세정</span></div>
@@ -3511,7 +3462,7 @@ main:is(
       <span class="no" data-review-rank="83" data-rating-rank="124"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/125.jpg" alt="AHC AHC 마스터즈 아쿠아리치 선크림 50ml 1+1 기획" loading="lazy">
+          <img src="img/products/125.jpg" alt="AHC 마스터즈 아쿠아리치 선크림" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>15</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -3535,7 +3486,7 @@ main:is(
       <span class="no" data-review-rank="56" data-rating-rank="54"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/126.jpg" alt="오브제 [1등 기름종이선스틱] 오브제 포어 제로 오일 컨트롤 선스틱 18g 단품/기획" loading="lazy">
+          <img src="img/products/126.jpg" alt="오브제 포어 제로 오일 컨트롤 선스틱" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -3559,7 +3510,7 @@ main:is(
       <span class="no" data-review-rank="80" data-rating-rank="65"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/98.jpg" alt="스트라이덱스 [각질/피지/SNS클겨템] 스트라이덱스 센시티브 패드 55매" loading="lazy">
+          <img src="img/products/98.jpg" alt="스트라이덱스 센시티브 패드" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>20</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
@@ -3583,7 +3534,7 @@ main:is(
       <span class="no" data-review-rank="9" data-rating-rank="36"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/127.jpg" alt="차앤박 [보송핑크톤업] 차앤박 애프터레이 톤업 프로텍션 선 50ml 더블기획" loading="lazy">
+          <img src="img/products/127.jpg" alt="차앤박 애프터레이 톤업 프로텍션 선" loading="lazy">
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
             <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
@@ -3607,7 +3558,7 @@ main:is(
       <span class="no" data-review-rank="102" data-rating-rank="105"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
-          <img src="img/products/128.jpg" alt="체이싱래빗 [산리오캐릭터즈 콜라보] 체이싱래빗 올어바웃 커버크림 한정기획(글로우/퍼플)" loading="lazy">
+          <img src="img/products/128.jpg" alt="체이싱래빗 올어바웃 커버크림" loading="lazy">
           <span class="move">NEW</span>
           <div class="info">
             <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>13</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
@@ -3635,12 +3586,10 @@ main:is(
 
 <footer></footer>
 
-<!-- 장바구니 아이콘 (카드 담기 버튼, 떠 있는 장바구니에서 재사용) -->
 <svg width="0" height="0" style="position:absolute">
   <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 4h2l2.4 11h11L21 8H6.2"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/>
   </symbol>
-  <!-- 호버 정보창 아이콘: 성분 안전/주의/위험, 핵심 성분, 피부타입, 추천 대상 -->
   <symbol id="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
   <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v9M12 19h.01"/></symbol>
   <symbol id="i-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></symbol>
@@ -3652,7 +3601,6 @@ main:is(
 </svg>
 <a href="cart.html" class="fcart" aria-label="장바구니"><svg><use href="#i-cart"/></svg><em>3</em></a>
 
-<!-- 준비 중 안내: 링크(href="#detail-soon")를 누르면 :target으로 잠깐 떴다 사라짐 (common.css .soon) -->
 <div class="soon" id="detail-soon" role="status">상세 페이지는 준비 중이에요</div>
 
 </body>
