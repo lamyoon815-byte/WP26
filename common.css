@@ -90,7 +90,7 @@ button {
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
-  font-size: var(--fs-md);
+  font-size: var(--fs-base);
   color: var(--c-text-sub);
 }
 
