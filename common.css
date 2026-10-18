@@ -15,6 +15,12 @@
   --c-point-light: #e8efff;
   --c-white: #ffffff;
   --c-text-disabled: #9aa4b2;
+  --c-shadow: rgb(17 17 17 / 20%);
+  --c-review-tag: #6bd4d2;
+  --c-risk-low: #63b7c9;
+  --c-risk-mid: #f4bd45;
+  --c-risk-high: #e47461;
+  --c-risk-none: #cfd3d6;
 
   --fs-xl: 24px;
   --fs-lg: 20px;
