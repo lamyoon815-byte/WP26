@@ -205,25 +205,6 @@ button {
   transform: scaleX(1);
 }
 
-#toast {
-  position: fixed;
-  left: 50%;
-  bottom: 40px;
-  transform: translateX(-50%);
-  background: var(--c-main);
-  color: var(--c-white);
-  padding: 12px 24px;
-  border-radius: 24px;
-  font-size: var(--fs-base);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-  z-index: 100;
-}
-#toast.show {
-  opacity: 1;
-}
-
 .soon {
   position: fixed;
   left: 50%;
@@ -297,16 +278,6 @@ button {
 .b-point {
   background: var(--c-point);
 }
-.b-safe {
-  background: var(--c-safe);
-}
-.b-caution {
-  background: var(--c-caution);
-  color: var(--c-main);
-}
-.b-danger {
-  background: var(--c-danger);
-}
 
 .cards {
   display: grid;
@@ -330,11 +301,6 @@ button {
   height: 100%;
   object-fit: cover;
 }
-.card .img .badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
 
 .card .brand {
   margin-top: 12px;
@@ -346,12 +312,6 @@ button {
   font-size: var(--fs-base);
   line-height: 1.4;
 }
-.card .old {
-  margin-top: 8px;
-  font-size: var(--fs-sm);
-  color: var(--c-text-disabled);
-  text-decoration: line-through;
-}
 .card .price {
   font-size: var(--fs-lg);
   font-weight: 700;
@@ -359,30 +319,6 @@ button {
 .card .price span {
   color: var(--c-sale);
   margin-right: 6px;
-}
-.card .risk {
-  margin-top: 8px;
-}
-
-.sec-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin: 40px 0 16px;
-}
-.sec-head h2 {
-  margin: 0;
-  font-size: var(--fs-lg);
-}
-.sec-head .more {
-  font-size: var(--fs-base);
-  color: var(--c-text-sub);
-}
-
-.box-sub {
-  background: var(--c-bg-sub);
-  padding: 16px 20px;
-  border-radius: var(--radius);
 }
 
 .title-best {
