@@ -166,6 +166,653 @@
           </div>
         </div>
       </section>
+
+      <!-- 첨부 HTML의 상품 목록 -->
+      <section
+        id="home-best"
+        class="home-best"
+        aria-labelledby="home-best-title"
+      >
+        <div class="home-recommend-header">
+          <!-- 기존 section의 aria-labelledby와 연결되는 제목 -->
+          <h2 id="home-best-title" class="home-sr-only">오늘의 뷰티 추천</h2>
+
+          <!-- 추천 메뉴: 공통 탭 스타일 사용 -->
+          <nav class="tabs home-recommend-tabs" aria-label="뷰티 추천 메뉴">
+            <a class="tab on" href="#home-best" aria-current="true">
+              나를 위한 추천 상품
+            </a>
+            <a class="tab" href="#">피부 고민별</a>
+            <a class="tab" href="#">뷰티 성분별</a>
+          </nav>
+
+          <!-- 가로 추천 상품 카테고리: 좁은 화면에서는 좌우 스크롤 -->
+          <nav
+            class="home-recommend-categories"
+            aria-label="추천 상품 카테고리"
+          >
+            <ul class="home-recommend-category-list">
+              <li>
+                <label>
+                  <input
+                    type="radio"
+                    name="home-category"
+                    value="all"
+                    checked
+                  />
+                  <span>NEW</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="skin" />
+                  <img src="images/category-skincare.jpg" alt="" />
+                  <span>스킨케어</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="mask" />
+                  <img src="img/products/1.webp" alt="" />
+                  <span>마스크팩</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="clean" />
+                  <img src="images/category-cleansing.jpg" alt="" />
+                  <span>클렌징</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="sun" />
+                  <img src="images/category-suncare.jpg" alt="" />
+                  <span>선케어</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="makeup" />
+                  <img src="images/category-makeup.jpg" alt="" />
+                  <span>메이크업</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="nail" />
+                  <img src="images/category-nail.jpg" alt="" />
+                  <span>네일</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="tool" />
+                  <img src="images/category-tools.jpg" alt="" />
+                  <span>뷰티소품</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="mens" />
+                  <img src="images/category-men.jpg" alt="" />
+                  <span>맨즈케어</span>
+                </label>
+              </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="home-category" value="perfume" />
+                  <img src="images/category-perfume.jpg" alt="" />
+                  <span>향수</span>
+                </label>
+              </li>
+
+              <li id="home-recommend-hair">
+                <label>
+                  <input type="radio" name="home-category" value="hair" />
+                  <img src="images/category-hair.jpg" alt="" />
+                  <span>헤어케어</span>
+                </label>
+              </li>
+            </ul>
+
+            <!-- 클릭 기능이 없는 장식용 화살표 -->
+            <span class="home-category-arrow" aria-hidden="true"></span>
+          </nav>
+        </div>
+        <!-- home-recommend-header 끝 -->
+
+        <!-- 상품 목록 시작 -->
+        <div class="cards home-filter-products">
+          <article class="card" data-cat="hair">
+            <div class="img">
+              <img src="img/products/33.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">어노브</div>
+            <div class="name">
+              [10월올영픽/4년 연속 1위] 어노브 딥 데미지 리페어 헤어 마스크
+              (트리트먼트/헤어팩) 320ml 더블/듀오 기획
+            </div>
+            <div class="price"><span>31%</span>28,900원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/1.webp" alt="" loading="lazy" />
+            </div>
+            <div class="brand">메디힐</div>
+            <div class="name">에센셜 마스크팩 10+1매 기획</div>
+            <div class="price"><span>50%</span>10,000원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/34.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">크리니크</div>
+            <div class="name">
+              [10월 올영픽/1+1 기획] 크리니크 쏙보습크림 50ml 단품/기획
+            </div>
+            <div class="price"><span>20%</span>39,200원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/35.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">셀리맥스</div>
+            <div class="name">
+              [흔적,기미,미백/TXA] 셀리맥스 트라넥삼산 잡티 크림 35ml 기획
+              (+14ml)
+            </div>
+            <div class="price"><span>35%</span>22,900원</div>
+          </article>
+
+          <article class="card" data-cat="body">
+            <div class="img">
+              <img src="img/products/36.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">티엘라</div>
+            <div class="name">
+              [NEW 말차향 출시] 티엘라 퍼퓸 너리싱 바디크림 200ml 4종 단품/기획
+              (+바디크림 증정)
+            </div>
+            <div class="price"><span>13%</span>27,740원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/37.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">메디힐</div>
+            <div class="name">
+              [10월 올영픽/1위] 메디힐 더마 토너패드 100+100매 7종 골라담기
+            </div>
+            <div class="price"><span>29%</span>28,500원</div>
+          </article>
+
+          <article class="card" data-cat="body">
+            <div class="img">
+              <img src="img/products/38.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">일리윤</div>
+            <div class="name">
+              일리윤 프레쉬모이스춰 스크럽워시 400ml*2 기획
+            </div>
+            <div class="price"><span>34%</span>16,400원</div>
+          </article>
+
+          <article class="card" data-cat="body">
+            <div class="img">
+              <img src="img/products/39.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">도브</div>
+            <div class="name">
+              [NEW/금목서향 출시] 도브 바디 스크럽 298g 6종 택 1
+            </div>
+            <div class="price"><span>41%</span>10,500원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/40.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">홀리카홀리카</div>
+            <div class="name">
+              홀리카홀리카 마이페이브 피스 아이섀도우/젤테일/피스 빔/피스 밤
+            </div>
+            <div class="price"><span>18%</span>4,900원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/9.webp" alt="" loading="lazy" />
+            </div>
+            <div class="brand">아누아</div>
+            <div class="name">
+              [한정기획] 피디알엔 히알루론산 수분 캡슐 미스트 100ml 2입 기획
+            </div>
+            <div class="price"><span>35%</span>29,900원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/41.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">퓌</div>
+            <div class="name">
+              [얼그레이에디션/10월 올영픽] 퓌 3D 볼류밍 글로스 (기획/단품)
+            </div>
+            <div class="price"><span>29%</span>12,800원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/43.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">에스쁘아</div>
+            <div class="name">
+              [10월 올영픽/오트라떼 에디션] 에스쁘아 이지 웨어 아이 팔레트 3
+              colors 오트라떼/로즈라떼/베리라떼
+            </div>
+            <div class="price"><span>19%</span>25,900원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/4.webp" alt="" loading="lazy" />
+            </div>
+            <div class="brand">클리오</div>
+            <div class="name">
+              [NO.1 아이라이너] 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블기획
+            </div>
+            <div class="price"><span>30%</span>7,000원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/44.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">라운드랩</div>
+            <div class="name">
+              [1+1/1등썬] 라운드랩 자작나무 수분 선크림 50ml 1+1 기획 (+수분
+              선세럼 8ml)
+            </div>
+            <div class="price">24,500원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/45.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">웰라쥬</div>
+            <div class="name">
+              [속건조필수템] 웰라쥬 리얼 히알루로닉 블루 100 앰플 100ml 기획
+              (+원데이키트2ea)
+            </div>
+            <div class="price"><span>34%</span>19,900원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/46.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">에스네이처</div>
+            <div class="name">
+              [수분천재굿즈증정/1등 모공 수분천재크림] 에스네이처 아쿠아
+              스쿠알란 수분크림 60ml 기획(+크림 30ml 증정)
+            </div>
+            <div class="price"><span>36%</span>17,900원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/47.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">터치인솔</div>
+            <div class="name">
+              [픽서증정기획]터치인솔 노포어블럼 프라이머 프렙 30ml
+            </div>
+            <div class="price"><span>46%</span>13,500원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/48.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">풀리</div>
+            <div class="name">
+              [저자극/피지지우개] 풀리 멜팅크림 투오일 50ml 단품/기획 2종 택1
+            </div>
+            <div class="price">17,500원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/11.webp" alt="" loading="lazy" />
+            </div>
+            <div class="brand">토니모리</div>
+            <div class="name">
+              [NEW 버터쿠키 에디션] 토니모리 워터풀 버터 틴트
+            </div>
+            <div class="price"><span>31%</span>11,000원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/49.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">에스쁘아</div>
+            <div class="name">
+              [10월 올영픽 단독/오트라떼 블러쉬 본품 증정] 에스쁘아 실크 스킨
+              레이어 쿠션 7 colors 본품+리필
+            </div>
+            <div class="price"><span>23%</span>30,900원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/50.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">셀리맥스</div>
+            <div class="name">
+              [단독기획/모공탄력] 셀리맥스 더 비타 A 레티날 샷 타이트닝 부스터
+              15ml 기획(+3ml)
+            </div>
+            <div class="price"><span>23%</span>23,100원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/21.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">리쥬란</div>
+            <div class="name">
+              [피부결 리셋패드] 리쥬란 더마 힐러 포어 타이트닝 토너 패드
+              60매(단품/기획)
+            </div>
+            <div class="price"><span>19%</span>24,900원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/51.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">메디큐브</div>
+            <div class="name">
+              [착붙앰플팩/5+1매 단독기획] 메디큐브 앰플 마스크 4종 5+1매 기획
+            </div>
+            <div class="price"><span>67%</span>4,990원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/5.webp" alt="" loading="lazy" />
+            </div>
+            <div class="brand">에스트라</div>
+            <div class="name">
+              아토베리어365 캡슐토너 300ml 기획 (+수딩크림 30ml+세라-히알 앰플
+              7ml)
+            </div>
+            <div class="price"><span>25%</span>22,500원</div>
+          </article>
+
+          <article class="card" data-cat="skin">
+            <div class="img">
+              <img src="img/products/52.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">토리든</div>
+            <div class="name">
+              토리든 다이브인 저분자 히알루론산 세럼 50ml 리필 기획 (+50ml
+              리필+자석인형) (시나모롤)
+            </div>
+            <div class="price"><span>29%</span>25,650원</div>
+          </article>
+
+          <article class="card" data-cat="makeup">
+            <div class="img">
+              <img src="img/products/23.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">에스쁘아</div>
+            <div class="name">
+              [1등 글로우 파데/웨딩피치] 에스쁘아 비글로우 파운데이션 30g 10
+              colors
+            </div>
+            <div class="price"><span>20%</span>33,500원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/55.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">마녀공장</div>
+            <div class="name">
+              [10월 올영픽] 마녀공장 퓨어 소이빈 클렌징오일 200ml 2입 기획
+              (+25ml+폼20ml)
+            </div>
+            <div class="price"><span>34%</span>24,400원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/20.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">비플레인</div>
+            <div class="name">
+              [말끔모공/국민클폼]비플레인 녹두 약산성 클렌징폼기획 160ml+40ml
+              기획
+            </div>
+            <div class="price"><span>15%</span>18,600원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/61.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">바이오더마</div>
+            <div class="name">바이오더마 센시비오 H2O 850ml (클렌징워터)</div>
+            <div class="price"><span>31%</span>25,900원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/64.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">프롬리에</div>
+            <div class="name">
+              [역대 최대 용량]프롬리에 EGF 워터 화잘먹 선앰플 56ml+30ml
+              기획/단품
+            </div>
+            <div class="price"><span>40%</span>19,800원</div>
+          </article>
+
+          <article class="card" data-cat="hair">
+            <div class="img">
+              <img src="img/products/65.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">청미정</div>
+            <div class="name">
+              [10월 올영픽/두피케어] 청미정 다시마 샴푸 500ml 기획/단품
+              (문어괄사 증정)
+            </div>
+            <div class="price"><span>17%</span>23,650원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/81.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">구달</div>
+            <div class="name">
+              [산리오 콜라보] 구달 맑은 어성초 진정 수분 선크림 50+50ml 기획
+              (+시나모롤 카드스티커)
+            </div>
+            <div class="price"><span>14%</span>18,900원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/79.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">블랑네이처</div>
+            <div class="name">
+              [여드름 기능성] 블랑네이처 아크네 클렌징 폼 단품/기획
+            </div>
+            <div class="price"><span>10%</span>21,400원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/77.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">스킨푸드</div>
+            <div class="name">
+              [1+1/한정기획] 스킨푸드 캐롯 카로틴 카밍 워터 패드 60매 더블기획
+              (+PDRN 패드 2매*3)
+            </div>
+            <div class="price"><span>38%</span>26,200원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/80.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">이즈앤트리</div>
+            <div class="name">
+              [호빵맨 콜라보] 이즈앤트리 참마 비건 밀크 클렌저 220ml 리필 기획
+              (+리필 200ml +헤어핀*2ea)
+            </div>
+            <div class="price"><span>32%</span>21,000원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/82.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">달바</div>
+            <div class="name">
+              [쿨톤보정] 달바 퍼플 톤업 선크림 듀오 기획 (50ml+50ml)
+            </div>
+            <div class="price"><span>30%</span>35,700원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/78.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">넘버즈인</div>
+            <div class="name">
+              [NEW] 넘버즈인 프렙 버블팩 4종 중 택1
+              (화잘먹/화잘킵/생기토닝/광채볼륨)
+            </div>
+            <div class="price"><span>30%</span>18,900원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/99.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">블랑네이처</div>
+            <div class="name">
+              블랑네이처 9배 어성초 버블 클렌징밀크 기획(150ml + 30ml)/단품
+            </div>
+            <div class="price"><span>29%</span>20,400원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/113.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">스킨1004</div>
+            <div class="name">
+              [1위선세럼/미니증정] 스킨1004 마다가스카르 센텔라 히알루-시카
+              워터핏 선세럼 기획(50ml+50ml+15ml)
+            </div>
+            <div class="price"><span>20%</span>28,000원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/85.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">넘버즈인</div>
+            <div class="name">
+              [대용량140매] 넘버즈인 토너패드 리필기획 중 택 1 (1번/3번/5번)
+            </div>
+            <div class="price"><span>36%</span>26,900원</div>
+          </article>
+
+          <article class="card" data-cat="clean">
+            <div class="img">
+              <img src="img/products/100.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">바닐라코</div>
+            <div class="name">
+              [10월 올영픽/조앤프렌즈] 바닐라코 클린잇제로 오리지널 클렌징밤
+              100ml 더블기획 (+3ml*4ea+복조리 파우치)
+            </div>
+            <div class="price"><span>36%</span>25,500원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/114.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">넘버즈인</div>
+            <div class="name">
+              [파데프리] 넘버즈인 3번 도자기결 톤업베이지 선크림 50ml 더블기획
+              2종 (블러/글로우)
+            </div>
+            <div class="price"><span>37%</span>24,500원</div>
+          </article>
+
+          <article class="card" data-cat="mask">
+            <div class="img">
+              <img src="img/products/86.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">메노킨</div>
+            <div class="name">
+              [1위 원조 버블팩] 메노킨 30초 퀵 버블 마스크 6종 택1(+30ml 증정)
+            </div>
+            <div class="price"><span>15%</span>24,100원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/115.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">닥터지</div>
+            <div class="name">
+              [무기자차/증정기획] 닥터지 그린 마일드 업 선 플러스 50ml 기획
+              (50+20ml) (선크림)
+            </div>
+            <div class="price"><span>31%</span>19,900원</div>
+          </article>
+
+          <article class="card" data-cat="sun">
+            <div class="img">
+              <img src="img/products/116.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="brand">VT</div>
+            <div class="name">
+              [1등썬/끈적임ZERO] VT 피디알엔 에어 클라우드 선스크린 (기획/단품)
+            </div>
+            <div class="price"><span>32%</span>24,500원</div>
+          </article>
+        </div>
+        <!-- 상품 목록 끝 -->
+
+        <a class="home-more-button" href="ranking.html"> 추천 상품 더보기 </a>
+      </section>
     </main>
   </body>
 </html>
