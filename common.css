@@ -391,6 +391,6 @@ footer strong,
 footer:empty::before,
 .footer:empty::before {
   display: block;
-  content: "고객센터 1544-0000\\A 연락 가능 시간: 평일 09:00 - 18:00";
+  content: "고객센터 1544-0000\A 연락 가능 시간: 평일 09:00 - 18:00";
   white-space: pre-line;
 }
