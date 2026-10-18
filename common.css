@@ -420,3 +420,27 @@ button {
     overflow-x: auto;
   }
 }
+
+/* 모든 페이지에서 사용하는 공통 고객센터 푸터 */
+footer,
+.footer {
+  margin-top: 64px;
+  padding: 28px 0;
+  border-top: 1px solid var(--c-border);
+  color: var(--c-text-sub);
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+}
+
+footer .container,
+.footer .container {
+  width: var(--w-container);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+footer strong,
+.footer strong {
+  color: var(--c-main);
+}
