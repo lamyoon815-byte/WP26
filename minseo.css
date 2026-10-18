@@ -1,16 +1,4 @@
 :root {
-  --c-main: #111111;
-  --c-nav: #343a40;
-  --c-point: #1e4fb3;
-  --c-point-dark: #173a86;
-  --c-point-light: #e8efff;
-  --c-sale: #bd3838;
-  --c-bg-sub: #f7f8fa;
-  --c-text-sub: #65718b;
-  --c-text-disabled: #9aa4b2;
-  --c-border: #cbd8f5;
-  --c-safe: #237847;
-  --c-white: #ffffff;
   --fs-xl: 24px;
   --fs-lg: 20px;
   --fs-md: 18px;
@@ -146,6 +134,53 @@ img {
 .header-cart span {
   color: var(--c-sale);
   font-weight: 700;
+}
+
+.floating-cart {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 50;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--c-point);
+  color: var(--c-white);
+  box-shadow: 0 4px 12px var(--c-shadow);
+}
+
+.floating-cart:hover {
+  background: var(--c-point-dark);
+}
+
+.floating-cart svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.floating-cart em {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 12px;
+  background: var(--c-sale);
+  color: var(--c-white);
+  font-size: var(--fs-sm);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
 }
 
 .hright {
@@ -603,6 +638,50 @@ img {
   object-fit: cover;
 }
 
+.product-photo {
+  min-height: 520px;
+}
+
+.product-thumbnails {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.product-thumbnail {
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  background: var(--c-bg-sub);
+  cursor: pointer;
+}
+
+.product-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 160ms ease;
+}
+
+.product-thumbnail:hover img,
+.product-thumbnail:focus-visible img {
+  filter: brightness(0.72);
+}
+
+.product-thumbnail.is-selected {
+  border: 2px solid var(--c-point);
+}
+
+.product-copy {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
 .product-copy .brand {
   margin: 4px 0 10px;
   color: var(--c-text-sub);
@@ -645,7 +724,7 @@ img {
 
 .rating {
   margin-right: 6px;
-  color: #e9a800;
+  color: var(--c-caution);
 }
 
 .price-block {
@@ -788,7 +867,7 @@ img {
 
 .detail-gallery {
   display: grid;
-  gap: 12px;
+  gap: 20px;
 }
 
 .detail-photo {
@@ -816,6 +895,273 @@ img {
   border-color: var(--c-point);
   background: var(--c-point-light);
   text-decoration: none;
+}
+
+.ingredient-card {
+  padding: 28px 24px 22px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+
+.ingredient-card-heading,
+.ingredient-total,
+.ingredient-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ingredient-card-heading {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.ingredient-card-heading h3 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.ingredient-card-heading > span {
+  color: var(--c-text-disabled);
+  font-size: 42px;
+  line-height: 0.7;
+}
+
+.ingredient-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  padding: 24px 0;
+  color: var(--c-text-sub);
+  font-size: var(--fs-md);
+}
+
+.ingredient-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.ingredient-legend i {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.legend-low { color: var(--c-risk-low); }
+.legend-mid { color: var(--c-risk-mid); }
+.legend-high { color: var(--c-risk-high); }
+.legend-none { color: var(--c-risk-none); }
+
+.ingredient-bar {
+  display: flex;
+  height: 18px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--c-risk-none);
+}
+
+.ingredient-bar span { display: block; }
+.bar-none { width: 6%; background: var(--c-risk-none); }
+.bar-low { width: 84%; background: var(--c-risk-low); }
+.bar-mid { width: 10%; background: var(--c-risk-mid); }
+
+.ingredient-total {
+  padding: 28px 0 18px;
+  color: var(--c-text-sub);
+  font-size: 28px;
+}
+
+.ingredient-total strong {
+  color: var(--c-main);
+  font-size: 34px;
+}
+
+.ingredient-row {
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 13px 0;
+  color: var(--c-text-disabled);
+  font-size: 24px;
+}
+
+.ingredient-row strong {
+  margin-left: auto;
+  font-size: 28px;
+}
+
+.ingredient-icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid currentColor;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ingredient-icon.allergy {
+  border: 0;
+  background: var(--c-risk-none);
+  font-size: 10px;
+}
+
+.review-topic {
+  margin: 28px 0 0;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--c-border);
+}
+
+.review-topic-heading,
+.review-topic-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.review-topic-heading h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.review-topic-heading h2 span {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 7px 12px;
+  border-radius: 14px;
+  background: var(--c-review-tag);
+  color: var(--c-white);
+  font-size: var(--fs-base);
+  vertical-align: middle;
+}
+
+.review-topic-heading p {
+  margin: 10px 0 0;
+  color: var(--c-text-sub);
+  font-size: var(--fs-md);
+}
+
+.review-topic-heading small {
+  color: var(--c-text-disabled);
+  font-size: var(--fs-base);
+}
+
+.review-topic-toolbar {
+  margin-top: 28px;
+  padding: 20px 0;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+  font-size: var(--fs-md);
+}
+
+.topic-toggle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.topic-toggle input {
+  position: absolute;
+  opacity: 0;
+}
+
+.topic-toggle i {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 38px;
+  border-radius: 20px;
+  background: var(--c-risk-none);
+}
+
+.topic-toggle i::after {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--c-white);
+  box-shadow: 0 1px 4px var(--c-shadow);
+  content: "";
+  transition: transform 160ms ease;
+}
+
+.topic-toggle input:checked + i {
+  background: var(--c-point-light);
+}
+
+.topic-toggle input:checked + i::after {
+  transform: translateX(34px);
+}
+
+.review-topic-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 28px;
+}
+
+.topic-column {
+  padding: 0 28px;
+}
+
+.topic-column + .topic-column {
+  border-left: 1px solid var(--c-border);
+}
+
+.topic-column h3 {
+  margin: 0 0 22px;
+  font-size: 22px;
+}
+
+.topic-column h3 span {
+  margin-right: 8px;
+  color: var(--c-review-tag);
+  font-size: 28px;
+  vertical-align: -2px;
+}
+
+.topic-column.bad h3 span {
+  color: var(--c-risk-none);
+}
+
+.topic-column a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  color: var(--c-main);
+  font-size: var(--fs-lg);
+}
+
+.topic-column a:hover {
+  color: var(--c-point);
+}
+
+.topic-column em {
+  color: var(--c-text-sub);
+  font-size: var(--fs-md);
+  font-style: normal;
+}
+
+.topic-more {
+  display: block;
+  margin-top: 26px;
+  padding: 18px;
+  border: 1px solid var(--c-border);
+  border-radius: 14px;
+  color: var(--c-main);
+  font-size: var(--fs-lg);
+  text-align: center;
+}
+
+.topic-more:hover {
+  background: var(--c-point-light);
+  border-color: var(--c-point);
 }
 
 .review-heading {
@@ -875,6 +1221,12 @@ img {
   .product-layout {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .product-thumbnails,
+  .product-copy {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .order-summary {
@@ -956,5 +1308,35 @@ img {
   .detail-tabs a {
     padding: 14px 4px;
     font-size: var(--fs-base);
+  }
+
+  .review-topic-heading,
+  .review-topic-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .review-topic-heading h2 {
+    font-size: 24px;
+  }
+
+  .review-topic-heading small {
+    align-self: flex-end;
+  }
+
+  .review-topic-columns {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .topic-column {
+    padding: 0;
+  }
+
+  .topic-column + .topic-column {
+    padding-top: 22px;
+    border-top: 1px solid var(--c-border);
+    border-left: 0;
   }
 }
