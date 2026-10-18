@@ -279,62 +279,6 @@
         background: var(--c-danger);
       }
 
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--gap);
-      }
-
-      .card {
-        cursor: pointer;
-      }
-
-      .card .img {
-        position: relative;
-        aspect-ratio: 1;
-        background: var(--c-bg-sub);
-        border-radius: var(--radius);
-        overflow: hidden;
-      }
-      .card .img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .card .img .badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-      }
-
-      .card .brand {
-        margin-top: 12px;
-        font-size: var(--fs-sm);
-        color: var(--c-text-sub);
-      }
-      .card .name {
-        margin-top: 4px;
-        font-size: var(--fs-base);
-        line-height: 1.4;
-      }
-      .card .old {
-        margin-top: 8px;
-        font-size: var(--fs-sm);
-        color: var(--c-text-disabled);
-        text-decoration: line-through;
-      }
-      .card .price {
-        font-size: var(--fs-lg);
-        font-weight: 700;
-      }
-      .card .price span {
-        color: var(--c-sale);
-        margin-right: 6px;
-      }
-      .card .risk {
-        margin-top: 8px;
-      }
-
       .sec-head {
         display: flex;
         justify-content: space-between;
@@ -357,9 +301,6 @@
       }
 
       @media (max-width: 800px) {
-        .cards {
-          grid-template-columns: repeat(2, 1fr);
-        }
         .gnb .container {
           gap: 20px;
           font-size: var(--fs-md);
@@ -421,13 +362,6 @@
         gap: 12px;
         align-items: center;
         flex-wrap: wrap;
-      }
-      .card .img {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--c-text-sub);
-        font-size: var(--fs-sm);
       }
       .sub {
         background: var(--c-bg-sub);
@@ -598,55 +532,10 @@
       </section>
 
       <section>
-        <h2>4. 상품 카드 샘플</h2>
-        <div class="cards">
-          <div class="card">
-            <div class="img"><span class="badge b-point">BEST</span>이미지</div>
-            <div class="brand">브랜드명</div>
-            <div class="name">[속건조필수템] 히알루로닉 앰플 100ml 기획</div>
-            <div class="old">30,000원</div>
-            <div class="price"><span>33%</span>19,900원</div>
-            <div class="risk"><span class="badge b-safe">성분 안전</span></div>
-          </div>
-          <div class="card">
-            <div class="img">이미지</div>
-            <div class="brand">브랜드명</div>
-            <div class="name">시카 진정 토너 300ml</div>
-            <div class="old">25,000원</div>
-            <div class="price"><span>20%</span>20,000원</div>
-            <div class="risk">
-              <span class="badge b-caution">주의 성분 2</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="img">이미지</div>
-            <div class="brand">브랜드명</div>
-            <div class="name">레티놀 나이트 크림 50ml</div>
-            <div class="price">32,000원</div>
-            <div class="risk">
-              <span class="badge b-danger">위험 성분 1</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="img">이미지</div>
-            <div class="brand">브랜드명</div>
-            <div class="name">벨벳 틴트 #가을웜</div>
-            <div class="price">12,000원</div>
-            <div class="risk"><span class="badge b-safe">성분 안전</span></div>
-          </div>
-        </div>
-        <p class="note">여백 단위 8·16·24, 컨테이너 폭 1200px 기준이에요.</p>
-      </section>
-
-      <section>
-        <h2>5. 레이아웃 치수 확인</h2>
+        <h2>4. 레이아웃 치수 확인</h2>
         <div class="sub">
           상단 유틸 바 36px · 헤더 80px · 로고 높이 34px · GNB 56px · 컨테이너
-          1200px<br />
-          <span style="color: var(--c-text-sub); font-size: var(--fs-sm)"
-            >GNB의 랭킹·퍼스널컬러·튜토리얼은 실제 연결 메뉴, 나머지는 클릭 시
-            토스트가 뜨는 더미예요.</span
-          >
+          1200px
         </div>
       </section>
     </div>
