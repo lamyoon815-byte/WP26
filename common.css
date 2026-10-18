@@ -90,7 +90,7 @@ button {
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
-  font-size: var(--fs-base);
+  font-size: var(--fs-md);
   color: var(--c-text-sub);
 }
 
@@ -370,7 +370,7 @@ footer,
   padding: 28px 0;
   border-top: 1px solid var(--c-border);
   color: var(--c-text-sub);
-  font-size: var(--fs-base);
+  font-size: var(--fs-md);
   line-height: 1.8;
 }
 
