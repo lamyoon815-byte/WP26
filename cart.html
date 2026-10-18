@@ -12,36 +12,46 @@
     <link rel="stylesheet" href="minseo.css" />
   </head>
   <body>
-    <div class="util"><div class="container"><a href="#menu-soon">로그인</a><a href="#menu-soon">회원가입</a><a href="cart.html">장바구니 <em>(3)</em></a><a href="#menu-soon">고객센터</a></div></div>
-    <div class="header"><div class="container">
-      <a href="home.html" class="logo"><img src="Image_logo.png" alt=""><img src="Text_logo.png" alt="올리브송"></a>
-      <form class="search" action="#search-soon" role="search"><input type="search" name="q" placeholder="퍼스널컬러, 브랜드, 성분 검색" aria-label="검색어"><button type="submit" class="search-btn" aria-label="검색"><svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M15.8 15.8 21 21"/></svg></button></form>
-      <div class="hright"><a href="#menu-soon">올송매장찾기 &#9662;</a><a href="#menu-soon">최근 본 상품 &#9662;</a></div>
-    </div></div>
+    <div class="util">
+      <div class="container">
+        <a href="#">로그인</a>
+        <a href="#">회원가입</a>
+        <a href="cart.html">장바구니 <em>(3)</em></a>
+        <a href="#">고객센터</a>
+      </div>
+    </div>
+    <header class="header">
+      <div class="container">
+        <a class="logo" href="productdetails.html">
+          <img src="Image_logo.png" alt="Olive Song 심볼" />
+          <img src="Text_logo.png" alt="OLIVE SONG" />
+        </a>
+        <div class="search"><span>퍼스널컬러, 브랜드, 성분 검색</span><span class="search-icon">⌕</span></div>
+        <div class="hright"><a href="#">올송매장찾기 ▼</a><a href="#">최근 본 상품 ▼</a></div>
+      </div>
+    </header>
     <nav class="gnb">
       <div class="container">
-        <a class="cat" href="#menu-soon">☰ 카테고리</a>
-        <a href="#menu-soon">오특</a>
-        <a href="ranking.html">랭킹</a>
-        <a href="personalcolor.html">퍼스널컬러</a>
-        <a href="tutorial.html">튜토리얼</a>
-        <a href="#menu-soon">테마관</a>
-        <a href="#menu-soon">기획전</a>
-        <a href="#menu-soon">세일</a>
-        <a href="#menu-soon">기프트카드</a>
-        <a href="#menu-soon">멤버십/쿠폰</a>
-        <a href="#menu-soon">이벤트</a>
+        <a class="cat" href="#">☰ 카테고리</a>
+        <a href="#">오특</a>
+        <a href="#">랭킹</a>
+        <a href="#">퍼스널컬러</a>
+        <a href="#">튜토리얼</a>
+        <a href="#">테마관</a>
+        <a href="#">기획전</a>
+        <a href="#">세일</a>
+        <a href="#">기프트카드</a>
+        <a href="#">멤버십/쿠폰</a>
+        <a href="#">이벤트</a>
       </div>
     </nav>
-    <div class="soon" id="menu-soon" role="status">준비 중인 메뉴예요</div>
-    <div class="soon" id="search-soon" role="status">검색 결과 페이지는 준비 중이에요</div>
 
     <main class="container page">
       <div class="breadcrumb">홈 &gt; 장바구니</div>
 
       <div class="cart-layout">
         <section aria-label="장바구니 상품">
-          <p class="cart-policy">장바구니에는 상품을 최대 100개까지 담을 수 있어요. 상품은 10일간 보관되며, 품절된 상품은 3일 후 자동으로 삭제됩니다.</p>
+          <p class="cart-policy">장바구니에는 상품을 최대 100개까지 담을 수 있어요. 상품은 90일간 보관되며, 품절된 상품은 3일 후 자동으로 삭제됩니다.</p>
           <div class="delivery-tabs" aria-label="배송 방식 선택">
             <label><input type="radio" name="delivery-type" checked /> 일반 배송</label>
             <label><input type="radio" name="delivery-type" /> 빠른 배송</label>
@@ -49,27 +59,27 @@
           </div>
           <div class="cart-list">
             <div class="cart-tools">
-              <label><input type="checkbox" checked /> 전체 선택 (2개)</label>
+              <label><input type="checkbox" checked /> 전체 선택 (3개)</label>
               <button class="text-button delete-button" type="button">선택 상품 삭제</button>
             </div>
 
             <article class="cart-item">
-              <input type="checkbox" checked aria-label="독도 토너 선택" />
+              <input type="checkbox" checked aria-label="메디힐 에센셜 마스크팩 선택" />
               <a class="product-thumb" href="productdetails.html">
                 <!-- 사진 변경: 아래 src를 원하는 장바구니 상품 사진 경로로 바꾸세요. -->
                 <img
-                  src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
-                  alt="스킨케어 제품 이미지"
+                  src="img/products/1.webp"
+                  alt="메디힐 에센셜 마스크팩 이미지"
                 />
               </a>
               <div class="product-info">
-                <div class="brand">라운드랩</div>
-                <a class="name" href="productdetails.html">1025 독도 토너 200ml</a>
-                <div class="cart-option"><span>200ml 단품</span><button class="text-button" type="button">옵션 변경</button></div>
-                <div class="product-price"><del>22,000원</del><strong><em>28%</em>15,900원</strong></div>
+                <div class="brand">메디힐</div>
+                <a class="name" href="productdetails.html">[15년 연속 1위] 메디힐 에센셜 마스크팩 10/10+1매 기획 7종 골라담기</a>
+                <div class="cart-option"><span>마데카소사이드 흔적리페어 10+1매</span><button class="text-button" type="button">옵션 변경</button></div>
+                <div class="product-price"><del>20,000원</del><strong><em>50%</em>10,000원</strong></div>
               </div>
               <div class="quantity" aria-label="수량">
-                <select aria-label="독도 토너 수량">
+                <select aria-label="메디힐 에센셜 마스크팩 수량">
                   <option selected>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -85,22 +95,49 @@
             </article>
 
             <article class="cart-item">
-              <input type="checkbox" checked aria-label="마데카소사이드 패드 선택" />
+              <input type="checkbox" checked aria-label="클리오 샤프 쏘 심플 워터프루프 펜슬라이너 선택" />
               <a class="product-thumb" href="productdetails.html">
                 <!-- 사진 변경: 아래 src를 원하는 장바구니 상품 사진 경로로 바꾸세요. -->
                 <img
-                  src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&amp;fit=crop&amp;w=400&amp;q=80"
-                  alt="스킨케어 패드 제품 이미지"
+                  src="img/products/3.webp"
+                  alt="클리오 샤프 쏘 심플 워터프루프 펜슬라이너 이미지"
                 />
               </a>
               <div class="product-info">
-                <div class="brand">메디힐</div>
-                <a class="name" href="productdetails.html">마데카소사이드 흔적 패드 100매</a>
-                <div class="cart-option"><span>100매 기획세트</span><button class="text-button" type="button">옵션 변경</button></div>
-                <div class="product-price"><del>22,000원</del><strong><em>32%</em>14,900원</strong></div>
+                <div class="brand">클리오</div>
+                <a class="name" href="productdetails.html">[NO.1 아이라이너] 클리오 샤프 쏘 심플 워터프루프 펜슬라이너 단품/더블 기획</a>
+                <div class="cart-option"><span>01 블랙</span><button class="text-button" type="button">옵션 변경</button></div>
+                <div class="product-price"><del>11,000원</del><strong><em>30%</em>7,700원</strong></div>
               </div>
               <div class="quantity" aria-label="수량">
-                <select aria-label="흔적 패드 수량">
+                <select aria-label="클리오 펜슬라이너 수량">
+                  <option selected>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+              </div>
+            </article>
+
+            <article class="cart-item">
+              <input type="checkbox" checked aria-label="클리오 벨벳 립 펜슬 선택" />
+              <a class="product-thumb" href="productdetails.html">
+                <img src="img/products/9.jpg" alt="클리오 벨벳 립 펜슬 이미지" />
+              </a>
+              <div class="product-info">
+                <div class="brand">클리오</div>
+                <a class="name" href="productdetails.html">[단독기획] 클리오 벨벳 립 펜슬 단품/기획(+미니 립펜슬 증정)</a>
+                <div class="cart-option"><span>[+미니립펜슬] 01 로지핑크</span><button class="text-button" type="button">옵션 변경</button></div>
+                <div class="product-price"><del>14,000원</del><strong><em>32%</em>9,410원</strong></div>
+              </div>
+              <div class="quantity" aria-label="수량">
+                <select aria-label="클리오 벨벳 립 펜슬 수량">
                   <option selected>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -123,11 +160,11 @@
           <div class="shipping-progress" role="progressbar" aria-label="무료배송 조건 달성" aria-valuemin="0" aria-valuemax="20000" aria-valuenow="20000">
             <span></span>
           </div>
-          <div class="summary-row"><span>총 상품 금액</span><strong>44,000원</strong></div>
-          <div class="summary-row"><span>상품 할인</span><strong>-13,200원</strong></div>
+          <div class="summary-row"><span>총 상품 금액</span><strong>45,000원</strong></div>
+          <div class="summary-row"><span>상품 할인</span><strong>-17,890원</strong></div>
           <div class="summary-row"><span>총 배송비</span><strong>0원</strong></div>
           <div class="summary-row"><span>할인 쿠폰</span><strong class="coupon-apply">적용 가능</strong></div>
-          <div class="summary-total"><span>최종 결제 금액</span><strong>30,800원</strong></div>
+          <div class="summary-total"><span>총 예상 결제금액</span><strong>27,110원</strong></div>
           <a class="button primary" href="#">선택 상품 주문하기</a>
           <a class="button secondary" href="productdetails.html">쇼핑 계속하기</a>
           <p class="summary-caption">결제 단계에서 쿠폰 및 포인트를 사용할 수 있어요.</p>
@@ -135,7 +172,9 @@
       </div>
     </main>
 
-    <footer class="footer"></footer>
+    <footer class="footer">
+      <div class="container">OLIVE SONG · 건강한 아름다움을 위한 오늘의 쇼핑<br />고객센터 1544-0000 · 평일 09:00 - 18:00</div>
+    </footer>
     <a class="floating-cart" href="cart.html" aria-label="장바구니">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M3 4h2l2.4 11h11L21 8H6.2" />
