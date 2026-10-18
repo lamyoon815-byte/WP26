@@ -90,7 +90,7 @@ button {
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   color: var(--c-text-sub);
 }
 
@@ -370,7 +370,7 @@ footer,
   padding: 28px 0;
   border-top: 1px solid var(--c-border);
   color: var(--c-text-sub);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   line-height: 1.8;
 }
 
@@ -384,13 +384,14 @@ footer .container,
 
 footer strong,
 .footer strong {
-  color: var(--c-main);
+  color: inherit;
+  font-weight: 400;
 }
 
 /* 기존 페이지의 빈 footer에도 공통 고객센터 안내를 표시한다. */
 footer:empty::before,
 .footer:empty::before {
   display: block;
-  content: "고객센터 1544-0000\A 연락 가능 시간: 평일 09:00 - 18:00";
+  content: "OLIVE SONG · 건강한 아름다움을 위한 오늘의 쇼핑\A 고객센터 1544-0000 · 평일 09:00 - 18:00";
   white-space: pre-line;
 }
