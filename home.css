@@ -100,9 +100,6 @@
   border: 0;
   border-radius: 50%;
   background: var(--c-text-sub);
-}
-
-.home-banner-arrow {
   cursor: pointer;
 }
 
@@ -168,6 +165,7 @@
   padding: 16px 8px;
   text-align: center;
   word-break: keep-all;
+  font-size: var(--fs-lg);
 }
 
 .home-recommend-tabs a:hover {
@@ -288,45 +286,6 @@
   outline-offset: 2px;
 }
 
-/* 기존 카테고리 링크 대신 라디오 label 사용 */
-.home-recommend-category-list label {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: var(--h-search);
-  padding: 8px 16px;
-  border: 1px solid var(--c-border);
-  border-radius: 24px;
-  background: var(--c-white);
-  font-size: var(--fs-base);
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.home-recommend-category-list input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-}
-
-.home-recommend-category-list label:hover {
-  background: var(--c-point-light);
-}
-
-.home-recommend-category-list label:has(input:checked) {
-  background: var(--c-point);
-  border-color: var(--c-point);
-  color: var(--c-white);
-}
-
-.home-recommend-category-list label:has(input:focus-visible) {
-  outline: 2px solid var(--c-point);
-  outline-offset: 2px;
-}
-
 /* 상품 배치는 common.css의 cards와 card 사용 */
 .home-filter-products {
   margin-top: 24px;
@@ -378,37 +337,22 @@
   display: none;
 }
 
-/* 각 카테고리에 해당하는 상품 중 9번째부터 숨기기 */
-#home-best:has(input[value="skin"]:checked)
+/* 선택한 카테고리와 일치하지 않는 상품 숨기기 */
+#home-best:has(input[name="home-category"][value="skin"]:checked)
   .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="skin"]),
-#home-best:has(input[value="mask"]:checked)
+  .card:not([data-cat="skin"]),
+#home-best:has(input[name="home-category"][value="mask"]:checked)
   .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="mask"]),
-#home-best:has(input[value="clean"]:checked)
+  .card:not([data-cat="mask"]),
+#home-best:has(input[name="home-category"][value="clean"]:checked)
   .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="clean"]),
-#home-best:has(input[value="sun"]:checked)
+  .card:not([data-cat="clean"]),
+#home-best:has(input[name="home-category"][value="sun"]:checked)
   .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="sun"]),
-#home-best:has(input[value="makeup"]:checked)
+  .card:not([data-cat="sun"]),
+#home-best:has(input[name="home-category"][value="makeup"]:checked)
   .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="makeup"]),
-#home-best:has(input[value="nail"]:checked)
-  .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="nail"]),
-#home-best:has(input[value="tool"]:checked)
-  .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="tool"]),
-#home-best:has(input[value="mens"]:checked)
-  .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="mens"]),
-#home-best:has(input[value="perfume"]:checked)
-  .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="perfume"]),
-#home-best:has(input[value="hair"]:checked)
-  .home-filter-products
-  > :nth-child(n + 9 of .card[data-cat="hair"]) {
+  .card:not([data-cat="makeup"]) {
   display: none;
 }
 
@@ -438,26 +382,6 @@
 .home-more-button:focus-visible {
   outline: 2px solid var(--c-point);
   outline-offset: 4px;
-}
-
-/* 네일·뷰티소품·맨즈케어 선택 시 상품과 더보기 숨기기 */
-#home-best:has(
-    input[name="home-category"]:is(
-        [value="nail"],
-        [value="tool"],
-        [value="mens"]
-      ):checked
-  )
-  .home-filter-products,
-#home-best:has(
-    input[name="home-category"]:is(
-        [value="nail"],
-        [value="tool"],
-        [value="mens"]
-      ):checked
-  )
-  .home-more-button {
-  display: none;
 }
 
 /* 올리브송 서비스 영역 */
@@ -546,6 +470,54 @@
   outline-offset: 4px;
 }
 
+/* 안내 박스: 기본적으로 숨김 */
+.home-empty-message {
+  display: none;
+  margin-top: 24px;
+  padding: 80px 20px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--c-text-sub);
+  font-size: var(--fs-md);
+  text-align: center;
+}
+
+/* 네일·뷰티소품·맨즈케어·향수 선택 시 안내 표시 */
+#home-best:has(
+    input[name="home-category"]:is(
+        [value="nail"],
+        [value="tool"],
+        [value="mens"],
+        [value="perfume"]
+      ):checked
+  )
+  .home-empty-message {
+  display: block;
+}
+
+/* 해당 카테고리에서는 상품 목록과 더보기 숨김 */
+#home-best:has(
+    input[name="home-category"]:is(
+        [value="nail"],
+        [value="tool"],
+        [value="mens"],
+        [value="perfume"]
+      ):checked
+  )
+  .home-filter-products,
+#home-best:has(
+    input[name="home-category"]:is(
+        [value="nail"],
+        [value="tool"],
+        [value="mens"],
+        [value="perfume"]
+      ):checked
+  )
+  .home-more-button {
+  display: none;
+}
+
 /* 작은 화면에서는 위아래로 배치 */
 @media (max-width: 700px) {
   .home-service {
@@ -561,10 +533,7 @@
   .home-service-products {
     gap: 8px;
   }
-}
 
-/* 작은 화면 */
-@media (max-width: 700px) {
   .home-main {
     padding-top: 16px;
   }
