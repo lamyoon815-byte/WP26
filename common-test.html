@@ -183,7 +183,7 @@
         align-items: center;
       }
 
-      #toast {
+      .soon {
         position: fixed;
         left: 50%;
         bottom: 40px;
@@ -195,11 +195,19 @@
         font-size: var(--fs-base);
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.2s;
         z-index: 100;
       }
-      #toast.show {
-        opacity: 1;
+      .soon:target {
+        animation: soon 2s ease-out forwards;
+      }
+      @keyframes soon {
+        0%,
+        80% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
       }
 
       .btn {
@@ -471,20 +479,20 @@
     </div>
     <nav class="gnb">
       <div class="container">
-        <a class="cat" data-soon>&#9776; 카테고리</a>
-        <a data-soon>오특</a>
+        <a class="cat" href="#menu-soon">&#9776; 카테고리</a>
+        <a href="#menu-soon">오특</a>
         <a href="ranking.html" class="on">랭킹</a>
         <a href="personalcolor.html">퍼스널컬러</a>
         <a href="tutorial.html">튜토리얼</a>
-        <a data-soon>테마관</a>
-        <a data-soon>기획전</a>
-        <a data-soon>세일</a>
-        <a data-soon>기프트카드</a>
-        <a data-soon>멤버십/쿠폰</a>
-        <a data-soon>이벤트</a>
+        <a href="#menu-soon">테마관</a>
+        <a href="#menu-soon">기획전</a>
+        <a href="#menu-soon">세일</a>
+        <a href="#menu-soon">기프트카드</a>
+        <a href="#menu-soon">멤버십/쿠폰</a>
+        <a href="#menu-soon">이벤트</a>
       </div>
     </nav>
-    <div id="toast">준비 중인 메뉴예요</div>
+    <div class="soon" id="menu-soon" role="status">준비 중인 메뉴예요</div>
 
     <div class="title-best">
       <h1>
@@ -640,18 +648,5 @@
       </section>
     </div>
     <footer></footer>
-    <script>
-      document.querySelectorAll("[data-soon], .gnb a[href]").forEach((el) =>
-        el.addEventListener("click", (e) => {
-          e.preventDefault();
-          const t = document.getElementById("toast");
-          t.textContent = el.hasAttribute("data-soon")
-            ? "준비 중인 메뉴예요"
-            : "(테스트 화면이라 이동하지 않아요) → " + el.getAttribute("href");
-          t.classList.add("show");
-          setTimeout(() => t.classList.remove("show"), 1500);
-        }),
-      );
-    </script>
   </body>
 </html>
