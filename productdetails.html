@@ -52,7 +52,6 @@
 
       <section class="product-layout" aria-label="상품 정보">
         <div class="product-photo">
-          <!-- 사진 변경: 아래 src를 원하는 상품 대표 사진 경로로 바꾸세요. -->
           <img
             src="img/product1.jpg"
             alt="스킨케어 제품 사진"
@@ -125,16 +124,16 @@
       <section class="detail-section" id="details">
         <div class="detail-gallery" id="detail-photos">
           <div class="detail-photo">
-            <!-- 사진 변경: 아래 src를 원하는 상세 사진 1 경로로 바꾸세요. -->
             <img
               src="img/detail1.jpg"
               alt="메디힐 에센셜 마스크팩 상세 사진 1"
             />
           </div>
+          <input class="ingredient-popup-toggle" type="checkbox" id="ingredient-popup-toggle" aria-label="중간위험 성분 창" />
           <section class="ingredient-card" aria-label="성분 구성">
             <div class="ingredient-card-heading">
               <h3>성분 구성</h3>
-              <button class="ingredient-open" type="button" aria-label="중간위험 성분 보기" aria-controls="ingredient-modal">›</button>
+              <label class="ingredient-open" for="ingredient-popup-toggle" aria-label="중간위험 성분 보기">›</label>
             </div>
             <div class="ingredient-legend" aria-label="성분 위험도 안내">
               <span class="legend-low"><i></i>1-2 낮은 위험</span>
@@ -151,10 +150,11 @@
             <div class="ingredient-row"><span class="ingredient-icon">♥</span><span>내 관심 성분</span><strong>0개</strong></div>
             <div class="ingredient-row"><span class="ingredient-icon">▼</span><span>내 피할 성분</span><strong>0개</strong></div>
           </section>
-          <dialog class="ingredient-modal" id="ingredient-modal" aria-labelledby="ingredient-modal-title">
+          <label class="ingredient-modal-backdrop" for="ingredient-popup-toggle" aria-hidden="true"></label>
+          <div class="ingredient-modal" id="ingredient-modal" role="dialog" aria-labelledby="ingredient-modal-title">
             <div class="ingredient-modal-heading">
               <h3 id="ingredient-modal-title">중간위험 성분</h3>
-              <button class="ingredient-modal-close" type="button" aria-label="닫기">×</button>
+              <label class="ingredient-modal-close" for="ingredient-popup-toggle" aria-label="닫기">×</label>
             </div>
             <table>
               <thead>
@@ -167,7 +167,7 @@
                 <tr><td><span class="ingredient-risk-number">4</span></td><td>로즈마리잎오일</td></tr>
               </tbody>
             </table>
-          </dialog>
+          </div>
           <div class="detail-more-wrap">
             <div class="detail-photo detail-more-photo">
               <img src="img/detail2.jpg" alt="메디힐 에센셜 마스크팩 상세 사진 2" />
@@ -239,16 +239,5 @@
       </svg>
       <em>3</em>
     </a>
-    <script>
-      const ingredientModal = document.querySelector("#ingredient-modal");
-      const ingredientOpen = document.querySelector(".ingredient-open");
-      const ingredientClose = document.querySelector(".ingredient-modal-close");
-
-      ingredientOpen.addEventListener("click", () => ingredientModal.showModal());
-      ingredientClose.addEventListener("click", () => ingredientModal.close());
-      ingredientModal.addEventListener("click", (event) => {
-        if (event.target === ingredientModal) ingredientModal.close();
-      });
-    </script>
   </body>
 </html>
