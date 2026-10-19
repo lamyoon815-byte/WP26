@@ -47,18 +47,18 @@
   </div>
 
   <div class="rk-cat" role="radiogroup" aria-label="카테고리">
-    <label><input type="radio" name="cat" value="all" checked>전체</label>
-    <label><input type="radio" name="cat" value="skin">스킨케어</label>
-    <label><input type="radio" name="cat" value="mask">마스크팩</label>
-    <label><input type="radio" name="cat" value="clean">클렌징</label>
-    <label><input type="radio" name="cat" value="sun">선케어</label>
-    <label><input type="radio" name="cat" value="makeup">메이크업</label>
-    <label><input type="radio" name="cat" value="nail">네일</label>
+    <label><input type="radio" name="cat" value="all" class="f-skin f-pc" checked>전체</label>
+    <label><input type="radio" name="cat" value="skin" class="f-skin">스킨케어</label>
+    <label><input type="radio" name="cat" value="mask" class="f-skin">마스크팩</label>
+    <label><input type="radio" name="cat" value="clean" class="f-skin">클렌징</label>
+    <label><input type="radio" name="cat" value="sun" class="f-skin">선케어</label>
+    <label><input type="radio" name="cat" value="makeup" class="f-pc">메이크업</label>
+    <label><input type="radio" name="cat" value="nail" class="f-pc">네일</label>
     <label><input type="radio" name="cat" value="tool">뷰티소품</label>
-    <label><input type="radio" name="cat" value="derma">더모 코스메틱</label>
+    <label><input type="radio" name="cat" value="derma" class="f-skin">더모 코스메틱</label>
     <label><input type="radio" name="cat" value="perfume">향수/디퓨저</label>
     <label><input type="radio" name="cat" value="hair">헤어케어</label>
-    <label><input type="radio" name="cat" value="body">바디케어</label>
+    <label><input type="radio" name="cat" value="body" class="f-skin">바디케어</label>
     <label><input type="radio" name="cat" value="luxe">럭스에딧</label>
     <label><input type="radio" name="cat" value="mens">맨즈에딧</label>
     <label><input type="radio" name="cat" value="supple">건강식품</label>
@@ -94,32 +94,31 @@
 
   <div class="cards rk-list">
 
-    <div class="card" style="--o-review: 2; --o-rating: 2" data-cat="skin" data-skin="건성 복합성"
-         data-sales="2250" data-review="27596" data-rating="4.8" data-caution="0" data-danger="0">
+    <div class="card" style="--o-review: 2; --o-rating: 2" data-cat="mask" data-skin="지성 복합성" data-danger="0">
       <span class="no" data-review-rank="2" data-rating-rank="2"></span>
       <div class="thumb">
-        <a class="img" href="#detail-soon">
-          <img src="img/products/1.jpg" alt="크리니크 쏙보습크림">
+        <a class="img" href="productdetails.html">
+          <img src="img/products/1.webp" alt="메디힐 에센셜 마스크팩">
+          <span class="move">15년 연속 1위</span>
           <div class="info">
-            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
-            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>글리세린</b>수분 공급</span></div>
-            <div class="rec"><span class="lbl">추천 피부</span><span class="tag"><svg aria-hidden="true"><use href="#i-dry"/></svg>건성</span><span class="tag"><svg aria-hidden="true"><use href="#i-combo"/></svg>복합성</span></div>
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>18</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>마데카소사이드, 판테놀</b>진정</span></div>
+            <div class="rec"><span class="lbl">추천 피부</span><span class="tag"><svg aria-hidden="true"><use href="#i-oily"/></svg>지성</span><span class="tag"><svg aria-hidden="true"><use href="#i-combo"/></svg>복합성</span></div>
             <span class="go">상세보기 &gt;</span>
           </div>
         </a>
         <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
         <label class="like"><input type="checkbox" aria-label="찜하기"></label>
       </div>
-      <a class="txt" href="#detail-soon">
-        <div class="brand">크리니크</div>
-        <div class="name"><span class="ln">[10월 올영픽/1+1 기획]</span><span class="ln">크리니크 쏙보습크림 50ml 단품/기획</span></div>
+      <a class="txt" href="productdetails.html">
+        <div class="brand">메디힐</div>
+        <div class="name"><span class="ln">[15년 연속 1위] 메디힐 에센셜 마스크팩</span><span class="ln">10/10+1매 기획 7종 골라담기</span></div>
       </a>
-      <div class="price-row"><span class="rate">20%</span><span class="price">39,200원</span></div>
-      <div class="tags"><span>성분 안전</span> <span>증정</span></div>
+      <div class="price-row"><span class="rate">50%</span><span class="price">10,000원</span></div>
+      <div class="tags"><span>성분 안전</span> <span>오늘드림</span></div>
     </div>
 
-    <div class="card" style="--o-review: 5; --o-rating: 6" data-cat="mask" data-skin="건성 복합성"
-         data-sales="2160" data-review="15055" data-rating="4.7" data-caution="1" data-danger="0">
+    <div class="card" style="--o-review: 5; --o-rating: 6" data-cat="mask" data-skin="건성 복합성" data-danger="0">
       <span class="no" data-review-rank="5" data-rating-rank="6"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -142,8 +141,7 @@
       <div class="tags"><span>성분 안전</span> <span>증정</span></div>
     </div>
 
-    <div class="card" style="--o-review: 1; --o-rating: 1" data-cat="makeup" data-pc="여름쿨 겨울쿨"
-         data-sales="1960" data-review="52310" data-rating="4.8" data-caution="1" data-danger="0">
+    <div class="card" style="--o-review: 1; --o-rating: 1" data-cat="makeup" data-pc="여름쿨 겨울쿨" data-danger="0">
       <span class="no" data-review-rank="1" data-rating-rank="1"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -167,8 +165,7 @@
       <div class="tags"><span>성분 안전</span> <span>오늘드림</span></div>
     </div>
 
-    <div class="card" style="--o-review: 6; --o-rating: 7" data-cat="sun" data-skin="건성 복합성"
-         data-sales="1950" data-review="14544" data-rating="4.7" data-caution="1" data-danger="0">
+    <div class="card" style="--o-review: 6; --o-rating: 7" data-cat="sun" data-skin="건성 복합성" data-danger="0">
       <span class="no" data-review-rank="6" data-rating-rank="7"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -192,8 +189,7 @@
       <div class="tags"><span>성분 안전</span> <span>오늘드림</span></div>
     </div>
 
-    <div class="card" style="--o-review: 3; --o-rating: 10" data-cat="clean" data-skin="지성 복합성"
-         data-sales="1800" data-review="22746" data-rating="4.6" data-caution="2" data-danger="0">
+    <div class="card" style="--o-review: 3; --o-rating: 10" data-cat="clean" data-skin="지성 복합성" data-danger="0">
       <span class="no" data-review-rank="3" data-rating-rank="10"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -216,8 +212,7 @@
       <div class="tags"><span>주의 성분 2</span> <span>세일</span></div>
     </div>
 
-    <div class="card" style="--o-review: 7; --o-rating: 4" data-cat="makeup" data-pc="봄웜 가을웜"
-         data-sales="1780" data-review="8420" data-rating="4.8" data-caution="2" data-danger="0">
+    <div class="card" style="--o-review: 7; --o-rating: 4" data-cat="makeup" data-pc="봄웜 가을웜" data-danger="0">
       <span class="no" data-review-rank="7" data-rating-rank="4"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -241,8 +236,7 @@
       <div class="tags"><span>주의 성분 2</span> <span>NEW</span></div>
     </div>
 
-    <div class="card" style="--o-review: 4; --o-rating: 3" data-cat="makeup" data-pc="봄웜 여름쿨"
-         data-sales="1560" data-review="18940" data-rating="4.8" data-caution="2" data-danger="0">
+    <div class="card" style="--o-review: 4; --o-rating: 3" data-cat="makeup" data-pc="봄웜 여름쿨" data-danger="0">
       <span class="no" data-review-rank="4" data-rating-rank="3"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -266,8 +260,7 @@
       <div class="tags"><span>주의 성분 2</span> <span>오늘드림</span></div>
     </div>
 
-    <div class="card" style="--o-review: 8; --o-rating: 5" data-cat="makeup" data-pc="여름쿨 겨울쿨"
-         data-sales="1480" data-review="7820" data-rating="4.8" data-caution="2" data-danger="0">
+    <div class="card" style="--o-review: 8; --o-rating: 5" data-cat="makeup" data-pc="여름쿨 겨울쿨" data-danger="0">
       <span class="no" data-review-rank="8" data-rating-rank="5"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -291,8 +284,7 @@
       <div class="tags"><span>주의 성분 2</span> <span>NEW</span></div>
     </div>
 
-    <div class="card" style="--o-review: 10; --o-rating: 9" data-cat="makeup" data-pc="가을웜 겨울쿨"
-         data-sales="1170" data-review="4870" data-rating="4.7" data-caution="1" data-danger="0">
+    <div class="card" style="--o-review: 10; --o-rating: 9" data-cat="makeup" data-pc="가을웜 겨울쿨" data-danger="0">
       <span class="no" data-review-rank="10" data-rating-rank="9"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">
@@ -316,8 +308,7 @@
       <div class="tags"><span>성분 안전</span> <span>증정</span></div>
     </div>
 
-    <div class="card" style="--o-review: 9; --o-rating: 8" data-cat="makeup" data-pc="봄웜 가을웜"
-         data-sales="1150" data-review="5320" data-rating="4.7" data-caution="2" data-danger="0">
+    <div class="card" style="--o-review: 9; --o-rating: 8" data-cat="makeup" data-pc="봄웜 가을웜" data-danger="0">
       <span class="no" data-review-rank="9" data-rating-rank="8"></span>
       <div class="thumb">
         <a class="img" href="#detail-soon">

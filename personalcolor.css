@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 html, body { overflow-x: clip; }
-:is(a, button):focus-visible,
 label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offset: 2px; }
 
 .pc-tabs input, .tabs2 input, .slider > input { position: absolute; opacity: 0; pointer-events: none; }
@@ -13,11 +12,15 @@ label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offs
 .pc-sec > h2 + .items { margin-top: 16px; }
 .pc-sec > .sub { margin: 0 0 24px; color: var(--c-text-sub); font-size: var(--fs-base); }
 
-.pc-banner { padding: 32px; border-radius: 12px; background: var(--c-point-light); display: flex; align-items: center; gap: 24px; }
-.pc-banner .txt { flex: 1; }
-.pc-banner h2 { margin: 0; font-size: var(--fs-xl); }
-.pc-banner h2 b { color: var(--c-point); font-weight: inherit; }
-.pc-banner p { margin: 8px 0 0; color: var(--c-main); }
+.pc-banner { position: relative; padding: 32px; border-radius: 12px; background: var(--c-point-light); display: flex; align-items: center; gap: 24px; }
+.pc-banner .mine { display: none; flex: 1; }
+main:has(input[name="state"][data-my="spring"]:checked) .mine[data-for="spring"],
+main:has(input[name="state"][data-my="summer"]:checked) .mine[data-for="summer"],
+main:has(input[name="state"][data-my="autumn"]:checked) .mine[data-for="autumn"],
+main:has(input[name="state"][data-my="winter"]:checked) .mine[data-for="winter"] { display: block; }
+.mine h2 { margin: 0; font-size: var(--fs-xl); }
+.mine h2 b { color: var(--c-point); font-weight: inherit; }
+.mine p { margin: 8px 0 0; color: var(--c-main); }
 .pc-btn {
   display: inline-flex;
   align-items: center;
@@ -48,11 +51,7 @@ label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offs
   cursor: pointer;
 }
 .pc-tabs label:hover { color: var(--c-main); }
-.pc-tabs label:has(input:checked),
-main:has(input[name="state"][value="quiz"][data-view="spring"]:checked) .pc-tabs label:has(input[data-view="spring"]),
-main:has(input[name="state"][value="quiz"][data-view="summer"]:checked) .pc-tabs label:has(input[data-view="summer"]),
-main:has(input[name="state"][value="quiz"][data-view="autumn"]:checked) .pc-tabs label:has(input[data-view="autumn"]),
-main:has(input[name="state"][value="quiz"][data-view="winter"]:checked) .pc-tabs label:has(input[data-view="winter"]) { color: var(--c-point); font-weight: 700; border-bottom-color: var(--c-point); }
+.pc-tabs label:has(input:checked) { color: var(--c-point); font-weight: 700; border-bottom-color: var(--c-point); }
 .pc-tabs .my { margin-left: 8px; padding: 4px 8px; border-radius: 12px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); font-weight: 700; line-height: 1; }
 .pc-tabs .dot { display: inline-block; width: 12px; height: 12px; margin-right: 8px; border-radius: 50%; }
 
@@ -114,7 +113,7 @@ main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="w
 
 .slider { position: relative; }
 .slider .viewport { overflow: hidden; }
-.slider .track { display: flex; gap: var(--gap); transition: transform 0.4s cubic-bezier(.16, 1, .3, 1); }
+.slider .track { display: flex; gap: var(--gap); transition: transform 0.4s ease-out; }
 .slider .card { flex: 0 0 calc((100% - 3 * var(--gap)) / 4); min-width: 0; text-align: center; }
 .slider:has(input[value="2"]:checked) .track { transform: translateX(calc(-100% - var(--gap))); }
 .slider .nav {
@@ -141,12 +140,11 @@ main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="w
 .slider:has(input[value="2"]:checked) .next { display: none; }
 
 .slider .card .img { position: relative; display: block; border: 1px solid var(--c-border); }
-.tut .ph { background: var(--c-bg-sub); overflow: hidden; }
 .tut .ph img { width: 100%; height: 100%; object-fit: cover; }
 .slider .card .img img { display: block; }
 .slider .card .tone-tag { position: absolute; top: 8px; left: 8px; padding: 4px 8px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); }
 .slider .card .brand { margin-top: 16px; font-size: var(--fs-base); color: var(--c-text-sub); }
-.slider .card .name { margin-top: 4px; height: 2.8em; word-break: keep-all; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.slider .card .name { margin-top: 4px; height: 2.8em; }
 .slider .card .name .ln { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .slider .card .price-row { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 8px; }
 .slider .card .rate { font-size: var(--fs-lg); font-weight: 700; color: var(--c-sale); }
@@ -167,7 +165,7 @@ main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="w
 
 .tut { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--gap); }
 .tut a { display: flex; flex-direction: column; }
-.tut .ph { position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--c-border); border-radius: var(--radius); }
+.tut .ph { position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--c-border); border-radius: var(--radius); background: var(--c-bg-sub); overflow: hidden; }
 .tut .ph span { position: absolute; left: 12px; bottom: 12px; z-index: 1; padding: 4px 8px; background: color-mix(in srgb, var(--c-main) 70%, transparent); color: var(--c-white); font-size: var(--fs-sm); }
 .tut .t { margin-top: 12px; font-size: var(--fs-md); font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; word-break: keep-all; }
 .tut .d { margin-top: 4px; font-size: var(--fs-base); color: var(--c-text-sub); }
@@ -180,16 +178,38 @@ main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="w
 .tut a:first-child .d { grid-row: 3; margin: 8px 0 0; padding-bottom: 24px; color: color-mix(in srgb, var(--c-white) 85%, transparent); }
 .tut-more { margin: 32px auto 80px; display: block; width: 280px; text-align: center; line-height: 48px; }
 
-:root { --c-dim: color-mix(in srgb, var(--c-main) 50%, transparent); }
-.pc-tabs > input { position: absolute; opacity: 0; pointer-events: none; }
-html:has(input[name="state"][value="quiz"]:checked) { overflow: hidden; }
-.pc-banner .redo { cursor: pointer; }
-.quiz { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 16px; }
-main:has(input[name="state"][value="quiz"]:checked) .quiz { display: flex; }
-.quiz .backdrop { position: absolute; inset: 0; background: var(--c-dim); cursor: pointer; }
-.quiz .box { position: relative; width: 520px; max-width: 100%; max-height: calc(100vh - 32px); overflow-y: auto; padding: 32px; border-radius: 16px; background: var(--c-white); }
-.quiz .close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: var(--fs-xl); line-height: 1; color: var(--c-text-sub); cursor: pointer; }
-.quiz .close:hover { color: var(--c-main); }
+.quiz summary { list-style: none; cursor: pointer; }
+.quiz summary::-webkit-details-marker { display: none; }
+.quiz[open] summary { background: var(--c-point); color: var(--c-white); }
+.quiz[open] summary::after {
+  content: "\00D7";
+  position: absolute;
+  top: calc(100% + 24px);
+  right: 16px;
+  z-index: 21;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xl);
+  font-weight: 400;
+  color: var(--c-text-sub);
+}
+.quiz[open] summary:hover::after { color: var(--c-main); }
+.quiz .box {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  width: 520px;
+  max-width: 100%;
+  padding: 32px;
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  background: var(--c-white);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
 .quiz h2 { margin: 0; font-size: var(--fs-xl); }
 .quiz .lead { margin: 8px 0 24px; color: var(--c-text-sub); font-size: var(--fs-base); }
 .quiz fieldset { margin: 0 0 20px; padding: 0; border: 0; }
@@ -200,7 +220,7 @@ main:has(input[name="state"][value="quiz"]:checked) .quiz { display: flex; }
 .quiz .opts label:has(input:checked) { border-color: var(--c-point); background: var(--c-point-light); color: var(--c-point); font-weight: 700; }
 .quiz .opts input { position: absolute; opacity: 0; pointer-events: none; }
 .quiz .wait { margin: 0; padding-top: 20px; border-top: 1px solid var(--c-border); color: var(--c-text-sub); font-size: var(--fs-base); }
-.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked) .wait { display: none; }
+.quiz .box:has([name="q1"]:checked):has([name="q2"]:checked):has([name="q3"]:checked):has([name="q4"]:checked) .wait { display: none; }
 .quiz .result { display: none; padding-top: 20px; border-top: 1px solid var(--c-border); align-items: center; justify-content: space-between; gap: 16px; }
 .quiz .result p { margin: 0; font-size: var(--fs-lg); }
 .quiz .result b { color: var(--c-point); }
@@ -211,69 +231,22 @@ main:has(input[name="state"][value="quiz"]:checked) .quiz { display: flex; }
 .quiz .r-winter { --tone: #7a1f3d; }
 .quiz .result .swatch { margin-top: 8px; display: flex; gap: 4px; }
 .quiz .result .swatch i { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--c-border); }
-.quiz .result .pc-btn { background: color-mix(in srgb, var(--tone) 60%, var(--c-main)); }
+.quiz .result .pc-btn { background: color-mix(in srgb, var(--tone) 60%, var(--c-main)); cursor: pointer; }
 .quiz .result .pc-btn:hover, .quiz .result .pc-btn:active { background: color-mix(in srgb, var(--tone) 45%, var(--c-main)); }
-.quiz .result .pc-btn { cursor: pointer; }
 
-.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="w"]:checked):has(input[name="q2"][value="w"]:checked), :has(input[name="q1"][value="w"]:checked):has(input[name="q3"][value="w"]:checked), :has(input[name="q2"][value="w"]:checked):has(input[name="q3"][value="w"]:checked)):has(input[name="q4"][value="l"]:checked) .r-spring,
-.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="w"]:checked):has(input[name="q2"][value="w"]:checked), :has(input[name="q1"][value="w"]:checked):has(input[name="q3"][value="w"]:checked), :has(input[name="q2"][value="w"]:checked):has(input[name="q3"][value="w"]:checked)):has(input[name="q4"][value="d"]:checked) .r-autumn,
-.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="c"]:checked):has(input[name="q2"][value="c"]:checked), :has(input[name="q1"][value="c"]:checked):has(input[name="q3"][value="c"]:checked), :has(input[name="q2"][value="c"]:checked):has(input[name="q3"][value="c"]:checked)):has(input[name="q4"][value="l"]:checked) .r-summer,
-.quiz .box:has(input[name="q1"]:checked):has(input[name="q2"]:checked):has(input[name="q3"]:checked):has(input[name="q4"]:checked):is(:has(input[name="q1"][value="c"]:checked):has(input[name="q2"][value="c"]:checked), :has(input[name="q1"][value="c"]:checked):has(input[name="q3"][value="c"]:checked), :has(input[name="q2"][value="c"]:checked):has(input[name="q3"][value="c"]:checked)):has(input[name="q4"][value="d"]:checked) .r-winter { display: flex; }
+.quiz .box:has([name="q1"][value="w"]:checked):has([name="q2"][value="w"]:checked):has([name="q3"]:checked):has([name="q4"][value="l"]:checked) .r-spring,
+.quiz .box:has([name="q1"][value="w"]:checked):has([name="q3"][value="w"]:checked):has([name="q2"]:checked):has([name="q4"][value="l"]:checked) .r-spring,
+.quiz .box:has([name="q2"][value="w"]:checked):has([name="q3"][value="w"]:checked):has([name="q1"]:checked):has([name="q4"][value="l"]:checked) .r-spring,
+.quiz .box:has([name="q1"][value="w"]:checked):has([name="q2"][value="w"]:checked):has([name="q3"]:checked):has([name="q4"][value="d"]:checked) .r-autumn,
+.quiz .box:has([name="q1"][value="w"]:checked):has([name="q3"][value="w"]:checked):has([name="q2"]:checked):has([name="q4"][value="d"]:checked) .r-autumn,
+.quiz .box:has([name="q2"][value="w"]:checked):has([name="q3"][value="w"]:checked):has([name="q1"]:checked):has([name="q4"][value="d"]:checked) .r-autumn,
+.quiz .box:has([name="q1"][value="c"]:checked):has([name="q2"][value="c"]:checked):has([name="q3"]:checked):has([name="q4"][value="l"]:checked) .r-summer,
+.quiz .box:has([name="q1"][value="c"]:checked):has([name="q3"][value="c"]:checked):has([name="q2"]:checked):has([name="q4"][value="l"]:checked) .r-summer,
+.quiz .box:has([name="q2"][value="c"]:checked):has([name="q3"][value="c"]:checked):has([name="q1"]:checked):has([name="q4"][value="l"]:checked) .r-summer,
+.quiz .box:has([name="q1"][value="c"]:checked):has([name="q2"][value="c"]:checked):has([name="q3"]:checked):has([name="q4"][value="d"]:checked) .r-winter,
+.quiz .box:has([name="q1"][value="c"]:checked):has([name="q3"][value="c"]:checked):has([name="q2"]:checked):has([name="q4"][value="d"]:checked) .r-winter,
+.quiz .box:has([name="q2"][value="c"]:checked):has([name="q3"][value="c"]:checked):has([name="q1"]:checked):has([name="q4"][value="d"]:checked) .r-winter { display: flex; }
 .quiz .note { margin: 16px 0 0; font-size: var(--fs-sm); color: var(--c-text-sub); }
-
-.pc-banner .mine, .pc-banner .redo, .quiz .close, .quiz .backdrop { display: none; }
-main:has(input[name="state"][data-my="spring"]:checked) .pc-banner .mine[data-for="spring"],
-main:has(input[name="state"][data-my="summer"]:checked) .pc-banner .mine[data-for="summer"],
-main:has(input[name="state"][data-my="autumn"]:checked) .pc-banner .mine[data-for="autumn"],
-main:has(input[name="state"][data-my="winter"]:checked) .pc-banner .mine[data-for="winter"] { display: block; }
-main:has(#st-spring-spring:checked) .pc-banner .redo[for="st-q-spring-spring"],
-main:has(#st-spring-summer:checked) .pc-banner .redo[for="st-q-spring-summer"],
-main:has(#st-spring-autumn:checked) .pc-banner .redo[for="st-q-spring-autumn"],
-main:has(#st-spring-winter:checked) .pc-banner .redo[for="st-q-spring-winter"],
-main:has(#st-summer-spring:checked) .pc-banner .redo[for="st-q-summer-spring"],
-main:has(#st-summer-summer:checked) .pc-banner .redo[for="st-q-summer-summer"],
-main:has(#st-summer-autumn:checked) .pc-banner .redo[for="st-q-summer-autumn"],
-main:has(#st-summer-winter:checked) .pc-banner .redo[for="st-q-summer-winter"],
-main:has(#st-autumn-spring:checked) .pc-banner .redo[for="st-q-autumn-spring"],
-main:has(#st-autumn-summer:checked) .pc-banner .redo[for="st-q-autumn-summer"],
-main:has(#st-autumn-autumn:checked) .pc-banner .redo[for="st-q-autumn-autumn"],
-main:has(#st-autumn-winter:checked) .pc-banner .redo[for="st-q-autumn-winter"],
-main:has(#st-winter-spring:checked) .pc-banner .redo[for="st-q-winter-spring"],
-main:has(#st-winter-summer:checked) .pc-banner .redo[for="st-q-winter-summer"],
-main:has(#st-winter-autumn:checked) .pc-banner .redo[for="st-q-winter-autumn"],
-main:has(#st-winter-winter:checked) .pc-banner .redo[for="st-q-winter-winter"] { display: inline-flex; }
-main:has(#st-q-spring-spring:checked) .quiz .close[for="st-spring-spring"],
-main:has(#st-q-spring-summer:checked) .quiz .close[for="st-spring-summer"],
-main:has(#st-q-spring-autumn:checked) .quiz .close[for="st-spring-autumn"],
-main:has(#st-q-spring-winter:checked) .quiz .close[for="st-spring-winter"],
-main:has(#st-q-summer-spring:checked) .quiz .close[for="st-summer-spring"],
-main:has(#st-q-summer-summer:checked) .quiz .close[for="st-summer-summer"],
-main:has(#st-q-summer-autumn:checked) .quiz .close[for="st-summer-autumn"],
-main:has(#st-q-summer-winter:checked) .quiz .close[for="st-summer-winter"],
-main:has(#st-q-autumn-spring:checked) .quiz .close[for="st-autumn-spring"],
-main:has(#st-q-autumn-summer:checked) .quiz .close[for="st-autumn-summer"],
-main:has(#st-q-autumn-autumn:checked) .quiz .close[for="st-autumn-autumn"],
-main:has(#st-q-autumn-winter:checked) .quiz .close[for="st-autumn-winter"],
-main:has(#st-q-winter-spring:checked) .quiz .close[for="st-winter-spring"],
-main:has(#st-q-winter-summer:checked) .quiz .close[for="st-winter-summer"],
-main:has(#st-q-winter-autumn:checked) .quiz .close[for="st-winter-autumn"],
-main:has(#st-q-winter-winter:checked) .quiz .close[for="st-winter-winter"] { display: flex; }
-main:has(#st-q-spring-spring:checked) .quiz .backdrop[for="st-spring-spring"],
-main:has(#st-q-spring-summer:checked) .quiz .backdrop[for="st-spring-summer"],
-main:has(#st-q-spring-autumn:checked) .quiz .backdrop[for="st-spring-autumn"],
-main:has(#st-q-spring-winter:checked) .quiz .backdrop[for="st-spring-winter"],
-main:has(#st-q-summer-spring:checked) .quiz .backdrop[for="st-summer-spring"],
-main:has(#st-q-summer-summer:checked) .quiz .backdrop[for="st-summer-summer"],
-main:has(#st-q-summer-autumn:checked) .quiz .backdrop[for="st-summer-autumn"],
-main:has(#st-q-summer-winter:checked) .quiz .backdrop[for="st-summer-winter"],
-main:has(#st-q-autumn-spring:checked) .quiz .backdrop[for="st-autumn-spring"],
-main:has(#st-q-autumn-summer:checked) .quiz .backdrop[for="st-autumn-summer"],
-main:has(#st-q-autumn-autumn:checked) .quiz .backdrop[for="st-autumn-autumn"],
-main:has(#st-q-autumn-winter:checked) .quiz .backdrop[for="st-autumn-winter"],
-main:has(#st-q-winter-spring:checked) .quiz .backdrop[for="st-winter-spring"],
-main:has(#st-q-winter-summer:checked) .quiz .backdrop[for="st-winter-summer"],
-main:has(#st-q-winter-autumn:checked) .quiz .backdrop[for="st-winter-autumn"],
-main:has(#st-q-winter-winter:checked) .quiz .backdrop[for="st-winter-winter"] { display: block; }
 
 @media (max-width: 800px) {
   .palette { grid-template-columns: repeat(4, 1fr); }
@@ -292,7 +265,7 @@ main:has(#st-q-winter-winter:checked) .quiz .backdrop[for="st-winter-winter"] { 
   .tut a:first-child .ph { aspect-ratio: 16 / 10; min-height: 0; }
   .tut a:first-child .t { font-size: var(--fs-lg); }
   .pc-tabs label { font-size: var(--fs-base); }
-  .quiz .box { padding: 24px; }
+  .quiz .box { left: 0; right: 0; width: auto; padding: 24px; }
 }
 @media (max-width: 480px) {
   .quiz .opts { grid-template-columns: minmax(0, 1fr); }
