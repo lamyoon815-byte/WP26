@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
 /* ==========================================================================
    common.css  —  6개 페이지 공통 스타일
@@ -72,7 +73,7 @@
 body {
   margin: 0;
   font-family:
-    "Pretendard", sans-serif; /* html에서 Pretendard를 불러와야 적용됨 */
+    "Pretendard", sans-serif; /* 맨 위 @import로 불러옴 */
   font-size: var(--fs-base);
   color: var(--c-main);
   background: var(--c-white);
