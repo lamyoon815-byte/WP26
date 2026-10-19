@@ -56,17 +56,6 @@
   font-size: var(--fs-sm);
 }
 
-.page-title {
-  margin: 0 0 28px;
-  font-size: 30px;
-  letter-spacing: -1px;
-}
-
-.section-title {
-  margin: 0;
-  font-size: var(--fs-lg);
-}
-
 .cart-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
@@ -191,11 +180,6 @@
   line-height: 1.5;
 }
 
-.product-info .option {
-  color: var(--c-text-sub);
-  font-size: var(--fs-base);
-}
-
 .cart-option {
   display: flex;
   align-items: center;
@@ -237,8 +221,7 @@
 }
 
 .option-select-box:hover,
-.option-select-box .text-button:hover,
-.cart-tools .text-button:not(.delete-button):hover {
+.option-select-box .text-button:hover {
   text-decoration: underline;
 }
 
@@ -266,18 +249,6 @@
   color: var(--c-sale);
   font-style: normal;
   font-weight: 700;
-}
-
-.delivery-note {
-  margin-top: 20px;
-  padding: 16px 20px;
-  border-radius: var(--radius);
-  background: var(--c-bg-sub);
-  line-height: 1.7;
-}
-
-.delivery-note strong {
-  color: var(--c-point);
 }
 
 .order-summary {
@@ -466,10 +437,10 @@
   object-fit: cover;
 }
 
-.recommend-put,
-.recommend-like {
+.recommend-put {
   position: absolute;
   bottom: 8px;
+  right: 8px;
   z-index: 2;
   display: flex;
   width: 40px;
@@ -481,19 +452,7 @@
   cursor: pointer;
 }
 
-.recommend-put {
-  right: 56px;
-}
-
-.recommend-like {
-  right: 8px;
-  font-size: 26px;
-  line-height: 1;
-  color: var(--c-sale);
-}
-
-.recommend-put input,
-.recommend-like input {
+.recommend-put input {
   position: absolute;
   opacity: 0;
   pointer-events: none;
@@ -509,8 +468,7 @@
   stroke-width: 1.8;
 }
 
-.recommend-put:has(input:checked),
-.recommend-like:has(input:checked) {
+.recommend-put:has(input:checked) {
   border-color: var(--c-point);
   background: var(--c-point);
   color: var(--c-white);
@@ -560,16 +518,13 @@
   overflow: hidden;
   border-radius: 8px;
   background: var(--c-bg-sub);
+  min-height: 520px;
 }
 
 .product-photo img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-}
-
-.product-photo {
-  min-height: 520px;
 }
 
 .product-thumbnails {
@@ -1294,11 +1249,6 @@
     grid-row: 2;
   }
 
-  .header-cart {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
   .gnb .container {
     gap: 24px;
   }
@@ -1353,10 +1303,6 @@
 
   .gnb a {
     font-size: var(--fs-base);
-  }
-
-  .page-title {
-    font-size: 26px;
   }
 
   .cart-item {
@@ -1439,4 +1385,3 @@
     border-left: 0;
   }
 }
-/* 장바구니·상세화면 스타일 수정. */
