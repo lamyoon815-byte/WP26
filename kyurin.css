@@ -266,12 +266,13 @@ main:has(.rk-cat [value="all"]:checked):has([name="pc"]:checked):not(:has([name=
 .info .tag .dot { width: 12px; height: 12px; border: 1px solid var(--c-white); border-radius: 50%; }
 .info .go { margin-top: auto; text-align: left; }
 
-.rk-list .card { text-align: center; }
+.rk-list .card { text-align: center; display: flex; flex-direction: column; }
 .card .txt { display: block; }
+.rk-list .card .txt { flex: 1; }
 .card .brand { margin-top: 16px; font-size: var(--fs-md); color: var(--c-text-sub); }
-.card .name { margin-top: 8px; height: 2.8em; }
+.card .name { margin-top: 8px; min-height: 2.8em; }
 
-.card .name .ln { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card .name .ln { display: block; word-break: keep-all; overflow-wrap: break-word; }
 
 .rk-list .card .price-row {
   margin-top: 8px;
@@ -438,7 +439,8 @@ main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="w
 .slider { position: relative; }
 .slider .viewport { overflow: hidden; }
 .slider .track { display: flex; gap: var(--gap); transition: transform 0.4s ease-out; }
-.slider .card { flex: 0 0 calc((100% - 3 * var(--gap)) / 4); min-width: 0; text-align: center; }
+.slider .card { flex: 0 0 calc((100% - 3 * var(--gap)) / 4); min-width: 0; text-align: center; display: flex; flex-direction: column; }
+.slider .card > a:nth-child(2) { flex: 1; }
 .slider:has(input[value="2"]:checked) .track { transform: translateX(calc(-100% - var(--gap))); }
 .slider .nav {
   position: absolute;
@@ -468,8 +470,8 @@ main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="w
 .slider .card .img img { display: block; }
 .slider .card .tone-tag { position: absolute; top: 8px; left: 8px; padding: 4px 8px; background: var(--c-point); color: var(--c-white); font-size: var(--fs-sm); }
 .slider .card .brand { margin-top: 16px; font-size: var(--fs-base); color: var(--c-text-sub); }
-.slider .card .name { margin-top: 4px; height: 2.8em; }
-.slider .card .name .ln { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.slider .card .name { margin-top: 4px; min-height: 2.8em; }
+.slider .card .name .ln { display: block; word-break: keep-all; overflow-wrap: break-word; }
 .slider .card .price-row { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 8px; }
 .slider .card .rate { font-size: var(--fs-lg); font-weight: 700; color: var(--c-sale); }
 
