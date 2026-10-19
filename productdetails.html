@@ -23,7 +23,7 @@
     <header class="header">
       <div class="container">
         <a class="logo" href="productdetails.html">
-          <img src="Image_logo.png" alt="Olive Song 심볼" />
+          <img src="image/Image_logo.png" alt="Olive Song 심볼" />
           <img src="Text_logo.png" alt="OLIVE SONG" />
         </a>
         <div class="search"><span>퍼스널컬러, 브랜드, 성분 검색</span><span class="search-icon">⌕</span></div>
@@ -133,7 +133,7 @@
           <section class="ingredient-card" aria-label="성분 구성">
             <div class="ingredient-card-heading">
               <h3>성분 구성</h3>
-              <span aria-hidden="true">›</span>
+              <button class="ingredient-open" type="button" aria-label="중간위험 성분 보기" aria-controls="ingredient-modal">›</button>
             </div>
             <div class="ingredient-legend" aria-label="성분 위험도 안내">
               <span class="legend-low"><i></i>1-2 낮은 위험</span>
@@ -146,10 +146,27 @@
             </div>
             <div class="ingredient-total"><span>전체 성분</span><strong>36개</strong></div>
             <div class="ingredient-row"><span class="ingredient-icon">20</span><span>20가지 주의성분</span><strong>0개</strong></div>
-            <div class="ingredient-row"><span class="ingredient-icon allergy"><span class="allergy-symbol">S</span></span><span>알레르기 주의성분</span><strong>0개</strong></div>
+            <div class="ingredient-row"><span class="ingredient-icon allergy"><span class="allergy-symbol">-</span></span><span>알레르기 주의성분</span><strong>0개</strong></div>
             <div class="ingredient-row"><span class="ingredient-icon">♥</span><span>내 관심 성분</span><strong>0개</strong></div>
             <div class="ingredient-row"><span class="ingredient-icon">▼</span><span>내 피할 성분</span><strong>0개</strong></div>
           </section>
+          <dialog class="ingredient-modal" id="ingredient-modal" aria-labelledby="ingredient-modal-title">
+            <div class="ingredient-modal-heading">
+              <h3 id="ingredient-modal-title">중간위험 성분</h3>
+              <button class="ingredient-modal-close" type="button" aria-label="닫기">×</button>
+            </div>
+            <table>
+              <thead>
+                <tr><th scope="col">위험도</th><th scope="col">성분명</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="ingredient-risk-number">3</span></td><td>다이프로필렌글라이콜</td></tr>
+                <tr><td><span class="ingredient-risk-number">4</span></td><td>연필향나무오일</td></tr>
+                <tr><td><span class="ingredient-risk-number">3</span></td><td>광곽향오일</td></tr>
+                <tr><td><span class="ingredient-risk-number">4</span></td><td>로즈마리잎오일</td></tr>
+              </tbody>
+            </table>
+          </dialog>
           <div class="detail-more-wrap">
             <div class="detail-photo detail-more-photo">
               <img src="image/d2.jpg" alt="메디힐 에센셜 마스크팩 상세 사진 2" />
@@ -221,5 +238,16 @@
       </svg>
       <em>3</em>
     </a>
+    <script>
+      const ingredientModal = document.querySelector("#ingredient-modal");
+      const ingredientOpen = document.querySelector(".ingredient-open");
+      const ingredientClose = document.querySelector(".ingredient-modal-close");
+
+      ingredientOpen.addEventListener("click", () => ingredientModal.showModal());
+      ingredientClose.addEventListener("click", () => ingredientModal.close());
+      ingredientModal.addEventListener("click", (event) => {
+        if (event.target === ingredientModal) ingredientModal.close();
+      });
+    </script>
   </body>
 </html>

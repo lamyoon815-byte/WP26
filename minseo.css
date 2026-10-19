@@ -147,6 +147,7 @@
   padding: 8px 12px;
   border: 1px solid var(--c-border);
   color: var(--c-main);
+  font-size: 16px;
 }
 
 .cart-tools .delete-button:hover {
@@ -155,7 +156,7 @@
 
 .cart-item {
   display: grid;
-  grid-template-columns: 20px 112px minmax(0, 1fr) 120px;
+  grid-template-columns: 20px 128px minmax(0, 1fr);
   align-items: center;
   gap: 16px;
   padding: 24px 0;
@@ -163,8 +164,8 @@
 }
 
 .product-thumb {
-  width: 112px;
-  height: 112px;
+  width: 128px;
+  height: 128px;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--c-bg-sub);
@@ -179,13 +180,13 @@
 .product-info .brand {
   margin-bottom: 6px;
   color: var(--c-text-sub);
-  font-size: var(--fs-base);
+  font-size: 15px;
 }
 
 .product-info .name {
   display: block;
   margin-bottom: 8px;
-  font-size: var(--fs-md);
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.5;
 }
@@ -198,25 +199,50 @@
 .cart-option {
   display: flex;
   align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  margin-top: 8px;
+  font-size: 17px;
+}
+
+.option-select-box {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 8px;
   padding: 8px 10px;
   border: 1px solid var(--c-border);
-  font-size: var(--fs-md);
 }
 
-.cart-option .text-button {
+.option-select-box .text-button {
   flex-shrink: 0;
   color: var(--c-main);
+  font-size: 16px;
 }
 
-.cart-option .text-button:hover,
+.cart-option .quantity {
+  flex-shrink: 0;
+}
+
+.cart-option .quantity select {
+  width: 72px;
+  min-height: 38px;
+  padding: 0 8px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  font-size: 15px;
+}
+
+.option-select-box:hover,
+.option-select-box .text-button:hover,
 .cart-tools .text-button:not(.delete-button):hover {
   text-decoration: underline;
 }
 
-.cart-option:hover {
+.option-select-box:hover {
   border-color: var(--c-point);
   background: var(--c-bg-sub);
 }
@@ -228,11 +254,11 @@
 .product-price del {
   margin-right: 6px;
   color: var(--c-text-disabled);
-  font-size: var(--fs-base);
+  font-size: 15px;
 }
 
 .product-price strong {
-  font-size: var(--fs-md);
+  font-size: 18px;
 }
 
 .product-price em {
@@ -394,7 +420,7 @@
 .summary-caption {
   margin: 12px 0 0;
   color: var(--c-text-sub);
-  font-size: var(--fs-md);
+  font-size: 18px;
   line-height: 1.6;
   text-align: center;
 }
@@ -465,7 +491,7 @@
 .product-copy .brand {
   margin: 4px 0 10px;
   color: var(--c-text-sub);
-  font-size: var(--fs-md);
+  font-size: 18px;
 }
 
 .product-copy .brand:hover {
@@ -489,7 +515,7 @@
 
 .review-link {
   color: var(--c-point);
-  font-size: var(--fs-sm);
+  font-size: 15px;
 }
 
 .review-count:hover {
@@ -522,7 +548,7 @@
 .price-block del {
   margin-right: 8px;
   color: var(--c-text-disabled);
-  font-size: var(--fs-base);
+  font-size: 15px;
 }
 
 .price-block .discount {
@@ -538,7 +564,7 @@
 
 .price-block .unit {
   margin-left: 4px;
-  font-size: var(--fs-md);
+  font-size: 18px;
 }
 
 .benefit-list {
@@ -552,6 +578,7 @@
   grid-template-columns: 80px 1fr;
   gap: 12px;
   margin: 14px 0;
+  font-size: 16px;
   line-height: 1.6;
 }
 
@@ -574,6 +601,7 @@
 .option-box label {
   display: block;
   margin-bottom: 8px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -583,6 +611,7 @@
   padding: 0 10px;
   border: 1px solid var(--c-border);
   background: var(--c-white);
+  font-size: 16px;
 }
 
 .product-copy > .quantity {
@@ -598,6 +627,7 @@
   height: 36px;
   border: 1px solid var(--c-border);
   background: var(--c-white);
+  font-size: 16px;
   text-align: center;
 }
 
@@ -632,7 +662,7 @@
   padding: 16px 8px;
   border-bottom: 3px solid transparent;
   color: var(--c-text-sub);
-  font-size: var(--fs-md);
+  font-size: 18px;
   font-weight: 700;
   text-align: center;
 }
@@ -752,10 +782,85 @@
   font-size: 28px;
 }
 
-.ingredient-card-heading > span {
+.ingredient-open {
+  padding: 0;
+  border: 0;
   color: var(--c-text-disabled);
+  background: transparent;
+  font: inherit;
   font-size: 42px;
   line-height: 0.7;
+  cursor: pointer;
+}
+
+.ingredient-open:hover {
+  color: var(--c-main);
+}
+
+.ingredient-modal {
+  width: min(420px, calc(100% - 32px));
+  padding: 24px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  box-shadow: 0 18px 50px rgb(17 17 17 / 20%);
+}
+
+.ingredient-modal::backdrop {
+  background: rgb(17 17 17 / 35%);
+}
+
+.ingredient-modal-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.ingredient-modal-heading h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.ingredient-modal-close {
+  padding: 0 4px;
+  border: 0;
+  color: var(--c-text-sub);
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ingredient-modal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+.ingredient-modal th,
+.ingredient-modal td {
+  padding: 12px 8px;
+  border-top: 1px solid var(--c-border);
+  text-align: left;
+}
+
+.ingredient-modal th:first-child,
+.ingredient-modal td:first-child {
+  width: 58px;
+  text-align: center;
+}
+
+.ingredient-risk-number {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--c-white);
+  background: var(--c-risk-mid);
+  font-size: var(--fs-base);
+  font-weight: 700;
 }
 
 .ingredient-legend {
@@ -764,7 +869,7 @@
   gap: 14px 22px;
   padding: 24px 0;
   color: var(--c-text-sub);
-  font-size: var(--fs-md);
+  font-size: 18px;
 }
 
 .ingredient-legend span {
@@ -835,18 +940,16 @@
 }
 
 .ingredient-icon.allergy {
-  border: 2px solid var(--c-text-disabled);
+  border: 4px solid var(--c-text-disabled);
   background: var(--c-white);
 }
 
 .allergy-symbol {
   display: inline-flex;
-  width: 22px;
-  height: 22px;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--c-text-disabled);
-  font-size: var(--fs-sm);
+  font-size: 24px;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -1106,22 +1209,27 @@
   }
 
   .cart-item {
-    grid-template-columns: 18px 76px minmax(0, 1fr);
+    grid-template-columns: 18px 88px minmax(0, 1fr);
     gap: 10px;
   }
 
   .product-thumb {
-    width: 76px;
-    height: 76px;
+    width: 88px;
+    height: 88px;
   }
 
   .product-info .name {
-    font-size: var(--fs-base);
+    font-size: 15px;
   }
 
   .cart-item .quantity {
     grid-column: 3;
     margin-top: 4px;
+  }
+
+  .cart-option .quantity {
+    grid-column: auto;
+    margin-top: 0;
   }
 
   .cart-tools {
@@ -1147,7 +1255,7 @@
 
   .detail-tabs a {
     padding: 14px 4px;
-    font-size: var(--fs-base);
+    font-size: 16px;
   }
 
   .review-topic-heading,
