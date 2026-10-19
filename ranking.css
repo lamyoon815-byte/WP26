@@ -117,39 +117,42 @@ main:has(.rk-sort input[value="rating"]:checked) .rk-list .card .no::before { co
 .rk-filter .hint { font-size: var(--fs-sm); color: var(--c-text-sub); }
 
 .rk-filter .grp { display: contents; }
-main:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)) .rk-filter .grp-skin,
-main:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)) .rk-filter .grp-pc { display: none; }
+main:not(:has(.rk-cat .f-skin:checked)) .rk-filter .grp-skin,
+main:not(:has(.rk-cat .f-pc:checked)) .rk-filter .grp-pc { display: none; }
 
-main:has(.rk-cat input[value="skin"]:checked) .rk-list .card:not([data-cat="skin"]),
-main:has(.rk-cat input[value="mask"]:checked) .rk-list .card:not([data-cat="mask"]),
-main:has(.rk-cat input[value="clean"]:checked) .rk-list .card:not([data-cat="clean"]),
-main:has(.rk-cat input[value="sun"]:checked) .rk-list .card:not([data-cat="sun"]),
-main:has(.rk-cat input[value="makeup"]:checked) .rk-list .card:not([data-cat="makeup"]),
-main:has(.rk-cat input[value="nail"]:checked) .rk-list .card:not([data-cat="nail"]),
-main:has(.rk-cat input[value="tool"]:checked) .rk-list .card:not([data-cat="tool"]),
-main:has(.rk-cat input[value="derma"]:checked) .rk-list .card:not([data-cat="derma"]),
-main:has(.rk-cat input[value="perfume"]:checked) .rk-list .card:not([data-cat="perfume"]),
-main:has(.rk-cat input[value="hair"]:checked) .rk-list .card:not([data-cat="hair"]),
-main:has(.rk-cat input[value="body"]:checked) .rk-list .card:not([data-cat="body"]),
-main:has(.rk-cat input[value="luxe"]:checked) .rk-list .card:not([data-cat="luxe"]),
-main:has(.rk-cat input[value="mens"]:checked) .rk-list .card:not([data-cat="mens"]),
-main:has(.rk-cat input[value="supple"]:checked) .rk-list .card:not([data-cat="supple"]),
-main:has(.rk-cat input[value="food"]:checked) .rk-list .card:not([data-cat="food"]),
-main:has(.rk-cat input[value="oral"]:checked) .rk-list .card:not([data-cat="oral"]),
-main:has(.rk-cat input[value="health"]:checked) .rk-list .card:not([data-cat="health"]),
-main:has(.rk-cat input[value="hygiene"]:checked) .rk-list .card:not([data-cat="hygiene"]),
-main:has(.rk-cat input[value="fashion"]:checked) .rk-list .card:not([data-cat="fashion"]),
-main:has(.rk-cat input[value="living"]:checked) .rk-list .card:not([data-cat="living"]),
-main:has(.rk-cat input[value="hobby"]:checked) .rk-list .card:not([data-cat="hobby"]),
-main:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked):has(.rk-filter input[name="skin"][value="지성"]:checked) .rk-list .card:not([data-skin~="지성"]),
-main:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked):has(.rk-filter input[name="skin"][value="건성"]:checked) .rk-list .card:not([data-skin~="건성"]),
-main:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked):has(.rk-filter input[name="skin"][value="복합성"]:checked) .rk-list .card:not([data-skin~="복합성"]),
-main:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked):has(.rk-filter input[name="pc"]:checked) .rk-list .card:not([data-pc]),
-main:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked):has(.rk-filter input[name="pc"]:checked):not(:has(.rk-filter input[name="pc"]:is([value="가을웜"], [value="겨울쿨"]):checked)) .rk-list .card[data-pc="가을웜 겨울쿨"],
-main:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked):has(.rk-filter input[name="pc"]:checked):not(:has(.rk-filter input[name="pc"]:is([value="봄웜"], [value="가을웜"]):checked)) .rk-list .card[data-pc="봄웜 가을웜"],
-main:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked):has(.rk-filter input[name="pc"]:checked):not(:has(.rk-filter input[name="pc"]:is([value="봄웜"], [value="여름쿨"]):checked)) .rk-list .card[data-pc="봄웜 여름쿨"],
-main:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked):has(.rk-filter input[name="pc"]:checked):not(:has(.rk-filter input[name="pc"]:is([value="여름쿨"], [value="겨울쿨"]):checked)) .rk-list .card[data-pc="여름쿨 겨울쿨"],
-main:has(.rk-filter input[name="safe"]:checked) .rk-list .card:not([data-danger="0"]) { display: none; }
+main:has(.rk-cat [value="skin"]:checked) .rk-list .card:not([data-cat="skin"]),
+main:has(.rk-cat [value="mask"]:checked) .rk-list .card:not([data-cat="mask"]),
+main:has(.rk-cat [value="clean"]:checked) .rk-list .card:not([data-cat="clean"]),
+main:has(.rk-cat [value="sun"]:checked) .rk-list .card:not([data-cat="sun"]),
+main:has(.rk-cat [value="makeup"]:checked) .rk-list .card:not([data-cat="makeup"]),
+main:has(.rk-cat [value="nail"]:checked) .rk-list .card:not([data-cat="nail"]),
+main:has(.rk-cat [value="tool"]:checked) .rk-list .card:not([data-cat="tool"]),
+main:has(.rk-cat [value="derma"]:checked) .rk-list .card:not([data-cat="derma"]),
+main:has(.rk-cat [value="perfume"]:checked) .rk-list .card:not([data-cat="perfume"]),
+main:has(.rk-cat [value="hair"]:checked) .rk-list .card:not([data-cat="hair"]),
+main:has(.rk-cat [value="body"]:checked) .rk-list .card:not([data-cat="body"]),
+main:has(.rk-cat [value="luxe"]:checked) .rk-list .card:not([data-cat="luxe"]),
+main:has(.rk-cat [value="mens"]:checked) .rk-list .card:not([data-cat="mens"]),
+main:has(.rk-cat [value="supple"]:checked) .rk-list .card:not([data-cat="supple"]),
+main:has(.rk-cat [value="food"]:checked) .rk-list .card:not([data-cat="food"]),
+main:has(.rk-cat [value="oral"]:checked) .rk-list .card:not([data-cat="oral"]),
+main:has(.rk-cat [value="health"]:checked) .rk-list .card:not([data-cat="health"]),
+main:has(.rk-cat [value="hygiene"]:checked) .rk-list .card:not([data-cat="hygiene"]),
+main:has(.rk-cat [value="fashion"]:checked) .rk-list .card:not([data-cat="fashion"]),
+main:has(.rk-cat [value="living"]:checked) .rk-list .card:not([data-cat="living"]),
+main:has(.rk-cat [value="hobby"]:checked) .rk-list .card:not([data-cat="hobby"]) { display: none; }
+
+main:has(.rk-cat .f-skin:checked):has([name="skin"][value="지성"]:checked) .rk-list .card:not([data-skin~="지성"]),
+main:has(.rk-cat .f-skin:checked):has([name="skin"][value="건성"]:checked) .rk-list .card:not([data-skin~="건성"]),
+main:has(.rk-cat .f-skin:checked):has([name="skin"][value="복합성"]:checked) .rk-list .card:not([data-skin~="복합성"]) { display: none; }
+
+main:has(.rk-cat .f-pc:checked):has([name="pc"]:checked) .rk-list .card:not([data-pc]) { display: none; }
+main:has(.rk-cat .f-pc:checked):has([name="pc"]:checked):not(:has([name="pc"]:is([value="가을웜"], [value="겨울쿨"]):checked)) .rk-list .card[data-pc="가을웜 겨울쿨"],
+main:has(.rk-cat .f-pc:checked):has([name="pc"]:checked):not(:has([name="pc"]:is([value="봄웜"], [value="가을웜"]):checked)) .rk-list .card[data-pc="봄웜 가을웜"],
+main:has(.rk-cat .f-pc:checked):has([name="pc"]:checked):not(:has([name="pc"]:is([value="봄웜"], [value="여름쿨"]):checked)) .rk-list .card[data-pc="봄웜 여름쿨"],
+main:has(.rk-cat .f-pc:checked):has([name="pc"]:checked):not(:has([name="pc"]:is([value="여름쿨"], [value="겨울쿨"]):checked)) .rk-list .card[data-pc="여름쿨 겨울쿨"] { display: none; }
+
+main:has([name="safe"]:checked) .rk-list .card:not([data-danger="0"]) { display: none; }
 
 .rk-list { margin: 40px 0 80px; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 48px; counter-reset: rank; }
 .rk-list .card { counter-increment: rank; position: relative; }
@@ -172,19 +175,11 @@ main:has(.rk-filter input[name="safe"]:checked) .rk-list .card:not([data-danger=
 }
 .rk-list .card .no::before { content: counter(rank); }
 
-.rk-empty { padding: 80px 0; text-align: center; color: var(--c-text-sub); }
-main:is(
-  :has(.rk-cat input:is([value="all"], [value="skin"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"], [value="건성"], [value="복합성"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked))),
-  :has(.rk-cat input:is([value="all"], [value="mask"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"], [value="건성"], [value="복합성"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked))),
-  :has(.rk-cat input:is([value="all"], [value="makeup"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked)), :has(.rk-filter input[name="pc"]:is([value="여름쿨"], [value="겨울쿨"]):checked)),
-  :has(.rk-cat input:is([value="all"], [value="sun"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"], [value="건성"], [value="복합성"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked))),
-  :has(.rk-cat input:is([value="all"], [value="clean"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"], [value="지성"], [value="복합성"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked))),
-  :has(.rk-cat input:is([value="all"], [value="makeup"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked)), :has(.rk-filter input[name="pc"]:is([value="봄웜"], [value="가을웜"]):checked)),
-  :has(.rk-cat input:is([value="all"], [value="makeup"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked)), :has(.rk-filter input[name="pc"]:is([value="봄웜"], [value="여름쿨"]):checked)),
-  :has(.rk-cat input:is([value="all"], [value="makeup"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked)), :has(.rk-filter input[name="pc"]:is([value="여름쿨"], [value="겨울쿨"]):checked)),
-  :has(.rk-cat input:is([value="all"], [value="makeup"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked)), :has(.rk-filter input[name="pc"]:is([value="가을웜"], [value="겨울쿨"]):checked)),
-  :has(.rk-cat input:is([value="all"], [value="makeup"]):checked):is(:not(:has(.rk-cat input:is([value="all"], [value="skin"], [value="mask"], [value="clean"], [value="sun"], [value="body"], [value="derma"]):checked)), :has(.rk-filter input[name="skin"]:is([value="all"]):checked)):is(:not(:has(.rk-cat input:is([value="all"], [value="makeup"], [value="nail"]):checked)), :not(:has(.rk-filter input[name="pc"]:checked)), :has(.rk-filter input[name="pc"]:is([value="봄웜"], [value="가을웜"]):checked))
-) .rk-empty { display: none; }
+.rk-empty { display: none; padding: 80px 0; text-align: center; color: var(--c-text-sub); }
+main:not(:has(.rk-cat :is([value="all"], [value="mask"], [value="makeup"], [value="sun"], [value="clean"]):checked)) .rk-empty,
+main:has(.rk-cat [value="sun"]:checked):has([name="skin"][value="지성"]:checked) .rk-empty,
+main:has(.rk-cat [value="clean"]:checked):has([name="skin"][value="건성"]:checked) .rk-empty,
+main:has(.rk-cat [value="all"]:checked):has([name="pc"]:checked):not(:has([name="skin"][value="all"]:checked)) .rk-empty { display: block; }
 
 .card .thumb { position: relative; }
 
@@ -273,15 +268,7 @@ main:is(
 .rk-list .card { text-align: center; }
 .card .txt { display: block; }
 .card .brand { margin-top: 16px; font-size: var(--fs-md); color: var(--c-text-sub); }
-.card .name {
-  margin-top: 8px;
-  height: 2.8em;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  word-break: keep-all;
-}
+.card .name { margin-top: 8px; height: 2.8em; }
 
 .card .name .ln { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 

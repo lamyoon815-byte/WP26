@@ -42,55 +42,88 @@
   <div class="pc-banner">
     <div class="txt mine" data-for="spring">
       <h2>내 톤: <b>봄웜</b></h2>
-      <p>밝은 · 화사한 · 생기 있는 — 아래에서 봄웜에 어울리는 컬러와 제품을 확인해 보세요.</p>
+      <p>밝고 화사한 톤이에요. 봄웜에 어울리는 컬러와 제품을 아래에서 확인해 보세요.</p>
     </div>
     <div class="txt mine" data-for="summer">
       <h2>내 톤: <b>여름쿨</b></h2>
-      <p>부드러운 · 청량한 · 우아한 — 아래에서 여름쿨에 어울리는 컬러와 제품을 확인해 보세요.</p>
+      <p>부드럽고 청량한 톤이에요. 여름쿨에 어울리는 컬러와 제품을 아래에서 확인해 보세요.</p>
     </div>
     <div class="txt mine" data-for="autumn">
       <h2>내 톤: <b>가을웜</b></h2>
-      <p>깊은 · 차분한 · 고급스러운 — 아래에서 가을웜에 어울리는 컬러와 제품을 확인해 보세요.</p>
+      <p>깊고 차분한 톤이에요. 가을웜에 어울리는 컬러와 제품을 아래에서 확인해 보세요.</p>
     </div>
     <div class="txt mine" data-for="winter">
       <h2>내 톤: <b>겨울쿨</b></h2>
-      <p>선명한 · 도시적인 · 강렬한 — 아래에서 겨울쿨에 어울리는 컬러와 제품을 확인해 보세요.</p>
+      <p>선명하고 강렬한 톤이에요. 겨울쿨에 어울리는 컬러와 제품을 아래에서 확인해 보세요.</p>
     </div>
-    <label class="pc-btn line redo" for="st-q-spring-spring">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-spring-summer">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-spring-autumn">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-spring-winter">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-summer-spring">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-summer-summer">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-summer-autumn">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-summer-winter">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-autumn-spring">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-autumn-summer">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-autumn-autumn">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-autumn-winter">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-winter-spring">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-winter-summer">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-winter-autumn">다시 진단하기</label>
-    <label class="pc-btn line redo" for="st-q-winter-winter">다시 진단하기</label>
+    <details class="quiz">
+      <summary class="pc-btn line">다시 진단하기</summary>
+      <div class="box">
+        <h2>퍼스널컬러 자가진단</h2>
+        <p class="lead">4가지 질문에 답하면 내 톤을 알려 드려요.</p>
+        <fieldset>
+          <legend>Q1. 손목 안쪽 혈관은 무슨 색에 가까운가요?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q1" value="w">초록빛</label>
+            <label><input type="radio" name="q1" value="c">파란빛 · 보랏빛</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Q2. 더 잘 어울리는 액세서리는?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q2" value="w">골드</label>
+            <label><input type="radio" name="q2" value="c">실버</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Q3. 평소 칭찬받는 립 컬러는?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q3" value="w">코랄 · 오렌지 계열</label>
+            <label><input type="radio" name="q3" value="c">핑크 · 레드 계열</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Q4. 더 잘 어울리는 분위기는?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q4" value="l">밝고 화사한 컬러</label>
+            <label><input type="radio" name="q4" value="d">깊고 진한 컬러</label>
+          </div>
+        </fieldset>
+        <p class="wait">모든 질문에 답하면 결과가 나와요.</p>
+        <div class="result r-spring">
+          <div class="txt">
+            <p>나의 퍼스널컬러는 <b>봄웜</b></p>
+            <div class="swatch"><i style="background:#FF7F6A" title="코랄"></i><i style="background:#FFB38A" title="피치"></i><i style="background:#FA8C7D" title="살몬 핑크"></i><i style="background:#F6C744" title="웜 옐로"></i><i style="background:#C69C6D" title="카멜"></i></div>
+          </div>
+          <label class="pc-btn" for="st-spring-spring">봄웜 보러 가기</label>
+        </div>
+        <div class="result r-summer">
+          <div class="txt">
+            <p>나의 퍼스널컬러는 <b>여름쿨</b></p>
+            <div class="swatch"><i style="background:#B9A6E0" title="라벤더"></i><i style="background:#E88AA8" title="로즈 핑크"></i><i style="background:#9CC9EC" title="스카이 블루"></i><i style="background:#A8E0D0" title="민트"></i><i style="background:#B9BDC6" title="소프트 그레이"></i></div>
+          </div>
+          <label class="pc-btn" for="st-summer-summer">여름쿨 보러 가기</label>
+        </div>
+        <div class="result r-autumn">
+          <div class="txt">
+            <p>나의 퍼스널컬러는 <b>가을웜</b></p>
+            <div class="swatch"><i style="background:#A9442F" title="브릭"></i><i style="background:#C8643B" title="테라코타"></i><i style="background:#D4A02B" title="머스터드"></i><i style="background:#6E6B3A" title="카키"></i><i style="background:#7A7D3A" title="올리브"></i></div>
+          </div>
+          <label class="pc-btn" for="st-autumn-autumn">가을웜 보러 가기</label>
+        </div>
+        <div class="result r-winter">
+          <div class="txt">
+            <p>나의 퍼스널컬러는 <b>겨울쿨</b></p>
+            <div class="swatch"><i style="background:#111111" title="블랙"></i><i style="background:#FFFFFF" title="퓨어 화이트"></i><i style="background:#7A1F3D" title="와인"></i><i style="background:#2340A0" title="로열 블루"></i><i style="background:#C2185B" title="푸시아"></i></div>
+          </div>
+          <label class="pc-btn" for="st-winter-winter">겨울쿨 보러 가기</label>
+        </div>
+        <p class="note">간이 자가진단이에요. 정확한 진단은 매장 퍼스널컬러 컨설팅을 이용해 주세요.</p>
+      </div>
+    </details>
   </div>
 
   <div class="pc-tabs" aria-label="톤 선택">
-    <input type="radio" name="state" value="quiz" id="st-q-spring-spring" data-my="spring" data-view="spring" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-spring-summer" data-my="spring" data-view="summer" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-spring-autumn" data-my="spring" data-view="autumn" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-spring-winter" data-my="spring" data-view="winter" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-summer-spring" data-my="summer" data-view="spring" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-summer-summer" data-my="summer" data-view="summer" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-summer-autumn" data-my="summer" data-view="autumn" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-summer-winter" data-my="summer" data-view="winter" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-autumn-spring" data-my="autumn" data-view="spring" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-autumn-summer" data-my="autumn" data-view="summer" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-autumn-autumn" data-my="autumn" data-view="autumn" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-autumn-winter" data-my="autumn" data-view="winter" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-winter-spring" data-my="winter" data-view="spring" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-winter-summer" data-my="winter" data-view="summer" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-winter-autumn" data-my="winter" data-view="autumn" tabindex="-1" aria-hidden="true">
-    <input type="radio" name="state" value="quiz" id="st-q-winter-winter" data-my="winter" data-view="winter" tabindex="-1" aria-hidden="true">
     <div class="set" data-my="spring">
       <label><input type="radio" name="state" id="st-spring-spring" data-my="spring" data-view="spring"><i class="dot" style="background:#FF9F80"></i>봄웜<span class="my">MY</span></label>
       <label><input type="radio" name="state" id="st-spring-summer" data-my="spring" data-view="summer"><i class="dot" style="background:#E88AA8"></i>여름쿨</label>
@@ -181,8 +214,8 @@
 
     <section class="pc-sec pick">
       <h2>봄웜 고객이 고른 제품</h2>
-      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
-      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요.</p>
+      <div class="tabs2">
         <label><input type="radio" name="pick-spring" value="bought" checked>같은 톤이 많이 산 제품</label>
         <label><input type="radio" name="pick-spring" value="review">올리브송 리뷰어 추천</label>
       </div>
@@ -232,9 +265,9 @@
         <label class="nav next" for="page-spring-2" aria-label="다음 상품">&rsaquo;</label>
       </div>
       <div class="reviews pick-review">
-        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i aria-hidden="true">수</i><div>수수<small>봄웜 · 리뷰어</small></div></div><div class="prod"><i style="background:#E8735A"></i>롬앤 쥬시 래스팅 틴트 #코랄 피그</div></div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">모</i><div>모닝글로우<small>봄웜 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#F7B39A"></i>데이지크 블렌딩 무드 치크 #피치 블렌딩</div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">데</i><div>데일리뷰티<small>봄웜 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#E9A27E"></i>웨이크메이크 소프트 블러링 아이팔레트 #코랄 블러링</div></div>
+        <div class="review feature"><q>코랄 피그 바르면 얼굴이 확 밝아져요. 벌써 두 번째 구매예요.</q><div class="side"><div class="who"><i>수</i><div>수수<small>봄웜 · 리뷰어</small></div></div><div class="prod"><i style="background:#E8735A"></i>롬앤 쥬시 래스팅 틴트 #코랄 피그</div></div></div>
+        <div class="review"><div class="who"><i>모</i><div>모닝글로우<small>봄웜 · 리뷰어</small></div></div><q>피치빛이 진하지 않게 올라와서 생얼에 발라도 자연스러워요.</q><div class="prod"><i style="background:#F7B39A"></i>데이지크 블렌딩 무드 치크 #피치 블렌딩</div></div>
+        <div class="review"><div class="who"><i>데</i><div>데일리뷰티<small>봄웜 · 리뷰어</small></div></div><q>코랄 섀도 찾다가 여기 정착했어요. 출근할 때 매일 써요.</q><div class="prod"><i style="background:#E9A27E"></i>웨이크메이크 소프트 블러링 아이팔레트 #코랄 블러링</div></div>
       </div>
     </section>
 
@@ -314,8 +347,8 @@
 
     <section class="pc-sec pick">
       <h2>여름쿨 고객이 고른 제품</h2>
-      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
-      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요.</p>
+      <div class="tabs2">
         <label><input type="radio" name="pick-summer" value="bought" checked>같은 톤이 많이 산 제품</label>
         <label><input type="radio" name="pick-summer" value="review">올리브송 리뷰어 추천</label>
       </div>
@@ -365,9 +398,9 @@
         <label class="nav next" for="page-summer-2" aria-label="다음 상품">&rsaquo;</label>
       </div>
       <div class="reviews pick-review">
-        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i aria-hidden="true">모</i><div>모닝글로우<small>여름쿨 · 리뷰어</small></div></div><div class="prod"><i style="background:#C8687E"></i>롬앤 쥬시 래스팅 틴트 #피그 피그</div></div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">데</i><div>데일리뷰티<small>여름쿨 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#E7A1B8"></i>롬앤 베러 댄 치크 #밀크 그레이프</div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">화</i><div>화장대정리중<small>여름쿨 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#C9849A"></i>웨이크메이크 소프트 블러링 아이팔레트 #오프체리 컬렉션</div></div>
+        <div class="review feature"><q>여쿨이면 피그 피그 하나는 꼭 있어야 해요. 입술이 맑아 보여요.</q><div class="side"><div class="who"><i>쿨</i><div>쿨톤민지<small>여름쿨 · 리뷰어</small></div></div><div class="prod"><i style="background:#C8687E"></i>롬앤 쥬시 래스팅 틴트 #피그 피그</div></div></div>
+        <div class="review"><div class="who"><i>라</i><div>라벤더향<small>여름쿨 · 리뷰어</small></div></div><q>처음엔 연해 보였는데 바르니까 혈색이 예쁘게 돌아요.</q><div class="prod"><i style="background:#E7A1B8"></i>롬앤 베러 댄 치크 #밀크 그레이프</div></div>
+        <div class="review"><div class="who"><i>화</i><div>화장대정리중<small>여름쿨 · 리뷰어</small></div></div><q>음영 컬러가 칙칙하지 않아서 손이 제일 많이 가요.</q><div class="prod"><i style="background:#C9849A"></i>웨이크메이크 소프트 블러링 아이팔레트 #오프체리 컬렉션</div></div>
       </div>
     </section>
 
@@ -447,8 +480,8 @@
 
     <section class="pc-sec pick">
       <h2>가을웜 고객이 고른 제품</h2>
-      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
-      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요.</p>
+      <div class="tabs2">
         <label><input type="radio" name="pick-autumn" value="bought" checked>같은 톤이 많이 산 제품</label>
         <label><input type="radio" name="pick-autumn" value="review">올리브송 리뷰어 추천</label>
       </div>
@@ -498,9 +531,9 @@
         <label class="nav next" for="page-autumn-2" aria-label="다음 상품">&rsaquo;</label>
       </div>
       <div class="reviews pick-review">
-        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i aria-hidden="true">데</i><div>데일리뷰티<small>가을웜 · 리뷰어</small></div></div><div class="prod"><i style="background:#B5654E"></i>롬앤 쥬시 래스팅 틴트 #너티 베이지</div></div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">화</i><div>화장대정리중<small>가을웜 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#C97858"></i>클리오 프로 싱글 블러셔 #테라코타</div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">톤</i><div>톤팡팡<small>가을웜 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#A86A4A"></i>클리오 프로 아이 팔레트 #코랄 토크</div></div>
+        <div class="review feature"><q>가을만 되면 꺼내는 색이에요. 차분한데 생기도 있어요.</q><div class="side"><div class="who"><i>갈</i><div>갈색머리<small>가을웜 · 리뷰어</small></div></div><div class="prod"><i style="background:#B5654E"></i>롬앤 쥬시 래스팅 틴트 #너티 베이지</div></div></div>
+        <div class="review"><div class="who"><i>톤</i><div>톤팡팡<small>가을웜 · 리뷰어</small></div></div><q>테라코타 하나로 분위기가 확 달라져요. 브러시로 살짝만 쓰세요!</q><div class="prod"><i style="background:#C97858"></i>클리오 프로 싱글 블러셔 #테라코타</div></div>
+        <div class="review"><div class="who"><i>출</i><div>오늘도출근<small>가을웜 · 리뷰어</small></div></div><q>펄이 과하지 않아서 회사 갈 때도 부담 없어요.</q><div class="prod"><i style="background:#A86A4A"></i>클리오 프로 아이 팔레트 #코랄 토크</div></div>
       </div>
     </section>
 
@@ -580,8 +613,8 @@
 
     <section class="pc-sec pick">
       <h2>겨울쿨 고객이 고른 제품</h2>
-      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요. 지금 보이는 순위와 리뷰는 예시예요.</p>
-      <div class="tabs2" role="radiogroup" aria-label="추천 방식">
+      <p class="sub">같은 톤 고객들이 많이 고른 제품이에요.</p>
+      <div class="tabs2">
         <label><input type="radio" name="pick-winter" value="bought" checked>같은 톤이 많이 산 제품</label>
         <label><input type="radio" name="pick-winter" value="review">올리브송 리뷰어 추천</label>
       </div>
@@ -631,9 +664,9 @@
         <label class="nav next" for="page-winter-2" aria-label="다음 상품">&rsaquo;</label>
       </div>
       <div class="reviews pick-review">
-        <div class="review feature"><q>발색이 딱 제 톤이에요. 얼굴이 확 밝아 보여서 재구매했어요.</q><div class="side"><div class="who"><i aria-hidden="true">화</i><div>화장대정리중<small>겨울쿨 · 리뷰어</small></div></div><div class="prod"><i style="background:#A3243B"></i>롬앤 쥬시 래스팅 틴트 #체리 밤</div></div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">톤</i><div>톤팡팡<small>겨울쿨 · 리뷰어</small></div></div><q>다른 컬러는 떠 보였는데 이건 자연스럽게 녹아들어요.</q><div class="prod"><i style="background:#D45B8A"></i>클리오 프로 싱글 블러셔 #푸시아 핑크</div></div>
-        <div class="review"><div class="who"><i aria-hidden="true">올</i><div>올송러버<small>겨울쿨 · 리뷰어</small></div></div><q>데일리로 쓰기 좋은 컬러! 같은 톤 친구한테도 추천했어요.</q><div class="prod"><i style="background:#8C3A52"></i>웨이크메이크 소프트 블러링 아이팔레트 #오프체리 컬렉션</div></div>
+        <div class="review feature"><q>체리 밤은 진짜 겨쿨 인생템이에요. 얼굴이 또렷해 보여요.</q><div class="side"><div class="who"><i>체</i><div>체리콕<small>겨울쿨 · 리뷰어</small></div></div><div class="prod"><i style="background:#A3243B"></i>롬앤 쥬시 래스팅 틴트 #체리 밤</div></div></div>
+        <div class="review"><div class="who"><i>겨</i><div>겨울아이<small>겨울쿨 · 리뷰어</small></div></div><q>푸시아 핑크인데 생각보다 안 튀고 화사해요.</q><div class="prod"><i style="background:#D45B8A"></i>클리오 프로 싱글 블러셔 #푸시아 핑크</div></div>
+        <div class="review"><div class="who"><i>올</i><div>올송러버<small>겨울쿨 · 리뷰어</small></div></div><q>버건디 음영이 예뻐서 연말 모임 때 계속 썼어요.</q><div class="prod"><i style="background:#8C3A52"></i>웨이크메이크 소프트 블러링 아이팔레트 #오프체리 컬렉션</div></div>
       </div>
     </section>
 
@@ -647,103 +680,6 @@
       </div>
       <a class="pc-btn line tut-more" href="tutorial.html">튜토리얼 더 보기 &gt;</a>
     </section>
-  </div>
-
-  <div class="quiz" role="dialog" aria-labelledby="quiz-title">
-    <label class="backdrop" for="st-spring-spring" aria-label="닫기"></label>
-    <label class="backdrop" for="st-spring-summer" aria-label="닫기"></label>
-    <label class="backdrop" for="st-spring-autumn" aria-label="닫기"></label>
-    <label class="backdrop" for="st-spring-winter" aria-label="닫기"></label>
-    <label class="backdrop" for="st-summer-spring" aria-label="닫기"></label>
-    <label class="backdrop" for="st-summer-summer" aria-label="닫기"></label>
-    <label class="backdrop" for="st-summer-autumn" aria-label="닫기"></label>
-    <label class="backdrop" for="st-summer-winter" aria-label="닫기"></label>
-    <label class="backdrop" for="st-autumn-spring" aria-label="닫기"></label>
-    <label class="backdrop" for="st-autumn-summer" aria-label="닫기"></label>
-    <label class="backdrop" for="st-autumn-autumn" aria-label="닫기"></label>
-    <label class="backdrop" for="st-autumn-winter" aria-label="닫기"></label>
-    <label class="backdrop" for="st-winter-spring" aria-label="닫기"></label>
-    <label class="backdrop" for="st-winter-summer" aria-label="닫기"></label>
-    <label class="backdrop" for="st-winter-autumn" aria-label="닫기"></label>
-    <label class="backdrop" for="st-winter-winter" aria-label="닫기"></label>
-    <div class="box">
-      <label class="close" for="st-spring-spring" aria-label="닫기">&times;</label>
-      <label class="close" for="st-spring-summer" aria-label="닫기">&times;</label>
-      <label class="close" for="st-spring-autumn" aria-label="닫기">&times;</label>
-      <label class="close" for="st-spring-winter" aria-label="닫기">&times;</label>
-      <label class="close" for="st-summer-spring" aria-label="닫기">&times;</label>
-      <label class="close" for="st-summer-summer" aria-label="닫기">&times;</label>
-      <label class="close" for="st-summer-autumn" aria-label="닫기">&times;</label>
-      <label class="close" for="st-summer-winter" aria-label="닫기">&times;</label>
-      <label class="close" for="st-autumn-spring" aria-label="닫기">&times;</label>
-      <label class="close" for="st-autumn-summer" aria-label="닫기">&times;</label>
-      <label class="close" for="st-autumn-autumn" aria-label="닫기">&times;</label>
-      <label class="close" for="st-autumn-winter" aria-label="닫기">&times;</label>
-      <label class="close" for="st-winter-spring" aria-label="닫기">&times;</label>
-      <label class="close" for="st-winter-summer" aria-label="닫기">&times;</label>
-      <label class="close" for="st-winter-autumn" aria-label="닫기">&times;</label>
-      <label class="close" for="st-winter-winter" aria-label="닫기">&times;</label>
-      <h2 id="quiz-title">퍼스널컬러 자가진단</h2>
-      <p class="lead">4가지 질문에 답하면 내 톤을 알려 드려요.</p>
-      <fieldset>
-        <legend>Q1. 손목 안쪽 혈관은 무슨 색에 가까운가요?</legend>
-        <div class="opts">
-          <label><input type="radio" name="q1" value="w">초록빛</label>
-          <label><input type="radio" name="q1" value="c">파란빛 · 보랏빛</label>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Q2. 더 잘 어울리는 액세서리는?</legend>
-        <div class="opts">
-          <label><input type="radio" name="q2" value="w">골드</label>
-          <label><input type="radio" name="q2" value="c">실버</label>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Q3. 평소 칭찬받는 립 컬러는?</legend>
-        <div class="opts">
-          <label><input type="radio" name="q3" value="w">코랄 · 오렌지 계열</label>
-          <label><input type="radio" name="q3" value="c">핑크 · 레드 계열</label>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Q4. 더 잘 어울리는 분위기는?</legend>
-        <div class="opts">
-          <label><input type="radio" name="q4" value="l">밝고 화사한 컬러</label>
-          <label><input type="radio" name="q4" value="d">깊고 진한 컬러</label>
-        </div>
-      </fieldset>
-      <p class="wait">모든 질문에 답하면 결과가 나와요.</p>
-      <div class="result r-spring">
-        <div class="txt">
-          <p>나의 퍼스널컬러는 <b>봄웜</b></p>
-          <div class="swatch" aria-hidden="true"><i style="background:#FF7F6A" title="코랄"></i><i style="background:#FFB38A" title="피치"></i><i style="background:#FA8C7D" title="살몬 핑크"></i><i style="background:#F6C744" title="웜 옐로"></i><i style="background:#C69C6D" title="카멜"></i></div>
-        </div>
-        <label class="pc-btn" for="st-spring-spring">봄웜 보러 가기</label>
-      </div>
-      <div class="result r-summer">
-        <div class="txt">
-          <p>나의 퍼스널컬러는 <b>여름쿨</b></p>
-          <div class="swatch" aria-hidden="true"><i style="background:#B9A6E0" title="라벤더"></i><i style="background:#E88AA8" title="로즈 핑크"></i><i style="background:#9CC9EC" title="스카이 블루"></i><i style="background:#A8E0D0" title="민트"></i><i style="background:#B9BDC6" title="소프트 그레이"></i></div>
-        </div>
-        <label class="pc-btn" for="st-summer-summer">여름쿨 보러 가기</label>
-      </div>
-      <div class="result r-autumn">
-        <div class="txt">
-          <p>나의 퍼스널컬러는 <b>가을웜</b></p>
-          <div class="swatch" aria-hidden="true"><i style="background:#A9442F" title="브릭"></i><i style="background:#C8643B" title="테라코타"></i><i style="background:#D4A02B" title="머스터드"></i><i style="background:#6E6B3A" title="카키"></i><i style="background:#7A7D3A" title="올리브"></i></div>
-        </div>
-        <label class="pc-btn" for="st-autumn-autumn">가을웜 보러 가기</label>
-      </div>
-      <div class="result r-winter">
-        <div class="txt">
-          <p>나의 퍼스널컬러는 <b>겨울쿨</b></p>
-          <div class="swatch" aria-hidden="true"><i style="background:#111111" title="블랙"></i><i style="background:#FFFFFF" title="퓨어 화이트"></i><i style="background:#7A1F3D" title="와인"></i><i style="background:#2340A0" title="로열 블루"></i><i style="background:#C2185B" title="푸시아"></i></div>
-        </div>
-        <label class="pc-btn" for="st-winter-winter">겨울쿨 보러 가기</label>
-      </div>
-      <p class="note">간이 자가진단이에요. 정확한 진단은 매장 퍼스널컬러 컨설팅을 이용해 주세요.</p>
-    </div>
   </div>
 
 </main>
