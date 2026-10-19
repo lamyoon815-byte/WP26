@@ -1,29 +1,31 @@
 <!doctype html>
+<!-- 홈 화면 수정. -->
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="인공지능공학부 2511329 이예랑" />
     <title>OLIVE SONG</title>
-    <link rel="stylesheet" href="common.css" />
-    <link rel="stylesheet" href="yerang.css" />
+    <link rel="stylesheet" href="9_올리브송_common.css" />
+    <link rel="stylesheet" href="9_올리브송_yerang.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" href="kyurin.css" />
+    <link rel="stylesheet" href="9_올리브송_kyurin.css" />
   </head>
 
   <body>
     <div class="util">
       <div class="container">
         <a href="#menu-soon">로그인</a><a href="#menu-soon">회원가입</a
-        ><a href="cart.html">장바구니 <em>(3)</em></a
+        ><a href="9_올리브송_cart.html">장바구니 <em>(3)</em></a
         ><a href="#menu-soon">고객센터</a>
       </div>
     </div>
     <div class="header">
       <div class="container">
-        <a href="home.html" class="logo"
+        <a href="9_올리브송_home.html" class="logo"
           ><img src="img/logo-symbol.jpg" alt="올리브송 로고" /><img
             src="img/logo-text.jpg"
             alt="올리브송"
@@ -59,9 +61,9 @@
       <div class="container">
         <a class="cat" href="#menu-soon">&#9776; 카테고리</a>
         <a href="#menu-soon">오특</a>
-        <a href="ranking.html">랭킹</a>
-        <a href="personalcolor.html">퍼스널컬러</a>
-        <a href="tutorial.html">튜토리얼</a>
+        <a href="9_올리브송_ranking.html">랭킹</a>
+        <a href="9_올리브송_personalcolor.html">퍼스널컬러</a>
+        <a href="9_올리브송_tutorial.html">튜토리얼</a>
         <a href="#menu-soon">테마관</a>
         <a href="#menu-soon">기획전</a>
         <a href="#menu-soon">세일</a>
@@ -80,12 +82,9 @@
     </svg>
 
     <main id="home-main" class="home-inner home-main">
-      <!-- 메인 추천 배너 -->
+      
       <section class="home-hero" aria-label="추천 상품 배너">
-        <!--
-         라디오의 선택 상태(:checked)에 따라 yerang.css에서 배너와 컨트롤을 표시한다.
-         CSS의 형제 선택자(~)가 동작하도록 라디오는 이미지·컨트롤보다 앞에 둔다.
-         -->
+        
         <input
           class="home-banner-radio"
           type="radio"
@@ -109,7 +108,7 @@
           aria-label="배너 3"
         />
 
-        <!-- 메인 배너 이미지 -->
+        
         <div class="home-banner-images">
           <img
             class="home-hero-image home-banner-image-1"
@@ -128,9 +127,9 @@
           />
         </div>
 
-        <!-- 이전·다음 label의 for를 대상 라디오 id와 연결하여 배너를 순환 전환 -->
+        
         <div class="home-banner-controls" role="group" aria-label="배너 전환">
-          <!-- 첫 번째 배너를 보고 있을 때 -->
+          
           <div class="home-banner-control home-banner-control-1">
             <label
               class="home-banner-arrow home-banner-prev"
@@ -151,7 +150,7 @@
             </label>
           </div>
 
-          <!-- 두 번째 배너를 보고 있을 때 -->
+          
           <div class="home-banner-control home-banner-control-2">
             <label
               class="home-banner-arrow home-banner-prev"
@@ -172,7 +171,7 @@
             </label>
           </div>
 
-          <!-- 세 번째 배너를 보고 있을 때 -->
+          
           <div class="home-banner-control home-banner-control-3">
             <label
               class="home-banner-arrow home-banner-prev"
@@ -195,17 +194,17 @@
         </div>
       </section>
 
-      <!-- 추천 상품 영역: 추천 메뉴, 카테고리 필터, 상품 목록 -->
+      
       <section
         id="home-best"
         class="home-best"
         aria-labelledby="home-best-title"
       >
         <div class="home-recommend-header">
-          <!-- 화면에는 숨기고, 스크린 리더에 추천 상품 영역의 제목을 제공 -->
+          
           <h2 id="home-best-title" class="home-sr-only">오늘의 뷰티 추천</h2>
 
-          <!-- 추천 메뉴: 현재 '나를 위한 추천 상품'만 연결됨 -->
+          
           <nav class="tabs home-recommend-tabs" aria-label="뷰티 추천 메뉴">
             <a class="tab on" href="#home-best" aria-current="true">
               나를 위한 추천 상품
@@ -214,7 +213,7 @@
             <a class="tab">뷰티 성분별</a>
           </nav>
 
-          <!-- 추천 상품 카테고리: 가로로 배치하며 영역을 넘는 항목은 숨김 -->
+          
           <nav
             class="home-recommend-categories"
             aria-label="추천 상품 카테고리"
@@ -332,25 +331,21 @@
               </li>
             </ul>
 
-            <!-- 클릭 기능이 없는 장식용 화살표 -->
+            
             <span class="home-category-arrow" aria-hidden="true"></span>
           </nav>
         </div>
 
-        <!-- 스킨케어·네일·뷰티소품·맨즈케어·향수 선택 시 CSS에서 표시하는 안내 -->
+        
         <div class="home-empty-message" role="status">
           다른 제품 카테고리를 선택해 주세요.
         </div>
 
-        <!-- 
-        상품 목록: 카테고리 라디오의 value와 카드의 data-cat을 맞춘다.
-        yerang.css의 :has()와 :checked로 선택한 카테고리의 상품을 표시한다.
-        NEW(value="all")에서는 HTML에 작성된 순서대로 처음 8개만 표시한다. 
-      -->
+        
         <div class="cards home-filter-products rk-list">
           <div class="card" data-cat="mask">
             <div class="thumb">
-              <a class="img" href="productdetails.html">
+<a class="img" href="9_올리브송_productdetails.html">
                 <img src="img/product1.jpg" alt="메디힐 에센셜 마스크팩" />
                 <div class="info">
                   <ul class="safety" aria-label="성분 안전도">
@@ -384,7 +379,7 @@
                   <span class="go">상세보기 &gt;</span>
                 </div>
               </a>
-              <!-- 장바구니·찜은 체크 상태만 전환하며, 상품 저장 기능은 연결되어 있지 않음 -->
+              
               <label class="put"
                 ><input type="checkbox" aria-label="장바구니 담기" /><svg
                   aria-hidden="true"
@@ -395,7 +390,7 @@
                 ><input type="checkbox" aria-label="찜하기"
               /></label>
             </div>
-            <a class="txt" href="productdetails.html">
+<a class="txt" href="9_올리브송_productdetails.html">
               <div class="brand">메디힐</div>
               <div class="name">
                 <span class="ln">[15년 연속 1위] 메디힐 에센셜 마스크팩</span
@@ -521,7 +516,7 @@
                 ><input type="checkbox" aria-label="찜하기"
               /></label>
             </div>
-            <a class="txt" href="productdetails.html">
+<a class="txt" href="9_올리브송_productdetails.html">
               <div class="brand">클리오</div>
               <div class="name">
                 <span class="ln">[NO.1 아이라이너] 샤프 쏘 심플</span
@@ -968,19 +963,19 @@
             <div class="tags"><span>주의 성분 2</span> <span>쿠폰</span></div>
           </div>
         </div>
-        <!-- 상품 목록 끝 -->
+        
 
-        <a class="home-more-button" href="ranking.html"
+<a class="home-more-button" href="9_올리브송_ranking.html"
           >랭킹 상품 더보기 &gt;</a
         >
       </section>
-      <!-- 추천 상품 영역 끝 -->
+      
 
-      <!-- 올리브송 서비스 -->
+      
       <section class="home-services" aria-labelledby="home-services-title">
         <h2 id="home-services-title">오직 올리브송에서만</h2>
 
-        <!-- 퍼스널 컬러 -->
+        
         <div class="home-service">
           <img
             class="home-service-image"
@@ -1015,14 +1010,14 @@
               />
             </div>
 
-            <a class="btn fill" href="personalcolor.html">
+<a class="btn fill" href="9_올리브송_personalcolor.html">
               나의 퍼스널 컬러 찾기
               <span aria-hidden="true"> ›</span>
             </a>
           </div>
         </div>
 
-        <!-- 메이크업 튜토리얼 -->
+        
         <div class="home-service">
           <img
             class="home-service-image"
@@ -1057,7 +1052,7 @@
               />
             </div>
 
-            <a class="btn fill" href="tutorial.html">
+<a class="btn fill" href="9_올리브송_tutorial.html">
               나의 화장품으로 다양한 메이크업 시도하기
               <span aria-hidden="true"> ›</span>
             </a>
@@ -1065,16 +1060,16 @@
         </div>
       </section>
 
-      <!-- 이 주의 최신 기획전 콘텐츠 -->
+      
       <section class="home-services" aria-labelledby="home-weekly-title">
         <h2 id="home-weekly-title">이 주의 최신 기획전</h2>
 
-        <!-- 기획전 이미지 목록: 양쪽 화살표는 장식이며 슬라이드 전환 기능은 없음 -->
+        
         <div class="home-weekly-slider">
           <span class="home-category-arrow prev" aria-hidden="true"></span>
 
           <div class="home-weekly-images">
-            <a href="productdetails.html">
+<a href="9_올리브송_productdetails.html">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkreELmit8OvbDoDdtTypOa1cOLzhsHtZqUs1xIbo_lg&s=10"
                 alt="기획전1"
@@ -1082,7 +1077,7 @@
               />
             </a>
 
-            <a href="productdetails.html">
+<a href="9_올리브송_productdetails.html">
               <img
                 src="https://www.jangup.com/news/photo/201912/77272_47914_306.jpg"
                 alt="기획전2"
@@ -1101,7 +1096,7 @@
       </div>
     </footer>
 
-    <!-- 상품 카드에서 use로 재사용하는 SVG 아이콘 정의 -->
+    
     <svg width="0" height="0" style="position: absolute">
       <symbol
         id="i-cart"
@@ -1206,7 +1201,9 @@
       </symbol>
     </svg>
 
-    <!-- 준비 중인 링크의 해시 대상: common.css의 :target으로 안내 메시지를 표시 -->
+    <a href="9_올리브송_cart.html" class="fcart" aria-label="장바구니"><svg><use href="#i-cart"/></svg><em>3</em></a>
+
+    
     <div class="soon" id="detail-soon" role="status">
       상세 페이지는 준비 중이에요
     </div>

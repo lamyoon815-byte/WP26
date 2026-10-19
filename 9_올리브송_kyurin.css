@@ -14,7 +14,7 @@
 html, body { overflow-x: clip; }
 label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offset: 2px; }
 
-/* 랭킹·퍼스널컬러 검색창은 입력 폼 구조이므로 공통 검색창과 같은 외형을 적용한다. */
+
 .header .search {
   padding: 0 8px 0 20px;
 }
@@ -51,7 +51,7 @@ label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offs
   margin: 0;
 }
 
-/* 랭킹 */
+
 .title-best .rk-date {
   position: absolute;
   right: 16px;
@@ -327,7 +327,7 @@ main:has(.rk-cat [value="all"]:checked):has([name="pc"]:checked):not(:has([name=
   .card .img .info { transition: none; }
 }
 
-/* 퍼스널컬러 */
+
 .pc-tabs input, .tabs2 input, .slider > input { position: absolute; opacity: 0; pointer-events: none; }
 
 .pc-sec { margin-top: 64px; }
@@ -600,3 +600,4 @@ main:has(input[name="state"][data-my="winter"]:checked) .pc-tabs .set[data-my="w
 @media (prefers-reduced-motion: reduce) {
   .slider .track { transition: none; }
 }
+/* 랭킹·퍼스널컬러 스타일 수정. */

@@ -1,0 +1,172 @@
+<!doctype html>
+<!-- 공통 화면 수정. -->
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="2511798 김규린, 2514489 김민서, 2511329 이예랑" />
+    <title>OLIVE SONG</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="9_올리브송_common.css" />
+  </head>
+  <body>
+    <div class="util">
+      <div class="container">
+        <a>로그인</a><a>회원가입</a><a>장바구니 <em>(3)</em></a
+        ><a>고객센터</a>
+      </div>
+    </div>
+    <div class="header">
+      <div class="container">
+        <div class="logo">
+          <img src="img/logo-symbol.jpg" alt="LOGO Text" />
+          <img src="img/logo-text.jpg" alt="LOGO Text" />
+        </div>
+        <div class="search">상품, 브랜드, 성분 검색</div>
+        <div class="hright">최근 본 상품 &#9662;</div>
+      </div>
+    </div>
+    <nav class="gnb">
+      <div class="container">
+        <a class="cat" href="#menu-soon">&#9776; 카테고리</a>
+        <a href="#menu-soon">오특</a>
+        <a href="9_올리브송_ranking.html" class="on">랭킹</a>
+        <a href="9_올리브송_personalcolor.html">퍼스널컬러</a>
+        <a href="9_올리브송_tutorial.html">튜토리얼</a>
+        <a href="#menu-soon">테마관</a>
+        <a href="#menu-soon">기획전</a>
+        <a href="#menu-soon">세일</a>
+        <a href="#menu-soon">기프트카드</a>
+        <a href="#menu-soon">멤버십/쿠폰</a>
+        <a href="#menu-soon">이벤트</a>
+      </div>
+    </nav>
+    <div class="soon" id="menu-soon" role="status">준비 중인 메뉴예요</div>
+
+    <div class="title-best">
+      <h1>
+        튜토리얼
+        <span>내게 있는 화장품으로 새로운 메이크업 스타일을 만들어보세요.</span>
+      </h1>
+    </div>
+
+    <div class="container">
+      <section>
+        <h2>1. 색상</h2>
+        <div class="swatches">
+          <div class="sw">
+            <i style="background: var(--c-main)"></i>
+            <div><b>--c-main</b>#111111<br />메인(글자)</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-nav)"></i>
+            <div><b>--c-nav</b>#343A40<br />네비게이션</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-point)"></i>
+            <div><b>--c-point</b>#1E4FB3<br />포인트</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-point-light)"></i>
+            <div><b>--c-point-light</b>#E8EFFF<br />밝은 배경</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-sale)"></i>
+            <div><b>--c-sale</b>#BD3838<br />할인/강조</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-bg-sub)"></i>
+            <div><b>--c-bg-sub</b>#F7F8FA<br />섹션 배경</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-text-sub)"></i>
+            <div><b>--c-text-sub</b>#65718B<br />보조 글자</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-border)"></i>
+            <div><b>--c-border</b>#CBD8F5<br />테두리</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-safe)"></i>
+            <div><b>--c-safe</b>#237847<br />성분 안전</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-caution)"></i>
+            <div><b>--c-caution</b>#F4BD45<br />성분 주의</div>
+          </div>
+          <div class="sw">
+            <i style="background: var(--c-danger)"></i>
+            <div><b>--c-danger</b>#E47461<br />성분 위험</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="type">
+        <h2>2. 글자 크기 변수</h2>
+        <p>
+          <small>--fs-xl · 24px</small
+          ><span style="font-size: var(--fs-xl); font-weight: 700"
+            >19,900원 · 33%</span
+          >
+        </p>
+        <p>
+          <small>--fs-lg · 20px</small
+          ><span style="font-size: var(--fs-lg); font-weight: 700"
+            >제품명 / 총 금액 / 섹션 제목</span
+          >
+        </p>
+        <p>
+          <small>--fs-md · 16px</small
+          ><span style="font-size: var(--fs-md)">브랜드명, 검색창 글자</span>
+        </p>
+        <p>
+          <small>--fs-base · 14px</small
+          ><span style="font-size: var(--fs-base)"
+            >본문, 결제혜택, 배송 안내 문구가 들어가는 기본 크기</span
+          >
+        </p>
+        <p>
+          <small>--fs-sm · 12px</small
+          ><span style="font-size: var(--fs-sm); color: var(--c-text-sub)"
+            >보조 텍스트, 뱃지, 상단 유틸 메뉴</span
+          >
+        </p>
+      </section>
+
+      <section>
+        <h2>3. 버튼 · 탭 · 뱃지</h2>
+        <div class="row">
+          <span class="btn">장바구니</span>
+          <span class="btn fill">바로구매</span>
+        </div>
+        <div class="tabs" style="margin-top: 16px">
+          <span class="tab on">상세정보</span><span class="tab">성분 분석</span
+          ><span class="tab">리뷰</span><span class="tab">튜토리얼</span>
+        </div>
+        <div class="row" style="margin-top: 16px">
+          <span class="badge b-point">BEST</span>
+          <span class="badge b-safe">안전</span>
+          <span class="badge b-caution">주의</span>
+          <span class="badge b-danger">위험</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>4. 레이아웃 치수 확인</h2>
+        <div class="sub">
+          상단 유틸 바 36px · 헤더 80px · 로고 높이 34px · GNB 56px · 컨테이너
+          1200px
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <strong>고객센터 1544-0000</strong><br />
+        연락 가능 시간: 평일 09:00 - 18:00
+      </div>
+    </footer>
+  </body>
+</html>

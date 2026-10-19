@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 본문: 공통 콘텐츠 너비 사용 */
+
 .home-inner {
   width: var(--w-container);
   max-width: 100%;
@@ -13,7 +13,7 @@
   padding-bottom: 48px;
 }
 
-/* 장바구니 아이콘 정의 영역 숨기기 */
+
 .home-icon-definitions {
   position: absolute;
   width: 0;
@@ -21,7 +21,7 @@
   overflow: hidden;
 }
 
-/* 화면에서는 숨기되 보조 기술 접근을 유지하고, 라디오는 키보드로 선택 가능하게 처리 */
+
 .home-sr-only,
 .home-banner-radio {
   position: absolute;
@@ -35,7 +35,7 @@
   border: 0;
 }
 
-/* 메인 배너 */
+
 .home-hero {
   position: relative;
   min-height: 380px;
@@ -44,7 +44,7 @@
   background: var(--c-point-light);
 }
 
-/* 배너 사진 */
+
 .home-banner-images {
   position: absolute;
   inset: 0;
@@ -57,14 +57,14 @@
   object-fit: cover;
 }
 
-/* 선택된 배너 라디오와 번호가 일치하는 이미지만 표시 */
+
 #home-banner-1:checked ~ .home-banner-images .home-banner-image-1,
 #home-banner-2:checked ~ .home-banner-images .home-banner-image-2,
 #home-banner-3:checked ~ .home-banner-images .home-banner-image-3 {
   display: block;
 }
 
-/* 배너 전환 버튼 영역 */
+
 .home-banner-controls {
   position: absolute;
   right: 24px;
@@ -75,21 +75,21 @@
   gap: 8px;
 }
 
-/* 선택하지 않은 배너의 컨트롤 숨기기 */
+
 .home-banner-control {
   display: none;
   align-items: center;
   gap: 8px;
 }
 
-/* 선택한 배너의 컨트롤만 표시 */
+
 #home-banner-1:checked ~ .home-banner-controls .home-banner-control-1,
 #home-banner-2:checked ~ .home-banner-controls .home-banner-control-2,
 #home-banner-3:checked ~ .home-banner-controls .home-banner-control-3 {
   display: flex;
 }
 
-/* 배너의 이전·다음 전환 컨트롤 */
+
 .home-banner-arrow {
   display: flex;
   align-items: center;
@@ -107,7 +107,7 @@
   background: var(--c-main);
 }
 
-/* 화살표 모양 */
+
 .home-banner-arrow::before {
   content: "";
   width: 8px;
@@ -126,7 +126,7 @@
   transform: rotate(45deg);
 }
 
-/* 현재 배너 번호 */
+
 .home-banner-number {
   min-width: 40px;
   padding: 4px;
@@ -137,13 +137,13 @@
   text-align: center;
 }
 
-/* 키보드로 배너를 선택할 때 테두리 표시 */
+
 .home-banner-radio:focus-visible ~ .home-banner-controls {
   outline: 2px solid var(--c-point);
   outline-offset: 4px;
 }
 
-/* 오늘의 뷰티 추천 */
+
 .home-best {
   margin-top: 56px;
 }
@@ -152,7 +152,7 @@
   margin-bottom: 32px;
 }
 
-/* 추천 탭의 너비·간격·글자 크기와 hover 색상 조정 */
+
 .home-recommend-tabs {
   width: 680px;
   max-width: 100%;
@@ -172,14 +172,14 @@
   color: var(--c-point);
 }
 
-/* 영역 밖의 카테고리 숨기기 */
+
 .home-recommend-categories {
   position: relative;
   overflow: hidden;
   padding: 4px 2px;
 }
 
-/* 오른쪽 끝의 카테고리를 가리는 배경 */
+
 .home-recommend-categories::after {
   content: "";
   position: absolute;
@@ -191,7 +191,7 @@
   pointer-events: none;
 }
 
-/* 장식용 원형 화살표 */
+
 .home-category-arrow {
   position: absolute;
   top: 50%;
@@ -213,7 +213,7 @@
   border-color: var(--c-border);
 }
 
-/* 화살표 모양 */
+
 .home-category-arrow::before {
   content: "";
   width: 8px;
@@ -241,7 +241,7 @@
   object-fit: cover;
 }
 
-/* 카테고리 선택 버튼 */
+
 .home-recommend-category-list label {
   position: relative;
   display: flex;
@@ -258,7 +258,7 @@
   cursor: pointer;
 }
 
-/* 라디오 동그라미는 숨기고 키보드 선택은 유지 */
+
 .home-recommend-category-list input {
   position: absolute;
   width: 1px;
@@ -268,25 +268,25 @@
   clip-path: inset(50%);
 }
 
-/* 마우스를 올린 카테고리 */
+
 .home-recommend-category-list label:hover {
   background: var(--c-point-light);
 }
 
-/* 선택한 카테고리 */
+
 .home-recommend-category-list label:has(input:checked) {
   border-color: var(--c-point);
   background: var(--c-point);
   color: var(--c-white);
 }
 
-/* 키보드 포커스가 있는 카테고리 표시 */
+
 .home-recommend-category-list label:has(input:focus-visible) {
   outline: 2px solid var(--c-point);
   outline-offset: 2px;
 }
 
-/* 공통 상품 카드 스타일에 홈 상품 목록의 여백과 크기 보정 추가 */
+
 .home-filter-products {
   margin-top: 24px;
 }
@@ -296,7 +296,7 @@
   cursor: default;
 }
 
-/* 선택한 카테고리의 value와 data-cat이 일치하지 않는 상품 숨김 */
+
 #home-best:has(input[name="home-category"][value="skin"]:checked)
   .home-filter-products
   .card:not([data-cat="skin"]),
@@ -330,14 +330,14 @@
   display: none;
 }
 
-/* NEW 선택 시 HTML 순서상 9번째 이후의 상품을 숨겨 처음 8개만 표시 */
+
 #home-best:has(input[value="all"]:checked)
   .home-filter-products
   > .card:nth-child(n + 9) {
   display: none;
 }
 
-/* 랭킹 상품 더보기 링크 스타일 */
+
 .home-more-button {
   display: block;
   width: 280px;
@@ -369,7 +369,7 @@
   outline-offset: 4px;
 }
 
-/* 서비스 소개와 최신 기획전에 공통으로 사용하는 영역·제목 스타일 */
+
 .home-services {
   margin-top: 64px;
 }
@@ -385,7 +385,7 @@
   text-align: center;
 }
 
-/* 서비스 이미지와 설명을 2열로 배치하며, 700px 이하에서는 1열로 변경 */
+
 .home-service {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -397,7 +397,7 @@
   margin-top: 48px;
 }
 
-/* 서비스 대표 이미지 */
+
 .home-service-image {
   width: 100%;
   height: 100%;
@@ -406,7 +406,7 @@
   background: var(--c-bg-sub);
 }
 
-/* 서비스 제목·상품 이미지·이동 버튼의 세로 배치 */
+
 .home-service-content {
   display: flex;
   flex-direction: column;
@@ -422,7 +422,7 @@
   word-break: keep-all;
 }
 
-/* 작은 이미지 4개 */
+
 .home-service-products {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -460,7 +460,7 @@
   outline-offset: 4px;
 }
 
-/* 안내 박스: 기본적으로 숨김 */
+
 .home-empty-message {
   display: none;
   margin-top: 24px;
@@ -473,7 +473,7 @@
   text-align: center;
 }
 
-/* 스킨케어·네일·뷰티소품·맨즈케어·향수 선택 시 안내 표시 */
+
 #home-best:has(
     input[name="home-category"]:is(
         [value="skin"],
@@ -487,7 +487,7 @@
   display: block;
 }
 
-/* 해당 카테고리에서는 상품 목록과 더보기 숨김 */
+
 #home-best:has(
     input[name="home-category"]:is(
         [value="skin"],
@@ -511,7 +511,7 @@
   display: none;
 }
 
-/* 최신 기획전: 이미지 두 장 나란히 배치 */
+
 .home-weekly-images {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -527,32 +527,32 @@
   border-radius: 0;
 }
 
-/* 양옆 화살표 공간 확보 */
+
 .home-weekly-slider {
   position: relative;
   padding: 0 60px;
   margin-top: 24px;
 }
 
-/* 바깥 기획전 영역에 상단 여백이 있으므로 내부 이미지 목록의 중복 여백 제거 */
+
 .home-weekly-slider .home-weekly-images {
   margin-top: 0;
 }
 
-/* 기획전 왼쪽 화살표 위치 */
+
 .home-weekly-slider .home-category-arrow.prev {
   left: 0;
   right: auto;
 }
 
-/* 화살표를 왼쪽으로 회전 */
+
 .home-weekly-slider .home-category-arrow.prev::before {
   transform: rotate(-135deg);
   margin-right: 0;
   margin-left: 4px;
 }
 
-/* 700px 이하: 서비스·기획전을 1열로 전환하고 배너·탭의 크기와 간격 조정 */
+
 @media (max-width: 700px) {
   .home-service {
     grid-template-columns: 1fr;
@@ -601,17 +601,9 @@
   }
 }
 
-/*=========================================
 
-튜토리얼 페이지 스타일
 
-=========================================*/
 
-/*
- 화면 배치 순서:
- 카테고리·상품 목록(order: 0) → 제목(1) → 안내·영상 결과(2) → 인기 영상(3).
- order는 시각적 배치만 바꾸며 HTML 읽기 순서나 키보드 이동 순서는 바꾸지 않는다.
- */
 
 .tutorial-page {
   display: flex;
@@ -620,7 +612,7 @@
   gap: 0 24px;
 }
 
-/* 카테고리 영역 */
+
 .category-area {
   flex: 0 0 464px;
   order: 0;
@@ -628,18 +620,18 @@
   padding: 0 24px 0 0;
   border: none;
 
-  /* 상품 선택 전후에도 카테고리 영역의 최소 높이 유지 */
+  
   min-height: 144px;
   border-right: 1px solid var(--c-border);
 }
 
-/* 카테고리별 상품 영역은 처음에 숨김 */
+
 .category-panel {
   display: none;
   margin-top: 24px;
 }
 
-/* 선택한 카테고리의 패널만 표시 */
+
 #category-base:checked ~ .panel-base,
 #category-eye:checked ~ .panel-eye,
 #category-lip:checked ~ .panel-lip,
@@ -648,7 +640,7 @@
   display: contents;
 }
 
-/* 라디오 버튼을 화면에서 숨기되 키보드 선택은 유지 */
+
 .choice {
   position: absolute;
   width: 1px;
@@ -673,7 +665,7 @@
   width: 80px;
 }
 
-/* 이미지와 이름을 클릭하는 영역 */
+
 .category-label {
   display: flex;
   width: 100%;
@@ -681,7 +673,7 @@
   cursor: pointer;
 }
 
-/* 이미지와 이름을 세로로 배치 */
+
 .category-content {
   display: flex;
   flex-direction: column;
@@ -697,13 +689,13 @@
   word-break: keep-all;
 }
 
-/* 마우스를 올렸을 때 */
+
 .category-label:hover .category-image,
 .product-label:hover .product-image {
   border-color: var(--c-point);
 }
 
-/* 선택한 카테고리의 글자색 */
+
 #category-base:checked ~ .category-area label[for="category-base"],
 #category-eye:checked ~ .category-area label[for="category-eye"],
 #category-lip:checked ~ .category-area label[for="category-lip"],
@@ -712,7 +704,7 @@
   color: var(--c-point);
 }
 
-/* 선택된 카테고리의 테두리 */
+
 #category-base:checked
   ~ .category-area
   label[for="category-base"]
@@ -737,7 +729,7 @@
   background: var(--c-point-light);
 }
 
-/* 키보드로 이동했을 때 포커스 표시 */
+
 #category-base:focus-visible ~ .category-area label[for="category-base"],
 #category-eye:focus-visible ~ .category-area label[for="category-eye"],
 #category-lip:focus-visible ~ .category-area label[for="category-lip"],
@@ -747,14 +739,14 @@
   outline-offset: 4px;
 }
 
-/* 항상 보이는 제목 */
+
 .tutorial-heading {
   order: 1;
   flex: 0 0 100%;
   margin-bottom: 18px;
 }
 
-/* 바깥 배치: 제목 아래에서 전체 너비 차지 */
+
 .initial-guide,
 .select-guide,
 .product-result {
@@ -764,7 +756,7 @@
   margin: 0;
 }
 
-/* 카테고리 선택 전·상품 선택 전 안내의 공통 스타일 */
+
 .initial-guide,
 .select-guide {
   display: flex;
@@ -796,7 +788,7 @@
   line-height: 1.8;
 }
 
-/* 카테고리를 선택하면 첫 안내 박스 숨김 */
+
 #category-base:checked ~ .initial-guide,
 #category-eye:checked ~ .initial-guide,
 #category-lip:checked ~ .initial-guide,
@@ -805,12 +797,12 @@
   display: none;
 }
 
-/* 상품을 선택하면 상품 선택 안내 박스 숨김 */
+
 .product-choice:checked ~ .select-guide {
   display: none;
 }
 
-/* 카테고리별 상품 선택 목록 */
+
 .product-list {
   display: flex;
   flex: 1 1 240px;
@@ -828,7 +820,7 @@
   order: 0;
 }
 
-/* 상품 이미지와 이름을 클릭하는 영역 */
+
 .product-label {
   display: flex;
   flex: 0 1 128px;
@@ -847,7 +839,7 @@
   cursor: pointer;
 }
 
-/* 카테고리·상품 이미지의 공통 원형 프레임 */
+
 .category-image,
 .product-image {
   position: relative;
@@ -872,7 +864,7 @@
   object-fit: cover;
 }
 
-/* 브랜드와 상품 이름 */
+
 .product-copy {
   display: flex;
   flex-direction: column;
@@ -894,12 +886,12 @@
   font-size: var(--fs-base);
 }
 
-/* 상품 선택 전에는 결과 숨김 */
+
 .product-result {
   display: none;
 }
 
-/* 영상 개수와 정렬 옵션을 담는 바 */
+
 .video-toolbar {
   display: flex;
   justify-content: space-between;
@@ -937,27 +929,24 @@
   font-size: var(--fs-md);
 }
 
-/* 정렬 옵션의 선택 표시만 변경하며, 영상 순서는 변경하지 않음 */
+
 .video-sort-option input:checked + span {
   color: var(--c-point);
   font-weight: 700;
 }
 
-/* 마우스를 올린 정렬 옵션 */
+
 .video-sort-option:hover span {
   color: var(--c-point);
 }
 
-/* 키보드로 이동한 정렬 옵션 */
+
 .video-sort-option input:focus-visible + span {
   outline: 2px solid var(--c-point);
   outline-offset: 4px;
 }
 
-/* 
-선택한 상품 라디오에 대응하는 결과 영역만 표시
-상품 추가 시 아래의 선택 강조·키보드 포커스 규칙에도 해당 id를 추가
-*/
+
 #base-1:checked ~ .result-base-1,
 #base-2:checked ~ .result-base-2,
 #eye-1:checked ~ .result-eye-1,
@@ -969,7 +958,7 @@
   display: block;
 }
 
-/* 선택한 상품 이미지의 테두리와 배경 강조 */
+
 #base-1:checked ~ .product-list label[for="base-1"] .product-image,
 #base-2:checked ~ .product-list label[for="base-2"] .product-image,
 #eye-1:checked ~ .product-list label[for="eye-1"] .product-image,
@@ -982,7 +971,7 @@
   background: var(--c-point-light);
 }
 
-/* 상품 라디오에 키보드 포커스가 있으면 해당 상품 label에 테두리 표시 */
+
 #base-1:focus-visible ~ .product-list label[for="base-1"],
 #base-2:focus-visible ~ .product-list label[for="base-2"],
 #eye-1:focus-visible ~ .product-list label[for="eye-1"],
@@ -995,7 +984,7 @@
   outline-offset: 4px;
 }
 
-/* 영상 목록: 한 줄에 3개 배치 */
+
 .video-list {
   display: flex;
   flex-wrap: wrap;
@@ -1013,7 +1002,7 @@
   border-radius: var(--radius);
 }
 
-/* 영상 썸네일 */
+
 .video-preview {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -1027,7 +1016,7 @@
   object-fit: cover;
 }
 
-/* 영상 제목과 화장품 설명 */
+
 .video-text {
   display: flex;
   flex-direction: column;
@@ -1047,12 +1036,12 @@
   line-height: 1.6;
 }
 
-/* 카드에 마우스를 올렸을 때 */
+
 .video-card:hover {
   border-color: #b0bace;
 }
 
-/* 제품 구매 버튼 */
+
 .video-buy-button {
   width: 100%;
   padding: 12px 24px;
@@ -1077,7 +1066,7 @@
   outline-offset: 3px;
 }
 
-/* 800px 이하: 카테고리와 상품 목록을 각각 전체 너비로 배치 */
+
 @media (max-width: 800px) {
   .category-area {
     flex: 0 0 100%;
@@ -1094,13 +1083,13 @@
   }
 }
 
-/* 추가 영상 영역: 첫 영상 목록과의 간격 */
+
 .video-more {
   position: relative;
   margin-top: 32px;
 }
 
-/* 추가 영상의 펼치기·접기를 제어하는 summary 스타일 */
+
 .video-more-button {
   display: block;
   width: 280px;
@@ -1123,19 +1112,19 @@
   list-style: none;
 }
 
-/* 일부 브라우저의 기본 삼각형 표시 제거 */
+
 .video-more-button::-webkit-details-marker {
   display: none;
 }
 
-/* 더보기 컨트롤의 hover·active 상태 */
+
 .video-more-button:hover,
 .video-more-button:active {
   background: var(--c-point);
   color: var(--c-white);
 }
 
-/* > 문자를 회전하여 펼치기는 아래쪽, 접기는 위쪽 화살표로 표시 */
+
 .video-more-button .more-label::after,
 .video-more-button .less-label::after {
   content: ">";
@@ -1147,38 +1136,38 @@
   transform: rotate(-90deg);
 }
 
-/* 키보드로 버튼에 이동했을 때 */
+
 .video-more-button:focus-visible {
   outline: 2px solid var(--c-point);
   outline-offset: 4px;
 }
 
-/* 기본 상태에서는 접기 문구(.less-label)를 숨김 */
+
 .video-more-button .less-label {
   display: none;
 }
 
-/* 펼친 상태에서는 더보기 문구(.more-label)를 숨김 */
+
 .video-more[open] > .video-more-button .more-label {
   display: none;
 }
 
-/* 펼친 상태에서는 접기 문구(.less-label)를 표시 */
+
 .video-more[open] > .video-more-button .less-label {
   display: inline;
 }
 
-/* 버튼과 펼쳐진 영상 목록 사이의 간격 */
+
 .video-more > .video-list {
   margin-top: 32px;
 }
 
-/* 펼친 상태: 아래쪽에 접기 버튼 공간 확보 */
+
 .video-more[open] {
   padding-bottom: 80px;
 }
 
-/* 펼친 상태: 접기 버튼을 추가 영상 아래 중앙에 배치 */
+
 .video-more[open] > .video-more-button {
   position: absolute;
   bottom: 0;
@@ -1187,12 +1176,12 @@
   margin: 0;
 }
 
-/* 펼친 영상 위의 불필요한 간격 제거 */
+
 .video-more[open] > .video-list {
   margin-top: 0;
 }
 
-/* 인기 튜토리얼을 상품별 영상 결과 다음 순서로 배치 */
+
 .popular-tutorials {
   order: 3;
   flex: 0 0 100%;
@@ -1200,12 +1189,12 @@
   margin: 64px 0 48px;
 }
 
-/* 인기 영상 배지에 공통 본문 글자 크기 변수 적용 */
+
 .popular-tutorials .badge {
   font-size: var(--fs-base);
 }
 
-/* 영역 제목 */
+
 .popular-heading {
   position: relative;
   margin-bottom: 24px;
@@ -1220,7 +1209,7 @@
   line-height: 1.4;
 }
 
-/* 왼쪽 영상과 오른쪽 순위 목록 */
+
 .popular-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1235,7 +1224,7 @@
   min-width: 0;
 }
 
-/* 영상 소개를 기본적으로 숨기고, 아래 :checked 규칙으로 선택된 항목만 표시 */
+
 .popular-feature {
   display: none;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -1283,7 +1272,7 @@
   outline-offset: 4px;
 }
 
-/* 순위 목록 */
+
 .popular-ranking {
   display: flex;
   flex-direction: column;
@@ -1320,14 +1309,14 @@
   background: var(--c-bg-sub);
 }
 
-/* 선택한 영상 소개만 표시 */
+
 #popular-video-1:checked ~ .popular-body .popular-feature-1,
 #popular-video-2:checked ~ .popular-body .popular-feature-2,
 #popular-video-3:checked ~ .popular-body .popular-feature-3 {
   display: grid;
 }
 
-/* 선택한 순위 강조 */
+
 #popular-video-1:checked ~ .popular-body label[for="popular-video-1"],
 #popular-video-2:checked ~ .popular-body label[for="popular-video-2"],
 #popular-video-3:checked ~ .popular-body label[for="popular-video-3"] {
@@ -1337,7 +1326,7 @@
   font-weight: 700;
 }
 
-/* 라디오 버튼에 키보드 포커스가 있으면 해당 순위에 표시 */
+
 #popular-video-1:focus-visible ~ .popular-body label[for="popular-video-1"],
 #popular-video-2:focus-visible ~ .popular-body label[for="popular-video-2"],
 #popular-video-3:focus-visible ~ .popular-body label[for="popular-video-3"] {
@@ -1345,7 +1334,7 @@
   outline-offset: 3px;
 }
 
-/* 작은 화면에서는 영상 소개 아래에 순위 목록 배치 */
+
 @media (max-width: 800px) {
   .popular-body {
     grid-template-columns: 1fr;
@@ -1357,7 +1346,7 @@
   }
 }
 
-/* 제목 영역을 기준으로 업데이트 버튼을 오른쪽에 배치 */
+
 .popular-update {
   position: absolute;
   bottom: -16px;
@@ -1371,20 +1360,20 @@
   font-size: var(--fs-base);
 }
 
-/* 마우스를 올리면 글자색 변경과 밑줄 표시 */
+
 .popular-update:hover {
   color: var(--c-point);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-/* 키보드 포커스 표시 */
+
 .popular-update:focus-visible {
   outline: 2px solid var(--c-point);
   outline-offset: 3px;
 }
 
-/* 작은 화면에서는 제목과 겹치지 않도록 아래쪽 오른편에 배치 */
+
 @media (max-width: 800px) {
   .popular-update {
     position: static;
@@ -1392,3 +1381,4 @@
     margin: 12px 0 0 auto;
   }
 }
+/* 홈·튜토리얼 스타일 수정. */
