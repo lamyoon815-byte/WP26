@@ -26,7 +26,15 @@
           <img src="img/logo-symbol.jpg" alt="Olive Song 심볼" />
           <img src="img/logo-text.jpg" alt="OLIVE SONG" />
         </a>
-        <div class="search">퍼스널컬러, 브랜드, 성분 검색</div>
+        <form class="search" action="#search-soon" role="search">
+          <input type="search" name="q" placeholder="퍼스널컬러, 브랜드, 성분 검색" aria-label="검색어" />
+          <button type="submit" class="search-btn" aria-label="검색">
+            <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="7" />
+              <path d="M15.8 15.8 21 21" />
+            </svg>
+          </button>
+        </form>
         <div class="hright"><a href="#">올송매장찾기 ▼</a><a href="#">최근 본 상품 ▼</a></div>
       </div>
     </header>
@@ -46,6 +54,7 @@
       </div>
     </nav>
     <div class="soon" id="menu-soon" role="status">준비 중인 메뉴예요</div>
+    <div class="soon" id="search-soon" role="status">검색 기능은 준비 중이에요</div>
 
     <main class="container page">
       <div class="breadcrumb">홈 &gt; 장바구니</div>
@@ -186,6 +195,68 @@
           <p class="summary-caption">결제 단계에서 쿠폰 및 포인트를 사용할 수 있어요.</p>
         </aside>
       </div>
+
+      <section class="cart-recommendations" aria-label="함께 사면 좋은 상품">
+        <h2>찜해둔 상품 같이 구매하시겠어요?</h2>
+        <div class="recommend-grid">
+          <article class="recommend-card">
+            <div class="recommend-thumb">
+              <a href="productdetails.html"><img src="img/product1.jpg" alt="메디힐 에센셜 마스크팩" /></a>
+              <label class="recommend-put" aria-label="메디힐 에센셜 마스크팩 장바구니 담기">
+                <input type="checkbox" />
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2" /><circle cx="9" cy="19.5" r="1.3" /><circle cx="17" cy="19.5" r="1.3" /></svg>
+              </label>
+              <label class="recommend-like" aria-label="메디힐 에센셜 마스크팩 찜하기"><input type="checkbox" checked />♥</label>
+            </div>
+            <a class="recommend-brand" href="productdetails.html">메디힐</a>
+            <a class="recommend-name" href="productdetails.html">[15년 연속 1위] 메디힐 에센셜 마스크팩 10/10+1매 기획</a>
+            <div class="recommend-price"><span>50%</span><strong>10,000원</strong></div>
+          </article>
+
+          <article class="recommend-card">
+            <div class="recommend-thumb">
+              <a href="productdetails.html"><img src="img/product3.jpg" alt="클리오 샤프 쏘 심플 워터프루프 펜슬라이너" /></a>
+              <label class="recommend-put" aria-label="클리오 샤프 쏘 심플 펜슬라이너 장바구니 담기">
+                <input type="checkbox" />
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2" /><circle cx="9" cy="19.5" r="1.3" /><circle cx="17" cy="19.5" r="1.3" /></svg>
+              </label>
+              <label class="recommend-like" aria-label="클리오 샤프 쏘 심플 펜슬라이너 찜하기"><input type="checkbox" checked />♥</label>
+            </div>
+            <a class="recommend-brand" href="productdetails.html">클리오</a>
+            <a class="recommend-name" href="productdetails.html">[NO.1 아이라이너] 클리오 샤프 쏘 심플 워터프루프 펜슬라이너</a>
+            <div class="recommend-price"><span>30%</span><strong>7,700원</strong></div>
+          </article>
+
+          <article class="recommend-card">
+            <div class="recommend-thumb">
+              <a href="productdetails.html"><img src="img/product6.jpg" alt="토니모리 워터풀 버터 틴트" /></a>
+              <label class="recommend-put" aria-label="토니모리 워터풀 버터 틴트 장바구니 담기">
+                <input type="checkbox" />
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2" /><circle cx="9" cy="19.5" r="1.3" /><circle cx="17" cy="19.5" r="1.3" /></svg>
+              </label>
+              <label class="recommend-like" aria-label="토니모리 워터풀 버터 틴트 찜하기"><input type="checkbox" checked />♥</label>
+            </div>
+            <a class="recommend-brand" href="productdetails.html">토니모리</a>
+            <a class="recommend-name" href="productdetails.html">[NEW 버터쿠키 에디션] 토니모리 워터풀 버터 틴트</a>
+            <div class="recommend-price"><span>31%</span><strong>11,000원</strong></div>
+          </article>
+
+          <article class="recommend-card">
+            <div class="recommend-thumb">
+              <a href="productdetails.html"><img src="img/product10.jpg" alt="홀리카홀리카 마이페이브 무드 아이 팔레트" /></a>
+              <label class="recommend-put" aria-label="홀리카홀리카 마이페이브 무드 아이 팔레트 장바구니 담기">
+                <input type="checkbox" />
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 8H6.2" /><circle cx="9" cy="19.5" r="1.3" /><circle cx="17" cy="19.5" r="1.3" /></svg>
+              </label>
+              <label class="recommend-like" aria-label="홀리카홀리카 마이페이브 무드 아이 팔레트 찜하기"><input type="checkbox" checked />♥</label>
+            </div>
+            <a class="recommend-brand" href="productdetails.html">홀리카홀리카</a>
+            <a class="recommend-name" href="productdetails.html">홀리카홀리카 마이페이브 무드 아이 팔레트</a>
+            <div class="recommend-price"><span>25%</span><strong>20,900원</strong></div>
+          </article>
+
+        </div>
+      </section>
     </main>
 
     <footer class="footer">

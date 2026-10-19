@@ -26,7 +26,15 @@
           <img src="img/logo-symbol.jpg" alt="Olive Song 심볼" />
           <img src="img/logo-text.jpg" alt="OLIVE SONG" />
         </a>
-        <div class="search">퍼스널컬러, 브랜드, 성분 검색</div>
+        <form class="search" action="#search-soon" role="search">
+          <input type="search" name="q" placeholder="퍼스널컬러, 브랜드, 성분 검색" aria-label="검색어" />
+          <button type="submit" class="search-btn" aria-label="검색">
+            <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="7" />
+              <path d="M15.8 15.8 21 21" />
+            </svg>
+          </button>
+        </form>
         <div class="hright"><a href="#">올송매장찾기 ▼</a><a href="#">최근 본 상품 ▼</a></div>
       </div>
     </header>
@@ -46,6 +54,7 @@
       </div>
     </nav>
     <div class="soon" id="menu-soon" role="status">준비 중인 메뉴예요</div>
+    <div class="soon" id="search-soon" role="status">검색 기능은 준비 중이에요</div>
 
     <main class="container page">
       <div class="breadcrumb">홈 &gt; 스킨케어 &gt; 토너/패드</div>
@@ -70,7 +79,7 @@
         <div class="product-copy">
           <div class="brand">메디힐</div>
           <h1>[15년 연속 1위] 메디힐 에센셜 마스크팩<br />10/10+1매 기획 7종 골라담기</h1>
-          <a class="review-link" href="#reviews"><span class="rating">★★★★★</span>4.8 (<span class="review-count">리뷰 12,438개</span>)</a>
+          <a class="review-link" href="#reviews"><span class="rating">★★★★★</span>4.8 (<span class="review-count">리뷰 <span class="all-reviews">12,438개</span><span class="skin-reviews">1,684개</span></span>)</a>
 
           <div class="price-block">
             <del>20,000원</del><span class="discount">50%</span><strong>10,000</strong><span class="unit">원</span>
@@ -131,10 +140,10 @@
               alt="메디힐 에센셜 마스크팩 상세 사진 1"
             />
           </div>
-          <section class="ingredient-card" aria-label="성분 구성">
+          <section class="ingredient-card" id="ingredient-card" aria-label="성분 구성">
             <div class="ingredient-card-heading">
               <h3>성분 구성</h3>
-              <button class="ingredient-open" type="button" aria-label="중간위험 성분 보기" aria-controls="ingredient-modal">›</button>
+              <a class="ingredient-open" href="#ingredient-modal" aria-label="중간위험 성분 보기">›</a>
             </div>
             <div class="ingredient-legend" aria-label="성분 위험도 안내">
               <span class="legend-low"><i></i>1-2 낮은 위험</span>
@@ -151,10 +160,10 @@
             <div class="ingredient-row"><span class="ingredient-icon">♥</span><span>내 관심 성분</span><strong>0개</strong></div>
             <div class="ingredient-row"><span class="ingredient-icon">▼</span><span>내 피할 성분</span><strong>0개</strong></div>
           </section>
-          <dialog class="ingredient-modal" id="ingredient-modal" aria-labelledby="ingredient-modal-title">
+          <div class="ingredient-modal" id="ingredient-modal" role="dialog" aria-labelledby="ingredient-modal-title">
             <div class="ingredient-modal-heading">
               <h3 id="ingredient-modal-title">중간위험 성분</h3>
-              <button class="ingredient-modal-close" type="button" aria-label="닫기">×</button>
+              <a class="ingredient-modal-close" href="#ingredient-card" aria-label="닫기">×</a>
             </div>
             <table>
               <thead>
@@ -167,7 +176,7 @@
                 <tr><td><span class="ingredient-risk-number">4</span></td><td>로즈마리잎오일</td></tr>
               </tbody>
             </table>
-          </dialog>
+          </div>
           <div class="detail-more-wrap">
             <div class="detail-photo detail-more-photo">
               <img src="img/detail2.jpg" alt="메디힐 에센셜 마스크팩 상세 사진 2" />
@@ -195,15 +204,15 @@
         <div class="review-topic-columns">
           <div class="topic-column good">
             <h3><span>●</span> 좋았던 점</h3>
-            <a href="#reviews"><strong>진정이 잘 돼요</strong><em>283&nbsp;›</em></a>
-            <a href="#reviews"><strong>수분이 있어요</strong><em>175&nbsp;›</em></a>
-            <a href="#reviews"><strong>트러블이 없어져요</strong><em>133&nbsp;›</em></a>
+            <a href="#reviews"><strong>진정이 잘 돼요</strong><em><span class="all-count">283</span><span class="skin-count">86</span>&nbsp;›</em></a>
+            <a href="#reviews"><strong>수분이 있어요</strong><em><span class="all-count">175</span><span class="skin-count">112</span>&nbsp;›</em></a>
+            <a href="#reviews"><strong>트러블이 없어져요</strong><em><span class="all-count">133</span><span class="skin-count">54</span>&nbsp;›</em></a>
           </div>
           <div class="topic-column bad">
             <h3><span>●</span> 아쉬운 점</h3>
-            <a href="#reviews"><strong>흘러내려요</strong><em>20&nbsp;›</em></a>
-            <a href="#reviews"><strong>따가워요</strong><em>13&nbsp;›</em></a>
-            <a href="#reviews"><strong>알러지 반응이 와요</strong><em>8&nbsp;›</em></a>
+            <a href="#reviews"><strong>흘러내려요</strong><em><span class="all-count">20</span><span class="skin-count">4</span>&nbsp;›</em></a>
+            <a href="#reviews"><strong>따가워요</strong><em><span class="all-count">13</span><span class="skin-count">2</span>&nbsp;›</em></a>
+            <a href="#reviews"><strong>알러지 반응이 와요</strong><em><span class="all-count">8</span><span class="skin-count">1</span>&nbsp;›</em></a>
           </div>
         </div>
         <a class="topic-more" href="#reviews">더보기 <span aria-hidden="true">⌄</span></a>
@@ -214,7 +223,7 @@
           <h2>상품 리뷰</h2>
           <a class="review-more" href="#reviews">리뷰 더보기</a>
         </div>
-        <p><span class="rating">★★★★★</span> 4.8점 · 리뷰 12,438개</p>
+        <p><span class="rating">★★★★★</span> 4.8점 · 리뷰 <span class="all-reviews">12,438개</span><span class="skin-reviews">1,684개</span></p>
       </section>
 
       <section class="detail-section" id="shipping">
@@ -239,16 +248,5 @@
       </svg>
       <em>3</em>
     </a>
-    <script>
-      const ingredientModal = document.querySelector("#ingredient-modal");
-      const ingredientOpen = document.querySelector(".ingredient-open");
-      const ingredientClose = document.querySelector(".ingredient-modal-close");
-
-      ingredientOpen.addEventListener("click", () => ingredientModal.showModal());
-      ingredientClose.addEventListener("click", () => ingredientModal.close());
-      ingredientModal.addEventListener("click", (event) => {
-        if (event.target === ingredientModal) ingredientModal.close();
-      });
-    </script>
   </body>
 </html>

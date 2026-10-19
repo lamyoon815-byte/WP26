@@ -182,6 +182,34 @@ button {
   color: var(--c-main);
 }
 
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--c-main);
+  font: inherit;
+}
+
+.search input::placeholder {
+  color: var(--c-text-disabled);
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--c-main);
+  cursor: pointer;
+}
+
+.search:focus-within {
+  border-color: var(--c-point);
+}
+
 /* 오른쪽 "올송매장찾기 | 최근 본 상품"
    <div class="hright"><a>올송매장찾기 &#9662;</a><a>최근 본 상품 &#9662;</a></div> */
 .hright {
