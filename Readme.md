@@ -1,0 +1,1 @@
+상품 이미지 = img/products/{id}.webp, 800×800

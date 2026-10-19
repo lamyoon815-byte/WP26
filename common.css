@@ -36,9 +36,9 @@
   --c-text-disabled: #9aa4b2;
   --c-shadow: rgb(17 17 17 / 20%);
   --c-review-tag: #6bd4d2;
-  --c-risk-low: #63b7c9;
-  --c-risk-mid: #f4bd45;
-  --c-risk-high: #e47461;
+  --c-risk-low: var(--c-safe);
+  --c-risk-mid: var(--c-caution);
+  --c-risk-high: var(--c-danger);
   --c-risk-none: #cfd3d6;
 
   /* ---------- 글자 크기 (5단계만 사용) ---------- */
@@ -46,7 +46,7 @@
   --fs-lg: 20px; /* 제품명, 총 금액, 섹션 제목 */
   --fs-md: 16px; /* 브랜드명, 검색창 글자 */
   --fs-base: 14px; /* 본문, 혜택/배송 안내 */
-  --fs-sm: 12px; /* 보조 글자, 뱃지, 상단 유틸 메뉴 */
+  --fs-sm: 14px; /* 보조 글자, 뱃지, 상단 유틸 메뉴 */
 
   /* ---------- 높이 / 폭 ---------- */
   --h-util: 36px; /* 상단 유틸 바 높이 */
@@ -472,6 +472,25 @@ button {
   padding: 16px 20px;
   border-radius: var(--radius);
 } /* 회색 안내 박스 */
+
+/* ========================================================================== */
+/* 12. 공통 푸터 */
+/* ========================================================================== */
+footer,
+.footer {
+  margin-top: 64px;
+  padding: 28px 0;
+  border-top: 1px solid var(--c-border);
+  color: var(--c-text-sub);
+  font-size: var(--fs-md);
+  line-height: 1.8;
+}
+
+footer .container,
+.footer .container {
+  max-width: var(--w-container);
+  margin: 0 auto;
+}
 
 /* ==========================================================================
    12-1. 메뉴 네비게이션 아래 상단 타이틀 배너 (common-test.html에서 공통으로 옮김)

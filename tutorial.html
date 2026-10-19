@@ -1,0 +1,2876 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>튜토리얼 | OLIVE SONG</title>
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="tutorial.css" />
+  </head>
+
+  <body>
+    <div class="util">
+      <div class="container">
+        <a>로그인</a><a>회원가입</a><a href="cart.html">장바구니 <em>(3)</em></a
+        ><a>고객센터</a>
+      </div>
+    </div>
+    <div class="header">
+      <div class="container">
+        <a href="home.html">
+          <div class="logo">
+            <img src="Image_logo.png" alt="LOGO Text" />
+            <img src="Text_logo.png" alt="LOGO Text" />
+          </div>
+        </a>
+        <div class="search">상품, 브랜드, 성분 검색</div>
+        <div class="hright">최근 본 상품 &#9662;</div>
+      </div>
+    </div>
+    <nav class="gnb">
+      <div class="container">
+        <a class="cat" href="#menu-soon">&#9776; 카테고리</a>
+        <a href="#menu-soon">오특</a>
+        <a href="ranking.html">랭킹</a>
+        <a href="personalcolor.html">퍼스널컬러</a>
+        <a href="tutorial.html" class="on">튜토리얼</a>
+        <a href="#menu-soon">테마관</a>
+        <a href="#menu-soon">기획전</a>
+        <a href="#menu-soon">세일</a>
+        <a href="#menu-soon">기프트카드</a>
+        <a href="#menu-soon">멤버십/쿠폰</a>
+        <a href="#menu-soon">이벤트</a>
+      </div>
+    </nav>
+    <div class="soon" id="menu-soon" role="status">준비 중인 메뉴예요</div>
+
+    <div class="title-best">
+      <h1>
+        튜토리얼
+        <span>내게 있는 화장품으로 새로운 메이크업 스타일을 만들어보세요.</span>
+      </h1>
+    </div>
+    <main class="container tutorial-page">
+      <!--
+    화장품 카테고리 radio buttons으로 선택하기
+    아래 label의 for와 input의 id를 연결
+    -->
+      <input class="choice" type="radio" name="category" id="category-base" />
+      <input class="choice" type="radio" name="category" id="category-eye" />
+      <input class="choice" type="radio" name="category" id="category-lip" />
+      <input class="choice" type="radio" name="category" id="category-cheek" />
+      <input
+        class="choice"
+        type="radio"
+        name="category"
+        id="category-contour"
+      />
+
+      <!-- 이미지 카테고리 -->
+      <div class="category-area">
+        <div class="category-list">
+          <div class="category-item">
+            <label class="category-label" for="category-base">
+              <div class="category-content">
+                <div class="category-image">
+                  <img src="./category-image/category-base.png" alt="베이스" />
+                </div>
+                <span class="category-name">베이스</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="category-item">
+            <label class="category-label" for="category-eye">
+              <div class="category-content">
+                <div class="category-image">
+                  <img src="./category-image/category-eye.png" alt="아이" />
+                </div>
+                <span class="category-name">아이</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="category-item">
+            <label class="category-label" for="category-lip">
+              <div class="category-content">
+                <div class="category-image">
+                  <img src="./category-image/category-lip.png" alt="립" />
+                </div>
+                <span class="category-name">립</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="category-item">
+            <label class="category-label" for="category-cheek">
+              <div class="category-content">
+                <div class="category-image">
+                  <img src="./category-image/category-cheek.png" alt="치크" />
+                </div>
+                <span class="category-name">치크</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="category-item">
+            <label class="category-label" for="category-contour">
+              <div class="category-content">
+                <div class="category-image">
+                  <img
+                    src="./category-image/category-contour.png"
+                    alt="쉐딩 · 하이라이터"
+                  />
+                </div>
+                <span class="category-name">쉐딩 · 하이라이터</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 메이크업 튜토리얼 제목 -->
+      <div class="tutorial-heading">
+        <h2>메이크업 튜토리얼</h2>
+      </div>
+
+      <div class="initial-guide">
+        <strong>오늘은 어떤 메이크업을 해볼까요?</strong>
+        <p>
+          위에서 내가 갖고 있는 화장품을 선택하면 관련 튜토리얼을 볼 수 있어요.
+        </p>
+      </div>
+
+      <!-- 베이스 구매 상품 -->
+      <div class="category-panel panel-base">
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="base-product"
+          id="base-1"
+        />
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="base-product"
+          id="base-2"
+        />
+
+        <!-- 베이스 구매 상품 리스트 -->
+        <div class="product-list">
+          <label class="product-label" for="base-1">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS2-y7GRZQRWsOGfWi2DosHpY6JLAePBY5ppmEiMoZGg&s=10"
+                alt="클리오 킬커버 쿠션"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">클리오</span>
+              <strong class="product-name">킬커버 쿠션</strong>
+            </span>
+          </label>
+
+          <label class="product-label" for="base-2">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc6oAxSpSrg0e7vjDDok0w126wFyqsYmCqJgA1hHkl5A&s=10"
+                alt="정샘물 에센셜 쿠션"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">정샘물</span>
+              <strong class="product-name">에센셜 쿠션</strong>
+            </span>
+          </label>
+        </div>
+
+        <div class="select-guide">
+          <strong>오늘은 어떤 베이스 메이크업을 해볼까요?</strong>
+          <p>
+            위에서 구매한 베이스 제품을 선택하면 관련 튜토리얼을 볼 수 있어요.
+          </p>
+        </div>
+
+        <div class="product-result result-base-1">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>12</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-base-1"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-base-1"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-base-1"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/83IQGzak61I?si=CkUWv0UopLUCPy2O"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/83IQGzak61I/hqdefault.jpg"
+                    alt="하투하 이안 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>초미녀 하투하 이안 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/BJlnoBEBGMA?si=A_j2UVpDHvfRkiSn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/BJlnoBEBGMA/hqdefault.jpg"
+                    alt="겨울 쿨톤 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>겨울 쿨톤 청량 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/PAUYDV9fMno?si=R9F2875cJlZLA_o7"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/PAUYDV9fMno/hqdefault.jpg"
+                    alt="힙한 핫걸 언니 스모키 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>힙한 핫걸 언니 스모키 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄 -->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/DgAy5OyYa7A?si=j3c3nSpOKXa6YVln"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/DgAy5OyYa7A/hqdefault.jpg"
+                    alt="왕실에디션 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>고급 왕실에디션 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/BJlnoBEBGMA?si=A_j2UVpDHvfRkiSn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/frKOlu-fb-M/hqdefault.jpg"
+                    alt="토끼 같지만 고양이 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>토끼 같지만 고양이 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/DDWoAVhBxSs?si=BfiypF0osV2QQoHX"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/DDWoAVhBxSs/hqdefault.jpg"
+                    alt="분위기 끝판왕 가을 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>분위기 끝판왕 가을 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+
+          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <details class="video-more">
+            <summary class="video-more-button">
+              <span class="more-label">튜토리얼 더보기</span>
+              <span class="less-label">간략히</span>
+            </summary>
+
+            <div class="video-list">
+              <!-- 세번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/8WQZ_YKxnqc?si=ezKLTsEX0xJ2i3r0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/8WQZ_YKxnqc/hqdefault.jpg"
+                      alt="증명사진 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>증명사진 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/pHrMwdrSCd8?si=P5DrHRgbGFNgCV_N"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/pHrMwdrSCd8/hqdefault.jpg"
+                      alt="에스파 지젤 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>에스파 지젤 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/U8tOtzyrYaM?si=fkcRehuUz2ZwWQJs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/U8tOtzyrYaM/hqdefault.jpg"
+                      alt="고급진 청순 느낌 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>고급진 청순 느낌 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+              <!-- 네번째 줄-->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/IXDQ2Amy6Yc?si=cokaZO2Fo6Qgq3i4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/IXDQ2Amy6Yc/hqdefault.jpg"
+                      alt="나도 토끼상 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>나도 토끼상 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/pwXexZmmGlE?si=eFJs76kCJlC9Qc-8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/pwXexZmmGlE/hqdefault.jpg"
+                      alt="어른 여자 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>어른 여자 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/fs96bW8aH6I?si=tjOJYQulFBSAwphY"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/fs96bW8aH6I/hqdefault.jpg"
+                      alt="진짜 예뻐 보이고 싶은날 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>진짜 예뻐 보이고 싶은 날 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="product-result result-base-2">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>8</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-base-2"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-base-2"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-base-2"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/tQEbcHQPajU?si=__Vdz0QF4Iz0Q4H5"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/tQEbcHQPajU/hqdefault.jpg"
+                    alt="쿨지근 구운 장미 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>쿨지근 구운 장미 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  3CE 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/Y0Hju4xi2fs?si=E0wtvXXpBbDJcELM"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/Y0Hju4xi2fs/hqdefault.jpg"
+                    alt="쿨톤 멀멀 로즈 밀크티 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>쿨톤 멀멀 로즈 밀크티 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  쏘내추럴 올 데이 타이트 메이크업 세팅
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/fp1bXtOGpiY?si=UTiz5ZlAcvR5F6Xx"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/fp1bXtOGpiY/hqdefault.jpg"
+                    alt="세미 오네갸루st 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>세미 오네갸루st 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  투스포스쿨 아트클래스 쉐딩
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄 -->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/qTWzW3wp0sA?si=RTlZiP4LB31hJjGY"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/qTWzW3wp0sA/hqdefault.jpg"
+                    alt="가을 무화과 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>가을 무화과 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  3CE 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/u6AJfrse9L0?si=uXWvyUMg-2zTbJ3n"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/u6AJfrse9L0/hqdefault.jpg"
+                    alt="있지 채령 보름달 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>있지 채령 보름달 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  쏘내추럴 올 데이 타이트 메이크업 세팅
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/2NdCLYmJDgg?si=MtNeEj1fhy0R5QkF"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/2NdCLYmJDgg/hqdefault.jpg"
+                    alt="가을 멀멀 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>가을 멀멀 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  투스포스쿨 아트클래스 쉐딩
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+
+          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <details class="video-more">
+            <summary class="video-more-button">
+              <span class="more-label">튜토리얼 더보기</span>
+              <span class="less-label">간략히</span>
+            </summary>
+
+            <div class="video-list">
+              <!-- 세번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/1qj6SactPVM?si=x7jkraWu7kmGeBaz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/1qj6SactPVM/hqdefault.jpg"
+                      alt="밀키한 바닐라 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>밀키한 바닐라 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    3CE 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/-8XjYr0DtvA?si=BMjyxxwfHjuLj5dz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/-8XjYr0DtvA/hqdefault.jpg"
+                      alt="트리플에스 나경 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>트리플에스 나경 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    쏘내추럴 올 데이 타이트 메이크업 세팅
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- 아이 구매 상품 -->
+      <div class="category-panel panel-eye">
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="eye-product"
+          id="eye-1"
+        />
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="eye-product"
+          id="eye-2"
+        />
+
+        <div class="product-list">
+          <label class="product-label" for="eye-1">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlSA1agDDHECD0mbpD1DvhyhsxIbu5paoUi3Q-5pofug&s"
+                alt="클리오 프로 아이 팔레트"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">클리오</span>
+              <strong class="product-name">프로 아이 팔레트</strong>
+            </span>
+          </label>
+
+          <label class="product-label" for="eye-2">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_d4x-p2G6MZExFBrqJAIkyFMRXYEmhm05QvtRaDdL9g&s"
+                alt="롬앤 베러 댄 팔레트"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">롬앤</span>
+              <strong class="product-name">베러 댄 팔레트</strong>
+            </span>
+          </label>
+        </div>
+
+        <div class="select-guide">
+          <strong>오늘은 어떤 아이 메이크업을 해볼까요?</strong>
+          <p>위에서 구매한 팔레트를 선택하면 관련 튜토리얼을 볼 수 있어요.</p>
+        </div>
+
+        <div class="product-result result-eye-1">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>9</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-eye-1"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-eye-1"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-eye-1"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/COV-AsoHR5M?si=Ul4dDHakN5C_Hbbc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/COV-AsoHR5M/hqdefault.jpg"
+                    alt="말 잘듣고 싶은 연상여친st 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>말 잘듣고 싶은 연상여친st 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  쏘내추럴 올 데이 타이트 메이크업 세팅
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/fu7jsvHJ6M4?si=fdKfzEqRVTFc5fw8"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/fu7jsvHJ6M4/hqdefault.jpg"
+                    alt="한주 따라하기 데일리 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>한주 따라하기 데일리 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  투스포스쿨 아트클래스 쉐딩
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/_OqHZiQskZM?si=gEVHgCCX44bFDIUP"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/_OqHZiQskZM/hqdefault.jpg"
+                    alt="첫사랑st 여름 휴가 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>첫사랑st 여름 휴가 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄 -->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/uF3RI_4ldiI?si=XBaZFxrkNFhd10dH"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/uF3RI_4ldiI/hqdefault.jpg"
+                    alt="웜톤 고양이 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>웜톤 고양이 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  쏘내추럴 올 데이 타이트 메이크업 세팅
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/Q5152YnZHeU?si=3EIEnJEeJCfKC2OF"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/Q5152YnZHeU/hqdefault.jpg"
+                    alt="하객 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>하객 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  투스포스쿨 아트클래스 쉐딩
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/154GJAMLTYo?si=Di4RLwwts1rQ-vb-"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/154GJAMLTYo/hqdefault.jpg"
+                    alt="세미 스모키 무화과 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>세미 스모키 무화과 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+
+          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <details class="video-more">
+            <summary class="video-more-button">
+              <span class="more-label">튜토리얼 더보기</span>
+              <span class="less-label">간략히</span>
+            </summary>
+
+            <div class="video-list">
+              <!-- 세번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/h9kyhKOrXZc?si=BpxE65htD69wv4NG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/h9kyhKOrXZc/hqdefault.jpg"
+                      alt="크리미 스모키 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>크리미 스모키 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    쏘내추럴 올 데이 타이트 메이크업 세팅
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/RlftNO6Atf0?si=pFkvqyS_6koR0iXG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/RlftNO6Atf0/hqdefault.jpg"
+                      alt="가을 뮤트 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>가을 뮤트 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    투스포스쿨 아트클래스 쉐딩
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/DRP-K91TUAI?si=rVj5Ge2ztxlUlNzz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/DRP-K91TUAI/hqdefault.jpg"
+                      alt="모카무스 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>모카무스 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="product-result result-eye-2">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>4</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-eye-2"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-eye-2"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-eye-2"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/RNdKap9GAlA?si=wYd_47Skb_yO-eeE"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/RNdKap9GAlA/hqdefault.jpg"
+                    alt="2026 가을 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>2026 가을 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  퓌 3D 아이브로우
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/aSwsWlCMYXM?si=WSd60Q5IlDEZvKop"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/aSwsWlCMYXM/hqdefault.jpg"
+                    alt="기본 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>처음부터 차근차근, 초보자 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/XdWu7y5QebQ?si=rnqHcXbczkzJiGWd"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/XdWu7y5QebQ/hqdefault.jpg"
+                    alt="데일리 핑크 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>얼태기 퇴치 데일리 핑크 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄-->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/sFWC8VYZQj4?si=vHHHpydMFjKZuUSl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/sFWC8VYZQj4/hqdefault.jpg"
+                    alt="앙큼 가을 고양이 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>앙큼 가을 고양이 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  퓌 3D 아이브로우
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 립 구매 상품 -->
+      <div class="category-panel panel-lip">
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="lip-product"
+          id="lip-1"
+        />
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="lip-product"
+          id="lip-2"
+        />
+
+        <div class="product-list">
+          <label class="product-label" for="lip-1">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScqciH87Tv9zIOjOhz_0kSEXRN2-TX0ORz3mggPv6AUw&s=10"
+                alt="롬앤 쥬시 래스팅 틴트"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">롬앤</span>
+              <strong class="product-name">쥬시 래스팅 틴트</strong>
+            </span>
+          </label>
+
+          <label class="product-label" for="lip-2">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOxjIDrOtIW0iTL4VVgNvo_a5q1yZpSgHbzg9xsIlEug&s=10"
+                alt="잉크 무드 글로이 틴트"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">페리페라</span>
+              <strong class="product-name">잉크 무드 글로이 틴트</strong>
+            </span>
+          </label>
+        </div>
+
+        <div class="select-guide">
+          <strong>오늘은 어떤 립 메이크업을 해볼까요?</strong>
+          <p>위에서 구매한 립 제품을 선택하면 관련 튜토리얼을 볼 수 있어요.</p>
+        </div>
+
+        <div class="product-result result-lip-1">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>11</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-lip-1"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-lip-1"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-lip-1"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/0qo_1FLWalU?si=ETJV1iqBup3nOAIC"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/0qo_1FLWalU/hqdefault.jpg"
+                    alt="새학기 개강 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>새학기 개강 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  키스미 잉크 베일 라이너
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/E1pz_Dz7asU?si=ypzuDXnw0n3tNch9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/E1pz_Dz7asU/hqdefault.jpg"
+                    alt="두유코어 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>두유코어 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/2fL6rRSyWzg?si=PxJ2qs3HaFKZjp0e"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/2fL6rRSyWzg/hqdefault.jpg"
+                    alt="요즘 난리난 고윤정 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>요즘 난리난 고윤정 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄 -->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/EOBXiA5q_Z0?si=GS-IlRc_vAPmCHSu"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/EOBXiA5q_Z0/hqdefault.jpg"
+                    alt="청담샵 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>청담샵 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  키스미 잉크 베일 라이너
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/pPSr1R8PnlQ?si=HStj7qHKoNsXO-VP"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/pPSr1R8PnlQ/hqdefault.jpg"
+                    alt="여름뮤트 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>여름뮤트 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/kFKbAa_EtVI?si=w20F40oWqJw4krml"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/kFKbAa_EtVI/hqdefault.jpg"
+                    alt="무쌍들을 위한 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>무쌍들을 위한 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+
+          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <details class="video-more">
+            <summary class="video-more-button">
+              <span class="more-label">튜토리얼 더보기</span>
+              <span class="less-label">간략히</span>
+            </summary>
+
+            <div class="video-list">
+              <!-- 세번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/h4hQWjE5SL0?si=0SfVLtfy-RujLCcv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/h4hQWjE5SL0/hqdefault.jpg"
+                      alt="멀멀한 라떼 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>멀멀한 라떼 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    키스미 잉크 베일 라이너
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/fvMMC5vzPzw?si=RdWv-OBcLh-wzHvn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/fvMMC5vzPzw/hqdefault.jpg"
+                      alt="무조건 번호 따이는 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>무조건 번호 따이는 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/pk9A8BEsQDA?si=Jrj6DCiByRFchHEe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/pk9A8BEsQDA/hqdefault.jpg"
+                      alt="윤광 Gril 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>윤광 Gril 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <!-- 네번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/gLs0ffZQ7xs?si=FFMfXDSrsv_xSobW"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/gLs0ffZQ7xs/hqdefault.jpg"
+                      alt="핑크 공쥬 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>핑크 공쥬 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    키스미 잉크 베일 라이너
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/TmdeLbbzQxI?si=vqugfQCvgBy7aszd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/TmdeLbbzQxI/hqdefault.jpg"
+                      alt="청초 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>청초 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="product-result result-lip-2">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>5</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-lip-2"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-lip-2"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-lip-2"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/KpYjJtycgXo?si=hqWz2iu1SI2ys3Ko"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/KpYjJtycgXo/hqdefault.jpg"
+                    alt="얘기듣는 맑은 꾸안꾸 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>얘기듣는 맑은 꾸안꾸 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  캔메이크 무치푸루 틴트 시어 밤
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/2RdnNyNfhMM?si=tGwNlTpQ7m7T6nZy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/2RdnNyNfhMM/hqdefault.jpg"
+                    alt="최예나 ‘또렷청순’ 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>최예나 ‘또렷청순’ 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  홀리카홀리카 마이페이스 아이섀도우
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/agPiitAUoRs?si=m3M9-Ocsrijo40Dc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/agPiitAUoRs/hqdefault.jpg"
+                    alt="일본에서 불량연애st 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>일본에서 불량연애st 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  하트퍼센트 도트 온 무드 립펜슬
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄 -->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/QZSnojO1B_4?si=cymvVq_Yw7upfoH9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/QZSnojO1B_4/hqdefault.jpg"
+                    alt="분위기 대박 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>분위기 대박 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  캔메이크 무치푸루 틴트 시어 밤
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/8IkFMckAi8E?si=aHpvpE1WtimZRCX5"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/8IkFMckAi8E/hqdefault.jpg"
+                    alt="봄웜 데일리 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>봄웜 데일리 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  홀리카홀리카 마이페이스 아이섀도우
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 치크 구매 상품 -->
+      <div class="category-panel panel-cheek">
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="cheek-product"
+          id="cheek-1"
+        />
+
+        <div class="product-list">
+          <label class="product-label" for="cheek-1">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGPcCQ-KZ-urcqPG28-OZOTOHgOardjDA2Ipq5j99wag&s=10"
+                alt="롬앤 베러 댄 치크"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">롬앤</span>
+              <strong class="product-name">베러 댄 치크</strong>
+            </span>
+          </label>
+        </div>
+
+        <div class="select-guide">
+          <strong>오늘은 어떤 치크 메이크업을 해볼까요?</strong>
+          <p>위에서 구매한 블러셔를 선택하면 관련 튜토리얼을 볼 수 있어요.</p>
+        </div>
+
+        <div class="product-result result-cheek-1">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>14</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-cheek-1"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-cheek-1"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-cheek-1"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/03_2hrOyfrI?si=TVsJ6CMjy1m9nT85"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/03_2hrOyfrI/hqdefault.jpg"
+                    alt="얼그레이 초코 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>얼그레이 초코 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  에스쁘아 더브로우 밸런스 펜슬
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/Z_eE1Tp14ZU?si=LsB1XzpJbJfIN904"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/Z_eE1Tp14ZU/hqdefault.jpg"
+                    alt="그 시절 ‘고급진 청순미’ 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>그 시절 ‘고급진 청순미’ 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/fLPxSJFqQM8?si=G9hXk6nQhQcsRsFB"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/fLPxSJFqQM8/hqdefault.jpg"
+                    alt="차분차분 어른여자 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>차분차분 어른여자 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄 -->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/BJlnoBEBGMA?si=A_j2UVpDHvfRkiSn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/frKOlu-fb-M/hqdefault.jpg"
+                    alt="토끼 같지만 고양이 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>토끼 같지만 고양이 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/DDWoAVhBxSs?si=BfiypF0osV2QQoHX"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/DDWoAVhBxSs/hqdefault.jpg"
+                    alt="분위기 끝판왕 가을 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>분위기 끝판왕 가을 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/8WQZ_YKxnqc?si=ezKLTsEX0xJ2i3r0"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/8WQZ_YKxnqc/hqdefault.jpg"
+                    alt="증명사진 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>증명사진 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+
+          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <details class="video-more">
+            <summary class="video-more-button">
+              <span class="more-label">튜토리얼 더보기</span>
+              <span class="less-label">간략히</span>
+            </summary>
+
+            <div class="video-list">
+              <!-- 세번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/pHrMwdrSCd8?si=P5DrHRgbGFNgCV_N"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/pHrMwdrSCd8/hqdefault.jpg"
+                      alt="에스파 지젤 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>에스파 지젤 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/U8tOtzyrYaM?si=fkcRehuUz2ZwWQJs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/U8tOtzyrYaM/hqdefault.jpg"
+                      alt="고급진 청순 느낌 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>고급진 청순 느낌 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/IXDQ2Amy6Yc?si=cokaZO2Fo6Qgq3i4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/IXDQ2Amy6Yc/hqdefault.jpg"
+                      alt="나도 토끼상 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>나도 토끼상 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <!-- 네번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/pwXexZmmGlE?si=eFJs76kCJlC9Qc-8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/pwXexZmmGlE/hqdefault.jpg"
+                      alt="어른 여자 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>어른 여자 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/fs96bW8aH6I?si=tjOJYQulFBSAwphY"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/fs96bW8aH6I/hqdefault.jpg"
+                      alt="진짜 예뻐 보이고 싶은날 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>진짜 예뻐 보이고 싶은 날 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/h9kyhKOrXZc?si=BpxE65htD69wv4NG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/h9kyhKOrXZc/hqdefault.jpg"
+                      alt="크리미 스모키 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>크리미 스모키 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    쏘내추럴 올 데이 타이트 메이크업 세팅
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <!-- 다섯번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/RlftNO6Atf0?si=pFkvqyS_6koR0iXG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/RlftNO6Atf0/hqdefault.jpg"
+                      alt="가을 뮤트 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>가을 뮤트 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    투스포스쿨 아트클래스 쉐딩
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/DRP-K91TUAI?si=rVj5Ge2ztxlUlNzz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/DRP-K91TUAI/hqdefault.jpg"
+                      alt="모카무스 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>모카무스 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 팔레트 ｜ 페리페라 글로이 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- 쉐딩 · 하이라이터 구매 상품 -->
+      <div class="category-panel panel-contour">
+        <input
+          class="choice product-choice"
+          type="radio"
+          name="contour-product"
+          id="contour-1"
+        />
+
+        <div class="product-list">
+          <label class="product-label" for="contour-1">
+            <span class="product-image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoIhpGcbuxb0Xqv1KbvtYjjJP0RDDTDrilkbdg12SAtQ&s"
+                alt="투쿨포스쿨 아트클래스 바이로댕 쉐딩"
+              />
+            </span>
+            <span class="product-copy">
+              <span class="product-brand">투쿨포스쿨</span>
+              <strong class="product-name">아트클래스 바이로댕 쉐딩</strong>
+            </span>
+          </label>
+        </div>
+
+        <div class="select-guide">
+          <strong>오늘은 어떤 윤곽 메이크업을 해볼까요?</strong>
+          <p>
+            위에서 구매한 쉐딩이나 하이라이터를 선택하면 관련 튜토리얼을 볼 수
+            있어요.
+          </p>
+        </div>
+
+        <div class="product-result result-contour-1">
+          <!-- 튜토리얼 영상 정렬 바  -->
+          <div class="video-toolbar">
+            <p class="video-total">총 <strong>10</strong>개</p>
+
+            <div class="video-sort" role="group" aria-label="영상 정렬">
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-contour-1"
+                  value="recommend"
+                  checked
+                />
+                <span>추천순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-contour-1"
+                  value="latest"
+                />
+                <span>최신순</span>
+              </label>
+
+              <label class="video-sort-option">
+                <input
+                  class="choice"
+                  type="radio"
+                  name="sort-contour-1"
+                  value="views"
+                />
+                <span>조회순</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 튜토리얼 영상 리스트 -->
+          <div class="video-list">
+            <div class="video-card">
+              <a
+                href="https://youtu.be/nBvN7-AO2rs?si=5ovy35dZUN0B7GBF"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/nBvN7-AO2rs/hqdefault.jpg"
+                    alt="여원 갈머 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>여원 갈머 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  얼터너티브스테레오 립 포션 글레이즈
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/EpTGiPsLASk?si=wcz220ZSzRFQJk-E"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/EpTGiPsLASk/hqdefault.jpg"
+                    alt="박희선 솔로지옥 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>박희선 솔로지옥 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/tGtlCYKMHHU?si=KTkFVXFX2cewphSR"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/tGtlCYKMHHU/hqdefault.jpg"
+                    alt="갈까 말까 고으니 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>갈까 말까 고으니 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 컨투어
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <!-- 두번째 줄 -->
+            <div class="video-card">
+              <a
+                href="https://youtu.be/pPSr1R8PnlQ?si=HStj7qHKoNsXO-VP"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/pPSr1R8PnlQ/hqdefault.jpg"
+                    alt="여름뮤트 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>여름뮤트 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  롬앤 베러 댄 치크
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/kFKbAa_EtVI?si=w20F40oWqJw4krml"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/kFKbAa_EtVI/hqdefault.jpg"
+                    alt="무쌍들을 위한 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>무쌍들을 위한 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+
+            <div class="video-card">
+              <a
+                href="https://youtu.be/h4hQWjE5SL0?si=0SfVLtfy-RujLCcv"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="video-preview">
+                  <img
+                    src="https://i.ytimg.com/vi/h4hQWjE5SL0/hqdefault.jpg"
+                    alt="멀멀한 라떼 메이크업 영상 썸네일"
+                  />
+                </div>
+              </a>
+
+              <div class="video-text">
+                <strong>멀멀한 라떼 메이크업</strong>
+                <p>
+                  나에게 있는 다른 화장품<br />
+                  키스미 잉크 베일 라이너
+                </p>
+              </div>
+
+              <button type="button" class="video-buy-button">
+                화장에 사용된 제품 구매하러 가기
+              </button>
+            </div>
+          </div>
+
+          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <details class="video-more">
+            <summary class="video-more-button">
+              <span class="more-label">튜토리얼 더보기</span>
+              <span class="less-label">간략히</span>
+            </summary>
+
+            <div class="video-list">
+              <!-- 세번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/fvMMC5vzPzw?si=RdWv-OBcLh-wzHvn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/fvMMC5vzPzw/hqdefault.jpg"
+                      alt="무조건 번호 따이는 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>무조건 번호 따이는 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/pk9A8BEsQDA?si=Jrj6DCiByRFchHEe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/pk9A8BEsQDA/hqdefault.jpg"
+                      alt="윤광 Gril 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>윤광 Gril 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    클리오 프로 아이 팔레트 ｜ 롬앤 쥬시 틴트
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/gLs0ffZQ7xs?si=FFMfXDSrsv_xSobW"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/gLs0ffZQ7xs/hqdefault.jpg"
+                      alt="핑크 공쥬 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>핑크 공쥬 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    키스미 잉크 베일 라이너
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+
+              <!-- 네번째 줄 -->
+              <div class="video-card">
+                <a
+                  href="https://youtu.be/uRMqu6W-ItI?si=yGnfDOkhJPUzupes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="video-preview">
+                    <img
+                      src="https://i.ytimg.com/vi/uRMqu6W-ItI/hqdefault.jpg"
+                      alt="국민 첫사랑 모리걸 메이크업 영상 썸네일"
+                    />
+                  </div>
+                </a>
+
+                <div class="video-text">
+                  <strong>국민 첫사랑 모리걸 메이크업</strong>
+                  <p>
+                    나에게 있는 다른 화장품<br />
+                    롬앤 베러 댄 치크
+                  </p>
+                </div>
+
+                <button type="button" class="video-buy-button">
+                  화장에 사용된 제품 구매하러 가기
+                </button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- 인기 튜토리얼: 페이지에 한 번만 추가 -->
+      <section class="popular-tutorials" aria-labelledby="popular-title">
+        <div class="popular-heading">
+          <h2 id="popular-title">조회 급상승, 인기 튜토리얼 영상</h2>
+
+          <button type="button" class="popular-update">
+            <span aria-hidden="true">↻</span> 업데이트
+          </button>
+        </div>
+
+        <!-- 인기 영상 선택 -->
+        <input
+          class="choice"
+          type="radio"
+          name="popular-video"
+          id="popular-video-1"
+          checked
+        />
+        <input
+          class="choice"
+          type="radio"
+          name="popular-video"
+          id="popular-video-2"
+        />
+        <input
+          class="choice"
+          type="radio"
+          name="popular-video"
+          id="popular-video-3"
+        />
+
+        <div class="popular-body">
+          <!-- 왼쪽: 선택한 영상 -->
+          <div class="popular-preview">
+            <a
+              class="popular-feature popular-feature-1"
+              href="https://youtu.be/83IQGzak61I"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://i.ytimg.com/vi/83IQGzak61I/hqdefault.jpg"
+                alt="초미녀 하투하 이안 메이크업 썸네일"
+              />
+              <div class="popular-copy">
+                <span class="badge b-point">TOP 1</span>
+                <h3>초미녀 하투하 이안 메이크업</h3>
+                <p>영상으로 메이크업 과정을 살펴보세요.</p>
+                <span class="popular-watch">유튜브에서 보기 ↗</span>
+              </div>
+            </a>
+
+            <a
+              class="popular-feature popular-feature-2"
+              href="https://youtu.be/tQEbcHQPajU"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://i.ytimg.com/vi/tQEbcHQPajU/hqdefault.jpg"
+                alt="쿨지근 구운 장미 메이크업 썸네일"
+              />
+              <div class="popular-copy">
+                <span class="badge b-point">TOP 2</span>
+                <h3>쿨지근 구운 장미 메이크업</h3>
+                <p>영상으로 메이크업 과정을 살펴보세요.</p>
+                <span class="popular-watch">유튜브에서 보기 ↗</span>
+              </div>
+            </a>
+
+            <a
+              class="popular-feature popular-feature-3"
+              href="https://youtu.be/COV-AsoHR5M"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://i.ytimg.com/vi/COV-AsoHR5M/hqdefault.jpg"
+                alt="말 잘듣고 싶은 연상여친st 메이크업 썸네일"
+              />
+              <div class="popular-copy">
+                <span class="badge b-point">TOP 3</span>
+                <h3>말 잘듣고 싶은 연상여친st 메이크업</h3>
+                <p>영상으로 메이크업 과정을 살펴보세요.</p>
+                <span class="popular-watch">유튜브에서 보기 ↗</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- 오른쪽: 영상 순위 선택 -->
+          <ol class="popular-ranking">
+            <li>
+              <label class="popular-rank-label" for="popular-video-1">
+                <span class="popular-rank-number">1</span>
+                <span class="popular-rank-title">
+                  초미녀 하투하 이안 메이크업
+                </span>
+              </label>
+            </li>
+            <li>
+              <label class="popular-rank-label" for="popular-video-2">
+                <span class="popular-rank-number">2</span>
+                <span class="popular-rank-title">
+                  쿨지근 구운 장미 메이크업
+                </span>
+              </label>
+            </li>
+            <li>
+              <label class="popular-rank-label" for="popular-video-3">
+                <span class="popular-rank-number">3</span>
+                <span class="popular-rank-title">
+                  말 잘듣고 싶은 연상여친st 메이크업
+                </span>
+              </label>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <strong>고객센터 1544-0000</strong><br />
+        연락 가능 시간: 평일 09:00 - 18:00
+      </div>
+    </footer>
+  </body>
+</html>

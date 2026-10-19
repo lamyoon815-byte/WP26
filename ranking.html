@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>랭킹 | 올리브송</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="ranking.css">
+</head>
+<body>
+
+<div class="util"><div class="container"><a href="#menu-soon">로그인</a><a href="#menu-soon">회원가입</a><a href="cart.html">장바구니 <em>(3)</em></a><a href="#menu-soon">고객센터</a></div></div>
+<div class="header"><div class="container">
+  <a href="home.html" class="logo"><img src="Image_logo.png" alt=""><img src="Text_logo.png" alt="올리브송"></a>
+  <form class="search" action="#search-soon" role="search"><input type="search" name="q" placeholder="퍼스널컬러, 브랜드, 성분 검색" aria-label="검색어"><button type="submit" class="search-btn" aria-label="검색"><svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M15.8 15.8 21 21"/></svg></button></form>
+  <div class="hright"><a href="#menu-soon">올송매장찾기 &#9662;</a><a href="#menu-soon">최근 본 상품 &#9662;</a></div>
+</div></div>
+<nav class="gnb"><div class="container">
+  <a class="cat" href="#menu-soon">&#9776; 카테고리</a>
+  <a href="#menu-soon">오특</a>
+  <a href="ranking.html" class="on">랭킹</a>
+  <a href="personalcolor.html">퍼스널컬러</a>
+  <a href="tutorial.html">튜토리얼</a>
+  <a href="#menu-soon">테마관</a>
+  <a href="#menu-soon">기획전</a>
+  <a href="#menu-soon">세일</a>
+  <a href="#menu-soon">기프트카드</a>
+  <a href="#menu-soon">멤버십/쿠폰</a>
+  <a href="#menu-soon">이벤트</a>
+</div></nav>
+
+<div class="title-best">
+  <h1>
+    랭킹
+    <span>오늘의 랭킹! 요즘 가장 핫한 상품</span>
+    <em class="rk-date">2026.10.11 14:00 기준</em>
+  </h1>
+</div>
+
+<main class="container">
+
+  <div class="rk-sort" role="radiogroup" aria-label="정렬 기준">
+    <label><input type="radio" name="sort" value="sales" checked>판매순</label>
+    <label><input type="radio" name="sort" value="review">리뷰 많은순</label>
+    <label><input type="radio" name="sort" value="rating">평점순</label>
+  </div>
+
+  <div class="rk-cat" role="radiogroup" aria-label="카테고리">
+    <label><input type="radio" name="cat" value="all" checked>전체</label>
+    <label><input type="radio" name="cat" value="skin">스킨케어</label>
+    <label><input type="radio" name="cat" value="mask">마스크팩</label>
+    <label><input type="radio" name="cat" value="clean">클렌징</label>
+    <label><input type="radio" name="cat" value="sun">선케어</label>
+    <label><input type="radio" name="cat" value="makeup">메이크업</label>
+    <label><input type="radio" name="cat" value="nail">네일</label>
+    <label><input type="radio" name="cat" value="tool">뷰티소품</label>
+    <label><input type="radio" name="cat" value="derma">더모 코스메틱</label>
+    <label><input type="radio" name="cat" value="perfume">향수/디퓨저</label>
+    <label><input type="radio" name="cat" value="hair">헤어케어</label>
+    <label><input type="radio" name="cat" value="body">바디케어</label>
+    <label><input type="radio" name="cat" value="luxe">럭스에딧</label>
+    <label><input type="radio" name="cat" value="mens">맨즈에딧</label>
+    <label><input type="radio" name="cat" value="supple">건강식품</label>
+    <label><input type="radio" name="cat" value="food">푸드</label>
+    <label><input type="radio" name="cat" value="oral">구강용품</label>
+    <label><input type="radio" name="cat" value="health">헬스/건강용품</label>
+    <label><input type="radio" name="cat" value="hygiene">위생용품</label>
+    <label><input type="radio" name="cat" value="fashion">패션</label>
+    <label><input type="radio" name="cat" value="living">홈리빙/가전</label>
+    <label><input type="radio" name="cat" value="hobby">취미/팬시</label>
+  </div>
+
+  <div class="rk-filter">
+    <span class="grp grp-skin">
+      <b>피부타입</b>
+      <label class="chip"><input type="radio" name="skin" value="all" checked>전체</label>
+      <label class="chip"><input type="radio" name="skin" value="지성">지성</label>
+      <label class="chip"><input type="radio" name="skin" value="건성">건성</label>
+      <label class="chip"><input type="radio" name="skin" value="복합성">복합성</label>
+      <i></i>
+    </span>
+    <span class="grp grp-pc">
+      <b>퍼스널컬러</b>
+      <label class="chip"><input type="checkbox" name="pc" value="봄웜">봄웜</label>
+      <label class="chip"><input type="checkbox" name="pc" value="여름쿨">여름쿨</label>
+      <label class="chip"><input type="checkbox" name="pc" value="가을웜">가을웜</label>
+      <label class="chip"><input type="checkbox" name="pc" value="겨울쿨">겨울쿨</label>
+      <i></i>
+    </span>
+    <label class="chip" title="위험 성분이 없는 상품만 보여줘요"><input type="checkbox" name="safe">성분 안심만 보기</label>
+    <span class="hint">위험 성분 0개</span>
+  </div>
+
+  <div class="cards rk-list">
+
+    <div class="card" style="--o-review: 2; --o-rating: 2" data-cat="skin" data-skin="건성 복합성"
+         data-sales="2250" data-review="27596" data-rating="4.8" data-caution="0" data-danger="0">
+      <span class="no" data-review-rank="2" data-rating-rank="2"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/1.jpg" alt="크리니크 쏙보습크림">
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>9</b>안전</span></li><li class="warn zero"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>0</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>글리세린</b>수분 공급</span></div>
+            <div class="rec"><span class="lbl">추천 피부</span><span class="tag"><svg aria-hidden="true"><use href="#i-dry"/></svg>건성</span><span class="tag"><svg aria-hidden="true"><use href="#i-combo"/></svg>복합성</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">크리니크</div>
+        <div class="name"><span class="ln">[10월 올영픽/1+1 기획]</span><span class="ln">크리니크 쏙보습크림 50ml 단품/기획</span></div>
+      </a>
+      <div class="price-row"><span class="rate">20%</span><span class="price">39,200원</span></div>
+      <div class="tags"><span>성분 안전</span> <span>증정</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 5; --o-rating: 6" data-cat="mask" data-skin="건성 복합성"
+         data-sales="2160" data-review="15055" data-rating="4.7" data-caution="1" data-danger="0">
+      <span class="no" data-review-rank="5" data-rating-rank="6"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/2.jpg" alt="메디힐 더마 토너패드 골라담기">
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>23</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>식물 추출물</b>진정 · 수분</span></div>
+            <div class="rec"><span class="lbl">추천 피부</span><span class="tag"><svg aria-hidden="true"><use href="#i-dry"/></svg>건성</span><span class="tag"><svg aria-hidden="true"><use href="#i-combo"/></svg>복합성</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">메디힐</div>
+        <div class="name"><span class="ln">[10월 올영픽/1위]</span><span class="ln">메디힐 더마 토너패드 100+100매 7종 골라담기</span></div>
+      </a>
+      <div class="price-row"><span class="rate">29%</span><span class="price">28,500원</span></div>
+      <div class="tags"><span>성분 안전</span> <span>증정</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 1; --o-rating: 1" data-cat="makeup" data-pc="여름쿨 겨울쿨"
+         data-sales="1960" data-review="52310" data-rating="4.8" data-caution="1" data-danger="0">
+      <span class="no" data-review-rank="1" data-rating-rank="1"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/3.webp" alt="클리오 샤프 쏘 심플 워터프루프 펜슬라이너">
+          <span class="move">&#9650; 4</span>
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>12</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>실리콘 폴리머</b>워터프루프 밀착</span></div>
+            <div class="rec"><span class="lbl">추천 톤</span><span class="tag"><i class="dot" style="background: var(--tone-summer)"></i>여름쿨</span><span class="tag"><i class="dot" style="background: var(--tone-winter)"></i>겨울쿨</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">클리오</div>
+        <div class="name"><span class="ln">[NO.1 아이라이너] 샤프 쏘 심플</span><span class="ln">워터프루프 펜슬라이너 단품/더블기획</span></div>
+      </a>
+      <div class="price-row"><span class="rate">30%</span><span class="price">7,000원</span></div>
+      <div class="tags"><span>성분 안전</span> <span>오늘드림</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 6; --o-rating: 7" data-cat="sun" data-skin="건성 복합성"
+         data-sales="1950" data-review="14544" data-rating="4.7" data-caution="1" data-danger="0">
+      <span class="no" data-review-rank="6" data-rating-rank="7"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/4.jpg" alt="라운드랩 자작나무 수분 선크림">
+          <span class="move">&#9650; 4</span>
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>21</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>자외선 차단 성분</b>SPF50+ 차단</span></div>
+            <div class="rec"><span class="lbl">추천 피부</span><span class="tag"><svg aria-hidden="true"><use href="#i-dry"/></svg>건성</span><span class="tag"><svg aria-hidden="true"><use href="#i-combo"/></svg>복합성</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">라운드랩</div>
+        <div class="name"><span class="ln">[1+1/1등썬] 라운드랩 자작나무 수분</span><span class="ln">선크림 50ml 1+1 기획 (+수분 선세럼 8ml)</span></div>
+      </a>
+      <div class="price-row"><span class="price">24,500원</span></div>
+      <div class="tags"><span>성분 안전</span> <span>오늘드림</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 3; --o-rating: 10" data-cat="clean" data-skin="지성 복합성"
+         data-sales="1800" data-review="22746" data-rating="4.6" data-caution="2" data-danger="0">
+      <span class="no" data-review-rank="3" data-rating-rank="10"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/5.jpg" alt="풀리 멜팅크림 투오일">
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>24</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>약산성 세정 성분</b>저자극 세정</span></div>
+            <div class="rec"><span class="lbl">추천 피부</span><span class="tag"><svg aria-hidden="true"><use href="#i-oily"/></svg>지성</span><span class="tag"><svg aria-hidden="true"><use href="#i-combo"/></svg>복합성</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">풀리</div>
+        <div class="name"><span class="ln">[저자극/피지지우개]</span><span class="ln">풀리 멜팅크림 투오일 50ml 단품/기획 2종 택1</span></div>
+      </a>
+      <div class="price-row"><span class="price">17,500원</span></div>
+      <div class="tags"><span>주의 성분 2</span> <span>세일</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 7; --o-rating: 4" data-cat="makeup" data-pc="봄웜 가을웜"
+         data-sales="1780" data-review="8420" data-rating="4.8" data-caution="2" data-danger="0">
+      <span class="no" data-review-rank="7" data-rating-rank="4"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/6.webp" alt="토니모리 워터풀 버터 틴트 버터쿠키 에디션">
+          <span class="move">NEW</span>
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>시어버터</b>촉촉한 버터 광</span></div>
+            <div class="rec"><span class="lbl">추천 톤</span><span class="tag"><i class="dot" style="background: var(--tone-spring)"></i>봄웜</span><span class="tag"><i class="dot" style="background: var(--tone-autumn)"></i>가을웜</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">토니모리</div>
+        <div class="name"><span class="ln">[NEW 버터쿠키 에디션]</span><span class="ln">토니모리 워터풀 버터 틴트</span></div>
+      </a>
+      <div class="price-row"><span class="rate">31%</span><span class="price">11,000원</span></div>
+      <div class="tags"><span>주의 성분 2</span> <span>NEW</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 4; --o-rating: 3" data-cat="makeup" data-pc="봄웜 여름쿨"
+         data-sales="1560" data-review="18940" data-rating="4.8" data-caution="2" data-danger="0">
+      <span class="no" data-review-rank="4" data-rating-rank="3"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/7.jpg" alt="에스쁘아 비글로우 파운데이션">
+          <span class="move">&#9650; 2</span>
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>22</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>히알루론산</b>촉촉한 광 피부</span></div>
+            <div class="rec"><span class="lbl">추천 톤</span><span class="tag"><i class="dot" style="background: var(--tone-spring)"></i>봄웜</span><span class="tag"><i class="dot" style="background: var(--tone-summer)"></i>여름쿨</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">에스쁘아</div>
+        <div class="name"><span class="ln">[1등 글로우 파데/웨딩피치]</span><span class="ln">에스쁘아 비글로우 파운데이션 30g 10 colors</span></div>
+      </a>
+      <div class="price-row"><span class="rate">20%</span><span class="price">33,500원</span></div>
+      <div class="tags"><span>주의 성분 2</span> <span>오늘드림</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 8; --o-rating: 5" data-cat="makeup" data-pc="여름쿨 겨울쿨"
+         data-sales="1480" data-review="7820" data-rating="4.8" data-caution="2" data-danger="0">
+      <span class="no" data-review-rank="8" data-rating-rank="5"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/8.jpg" alt="롬앤 더 쥬시 래스팅 틴트">
+          <span class="move">NEW</span>
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>14</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>호호바 오일</b>촉촉한 광택</span></div>
+            <div class="rec"><span class="lbl">추천 톤</span><span class="tag"><i class="dot" style="background: var(--tone-summer)"></i>여름쿨</span><span class="tag"><i class="dot" style="background: var(--tone-winter)"></i>겨울쿨</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">롬앤</div>
+        <div class="name"><span class="ln">[NEW산리오캐릭터즈 /1등 틴트]</span><span class="ln">롬앤 더 쥬시 래스팅 틴트 (쿠로미/한교동)</span></div>
+      </a>
+      <div class="price-row"><span class="rate">24%</span><span class="price">9,900원</span></div>
+      <div class="tags"><span>주의 성분 2</span> <span>NEW</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 10; --o-rating: 9" data-cat="makeup" data-pc="가을웜 겨울쿨"
+         data-sales="1170" data-review="4870" data-rating="4.7" data-caution="1" data-danger="0">
+      <span class="no" data-review-rank="10" data-rating-rank="9"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/9.jpg" alt="클리오 벨벳 립 펜슬" loading="lazy">
+          <span class="move">&#9650; 1</span>
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>11</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>1</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>벨벳 파우더</b>보송한 립 라인</span></div>
+            <div class="rec"><span class="lbl">추천 톤</span><span class="tag"><i class="dot" style="background: var(--tone-autumn)"></i>가을웜</span><span class="tag"><i class="dot" style="background: var(--tone-winter)"></i>겨울쿨</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">클리오</div>
+        <div class="name"><span class="ln">[단독기획] 클리오 벨벳 립 펜슬 단품/기획</span><span class="ln">(+미니 립펜슬 증정)</span></div>
+      </a>
+      <div class="price-row"><span class="rate">30%</span><span class="price">9,800원</span></div>
+      <div class="tags"><span>성분 안전</span> <span>증정</span></div>
+    </div>
+
+    <div class="card" style="--o-review: 9; --o-rating: 8" data-cat="makeup" data-pc="봄웜 가을웜"
+         data-sales="1150" data-review="5320" data-rating="4.7" data-caution="2" data-danger="0">
+      <span class="no" data-review-rank="9" data-rating-rank="8"></span>
+      <div class="thumb">
+        <a class="img" href="#detail-soon">
+          <img src="img/products/10.webp" alt="홀리카홀리카 마이페이브 무드 아이 팔레트" loading="lazy">
+          <span class="move">&#9650; 1</span>
+          <div class="info">
+            <ul class="safety" aria-label="성분 안전도"><li class="ok"><svg aria-hidden="true"><use href="#i-ok"/></svg><span><b>15</b>안전</span></li><li class="warn"><svg aria-hidden="true"><use href="#i-warn"/></svg><span><b>2</b>주의</span></li><li class="bad zero"><svg aria-hidden="true"><use href="#i-bad"/></svg><span><b>0</b>위험</span></li></ul>
+            <div class="key"><svg aria-hidden="true"><use href="#i-leaf"/></svg><span><b>마이카, 펄 파우더</b>데일리 음영</span></div>
+            <div class="rec"><span class="lbl">추천 톤</span><span class="tag"><i class="dot" style="background: var(--tone-spring)"></i>봄웜</span><span class="tag"><i class="dot" style="background: var(--tone-autumn)"></i>가을웜</span></div>
+            <span class="go">상세보기 &gt;</span>
+          </div>
+        </a>
+        <label class="put"><input type="checkbox" aria-label="장바구니 담기"><svg aria-hidden="true"><use href="#i-cart"/></svg></label>
+        <label class="like"><input type="checkbox" aria-label="찜하기"></label>
+      </div>
+      <a class="txt" href="#detail-soon">
+        <div class="brand">홀리카홀리카</div>
+        <div class="name"><span class="ln">홀리카홀리카 마이페이브</span><span class="ln">무드 아이 팔레트</span></div>
+      </a>
+      <div class="price-row"><span class="rate">25%</span><span class="price">20,900원</span></div>
+      <div class="tags"><span>주의 성분 2</span> <span>쿠폰</span></div>
+    </div>
+
+  </div>
+
+  <p class="rk-empty">조건에 맞는 상품이 없어요. 필터를 바꿔보세요.</p>
+
+</main>
+
+<footer></footer>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 4h2l2.4 11h11L21 8H6.2"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/>
+  </symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v9M12 19h.01"/></symbol>
+  <symbol id="i-bad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19C5 10 11 5 20 4c0 9-5 15-14 15"/><path d="M5 19l8-8"/></symbol>
+  <symbol id="i-oily" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5s-6 6.6-6 11a6 6 0 0 0 12 0c0-4.4-6-11-6-11z"/><path d="M9.5 15a2.5 2.5 0 0 0 2.5 2.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-dry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-6 6.6-6 11a6 6 0 0 0 12 0c0-4.4-6-11-6-11z"/><path d="M11 9l2 3-2 2 1.5 3"/></symbol>
+  <symbol id="i-combo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5s-6 6.6-6 11a6 6 0 0 0 12 0c0-4.4-6-11-6-11z"/><path d="M12 3.5s6 6.6 6 11a6 6 0 0 1-6 6z" fill="currentColor"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></symbol>
+</svg>
+<a href="cart.html" class="fcart" aria-label="장바구니"><svg><use href="#i-cart"/></svg><em>3</em></a>
+
+<div class="soon" id="detail-soon" role="status">상세 페이지는 준비 중이에요</div>
+<div class="soon" id="menu-soon" role="status">준비 중인 메뉴예요</div>
+<div class="soon" id="search-soon" role="status">검색 결과 페이지는 준비 중이에요</div>
+
+</body>
+</html>
