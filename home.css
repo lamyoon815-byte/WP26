@@ -495,6 +495,7 @@
 /* 네일·뷰티소품·맨즈케어·향수 선택 시 안내 표시 */
 #home-best:has(
     input[name="home-category"]:is(
+        [value="skin"],
         [value="nail"],
         [value="tool"],
         [value="mens"],
@@ -508,6 +509,7 @@
 /* 해당 카테고리에서는 상품 목록과 더보기 숨김 */
 #home-best:has(
     input[name="home-category"]:is(
+        [value="skin"],
         [value="nail"],
         [value="tool"],
         [value="mens"],
@@ -517,6 +519,7 @@
   .home-filter-products,
 #home-best:has(
     input[name="home-category"]:is(
+        [value="skin"],
         [value="nail"],
         [value="tool"],
         [value="mens"],
