@@ -24,7 +24,7 @@
     <div class="header">
       <div class="container">
         <a href="home.html" class="logo"
-          ><img src="img/logo-symbol.jpg" alt="" /><img
+          ><img src="img/logo-symbol.jpg" alt="올리브송 로고" /><img
             src="img/logo-text.jpg"
             alt="올리브송"
         /></a>
@@ -71,7 +71,6 @@
       </div>
     </nav>
 
-    <!-- 상품 카드에서 사용하는 장바구니 아이콘 -->
     <svg class="home-icon-definitions" aria-hidden="true" focusable="false">
       <symbol id="home-cart-icon" viewBox="0 0 24 24">
         <path d="M3 4h2l2.4 11h11L21 8H6.2"></path>
@@ -81,9 +80,12 @@
     </svg>
 
     <main id="home-main" class="home-inner home-main">
-      <!-- 메인 배너: 글자가 없는 사진으로 교체 -->
+      <!-- 메인 추천 배너 -->
       <section class="home-hero" aria-label="추천 상품 배너">
-        <!-- 배너 선택 상태: 방향키로도 선택 가능 -->
+        <!--
+         라디오의 선택 상태(:checked)에 따라 yerang.css에서 배너와 컨트롤을 표시한다.
+         CSS의 형제 선택자(~)가 동작하도록 라디오는 이미지·컨트롤보다 앞에 둔다.
+         -->
         <input
           class="home-banner-radio"
           type="radio"
@@ -107,26 +109,26 @@
           aria-label="배너 3"
         />
 
-        <!-- 배너 사진: 아래 세 경로를 실제 사진으로 교체 -->
+        <!-- 메인 배너 이미지 -->
         <div class="home-banner-images">
           <img
             class="home-hero-image home-banner-image-1"
             src="img/banner1.jpg"
-            alt=""
+            alt="배너 이미지 1"
           />
           <img
             class="home-hero-image home-banner-image-2"
             src="img/banner2.jpg"
-            alt=""
+            alt="배너 이미지 2"
           />
           <img
             class="home-hero-image home-banner-image-3"
             src="img/banner3.jpg"
-            alt=""
+            alt="배너 이미지 3"
           />
         </div>
 
-        <!-- 배너 전환 컨트롤 -->
+        <!-- 이전·다음 label의 for를 대상 라디오 id와 연결하여 배너를 순환 전환 -->
         <div class="home-banner-controls" role="group" aria-label="배너 전환">
           <!-- 첫 번째 배너를 보고 있을 때 -->
           <div class="home-banner-control home-banner-control-1">
@@ -193,18 +195,17 @@
         </div>
       </section>
 
-      <!-- 첨부 HTML의 상품 목록 -->
+      <!-- 추천 상품 영역: 추천 메뉴, 카테고리 필터, 상품 목록 -->
       <section
         id="home-best"
         class="home-best"
         aria-labelledby="home-best-title"
       >
         <div class="home-recommend-header">
-          <!-- 기존 section의 aria-labelledby와 연결되는 제목 -->
+          <!-- 화면에는 숨기고, 스크린 리더에 추천 상품 영역의 제목을 제공 -->
           <h2 id="home-best-title" class="home-sr-only">오늘의 뷰티 추천</h2>
 
-          <!-- 추천 메뉴: 공통 탭 스타일 사용 -->
-
+          <!-- 추천 메뉴: 현재 '나를 위한 추천 상품'만 연결됨 -->
           <nav class="tabs home-recommend-tabs" aria-label="뷰티 추천 메뉴">
             <a class="tab on" href="#home-best" aria-current="true">
               나를 위한 추천 상품
@@ -213,7 +214,7 @@
             <a class="tab">뷰티 성분별</a>
           </nav>
 
-          <!-- 가로 추천 상품 카테고리: 좁은 화면에서는 좌우 스크롤 -->
+          <!-- 추천 상품 카테고리: 가로로 배치하며 영역을 넘는 항목은 숨김 -->
           <nav
             class="home-recommend-categories"
             aria-label="추천 상품 카테고리"
@@ -335,13 +336,17 @@
             <span class="home-category-arrow" aria-hidden="true"></span>
           </nav>
         </div>
-        <!-- home-recommend-header 끝 -->
 
+        <!-- 스킨케어·네일·뷰티소품·맨즈케어·향수 선택 시 CSS에서 표시하는 안내 -->
         <div class="home-empty-message" role="status">
           다른 제품 카테고리를 선택해 주세요.
         </div>
 
-        <!-- 상품 목록 시작 -->
+        <!-- 
+        상품 목록: 카테고리 라디오의 value와 카드의 data-cat을 맞춘다.
+        yerang.css의 :has()와 :checked로 선택한 카테고리의 상품을 표시한다.
+        NEW(value="all")에서는 HTML에 작성된 순서대로 처음 8개만 표시한다. 
+      -->
         <div class="cards home-filter-products rk-list">
           <div class="card" data-cat="mask">
             <div class="thumb">
@@ -379,6 +384,7 @@
                   <span class="go">상세보기 &gt;</span>
                 </div>
               </a>
+              <!-- 장바구니·찜은 체크 상태만 전환하며, 상품 저장 기능은 연결되어 있지 않음 -->
               <label class="put"
                 ><input type="checkbox" aria-label="장바구니 담기" /><svg
                   aria-hidden="true"
@@ -1060,9 +1066,10 @@
       </section>
 
       <!-- 이 주의 최신 기획전 콘텐츠 -->
-      <section class="home-services" aria-labelledby="home-services-title">
-        <h2 id="home-services-title">이 주의 최신 기획전</h2>
+      <section class="home-services" aria-labelledby="home-weekly-title">
+        <h2 id="home-weekly-title">이 주의 최신 기획전</h2>
 
+        <!-- 기획전 이미지 목록: 양쪽 화살표는 장식이며 슬라이드 전환 기능은 없음 -->
         <div class="home-weekly-slider">
           <span class="home-category-arrow prev" aria-hidden="true"></span>
 
@@ -1094,7 +1101,7 @@
       </div>
     </footer>
 
-    <!--이모지 정의 부분-->
+    <!-- 상품 카드에서 use로 재사용하는 SVG 아이콘 정의 -->
     <svg width="0" height="0" style="position: absolute">
       <symbol
         id="i-cart"
@@ -1199,6 +1206,7 @@
       </symbol>
     </svg>
 
+    <!-- 준비 중인 링크의 해시 대상: common.css의 :target으로 안내 메시지를 표시 -->
     <div class="soon" id="detail-soon" role="status">
       상세 페이지는 준비 중이에요
     </div>
