@@ -20,7 +20,7 @@
     <div class="header">
       <div class="container">
         <a href="home.html" class="logo"
-          ><img src="img/logo-symbol.jpg" alt="" /><img
+          ><img src="img/logo-symbol.jpg" alt="올리브송 로고" /><img
             src="img/logo-text.jpg"
             alt="올리브송"
         /></a>
@@ -75,8 +75,9 @@
     </div>
     <main class="container tutorial-page">
       <!--
-    화장품 카테고리 radio buttons으로 선택하기
-    아래 label의 for와 input의 id를 연결
+      카테고리는 같은 name의 라디오로 하나만 선택한다.
+      label의 for를 라디오 id와 연결하고, yerang.css의 :checked로 해당 패널을 표시한다.
+      형제 선택자(~)가 동작하도록 라디오는 카테고리 목록과 패널보다 앞에 둔다.
     -->
       <input class="choice" type="radio" name="category" id="category-base" />
       <input class="choice" type="radio" name="category" id="category-eye" />
@@ -89,7 +90,7 @@
         id="category-contour"
       />
 
-      <!-- 이미지 카테고리 -->
+      <!-- 화장품 카테고리 선택 목록 -->
       <div class="category-area">
         <div class="category-list">
           <div class="category-item">
@@ -152,11 +153,11 @@
         </div>
       </div>
 
-      <!-- 메이크업 튜토리얼 제목 -->
       <div class="tutorial-heading">
         <h2>메이크업 튜토리얼</h2>
       </div>
 
+      <!-- 카테고리를 선택하기 전에 표시하며, 선택 후에는 CSS에서 숨김 -->
       <div class="initial-guide">
         <strong>오늘은 어떤 메이크업을 해볼까요?</strong>
         <p>
@@ -164,8 +165,14 @@
         </p>
       </div>
 
-      <!-- 베이스 구매 상품 -->
+      <!-- 베이스: 상품 선택 및 관련 튜토리얼 -->
       <div class="category-panel panel-base">
+        <!--
+        상품 label의 for, 라디오 id, 결과 영역의 클래스를 CSS 선택자와 맞춘다.
+        예: for="base-1" → id="base-1" → .result-base-1
+        상품 라디오는 같은 패널 안의 목록·안내·결과 영역보다 앞에 둔다.
+        새 상품을 추가할 때는 yerang.css에도 결과 표시 선택자를 추가한다.
+      -->
         <input
           class="choice product-choice"
           type="radio"
@@ -179,7 +186,7 @@
           id="base-2"
         />
 
-        <!-- 베이스 구매 상품 리스트 -->
+        <!-- 베이스 상품 선택 목록 -->
         <div class="product-list">
           <label class="product-label" for="base-1">
             <span class="product-image">
@@ -208,6 +215,7 @@
           </label>
         </div>
 
+        <!-- 카테고리 안에서 상품을 선택하기 전까지 표시하는 안내 -->
         <div class="select-guide">
           <strong>오늘은 어떤 베이스 메이크업을 해볼까요?</strong>
           <p>
@@ -216,8 +224,9 @@
         </div>
 
         <div class="product-result result-base-1">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
+            <!-- 영상 개수는 직접 입력한 값이므로 기본 목록과 더보기 목록 변경 시 함께 수정 -->
             <p class="video-total">총 <strong>12</strong>개</p>
 
             <div class="video-sort" role="group" aria-label="영상 정렬">
@@ -254,7 +263,10 @@
             </div>
           </div>
 
-          <!-- 튜토리얼 영상 리스트 -->
+          <!--
+          튜토리얼 영상 목록: 썸네일을 클릭하면 유튜브를 새 탭에서 연다.
+          영상 교체 시 링크의 영상 ID와 썸네일 주소의 영상 ID를 함께 수정한다.
+        -->
           <div class="video-list">
             <div class="video-card">
               <a
@@ -278,6 +290,7 @@
                 </p>
               </div>
 
+              <!-- 구매 버튼은 화면 표시용이며, 상품 페이지 이동 기능은 연결되어 있지 않음 -->
               <button type="button" class="video-buy-button">
                 화장에 사용된 제품 구매하러 가기
               </button>
@@ -337,7 +350,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄 -->
             <div class="video-card">
               <a
                 href="https://youtu.be/DgAy5OyYa7A?si=j3c3nSpOKXa6YVln"
@@ -420,7 +432,7 @@
             </div>
           </div>
 
-          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <!-- details/summary로 추가 영상을 펼치고 접으며, open 상태에 따라 CSS에서 버튼 문구를 변경 -->
           <details class="video-more">
             <summary class="video-more-button">
               <span class="more-label">튜토리얼 더보기</span>
@@ -428,7 +440,6 @@
             </summary>
 
             <div class="video-list">
-              <!-- 세번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/8WQZ_YKxnqc?si=ezKLTsEX0xJ2i3r0"
@@ -509,7 +520,7 @@
                   화장에 사용된 제품 구매하러 가기
                 </button>
               </div>
-              <!-- 네번째 줄-->
+
               <div class="video-card">
                 <a
                   href="https://youtu.be/IXDQ2Amy6Yc?si=cokaZO2Fo6Qgq3i4"
@@ -595,7 +606,7 @@
         </div>
 
         <div class="product-result result-base-2">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
             <p class="video-total">총 <strong>8</strong>개</p>
 
@@ -716,7 +727,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄 -->
             <div class="video-card">
               <a
                 href="https://youtu.be/qTWzW3wp0sA?si=RTlZiP4LB31hJjGY"
@@ -799,7 +809,7 @@
             </div>
           </div>
 
-          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <!-- details/summary로 추가 영상을 펼치고 접으며, open 상태에 따라 CSS에서 버튼 문구를 변경 -->
           <details class="video-more">
             <summary class="video-more-button">
               <span class="more-label">튜토리얼 더보기</span>
@@ -807,7 +817,6 @@
             </summary>
 
             <div class="video-list">
-              <!-- 세번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/1qj6SactPVM?si=x7jkraWu7kmGeBaz"
@@ -866,7 +875,7 @@
         </div>
       </div>
 
-      <!-- 아이 구매 상품 -->
+      <!-- 아이: 상품 선택 및 관련 튜토리얼 -->
       <div class="category-panel panel-eye">
         <input
           class="choice product-choice"
@@ -915,7 +924,7 @@
         </div>
 
         <div class="product-result result-eye-1">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
             <p class="video-total">총 <strong>9</strong>개</p>
 
@@ -1036,7 +1045,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄 -->
             <div class="video-card">
               <a
                 href="https://youtu.be/uF3RI_4ldiI?si=XBaZFxrkNFhd10dH"
@@ -1119,7 +1127,7 @@
             </div>
           </div>
 
-          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <!-- details/summary로 추가 영상을 펼치고 접으며, open 상태에 따라 CSS에서 버튼 문구를 변경 -->
           <details class="video-more">
             <summary class="video-more-button">
               <span class="more-label">튜토리얼 더보기</span>
@@ -1127,7 +1135,6 @@
             </summary>
 
             <div class="video-list">
-              <!-- 세번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/h9kyhKOrXZc?si=BpxE65htD69wv4NG"
@@ -1213,7 +1220,7 @@
         </div>
 
         <div class="product-result result-eye-2">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
             <p class="video-total">총 <strong>4</strong>개</p>
 
@@ -1334,7 +1341,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄-->
             <div class="video-card">
               <a
                 href="https://youtu.be/sFWC8VYZQj4?si=vHHHpydMFjKZuUSl"
@@ -1365,7 +1371,7 @@
         </div>
       </div>
 
-      <!-- 립 구매 상품 -->
+      <!-- 립: 상품 선택 및 관련 튜토리얼 -->
       <div class="category-panel panel-lip">
         <input
           class="choice product-choice"
@@ -1414,7 +1420,7 @@
         </div>
 
         <div class="product-result result-lip-1">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
             <p class="video-total">총 <strong>11</strong>개</p>
 
@@ -1535,7 +1541,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄 -->
             <div class="video-card">
               <a
                 href="https://youtu.be/EOBXiA5q_Z0?si=GS-IlRc_vAPmCHSu"
@@ -1618,7 +1623,7 @@
             </div>
           </div>
 
-          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <!-- details/summary로 추가 영상을 펼치고 접으며, open 상태에 따라 CSS에서 버튼 문구를 변경 -->
           <details class="video-more">
             <summary class="video-more-button">
               <span class="more-label">튜토리얼 더보기</span>
@@ -1626,7 +1631,6 @@
             </summary>
 
             <div class="video-list">
-              <!-- 세번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/h4hQWjE5SL0?si=0SfVLtfy-RujLCcv"
@@ -1708,7 +1712,6 @@
                 </button>
               </div>
 
-              <!-- 네번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/gLs0ffZQ7xs?si=FFMfXDSrsv_xSobW"
@@ -1767,7 +1770,7 @@
         </div>
 
         <div class="product-result result-lip-2">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
             <p class="video-total">총 <strong>5</strong>개</p>
 
@@ -1888,7 +1891,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄 -->
             <div class="video-card">
               <a
                 href="https://youtu.be/QZSnojO1B_4?si=cymvVq_Yw7upfoH9"
@@ -1946,7 +1948,7 @@
         </div>
       </div>
 
-      <!-- 치크 구매 상품 -->
+      <!-- 치크: 상품 선택 및 관련 튜토리얼 -->
       <div class="category-panel panel-cheek">
         <input
           class="choice product-choice"
@@ -1976,7 +1978,7 @@
         </div>
 
         <div class="product-result result-cheek-1">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
             <p class="video-total">총 <strong>14</strong>개</p>
 
@@ -2097,7 +2099,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄 -->
             <div class="video-card">
               <a
                 href="https://youtu.be/BJlnoBEBGMA?si=A_j2UVpDHvfRkiSn"
@@ -2180,7 +2181,7 @@
             </div>
           </div>
 
-          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <!-- details/summary로 추가 영상을 펼치고 접으며, open 상태에 따라 CSS에서 버튼 문구를 변경 -->
           <details class="video-more">
             <summary class="video-more-button">
               <span class="more-label">튜토리얼 더보기</span>
@@ -2188,7 +2189,6 @@
             </summary>
 
             <div class="video-list">
-              <!-- 세번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/pHrMwdrSCd8?si=P5DrHRgbGFNgCV_N"
@@ -2270,7 +2270,6 @@
                 </button>
               </div>
 
-              <!-- 네번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/pwXexZmmGlE?si=eFJs76kCJlC9Qc-8"
@@ -2352,7 +2351,6 @@
                 </button>
               </div>
 
-              <!-- 다섯번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/RlftNO6Atf0?si=pFkvqyS_6koR0iXG"
@@ -2411,7 +2409,7 @@
         </div>
       </div>
 
-      <!-- 쉐딩 · 하이라이터 구매 상품 -->
+      <!-- 쉐딩·하이라이터: 상품 선택 및 관련 튜토리얼 -->
       <div class="category-panel panel-contour">
         <input
           class="choice product-choice"
@@ -2444,7 +2442,7 @@
         </div>
 
         <div class="product-result result-contour-1">
-          <!-- 튜토리얼 영상 정렬 바  -->
+          <!-- 영상 개수 및 정렬 옵션: 선택 표시만 변경되며 영상 순서는 바뀌지 않음 -->
           <div class="video-toolbar">
             <p class="video-total">총 <strong>10</strong>개</p>
 
@@ -2565,7 +2563,6 @@
               </button>
             </div>
 
-            <!-- 두번째 줄 -->
             <div class="video-card">
               <a
                 href="https://youtu.be/pPSr1R8PnlQ?si=HStj7qHKoNsXO-VP"
@@ -2648,7 +2645,7 @@
             </div>
           </div>
 
-          <!-- 버튼을 누르면 나머지 영상 표시 -->
+          <!-- details/summary로 추가 영상을 펼치고 접으며, open 상태에 따라 CSS에서 버튼 문구를 변경 -->
           <details class="video-more">
             <summary class="video-more-button">
               <span class="more-label">튜토리얼 더보기</span>
@@ -2656,7 +2653,6 @@
             </summary>
 
             <div class="video-list">
-              <!-- 세번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/fvMMC5vzPzw?si=RdWv-OBcLh-wzHvn"
@@ -2738,7 +2734,6 @@
                 </button>
               </div>
 
-              <!-- 네번째 줄 -->
               <div class="video-card">
                 <a
                   href="https://youtu.be/uRMqu6W-ItI?si=yGnfDOkhJPUzupes"
@@ -2770,17 +2765,22 @@
         </div>
       </div>
 
-      <!-- 인기 튜토리얼: 페이지에 한 번만 추가 -->
+      <!-- 인기 튜토리얼: 미리 작성한 순위와 영상 표시 -->
       <section class="popular-tutorials" aria-labelledby="popular-title">
         <div class="popular-heading">
           <h2 id="popular-title">조회 급상승, 인기 튜토리얼 영상</h2>
 
+          <!-- 순위 갱신 기능은 연결되어 있지 않음 -->
           <button type="button" class="popular-update">
             <span aria-hidden="true">↻</span> 업데이트
           </button>
         </div>
 
-        <!-- 인기 영상 선택 -->
+        <!--
+        순위 label의 for와 인기 영상 라디오 id를 연결한다.
+        :checked와 형제 선택자(~)로 해당 미리보기를 표시하므로
+        라디오는 popular-body보다 앞에 둔다.
+      -->
         <input
           class="choice"
           type="radio"
@@ -2802,7 +2802,7 @@
         />
 
         <div class="popular-body">
-          <!-- 왼쪽: 선택한 영상 -->
+          <!-- 선택한 인기 영상의 썸네일·설명·유튜브 링크 -->
           <div class="popular-preview">
             <a
               class="popular-feature popular-feature-1"
@@ -2859,7 +2859,7 @@
             </a>
           </div>
 
-          <!-- 오른쪽: 영상 순위 선택 -->
+          <!-- 순위를 선택하면 해당 라디오가 체크되어 미리보기가 전환됨 -->
           <ol class="popular-ranking">
             <li>
               <label class="popular-rank-label" for="popular-video-1">
@@ -2896,6 +2896,7 @@
       </div>
     </footer>
 
+    <!-- 준비 중인 링크의 해시 대상: common.css의 :target으로 안내 메시지를 표시 -->
     <div class="soon" id="detail-soon" role="status">
       상세 페이지는 준비 중이에요
     </div>
