@@ -14,44 +14,6 @@
 html, body { overflow-x: clip; }
 label:has(input:focus-visible) { outline: 2px solid var(--c-point); outline-offset: 2px; }
 
-
-.header .search {
-  padding: 0 8px 0 20px;
-}
-.header .search input {
-  min-width: 0;
-  flex: 1;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--c-main);
-  font: inherit;
-}
-.header .search input::placeholder {
-  color: var(--c-text-disabled);
-  opacity: 1;
-}
-.header .search .search-btn {
-  width: 36px;
-  height: 36px;
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--c-main);
-}
-.header .search .search-ico {
-  width: 22px;
-  height: 22px;
-  margin: 0;
-}
-
-
 .title-best .rk-date {
   position: absolute;
   right: 16px;
