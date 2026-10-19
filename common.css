@@ -4,8 +4,8 @@
 /* ==========================================================================
    common.css  —  6개 페이지 공통 스타일
    --------------------------------------------------------------------------
-   * 모든 html 파일의 <head>에서 맨 먼저 불러온다.
-       <link rel="stylesheet" href="css/common.css">
+   * 각 페이지에서 공통 스타일을 불러온다.
+       <link rel="stylesheet" href="common.css">
    * 색, 글자 크기, 높이 같은 숫자는 직접 쓰지 말고 아래 1번의 변수만 쓴다.
        예)  color: var(--c-point);   font-size: var(--fs-md);
    * 값을 바꾸고 싶으면 1번의 변수만 수정한다. (6페이지가 한꺼번에 바뀐다)
@@ -200,7 +200,7 @@ button {
    ========================================================================== */
 .gnb {
   border-top: 1px solid var(--c-border);
-  border-bottom: 2px solid var(--c-main);
+  border-bottom: 2px solid var(--c-nav);
 }
 
 .gnb .container {
@@ -220,6 +220,7 @@ button {
   align-items: center;
   border-bottom: 3px solid transparent; /* 밑줄 자리를 모든 메뉴에 미리 확보 → 글자 높이가 다 같음 */
   cursor: pointer;
+  color: var(--c-nav);
 }
 
 /* 메뉴 밑줄 바: 평소엔 폭 0 → 호버하면 가운데에서 양옆으로 늘어남 */
